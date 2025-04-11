@@ -10,4 +10,8 @@ export const navigation = [
     title: "React",
     links: [{ title: "Introduction", href: "/docs/react" }],
   },
+  {
+    title: "Merise",
+    links: [{ title: "Introduction", href: "/docs/merise" }],
+  },
 ];
