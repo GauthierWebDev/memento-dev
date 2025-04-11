@@ -49,18 +49,18 @@ Ce sont ces informations que l'on va devoir stocker dans notre base de données.
 
 En reprenant les informations que l'on a, on va pouvoir créer notre dictionnaire de données.
 
-| Groupe de la donnée | Nom de la donnée | Type de donnée | Description                                 |
-| ------------------- | ---------------- | -------------- | ------------------------------------------- |
-| Pommes de terre     | variété          | Texte          | Nom de la variété de la pomme de terre      |
-| Pommes de terre     | stock            | Nombre         | Quantité de pommes de terre en stock        |
-| Salarié             | matricule        | Texte          | Numéro d'immatriculation du salarié, unique |
-| Salarié             | nom              | Texte          | Nom du salarié                              |
-| Salarié             | prénom           | Texte          | Prénom du salarié                           |
-| Vente               | date             | Date           | Date de la vente                            |
-| Vente               | quantité         | Nombre         | Quantité de pommes de terre vendues         |
-| Vente               | prix             | Nombre         | Prix de vente unitaire                      |
-| Vente               | vendeur          | Texte          | Nom du salarié qui a vendu                  |
-| Vente               | variété          | Texte          | Nom de la variété de la pomme de terre      |
+| Groupe de la donnée | Nom de la donnée           | Type de donnée | Description                                    |
+| ------------------- | -------------------------- | -------------- | ---------------------------------------------- |
+| Pommes de terre     | variété                    | Texte          | Nom de la variété de la pomme de terre         |
+| Pommes de terre     | stock                      | Nombre         | Quantité de pommes de terre en stock           |
+| Salarié             | matricule                  | Texte          | Numéro d'immatriculation du salarié, unique    |
+| Salarié             | nom                        | Texte          | Nom du salarié                                 |
+| Salarié             | prénom                     | Texte          | Prénom du salarié                              |
+| Vente               | date                       | Date           | Date de la vente                               |
+| Vente               | quantité vendue            | Nombre         | Quantité de pommes de terre vendues            |
+| Vente               | prix total                 | Nombre         | Prix de vente unitaire                         |
+| Vente               | Salarié (individuel)       | Non applicable | Salarié en charge de la vente                  |
+| Vente               | Pomme de terre (multiples) | Non applicable | Pommes de terre vendues lors d'une transaction |
 
 Comme tu peux le voir, nous utilisons des termes simples et compréhensibles par le client.  
 Il ne faut **surtout pas** perdre le client avec des termes techniques comme `VARCHAR` par exemple.
@@ -89,18 +89,18 @@ On peut lui poser des questions comme :
 Selon les questions posées et les réponses obtenues par le client, on va pouvoir finaliser notre dictionnaire de données.  
 On va donc ajouter des précisions sur les données, comme la taille attendue, le type de données et si la taille est fixe ou pas.
 
-| Groupe de la donnée | Nom de la donnée | Type de donnée | Taille attendue | Taille fixe ?  | Description                                 |
-| ------------------- | ---------------- | -------------- | --------------- | -------------- | ------------------------------------------- |
-| Pommes de terre     | variété          | Texte          | 50 caractères   | Non            | Nom de la variété de la pomme de terre      |
-| Pommes de terre     | stock            | Nombre         | 8 chiffres      | Non applicable | Quantité de pommes de terre en stock        |
-| Salarié             | matricule        | Texte          | 10 caractères   | Oui            | Numéro d'immatriculation du salarié, unique |
-| Salarié             | nom              | Texte          | 50 caractères   | Non            | Nom du salarié                              |
-| Salarié             | prénom           | Texte          | 50 caractères   | Non            | Prénom du salarié                           |
-| Vente               | date             | Date           | Non applicable  | Non            | Date de la vente                            |
-| Vente               | quantité         | Nombre         | 8 chiffres      | Non applicable | Quantité de pommes de terre vendues         |
-| Vente               | prix             | Nombre         | 8 chiffres      | Non applicable | Prix de vente unitaire                      |
-| Vente               | vendeur          | Texte          | 50 caractères   | Non            | Nom du salarié qui a vendu                  |
-| Vente               | variété          | Texte          | 50 caractères   | Non            | Nom de la variété de la pomme de terre      |
+| Groupe de la donnée | Nom de la donnée           | Type de donnée | Taille attendue | Taille fixe ?  | Description                                    |
+| ------------------- | -------------------------- | -------------- | --------------- | -------------- | ---------------------------------------------- |
+| Pomme de terre      | variété                    | Texte          | 50 caractères   | Non            | Nom de la variété de la pomme de terre         |
+| Pomme de terre      | stock                      | Nombre         | 8 chiffres      | Non applicable | Quantité de pommes de terre en stock           |
+| Salarié             | matricule                  | Texte          | 10 caractères   | Oui            | Numéro d'immatriculation du salarié, unique    |
+| Salarié             | nom                        | Texte          | 50 caractères   | Non            | Nom du salarié                                 |
+| Salarié             | prénom                     | Texte          | 50 caractères   | Non            | Prénom du salarié                              |
+| Vente               | date                       | Date           | Non applicable  | Non            | Date de la vente                               |
+| Vente               | quantité vendue            | Nombre         | 8 chiffres      | Non applicable | Quantité de pommes de terre vendues            |
+| Vente               | prix total                 | Nombre         | 8 chiffres      | Non applicable | Prix de vente unitaire                         |
+| Vente               | Salarié (individuel)       | Non applicable | Non applicable  | Non            | Salarié en charge de la vente                  |
+| Vente               | Pomme de terre (multiples) | Non applicable | Non applicable  | Non applicable | Pommes de terre vendues lors d'une transaction |
 
 Dans cet exemple, on a ajouté la **taille** des données, mais ce n'est pas toujours le cas.  
 Lorsque ce n'est pas pertinent, on peut indiquer `Non applicable` _(ou un autre terme équivoque)_ pour la taille attendue.

@@ -9,6 +9,8 @@ export default {
   // https://vike.dev/Layout
   Layout,
 
+  lang: "fr",
+
   // https://vike.dev/head-tags
   title: "Memento Dev",
   description: "Demo showcasing Vike",

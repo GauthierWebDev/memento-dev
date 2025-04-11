@@ -1,5 +1,6 @@
 import { InstallationIcon } from "@syntax/icons/InstallationIcon";
 import { LightbulbIcon } from "@syntax/icons/LightbulbIcon";
+import { QuestionIcon } from "@syntax/icons/QuestionIcon";
 import { PluginsIcon } from "@syntax/icons/PluginsIcon";
 import { PresetsIcon } from "@syntax/icons/PresetsIcon";
 import { ThemingIcon } from "@syntax/icons/ThemingIcon";
@@ -14,7 +15,7 @@ const icons = {
   theming: ThemingIcon,
   lightbulb: LightbulbIcon,
   warning: WarningIcon,
-  question: WarningIcon,
+  question: QuestionIcon,
 };
 
 const iconStyles = {

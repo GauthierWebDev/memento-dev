@@ -109,6 +109,101 @@ Le client n'ayant pas besoin de savoir ce qu'est un identifiant technique, on va
 
 {% /callout %}
 
+## Données uniques et discriminants
+
+Je fais un rapide point entre les données uniques et discriminants !  
+Les deux attributs sont **uniques**, mais n'ont pas la même signification.
+
+Dans l'exemple donné plus tôt avec l'attribut **Matricule**, il s'agit d'un **discriminant naturel**. Dans ce cas précis, il s'agit d'une **donnée réelle** _(métier)_ qui permet d'identifier un salarié de manière unique.
+
+Maintenant, prenons l'exemple d'un compte utilisateur sur un site web avec :
+
+- **Email** : Adresse email de l'utilisateur
+- **Mot de passe** : Mot de passe de l'utilisateur
+
+On serait tenté de se dire que l'adresse email est un discriminant du fait que cette donnée se doit d'être unique.  
+Pourtant, ce n'est pas le cas.
+
+La raison est simple : l'adresse email peut être **modifiée par l'utilisateur**.
+
+Un discriminant se veut **unique**, **fixe** et **non modifiable**.  
+En gros, les mêmes contraintes que pour une **clé primaire** _(même si on ne doit pas utiliser ce terme dans un MCD)_.
+
+Maintenant, à quoi ça ressemble dans un MCD ?
+
+### Représentation graphique entre discriminant et unique
+
+Une donnée unique se représente par une écriture **épaisse** sur le nom de l'attribut d'une entité.  
+On sait qu'il s'agit d'une donnée unique, mais pas forcément d'un discriminant.
+
+Le discriminant reprend cette même écriture, mais ajoute un **soulignement** sur le nom de l'attribut.
+
+![MCD - Discriminant et unique](/merise/mcd-3.webp)
+
+## Relations entre entités
+
+Oui, on passe déjà aux relations entre entités !  
+Et si jamais tu te poses la question : "Et **Vente** alors ?"... et bien on en parle juste maintenant !
+
+Dans notre situation, une vente relie les entités **Pomme de terre** et **Salarié**.  
+On va donc créer une nouvelle entité : **Vente**.
+
+Dans notre cas, on sait qu'une vente est réalisée par un salarié et concerne une ou plusieurs pommes de terre.  
+C'est donc maintenant que l'on peut parler de **cardinalité** !
+
+### Écriture et lecture des cardinalités
+
+La cardinalité est un élément essentiel dans la modélisation de données. Elle permet de définir le nombre d'occurrences d'une entité par rapport à une autre.
+
+Une cardinalité se compose de deux valeurs :
+
+- **Minimum** : Nombre minimum d'occurrences _(0, 1, ...)_
+- **Maximum** : Nombre maximum d'occurrences _(1, 2, N, ...)_
+
+{% callout type="question" title="C'est quoi ce `N` ?" %}
+
+`N` représente une valeur **illimitée**.
+
+Dans le cas d'une vente, on ne limite pas le nombre maximale de variétés de pommes de terre vendues lors d'une transaction.  
+On peut donc dire que le nombre de variétés de pommes de terre vendues est **illimité**.
+
+{% /callout %}
+
+## Définition de nos cardinalités
+
+Il est temps d'en finir avec notre MCD et ces histoires de cardinalités !
+
+Voici comment on va définir nos cardinalités :
+
+- **Pomme de terre** et **Vente** :
+  - Une pomme de terre peut être vendue plusieurs fois, mais pas forcément _(0,N)_
+  - Une vente concerne au moins une pomme de terre, jusqu'à une infinité de pommes de terre _(1,N)_
+- **Salarié** et **Vente** :
+  - Un salarié peut réaliser plusieurs ventes, mais pas forcément _(0,N)_
+  - Une vente est réalisée par un et un seul salarié _(1,1)_
+
+En ajoutant des verbes **à l'infinitif** pour expliquer la relation entre les entités, on obtient :
+
+![MCD - Relations entre entités](/merise/mcd-4.webp)
+
+Et là, on est presque bon !  
+Il nous manque juste un petit détail : la **quantité** vendue d'une variété de pomme de terre au cours d'une vente.
+
+## Relations N-N
+
+Si on regarde de plus prêt notre relation **INCLURE** entre **Pomme de terre** et **Vente**, on se rend compte qu'il s'agit d'une relation **N-N** _(N-N)_.
+
+Ce type de relation permet l'ajout d'attributs à la relation elle-même.  
+Lors de l'étape suivante _(MLD)_, on verra comment gérer ce type de relation.
+
+Ici, on va pouvoir ajouter un nouvel attribut à notre relation : **Quantité**.
+
+![MCD - Relations N-N](/merise/mcd-5.webp)
+
+---
+
+Gros morceau, n'est-ce pas ? 😅
+
 ## Ressources supplémentaires
 
 - [La vérité sur les id - Jean Prulière](https://jeanpruliere.medium.com/la-v%C3%A9rit%C3%A9-sur-les-id-507134adda12)
