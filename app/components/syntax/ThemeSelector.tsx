@@ -1,12 +1,11 @@
-import { useEffect, useState } from "react";
-// import { useTheme } from 'next-themes'
 import { Label, Listbox, ListboxButton, ListboxOption, ListboxOptions } from "@headlessui/react";
+import { useEffect, useState } from "react";
+import { useTheme } from "@/hooks/useTheme";
 import clsx from "clsx";
 
 const themes = [
-  { name: "Light", value: "light", icon: LightIcon },
-  { name: "Dark", value: "dark", icon: DarkIcon },
-  { name: "System", value: "system", icon: SystemIcon },
+  { name: "Clair", value: "light", icon: LightIcon },
+  { name: "Sombre", value: "dark", icon: DarkIcon },
 ];
 
 function LightIcon(props: React.ComponentPropsWithoutRef<"svg">) {
@@ -33,27 +32,9 @@ function DarkIcon(props: React.ComponentPropsWithoutRef<"svg">) {
   );
 }
 
-function SystemIcon(props: React.ComponentPropsWithoutRef<"svg">) {
-  return (
-    <svg aria-hidden="true" viewBox="0 0 16 16" {...props}>
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M1 4a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v4a3 3 0 0 1-3 3h-1.5l.31 1.242c.084.333.36.573.63.808.091.08.182.158.264.24A1 1 0 0 1 11 15H5a1 1 0 0 1-.704-1.71c.082-.082.173-.16.264-.24.27-.235.546-.475.63-.808L5.5 11H4a3 3 0 0 1-3-3V4Zm3-1a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4Z"
-      />
-    </svg>
-  );
-}
-
 export function ThemeSelector(props: React.ComponentPropsWithoutRef<typeof Listbox<"div">>) {
-  const useTheme = () => {
-    return {
-      theme: "light",
-      setTheme: (theme: string) => {},
-    };
-  };
-  let { theme, setTheme } = useTheme();
   let [mounted, setMounted] = useState(false);
+  let { theme, setTheme } = useTheme();
 
   useEffect(() => {
     setMounted(true);
@@ -70,10 +51,8 @@ export function ThemeSelector(props: React.ComponentPropsWithoutRef<typeof Listb
         className="flex h-6 w-6 items-center justify-center rounded-lg ring-1 shadow-md shadow-black/5 ring-black/5 dark:bg-slate-700 dark:ring-white/5 dark:ring-inset"
         aria-label="Theme"
       >
-        <LightIcon className={clsx("h-4 w-4 dark:hidden", theme === "system" ? "fill-slate-400" : "fill-violet-400")} />
-        <DarkIcon
-          className={clsx("hidden h-4 w-4 dark:block", theme === "system" ? "fill-slate-400" : "fill-violet-400")}
-        />
+        <LightIcon className={clsx("h-4 w-4 dark:hidden", "fill-violet-400")} />
+        <DarkIcon className={clsx("hidden h-4 w-4 dark:block", "fill-violet-400")} />
       </ListboxButton>
       <ListboxOptions className="absolute top-full left-1/2 mt-3 w-36 -translate-x-1/2 space-y-1 rounded-xl bg-white p-3 text-sm font-medium ring-1 shadow-md shadow-black/5 ring-black/5 dark:bg-slate-800 dark:ring-white/5">
         {themes.map((theme) => (

@@ -36,6 +36,16 @@ const nodes = {
       return new Tag(`h${node.attributes.level}`, { ...attributes, id }, children);
     },
   },
+  strong: {
+    ...defaultNodes.strong,
+    attributes: {
+      ...defaultNodes.strong.attributes,
+      class: {
+        type: String,
+        default: "font-semibold text-slate-800 dark:text-slate-200",
+      },
+    },
+  },
   th: {
     ...defaultNodes.th,
     attributes: {

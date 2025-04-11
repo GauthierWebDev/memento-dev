@@ -38,8 +38,7 @@ export function Logo(props: React.ComponentPropsWithoutRef<"svg">) {
     <svg viewBox="0 0 231 38" {...props}>
       <LogomarkPaths />
       <text
-        className="hidden lg:block"
-        fill="#1A202C"
+        className="hidden lg:block fill-zinc-900 dark:fill-zinc-100"
         fontFamily="Inter Variable, sans-serif"
         fontSize={24}
         fontWeight="bold"

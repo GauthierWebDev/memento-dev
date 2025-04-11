@@ -3,14 +3,14 @@ import clsx from "clsx";
 
 const styles = {
   note: {
-    container: "bg-violet-50 dark:bg-slate-800/60 dark:ring-1 dark:ring-slate-300/10",
+    container: "bg-violet-50 dark:bg-violet-800/60 dark:ring-1 dark:ring-violet-300/10",
     title: "text-violet-900 dark:text-violet-400",
-    body: "text-violet-800 [--tw-prose-background:var(--color-violet-50)] prose-a:text-violet-900 prose-code:text-violet-900 dark:text-slate-300 dark:prose-code:text-slate-300",
+    body: "text-slate-800 [--tw-prose-background:var(--color-slate-50)] prose-a:text-slate-900 prose-code:text-slate-900 dark:text-slate-300 dark:prose-code:text-slate-300",
   },
   warning: {
-    container: "bg-amber-50 dark:bg-slate-800/60 dark:ring-1 dark:ring-slate-300/10",
+    container: "bg-amber-50 dark:bg-amber-800/60 dark:ring-1 dark:ring-amber-300/10",
     title: "text-amber-900 dark:text-amber-500",
-    body: "text-amber-800 [--tw-prose-underline:var(--color-amber-400)] [--tw-prose-background:var(--color-amber-50)] prose-a:text-amber-900 prose-code:text-amber-900 dark:text-slate-300 dark:[--tw-prose-underline:var(--color-violet-700)] dark:prose-code:text-slate-300",
+    body: "text-slate-800 [--tw-prose-underline:var(--color-slate-400)] [--tw-prose-background:var(--color-slate-50)] prose-a:text-slate-900 prose-code:text-slate-900 dark:text-slate-300 dark:[--tw-prose-underline:var(--color-slate-700)] dark:prose-code:text-slate-300",
   },
 };
 
