@@ -50,6 +50,24 @@ Merise étant français, la plupart des outils internationaux ne sont pas adapt�
 
 Pour toutes les rubriques suivantes, **Looping** sera utilisé comme outil.
 
+## Ressources
+
+{% callout type="warning" title="Ressources disponibles sur internet" %}
+
+**Attention !**
+
+Beaucoup de ressources sur internet parlent de Merise, mais elles ne sont pas forcément justes.
+
+Peu importe l'origine de la ressource, il est important de vérifier les informations et de ne pas se fier aveuglément à ce qui est écrit.  
+Je recommande énormément le livre [Guide pratique (4e édition)](https://www.editions-eni.fr/livre/merise-guide-pratique-4e-edition-modelisation-des-donnees-et-des-traitements-manipulations-avec-le-langage-sql-conception-d-une-application-mobile-android-ou-ios-9782409046667) de **Jean-Luc Baptiste**, aux **Éditions ENI**.
+
+{% /callout %}
+
+- [Looping](https://looping-mcd.fr/)
+- [Mocodo](https://mocodo.net/)
+- [La vérité sur les id - Jean Prulière](https://jeanpruliere.medium.com/la-v%C3%A9rit%C3%A9-sur-les-id-507134adda12))
+- [Merise - Wikipedia](<https://fr.wikipedia.org/wiki/Merise_(informatique)>)
+
 ---
 
 Prochaine étape, on parle du **dictionnaire de données** !

@@ -17,6 +17,7 @@ const styles = {
 const icons = {
   note: (props: { className?: string }) => <Icon icon="lightbulb" {...props} />,
   warning: (props: { className?: string }) => <Icon icon="warning" color="amber" {...props} />,
+  question: (props: { className?: string }) => <Icon icon="question" color="blue" {...props} />,
 };
 
 export function Callout({

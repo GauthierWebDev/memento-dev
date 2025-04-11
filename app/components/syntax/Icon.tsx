@@ -14,6 +14,7 @@ const icons = {
   theming: ThemingIcon,
   lightbulb: LightbulbIcon,
   warning: WarningIcon,
+  question: WarningIcon,
 };
 
 const iconStyles = {
