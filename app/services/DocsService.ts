@@ -100,6 +100,11 @@ class DocsService {
       return { key, sections };
     });
 
+    return data;
+  }
+
+  public async buildSearch() {
+    const data = await this.fetchDocs();
     this.search = buildFlexSearch(data);
   }
 

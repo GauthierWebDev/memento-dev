@@ -1,3 +1,6 @@
+// import type { SearchResult } from "@/lib/search";
+import type { SearchResult } from "@/services/FlexSearchService";
+
 import { forwardRef, Fragment, Suspense, useCallback, useEffect, useId, useRef, useState } from "react";
 import Highlighter from "react-highlight-words";
 import { usePageContext } from "vike-react/usePageContext";
@@ -14,8 +17,6 @@ import clsx from "clsx";
 
 import { navigation } from "@/lib/navigation";
 import { onSearch } from "./Search.telefunc";
-
-import type { SearchResult } from "@/lib/search";
 
 type EmptyObject = Record<string, never>;
 
@@ -39,7 +40,7 @@ function useAutocomplete({ close }: { close: (autocomplete: Autocomplete) => voi
       return;
     }
 
-    // router.push(itemUrl);
+    routerNavigate(itemUrl);
 
     if (itemUrl === window.location.pathname + window.location.search + window.location.hash) {
       close(autocomplete);
@@ -66,8 +67,6 @@ function useAutocomplete({ close }: { close: (autocomplete: Autocomplete) => voi
             {
               sourceId: "documentation",
               getItems() {
-                console.log({ searchResult });
-                return [];
                 return searchResult;
               },
               getItemUrl({ item }) {
@@ -118,9 +117,9 @@ function SearchResult({
   collection,
   query,
 }: {
-  result: Result;
+  result: SearchResult;
   autocomplete: Autocomplete;
-  collection: AutocompleteCollection<Result>;
+  collection: AutocompleteCollection<SearchResult>;
   query: string;
 }) {
   let id = useId();
@@ -173,7 +172,7 @@ function SearchResults({
 }: {
   autocomplete: Autocomplete;
   query: string;
-  collection: AutocompleteCollection<Result>;
+  collection: AutocompleteCollection<SearchResult>;
 }) {
   if (collection.items.length === 0) {
     return (
@@ -204,7 +203,7 @@ const SearchInput = forwardRef<
   React.ComponentRef<"input">,
   {
     autocomplete: Autocomplete;
-    autocompleteState: AutocompleteState<Result> | EmptyObject;
+    autocompleteState: AutocompleteState<SearchResult> | EmptyObject;
     onClose: () => void;
   }
 >(function SearchInput({ autocomplete, autocompleteState, onClose }, inputRef) {
@@ -391,7 +390,7 @@ export function Search() {
         {...buttonProps}
       >
         <SearchIcon className="h-5 w-5 flex-none fill-slate-400 group-hover:fill-slate-500 md:group-hover:fill-slate-400 dark:fill-slate-500" />
-        <span className="sr-only md:not-sr-only md:ml-2 md:text-slate-500 md:dark:text-slate-400">Search docs</span>
+        <span className="sr-only md:not-sr-only md:ml-2 md:text-slate-500 md:dark:text-slate-400">Rechercher...</span>
         {modifierKey && (
           <kbd className="ml-auto hidden font-medium text-slate-400 md:block dark:text-slate-500">
             <kbd className="font-sans">{modifierKey}</kbd>

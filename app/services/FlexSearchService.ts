@@ -2,13 +2,19 @@ import type { FlexSearchData } from "./DocsService";
 
 import FlexSearch from "flexsearch";
 
-interface SearchResult {
+interface NativeSearchResult {
   id: string;
   doc: {
     title: string;
     pageTitle?: string;
   };
 }
+
+export type SearchResult = {
+  url: string;
+  title: string;
+  pageTitle?: string;
+};
 
 export function buildFlexSearch(data: FlexSearchData) {
   const sectionIndex = new FlexSearch.Document({
@@ -36,7 +42,7 @@ export function buildFlexSearch(data: FlexSearchData) {
     }
   }
 
-  return function search(query: string) {
+  return function search(query: string): SearchResult[] {
     const result = sectionIndex.search<true>(query, 5, {
       enrich: true,
     });
@@ -44,7 +50,7 @@ export function buildFlexSearch(data: FlexSearchData) {
     if (result.length === 0) return [];
 
     return result[0].result.map((rawItem) => {
-      const item = rawItem as unknown as SearchResult;
+      const item = rawItem as unknown as NativeSearchResult;
 
       return {
         url: item.id,

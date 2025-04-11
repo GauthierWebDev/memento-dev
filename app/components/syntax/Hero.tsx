@@ -50,7 +50,7 @@ export function Hero() {
                 Souviens-toi que tu développeras.
               </p>
               <p className="mt-3 text-2xl tracking-tight text-slate-400">
-                Découvrez des ressources essentielles pour améliorer vos compétences en développement.
+                Découvrez des ressources essentielles pour améliorer tes compétences en développement.
               </p>
               <div className="mt-8 flex gap-4 md:justify-center lg:justify-start">
                 <Button href="/">Accédez aux ressources</Button>

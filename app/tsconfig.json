@@ -11,7 +11,7 @@
     "moduleResolution": "Bundler",
     "target": "ES2022",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "types": ["vite/client", "vike-react"],
+    "types": ["vite/client", "vike-react", "user-agent-data-types"],
     "jsx": "preserve",
     "jsxImportSource": "react",
     "baseUrl": "./",
