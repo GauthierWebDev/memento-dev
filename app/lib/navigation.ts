@@ -8,6 +8,8 @@ export const navigation = [
       { title: "Premier composant", href: "/docs/react/premier-composant" },
       { title: "State et cycle de vie", href: "/docs/react/state-et-cycle-de-vie" },
       { title: "Hooks", href: "/docs/react/hooks" },
+      { title: "Le hook useContext", href: "/docs/react/usecontext" },
+      { title: "Le hook useReducer", href: "/docs/react/usereducer" },
     ],
   },
   {

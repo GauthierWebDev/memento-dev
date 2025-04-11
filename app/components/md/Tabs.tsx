@@ -54,7 +54,7 @@ export function Tabs({
     >
       <div className="relative">
         <div className="max-w-full overflow-x-auto overflow-y-hidden">
-          <ul className="!p-0 w-max flex items-stretch gap-2" aria-orientation="horizontal" role="tablist">
+          <ul className="!p-0 w-max flex items-stretch gap-1" aria-orientation="horizontal" role="tablist">
             {tabs.map((tab) => (
               <li key={tab.value} className="overflow-hidden" role="tab" aria-selected={selectedTab === tab.value}>
                 <TabItem tab={tab} isSelected={selectedTab === tab.value} select={() => selectTab(tab.value)} />

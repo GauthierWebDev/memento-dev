@@ -1,9 +1,17 @@
+import { prismThemes } from "@/data/themes/prism";
 import { Highlight } from "prism-react-renderer";
-import { Fragment } from "react";
+import { useTheme } from "@/hooks/useTheme";
+import { Fragment, useMemo } from "react";
 
 export function Fence({ children, language }: { children: string; language: string }) {
+  const { theme } = useTheme();
+
+  const prismTheme = useMemo(() => {
+    return prismThemes[theme];
+  }, [theme]);
+
   return (
-    <Highlight code={children.trimEnd()} language={language} theme={{ plain: {}, styles: [] }}>
+    <Highlight code={children.trimEnd()} language={language} theme={prismTheme}>
       {({ className, style, tokens, getTokenProps }) => (
         <pre className={className} style={style}>
           <code>
