@@ -12,6 +12,9 @@ export const navigation = [
   },
   {
     title: "Merise",
-    links: [{ title: "Introduction", href: "/docs/merise" }],
+    links: [
+      { title: "Introduction", href: "/docs/merise" },
+      { title: "Dictionnaire de données", href: "/docs/merise/dictionnaire-de-donnees" },
+    ],
   },
 ];

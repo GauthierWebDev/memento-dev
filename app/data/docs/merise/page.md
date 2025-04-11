@@ -47,3 +47,9 @@ Merise étant français, la plupart des outils internationaux ne sont pas adapt�
 
 - **[Looping](https://looping-mcd.fr/)** : Il s'agit de l'outil par **excellence** pour la conception de bases de données tout en respectant la méthodologie Merise. Cerise sur le gâteau, il est **gratuit** !
 - **[Mocodo](https://mocodo.net/)** : Un autre outil qui permet de réaliser des MCD et MLD. Il est extrêmement puissant et fonctionne sur le navigateur. Cependant, il manque de rigueur là où Looping excelle.
+
+Pour toutes les rubriques suivantes, **Looping** sera utilisé comme outil.
+
+---
+
+Prochaine étape, on parle du **dictionnaire de données** !
