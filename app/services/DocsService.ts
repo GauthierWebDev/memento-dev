@@ -109,7 +109,7 @@ class DocsService {
   }
 
   public transform(doc: DocData) {
-    const ast = Markdoc.parse(doc.content);
+    const ast: Node = Markdoc.parse(doc.content);
     const transformed = Markdoc.transform(ast, { nodes, tags, variables: {} });
 
     return {
