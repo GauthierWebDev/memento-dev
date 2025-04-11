@@ -9,10 +9,12 @@ import { Prose } from "@syntax/Prose";
 export function DocsLayout({
   children,
   frontmatter: { title },
+  estimatedReadingTime,
   nodes,
 }: {
   children: React.ReactNode;
   frontmatter: { title?: string };
+  estimatedReadingTime?: string;
   nodes: Array<Node>;
 }) {
   let tableOfContents = collectSections(nodes);
@@ -21,7 +23,7 @@ export function DocsLayout({
     <>
       <div className="max-w-2xl min-w-0 flex-auto px-4 py-16 lg:max-w-none lg:pr-0 lg:pl-8 xl:px-16">
         <article>
-          <DocsHeader title={title} />
+          <DocsHeader title={title} estimatedReadingTime={estimatedReadingTime} />
           <Prose>{children}</Prose>
         </article>
         <PrevNextLinks />

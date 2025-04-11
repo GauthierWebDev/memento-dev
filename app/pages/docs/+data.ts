@@ -1,6 +1,7 @@
 import type { PageContext } from "vike/types";
 
 import { docsService } from "@/services/DocsService";
+import { readingTime } from "reading-time-estimator";
 import { useConfig } from "vike-react/useConfig";
 import buildTitle from "@/pages/buildTitle";
 import { render } from "vike/abort";
@@ -18,7 +19,7 @@ export async function data(pageContext: PageContext) {
     throw render(404);
   }
 
-  console.log({ doc });
+  const readingTimeObject = readingTime(doc.content, 300, "fr");
 
   config({
     title: buildTitle(doc.title),
@@ -27,5 +28,5 @@ export async function data(pageContext: PageContext) {
 
   docsService.transform(doc);
 
-  return { doc };
+  return { doc, estimatedReadingTime: readingTimeObject.text };
 }

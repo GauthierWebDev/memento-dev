@@ -18,6 +18,7 @@ const nodes = {
         this.render,
         {
           frontmatter: yaml.load(node.attributes.frontmatter),
+          estimatedReadingTime: config?.variables?.estimatedReadingTime,
           nodes: node.children,
         },
         node.transformChildren(config),
