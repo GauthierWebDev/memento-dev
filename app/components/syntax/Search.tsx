@@ -111,7 +111,7 @@ function HighlightQuery({ text, query }: { text: string; query: string }) {
   );
 }
 
-function SearchResult({
+function SearchResultItem({
   result,
   autocomplete,
   collection,
@@ -187,7 +187,7 @@ function SearchResults({
   return (
     <ul {...autocomplete.getListProps()}>
       {collection.items.map((result) => (
-        <SearchResult
+        <SearchResultItem
           key={result.url}
           result={result}
           autocomplete={autocomplete}
@@ -269,9 +269,9 @@ function SearchDialog({
   setOpen: (open: boolean) => void;
   className?: string;
 }) {
-  let formRef = useRef<React.ElementRef<"form">>(null);
-  let panelRef = useRef<React.ElementRef<"div">>(null);
-  let inputRef = useRef<React.ElementRef<typeof SearchInput>>(null);
+  let formRef = useRef<React.ComponentRef<"form">>(null);
+  let panelRef = useRef<React.ComponentRef<"div">>(null);
+  let inputRef = useRef<React.ComponentRef<typeof SearchInput>>(null);
 
   let close = useCallback(
     (autocomplete: Autocomplete) => {
@@ -352,7 +352,7 @@ function SearchDialog({
 }
 
 function useSearchProps() {
-  let buttonRef = useRef<React.ElementRef<"button">>(null);
+  let buttonRef = useRef<React.ComponentRef<"button">>(null);
   let [open, setOpen] = useState(false);
 
   return {
@@ -379,7 +379,8 @@ export function Search() {
   let { buttonProps, dialogProps } = useSearchProps();
 
   useEffect(() => {
-    setModifierKey(/(Mac|iPhone|iPod|iPad)/i.test(navigator.platform) ? "⌘" : "Ctrl ");
+    const platform = navigator.userAgentData?.platform || navigator.platform;
+    setModifierKey(/(Mac|iPhone|iPod|iPad)/i.test(platform) ? "⌘" : "Ctrl ");
   }, []);
 
   return (

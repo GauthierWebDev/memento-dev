@@ -1,6 +1,6 @@
 ---
-title: "Introduction à React"
-description: "Parlons un peu de React, ce qu'il est, ce qu'il fait et pourquoi il est si populaire."
+title: Introduction à React
+description: Parlons un peu de React, ce qu'il est, ce qu'il fait et pourquoi il est si populaire.
 tags: [Frontend, React, JavaScript, TypeScript, Bibliothèque, Interface utilisateur (UI)]
 ---
 

@@ -2,7 +2,7 @@ import type { PageContext } from "vike/types";
 
 import { docsService } from "@/services/DocsService";
 import { useConfig } from "vike-react/useConfig";
-import Markdoc from "@markdoc/markdoc";
+import buildTitle from "@/pages/buildTitle";
 import { render } from "vike/abort";
 
 export type Data = Awaited<ReturnType<typeof data>>;
@@ -18,8 +18,10 @@ export async function data(pageContext: PageContext) {
     throw render(404);
   }
 
+  console.log({ doc });
+
   config({
-    title: doc.title,
+    title: buildTitle(doc.title),
     description: doc.description,
   });
 
