@@ -4,6 +4,10 @@ export const navigation = [
     links: [
       { title: "Introduction", href: "/docs/react" },
       { title: "Initialisation", href: "/docs/react/initialisation" },
+      { title: "Syntaxe JSX", href: "/docs/react/jsx" },
+      { title: "Premier composant", href: "/docs/react/premier-composant" },
+      { title: "State et cycle de vie", href: "/docs/react/state-et-cycle-de-vie" },
+      { title: "Hooks", href: "/docs/react/hooks" },
     ],
   },
   {

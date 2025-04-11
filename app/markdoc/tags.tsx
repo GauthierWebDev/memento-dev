@@ -1,6 +1,7 @@
 import { QuickLink, QuickLinks } from "@syntax/QuickLinks";
 import { TabContent, Tabs } from "@/components/md/Tabs";
 import { Callout } from "@syntax/Callout";
+import React from "react";
 
 const tags = {
   callout: {
@@ -12,8 +13,20 @@ const tags = {
         matches: ["note", "warning", "question"],
         errorLevel: "critical",
       },
+      collapsible: {
+        type: Boolean,
+        default: false,
+      },
     },
-    render: Callout,
+    render: (props: {
+      title: string;
+      type?: "note" | "warning" | "question";
+      collapsible?: boolean;
+      children: React.ReactNode;
+    }) => {
+      console.log(props);
+      return <Callout {...props} collapsible={props.collapsible} type={props.type || "note"} />;
+    },
   },
   figure: {
     selfClosing: true,

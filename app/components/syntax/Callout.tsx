@@ -29,10 +29,12 @@ export function Callout({
   title,
   children,
   type = "note",
+  collapsible = false,
 }: {
   title: string;
   children: React.ReactNode;
   type?: keyof typeof styles;
+  collapsible?: boolean;
 }) {
   let IconComponent = icons[type];
 
