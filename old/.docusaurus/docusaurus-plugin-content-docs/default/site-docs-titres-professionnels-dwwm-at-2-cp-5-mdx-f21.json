@@ -1,0 +1,104 @@
+{
+  "id": "titres-professionnels/DWWM/AT2/CP5",
+  "title": "CP 5",
+  "description": "Synthèse de la CP 5 \"Mettre en place une base de données relationnelle\" du titre professionnel Développeur Web et Web Mobile (DWWM TP-01280m04).",
+  "source": "@site/docs/titres-professionnels/DWWM/AT2/CP5.mdx",
+  "sourceDirName": "titres-professionnels/DWWM/AT2",
+  "slug": "/titres-professionnels/DWWM/AT2/CP5",
+  "permalink": "/titres-professionnels/DWWM/AT2/CP5",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/preparation-tp/memento-dev/tree/main/docs/titres-professionnels/DWWM/AT2/CP5.mdx",
+  "tags": [
+    {
+      "inline": true,
+      "label": "DWWM",
+      "permalink": "/tags/dwwm"
+    },
+    {
+      "inline": true,
+      "label": "Conception",
+      "permalink": "/tags/conception"
+    },
+    {
+      "inline": true,
+      "label": "Modélisation",
+      "permalink": "/tags/modelisation"
+    },
+    {
+      "inline": true,
+      "label": "Base de données",
+      "permalink": "/tags/base-de-donnees"
+    },
+    {
+      "inline": true,
+      "label": "Merise",
+      "permalink": "/tags/merise"
+    },
+    {
+      "inline": true,
+      "label": "Dictionnaire de Données",
+      "permalink": "/tags/dictionnaire-de-donnees"
+    },
+    {
+      "inline": true,
+      "label": "Modèle Conceptuel de Données (MCD)",
+      "permalink": "/tags/modele-conceptuel-de-donnees-mcd"
+    },
+    {
+      "inline": true,
+      "label": "Modèle Logique de Données (MLD)",
+      "permalink": "/tags/modele-logique-de-donnees-mld"
+    },
+    {
+      "inline": true,
+      "label": "Modèle Relationnel de Données (MRD)",
+      "permalink": "/tags/modele-relationnel-de-donnees-mrd"
+    },
+    {
+      "inline": true,
+      "label": "Modèle Physique de Données (MPD)",
+      "permalink": "/tags/modele-physique-de-donnees-mpd"
+    },
+    {
+      "inline": true,
+      "label": "SQL",
+      "permalink": "/tags/sql"
+    },
+    {
+      "inline": true,
+      "label": "Back-end",
+      "permalink": "/tags/back-end"
+    }
+  ],
+  "version": "current",
+  "sidebarPosition": 5,
+  "frontMatter": {
+    "sidebar_position": 5,
+    "title": "CP 5",
+    "description": "Synthèse de la CP 5 \"Mettre en place une base de données relationnelle\" du titre professionnel Développeur Web et Web Mobile (DWWM TP-01280m04).",
+    "tags": [
+      "DWWM",
+      "Conception",
+      "Modélisation",
+      "Base de données",
+      "Merise",
+      "Dictionnaire de Données",
+      "Modèle Conceptuel de Données (MCD)",
+      "Modèle Logique de Données (MLD)",
+      "Modèle Relationnel de Données (MRD)",
+      "Modèle Physique de Données (MPD)",
+      "SQL",
+      "Back-end"
+    ]
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "CP 4",
+    "permalink": "/titres-professionnels/DWWM/AT1/CP4"
+  },
+  "next": {
+    "title": "CP 6",
+    "permalink": "/titres-professionnels/DWWM/AT2/CP6"
+  }
+}

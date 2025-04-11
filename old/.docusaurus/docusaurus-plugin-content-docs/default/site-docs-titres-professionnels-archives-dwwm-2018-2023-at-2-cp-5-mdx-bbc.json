@@ -1,0 +1,29 @@
+{
+  "id": "titres-professionnels/archives/DWWM/2018-2023/AT2/CP5",
+  "title": "CP 5",
+  "description": "Synthèse de la CP 5 \"Créer une base de données\" du titre professionnel Développeur Web et Web Mobile (DWWM TP-01280m03, référentiel expiré).",
+  "source": "@site/docs/titres-professionnels/archives/DWWM/2018-2023/AT2/CP5.mdx",
+  "sourceDirName": "titres-professionnels/archives/DWWM/2018-2023/AT2",
+  "slug": "/titres-professionnels/archives/DWWM/2018-2023/AT2/CP5",
+  "permalink": "/titres-professionnels/archives/DWWM/2018-2023/AT2/CP5",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/preparation-tp/memento-dev/tree/main/docs/titres-professionnels/archives/DWWM/2018-2023/AT2/CP5.mdx",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 5,
+  "frontMatter": {
+    "sidebar_position": 5,
+    "title": "CP 5",
+    "description": "Synthèse de la CP 5 \"Créer une base de données\" du titre professionnel Développeur Web et Web Mobile (DWWM TP-01280m03, référentiel expiré)."
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "CP 4",
+    "permalink": "/titres-professionnels/archives/DWWM/2018-2023/AT1/CP4"
+  },
+  "next": {
+    "title": "CP 6",
+    "permalink": "/titres-professionnels/archives/DWWM/2018-2023/AT2/CP6"
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "id": "ressources/bases-de-donnees/modelisation/merise",
+  "title": "Modélisation avec Merise",
+  "description": "Voyons ensemble comment on peut modéliser une base de données avec Merise !",
+  "source": "@site/docs/ressources/bases-de-donnees/modelisation/merise.mdx",
+  "sourceDirName": "ressources/bases-de-donnees/modelisation",
+  "slug": "/ressources/bases-de-donnees/modelisation/merise",
+  "permalink": "/ressources/bases-de-donnees/modelisation/merise",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/preparation-tp/memento-dev/tree/main/docs/ressources/bases-de-donnees/modelisation/merise.mdx",
+  "tags": [
+    {
+      "inline": true,
+      "label": "Conception",
+      "permalink": "/tags/conception"
+    },
+    {
+      "inline": true,
+      "label": "Modélisation",
+      "permalink": "/tags/modelisation"
+    },
+    {
+      "inline": true,
+      "label": "Base de données",
+      "permalink": "/tags/base-de-donnees"
+    },
+    {
+      "inline": true,
+      "label": "Merise",
+      "permalink": "/tags/merise"
+    },
+    {
+      "inline": true,
+      "label": "Dictionnaire de Données",
+      "permalink": "/tags/dictionnaire-de-donnees"
+    },
+    {
+      "inline": true,
+      "label": "Modèle Conceptuel de Données (MCD)",
+      "permalink": "/tags/modele-conceptuel-de-donnees-mcd"
+    },
+    {
+      "inline": true,
+      "label": "Modèle Logique de Données (MLD)",
+      "permalink": "/tags/modele-logique-de-donnees-mld"
+    },
+    {
+      "inline": true,
+      "label": "Modèle Relationnel de Données (MRD)",
+      "permalink": "/tags/modele-relationnel-de-donnees-mrd"
+    },
+    {
+      "inline": true,
+      "label": "Modèle Physique de Données (MPD)",
+      "permalink": "/tags/modele-physique-de-donnees-mpd"
+    },
+    {
+      "inline": true,
+      "label": "SQL",
+      "permalink": "/tags/sql"
+    },
+    {
+      "inline": true,
+      "label": "DWWM",
+      "permalink": "/tags/dwwm"
+    }
+  ],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1,
+    "title": "Modélisation avec Merise",
+    "description": "Voyons ensemble comment on peut modéliser une base de données avec Merise !",
+    "tags": [
+      "Conception",
+      "Modélisation",
+      "Base de données",
+      "Merise",
+      "Dictionnaire de Données",
+      "Modèle Conceptuel de Données (MCD)",
+      "Modèle Logique de Données (MLD)",
+      "Modèle Relationnel de Données (MRD)",
+      "Modèle Physique de Données (MPD)",
+      "SQL",
+      "DWWM"
+    ]
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "💽 Bases de données",
+    "permalink": "/category/-bases-de-données"
+  },
+  "next": {
+    "title": "Création du MCD",
+    "permalink": "/ressources/bases-de-donnees/modelisation/dictionnaire-de-donnees"
+  }
+}

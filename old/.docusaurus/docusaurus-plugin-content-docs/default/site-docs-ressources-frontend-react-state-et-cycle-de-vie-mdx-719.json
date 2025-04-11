@@ -1,0 +1,62 @@
+{
+  "id": "ressources/frontend/react/state-et-cycle-de-vie",
+  "title": "State et cycle de vie",
+  "description": "Voyons ensemble comment gérer le state et le cycle de vie d'un composant React !",
+  "source": "@site/docs/ressources/frontend/react/state-et-cycle-de-vie.mdx",
+  "sourceDirName": "ressources/frontend/react",
+  "slug": "/ressources/frontend/react/state-et-cycle-de-vie",
+  "permalink": "/ressources/frontend/react/state-et-cycle-de-vie",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/preparation-tp/memento-dev/tree/main/docs/ressources/frontend/react/state-et-cycle-de-vie.mdx",
+  "tags": [
+    {
+      "inline": true,
+      "label": "Frontend",
+      "permalink": "/tags/frontend"
+    },
+    {
+      "inline": true,
+      "label": "React",
+      "permalink": "/tags/react"
+    },
+    {
+      "inline": true,
+      "label": "JavaScript/TypeScript",
+      "permalink": "/tags/java-script-type-script"
+    },
+    {
+      "inline": true,
+      "label": "Bibliothèque",
+      "permalink": "/tags/bibliotheque"
+    },
+    {
+      "inline": true,
+      "label": "Interface utilisateur (UI)",
+      "permalink": "/tags/interface-utilisateur-ui"
+    }
+  ],
+  "version": "current",
+  "sidebarPosition": 5,
+  "frontMatter": {
+    "sidebar_position": 5,
+    "title": "State et cycle de vie",
+    "description": "Voyons ensemble comment gérer le state et le cycle de vie d'un composant React !",
+    "tags": [
+      "Frontend",
+      "React",
+      "JavaScript/TypeScript",
+      "Bibliothèque",
+      "Interface utilisateur (UI)"
+    ]
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Premier composant",
+    "permalink": "/ressources/frontend/react/premier-composant"
+  },
+  "next": {
+    "title": "Les hooks de React",
+    "permalink": "/ressources/frontend/react/hooks"
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "id": "ressources/bases-de-donnees/modelisation/dictionnaire-de-donnees",
+  "title": "Création du MCD",
+  "description": "Tout en respectant la méthode Merise, on va voir comment créer un Modèle Conceptuel de Données (MCD) pour une base de données.",
+  "source": "@site/docs/ressources/bases-de-donnees/modelisation/dictionnaire-de-donnees.mdx",
+  "sourceDirName": "ressources/bases-de-donnees/modelisation",
+  "slug": "/ressources/bases-de-donnees/modelisation/dictionnaire-de-donnees",
+  "permalink": "/ressources/bases-de-donnees/modelisation/dictionnaire-de-donnees",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/preparation-tp/memento-dev/tree/main/docs/ressources/bases-de-donnees/modelisation/dictionnaire-de-donnees.mdx",
+  "tags": [
+    {
+      "inline": true,
+      "label": "Conception",
+      "permalink": "/tags/conception"
+    },
+    {
+      "inline": true,
+      "label": "Modélisation",
+      "permalink": "/tags/modelisation"
+    },
+    {
+      "inline": true,
+      "label": "Base de données",
+      "permalink": "/tags/base-de-donnees"
+    },
+    {
+      "inline": true,
+      "label": "Merise",
+      "permalink": "/tags/merise"
+    },
+    {
+      "inline": true,
+      "label": "Dictionnaire de Données",
+      "permalink": "/tags/dictionnaire-de-donnees"
+    },
+    {
+      "inline": true,
+      "label": "Modèle Conceptuel de Données (MCD)",
+      "permalink": "/tags/modele-conceptuel-de-donnees-mcd"
+    },
+    {
+      "inline": true,
+      "label": "Modèle Logique de Données (MLD)",
+      "permalink": "/tags/modele-logique-de-donnees-mld"
+    },
+    {
+      "inline": true,
+      "label": "Modèle Relationnel de Données (MRD)",
+      "permalink": "/tags/modele-relationnel-de-donnees-mrd"
+    },
+    {
+      "inline": true,
+      "label": "Modèle Physique de Données (MPD)",
+      "permalink": "/tags/modele-physique-de-donnees-mpd"
+    },
+    {
+      "inline": true,
+      "label": "SQL",
+      "permalink": "/tags/sql"
+    },
+    {
+      "inline": true,
+      "label": "DWWM",
+      "permalink": "/tags/dwwm"
+    },
+    {
+      "inline": true,
+      "label": "CDA",
+      "permalink": "/tags/cda"
+    }
+  ],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3,
+    "title": "Création du MCD",
+    "description": "Tout en respectant la méthode Merise, on va voir comment créer un Modèle Conceptuel de Données (MCD) pour une base de données.",
+    "tags": [
+      "Conception",
+      "Modélisation",
+      "Base de données",
+      "Merise",
+      "Dictionnaire de Données",
+      "Modèle Conceptuel de Données (MCD)",
+      "Modèle Logique de Données (MLD)",
+      "Modèle Relationnel de Données (MRD)",
+      "Modèle Physique de Données (MPD)",
+      "SQL",
+      "DWWM",
+      "CDA"
+    ]
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Modélisation avec Merise",
+    "permalink": "/ressources/bases-de-donnees/modelisation/merise"
+  },
+  "next": {
+    "title": "Création du MCD",
+    "permalink": "/ressources/bases-de-donnees/modelisation/mcd"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "id": "titres-professionnels/DWWM/AT2/CP8",
+  "title": "CP 8",
+  "description": "Synthèse de la CP 8 \"Documenter le déploiement d'une application dynamique web ou web mobile\" du titre professionnel Développeur Web et Web Mobile (DWWM TP-01280m04).",
+  "source": "@site/docs/titres-professionnels/DWWM/AT2/CP8.mdx",
+  "sourceDirName": "titres-professionnels/DWWM/AT2",
+  "slug": "/titres-professionnels/DWWM/AT2/CP8",
+  "permalink": "/titres-professionnels/DWWM/AT2/CP8",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/preparation-tp/memento-dev/tree/main/docs/titres-professionnels/DWWM/AT2/CP8.mdx",
+  "tags": [
+    {
+      "inline": true,
+      "label": "DWWM",
+      "permalink": "/tags/dwwm"
+    },
+    {
+      "inline": true,
+      "label": "Déploiement",
+      "permalink": "/tags/deploiement"
+    },
+    {
+      "inline": true,
+      "label": "Back-end",
+      "permalink": "/tags/back-end"
+    },
+    {
+      "inline": true,
+      "label": "Reverse Proxy",
+      "permalink": "/tags/reverse-proxy"
+    },
+    {
+      "inline": true,
+      "label": "Serveur web",
+      "permalink": "/tags/serveur-web"
+    }
+  ],
+  "version": "current",
+  "sidebarPosition": 8,
+  "frontMatter": {
+    "sidebar_position": 8,
+    "title": "CP 8",
+    "description": "Synthèse de la CP 8 \"Documenter le déploiement d'une application dynamique web ou web mobile\" du titre professionnel Développeur Web et Web Mobile (DWWM TP-01280m04).",
+    "tags": [
+      "DWWM",
+      "Déploiement",
+      "Back-end",
+      "Reverse Proxy",
+      "Serveur web"
+    ]
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "CP 7",
+    "permalink": "/titres-professionnels/DWWM/AT2/CP7"
+  },
+  "next": {
+    "title": "🗃️ Archives",
+    "permalink": "/category/️-archives"
+  }
+}

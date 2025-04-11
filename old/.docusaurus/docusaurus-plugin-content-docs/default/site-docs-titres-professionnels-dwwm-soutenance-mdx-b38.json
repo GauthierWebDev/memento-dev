@@ -1,0 +1,29 @@
+{
+  "id": "titres-professionnels/DWWM/soutenance",
+  "title": "La soutenance DWWM",
+  "description": "Tu prépares un TP DWWM et tu te demandes à quoi t'attendre pour la soutenance ? Voici quelques conseils pour te préparer efficacement.",
+  "source": "@site/docs/titres-professionnels/DWWM/soutenance.mdx",
+  "sourceDirName": "titres-professionnels/DWWM",
+  "slug": "/titres-professionnels/DWWM/soutenance",
+  "permalink": "/titres-professionnels/DWWM/soutenance",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/preparation-tp/memento-dev/tree/main/docs/titres-professionnels/DWWM/soutenance.mdx",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2,
+    "title": "La soutenance DWWM",
+    "description": "Tu prépares un TP DWWM et tu te demandes à quoi t'attendre pour la soutenance ? Voici quelques conseils pour te préparer efficacement."
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Résumé",
+    "permalink": "/titres-professionnels/DWWM/intro"
+  },
+  "next": {
+    "title": "CP 1",
+    "permalink": "/titres-professionnels/DWWM/AT1/CP1"
+  }
+}

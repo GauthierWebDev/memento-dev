@@ -1,0 +1,80 @@
+{
+  "id": "titres-professionnels/DWWM/AT2/CP6",
+  "title": "CP 6",
+  "description": "Synthèse de la CP 6 \"Développer des composants d'accès aux données SQL et NoSQL\" du titre professionnel Développeur Web et Web Mobile (DWWM TP-01280m04).",
+  "source": "@site/docs/titres-professionnels/DWWM/AT2/CP6.mdx",
+  "sourceDirName": "titres-professionnels/DWWM/AT2",
+  "slug": "/titres-professionnels/DWWM/AT2/CP6",
+  "permalink": "/titres-professionnels/DWWM/AT2/CP6",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/preparation-tp/memento-dev/tree/main/docs/titres-professionnels/DWWM/AT2/CP6.mdx",
+  "tags": [
+    {
+      "inline": true,
+      "label": "DWWM",
+      "permalink": "/tags/dwwm"
+    },
+    {
+      "inline": true,
+      "label": "Base de données",
+      "permalink": "/tags/base-de-donnees"
+    },
+    {
+      "inline": true,
+      "label": "SQL",
+      "permalink": "/tags/sql"
+    },
+    {
+      "inline": true,
+      "label": "Back-end",
+      "permalink": "/tags/back-end"
+    },
+    {
+      "inline": true,
+      "label": "ORM/ODM",
+      "permalink": "/tags/orm-odm"
+    },
+    {
+      "inline": true,
+      "label": "Sécurité",
+      "permalink": "/tags/securite"
+    },
+    {
+      "inline": true,
+      "label": "Chiffrement",
+      "permalink": "/tags/chiffrement"
+    },
+    {
+      "inline": true,
+      "label": "Hachage",
+      "permalink": "/tags/hachage"
+    }
+  ],
+  "version": "current",
+  "sidebarPosition": 6,
+  "frontMatter": {
+    "sidebar_position": 6,
+    "title": "CP 6",
+    "description": "Synthèse de la CP 6 \"Développer des composants d'accès aux données SQL et NoSQL\" du titre professionnel Développeur Web et Web Mobile (DWWM TP-01280m04).",
+    "tags": [
+      "DWWM",
+      "Base de données",
+      "SQL",
+      "Back-end",
+      "ORM/ODM",
+      "Sécurité",
+      "Chiffrement",
+      "Hachage"
+    ]
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "CP 5",
+    "permalink": "/titres-professionnels/DWWM/AT2/CP5"
+  },
+  "next": {
+    "title": "CP 7",
+    "permalink": "/titres-professionnels/DWWM/AT2/CP7"
+  }
+}

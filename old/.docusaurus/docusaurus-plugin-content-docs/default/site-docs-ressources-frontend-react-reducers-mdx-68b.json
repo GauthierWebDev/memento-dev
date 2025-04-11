@@ -1,0 +1,62 @@
+{
+  "id": "ressources/frontend/react/reducers",
+  "title": "Le hook useReducer de React",
+  "description": "Découvrez comment utiliser le hook useReducer de React pour gérer l'état de vos composants de manière plus efficace.",
+  "source": "@site/docs/ressources/frontend/react/reducers.mdx",
+  "sourceDirName": "ressources/frontend/react",
+  "slug": "/ressources/frontend/react/reducers",
+  "permalink": "/ressources/frontend/react/reducers",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/preparation-tp/memento-dev/tree/main/docs/ressources/frontend/react/reducers.mdx",
+  "tags": [
+    {
+      "inline": true,
+      "label": "Frontend",
+      "permalink": "/tags/frontend"
+    },
+    {
+      "inline": true,
+      "label": "React",
+      "permalink": "/tags/react"
+    },
+    {
+      "inline": true,
+      "label": "JavaScript/TypeScript",
+      "permalink": "/tags/java-script-type-script"
+    },
+    {
+      "inline": true,
+      "label": "Bibliothèque",
+      "permalink": "/tags/bibliotheque"
+    },
+    {
+      "inline": true,
+      "label": "Interface utilisateur (UI)",
+      "permalink": "/tags/interface-utilisateur-ui"
+    }
+  ],
+  "version": "current",
+  "sidebarPosition": 8,
+  "frontMatter": {
+    "sidebar_position": 8,
+    "title": "Le hook useReducer de React",
+    "description": "Découvrez comment utiliser le hook useReducer de React pour gérer l'état de vos composants de manière plus efficace.",
+    "tags": [
+      "Frontend",
+      "React",
+      "JavaScript/TypeScript",
+      "Bibliothèque",
+      "Interface utilisateur (UI)"
+    ]
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Le hook useContext de React",
+    "permalink": "/ressources/frontend/react/contextes"
+  },
+  "next": {
+    "title": "🎥 Influenceurs et créateurs de contenu",
+    "permalink": "/ressources/influenceurs-et-createurs"
+  }
+}

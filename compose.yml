@@ -1,0 +1,14 @@
+services:
+  memento-dev:
+    container_name: memento-dev
+    build:
+      context: .
+      dockerfile: pnpm.Dockerfile
+    env_file:
+      - .env
+    ports:
+      - "${PORT}:${PORT}"
+      - "${HMR_PORT}:${HMR_PORT}"
+    volumes:
+      - ./app:/app
+    restart: unless-stopped

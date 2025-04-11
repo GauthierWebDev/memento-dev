@@ -1,0 +1,29 @@
+{
+  "id": "ressources/influenceurs-et-createurs",
+  "title": "🎥 Influenceurs et créateurs de contenu",
+  "description": "Liste d'influenceurs et créateurs de contenu dans le domaine du développement.",
+  "source": "@site/docs/ressources/influenceurs-et-createurs.mdx",
+  "sourceDirName": "ressources",
+  "slug": "/ressources/influenceurs-et-createurs",
+  "permalink": "/ressources/influenceurs-et-createurs",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/preparation-tp/memento-dev/tree/main/docs/ressources/influenceurs-et-createurs.mdx",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1,
+    "title": "🎥 Influenceurs et créateurs de contenu",
+    "description": "Liste d'influenceurs et créateurs de contenu dans le domaine du développement."
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Le hook useReducer de React",
+    "permalink": "/ressources/frontend/react/reducers"
+  },
+  "next": {
+    "title": "🤗 Soutiens et contributeurs",
+    "permalink": "/soutiens-et-contributeurs"
+  }
+}

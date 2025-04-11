@@ -1,0 +1,38 @@
+{
+  "id": "titres-professionnels/CDA/intro",
+  "title": "Résumé",
+  "description": "Résumé du titre professionnel Concepteur Développeur d'Applications (CDA TP-01281m04, actif depuis décembre 2023).",
+  "source": "@site/docs/titres-professionnels/CDA/intro.mdx",
+  "sourceDirName": "titres-professionnels/CDA",
+  "slug": "/titres-professionnels/CDA/intro",
+  "permalink": "/titres-professionnels/CDA/intro",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/preparation-tp/memento-dev/tree/main/docs/titres-professionnels/CDA/intro.mdx",
+  "tags": [
+    {
+      "inline": true,
+      "label": "CDA",
+      "permalink": "/tags/cda"
+    }
+  ],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1,
+    "title": "Résumé",
+    "description": "Résumé du titre professionnel Concepteur Développeur d'Applications (CDA TP-01281m04, actif depuis décembre 2023).",
+    "tags": [
+      "CDA"
+    ]
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "🎓 Titres professionnels",
+    "permalink": "/category/-titres-professionnels"
+  },
+  "next": {
+    "title": "CP 1",
+    "permalink": "/titres-professionnels/CDA/AT1/CP1"
+  }
+}

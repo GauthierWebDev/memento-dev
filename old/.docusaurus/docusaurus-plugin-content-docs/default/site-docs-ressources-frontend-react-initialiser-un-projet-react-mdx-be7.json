@@ -1,0 +1,92 @@
+{
+  "id": "ressources/frontend/react/initialiser-un-projet-react",
+  "title": "Initialisation",
+  "description": "Initialisons un nouveau projet React, avec ou sans TypeScript.",
+  "source": "@site/docs/ressources/frontend/react/initialiser-un-projet-react.mdx",
+  "sourceDirName": "ressources/frontend/react",
+  "slug": "/ressources/frontend/react/initialiser-un-projet-react",
+  "permalink": "/ressources/frontend/react/initialiser-un-projet-react",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/preparation-tp/memento-dev/tree/main/docs/ressources/frontend/react/initialiser-un-projet-react.mdx",
+  "tags": [
+    {
+      "inline": true,
+      "label": "Frontend",
+      "permalink": "/tags/frontend"
+    },
+    {
+      "inline": true,
+      "label": "React",
+      "permalink": "/tags/react"
+    },
+    {
+      "inline": true,
+      "label": "JavaScript/TypeScript",
+      "permalink": "/tags/java-script-type-script"
+    },
+    {
+      "inline": true,
+      "label": "Bibliothèque",
+      "permalink": "/tags/bibliotheque"
+    },
+    {
+      "inline": true,
+      "label": "Interface utilisateur (UI)",
+      "permalink": "/tags/interface-utilisateur-ui"
+    },
+    {
+      "inline": true,
+      "label": "Vite",
+      "permalink": "/tags/vite"
+    },
+    {
+      "inline": true,
+      "label": "Vike",
+      "permalink": "/tags/vike"
+    },
+    {
+      "inline": true,
+      "label": "SSR",
+      "permalink": "/tags/ssr"
+    },
+    {
+      "inline": true,
+      "label": "SSG",
+      "permalink": "/tags/ssg"
+    },
+    {
+      "inline": true,
+      "label": "CSR",
+      "permalink": "/tags/csr"
+    }
+  ],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2,
+    "title": "Initialisation",
+    "description": "Initialisons un nouveau projet React, avec ou sans TypeScript.",
+    "tags": [
+      "Frontend",
+      "React",
+      "JavaScript/TypeScript",
+      "Bibliothèque",
+      "Interface utilisateur (UI)",
+      "Vite",
+      "Vike",
+      "SSR",
+      "SSG",
+      "CSR"
+    ]
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Introduction à React",
+    "permalink": "/ressources/frontend/react/intro"
+  },
+  "next": {
+    "title": "Syntaxe JSX",
+    "permalink": "/ressources/frontend/react/syntaxe-jsx"
+  }
+}

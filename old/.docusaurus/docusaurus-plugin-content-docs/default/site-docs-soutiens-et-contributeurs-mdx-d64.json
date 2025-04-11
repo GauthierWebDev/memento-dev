@@ -1,0 +1,28 @@
+{
+  "id": "soutiens-et-contributeurs",
+  "title": "🤗 Soutiens et contributeurs",
+  "description": "Soutiens et contributeurs de la plateforme Memento Dev.",
+  "source": "@site/docs/soutiens-et-contributeurs.mdx",
+  "sourceDirName": ".",
+  "slug": "/soutiens-et-contributeurs",
+  "permalink": "/soutiens-et-contributeurs",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/preparation-tp/memento-dev/tree/main/docs/soutiens-et-contributeurs.mdx",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 99998,
+  "frontMatter": {
+    "sidebar_position": 99998,
+    "description": "Soutiens et contributeurs de la plateforme Memento Dev."
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "🎥 Influenceurs et créateurs de contenu",
+    "permalink": "/ressources/influenceurs-et-createurs"
+  },
+  "next": {
+    "title": "🤝 Contribuer",
+    "permalink": "/contribuer"
+  }
+}

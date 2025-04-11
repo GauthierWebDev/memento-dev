@@ -1,0 +1,29 @@
+{
+  "id": "titres-professionnels/archives/DWWM/2018-2023/AT1/CP4",
+  "title": "CP 4",
+  "description": "Synthèse de la CP 4 \"Réaliser une interface utilisateur avec une solution de gestion de contenu ou e-commerce\" du titre professionnel Développeur Web et Web Mobile (DWWM TP-01280m03, référentiel expiré).",
+  "source": "@site/docs/titres-professionnels/archives/DWWM/2018-2023/AT1/CP4.mdx",
+  "sourceDirName": "titres-professionnels/archives/DWWM/2018-2023/AT1",
+  "slug": "/titres-professionnels/archives/DWWM/2018-2023/AT1/CP4",
+  "permalink": "/titres-professionnels/archives/DWWM/2018-2023/AT1/CP4",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/preparation-tp/memento-dev/tree/main/docs/titres-professionnels/archives/DWWM/2018-2023/AT1/CP4.mdx",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "sidebar_position": 4,
+    "title": "CP 4",
+    "description": "Synthèse de la CP 4 \"Réaliser une interface utilisateur avec une solution de gestion de contenu ou e-commerce\" du titre professionnel Développeur Web et Web Mobile (DWWM TP-01280m03, référentiel expiré)."
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "CP 3",
+    "permalink": "/titres-professionnels/archives/DWWM/2018-2023/AT1/CP3"
+  },
+  "next": {
+    "title": "CP 5",
+    "permalink": "/titres-professionnels/archives/DWWM/2018-2023/AT2/CP5"
+  }
+}

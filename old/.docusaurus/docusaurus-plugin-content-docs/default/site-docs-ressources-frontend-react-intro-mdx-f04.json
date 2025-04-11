@@ -1,0 +1,62 @@
+{
+  "id": "ressources/frontend/react/intro",
+  "title": "Introduction à React",
+  "description": "Parlons un peu de React, ce qu'il est, ce qu'il fait et pourquoi il est si populaire.",
+  "source": "@site/docs/ressources/frontend/react/intro.mdx",
+  "sourceDirName": "ressources/frontend/react",
+  "slug": "/ressources/frontend/react/intro",
+  "permalink": "/ressources/frontend/react/intro",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/preparation-tp/memento-dev/tree/main/docs/ressources/frontend/react/intro.mdx",
+  "tags": [
+    {
+      "inline": true,
+      "label": "Frontend",
+      "permalink": "/tags/frontend"
+    },
+    {
+      "inline": true,
+      "label": "React",
+      "permalink": "/tags/react"
+    },
+    {
+      "inline": true,
+      "label": "JavaScript/TypeScript",
+      "permalink": "/tags/java-script-type-script"
+    },
+    {
+      "inline": true,
+      "label": "Bibliothèque",
+      "permalink": "/tags/bibliotheque"
+    },
+    {
+      "inline": true,
+      "label": "Interface utilisateur (UI)",
+      "permalink": "/tags/interface-utilisateur-ui"
+    }
+  ],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1,
+    "title": "Introduction à React",
+    "description": "Parlons un peu de React, ce qu'il est, ce qu'il fait et pourquoi il est si populaire.",
+    "tags": [
+      "Frontend",
+      "React",
+      "JavaScript/TypeScript",
+      "Bibliothèque",
+      "Interface utilisateur (UI)"
+    ]
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "🌈 Frontend",
+    "permalink": "/category/-frontend"
+  },
+  "next": {
+    "title": "Initialisation",
+    "permalink": "/ressources/frontend/react/initialiser-un-projet-react"
+  }
+}

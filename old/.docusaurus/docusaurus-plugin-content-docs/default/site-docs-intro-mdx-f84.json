@@ -1,0 +1,24 @@
+{
+  "id": "intro",
+  "title": "📜 Préambule",
+  "description": "Memento Dev, une plateforme open-source de partage de connaissances en développement !",
+  "source": "@site/docs/intro.mdx",
+  "sourceDirName": ".",
+  "slug": "/intro",
+  "permalink": "/intro",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/preparation-tp/memento-dev/tree/main/docs/intro.mdx",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1,
+    "description": "Memento Dev, une plateforme open-source de partage de connaissances en développement !"
+  },
+  "sidebar": "tutorialSidebar",
+  "next": {
+    "title": "Titres professionnels",
+    "permalink": "/glossaires/titres-professionnel"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "id": "titres-professionnels/DWWM/intro",
+  "title": "Résumé",
+  "description": "Résumé du titre professionnel Développeur Web et Web Mobile (DWWM TP-01280m04, actif depuis septembre 2023).",
+  "source": "@site/docs/titres-professionnels/DWWM/intro.mdx",
+  "sourceDirName": "titres-professionnels/DWWM",
+  "slug": "/titres-professionnels/DWWM/intro",
+  "permalink": "/titres-professionnels/DWWM/intro",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/preparation-tp/memento-dev/tree/main/docs/titres-professionnels/DWWM/intro.mdx",
+  "tags": [
+    {
+      "inline": true,
+      "label": "DWWM",
+      "permalink": "/tags/dwwm"
+    }
+  ],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1,
+    "title": "Résumé",
+    "description": "Résumé du titre professionnel Développeur Web et Web Mobile (DWWM TP-01280m04, actif depuis septembre 2023).",
+    "tags": [
+      "DWWM"
+    ]
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "CP 11",
+    "permalink": "/titres-professionnels/CDA/AT3/CP11"
+  },
+  "next": {
+    "title": "La soutenance DWWM",
+    "permalink": "/titres-professionnels/DWWM/soutenance"
+  }
+}

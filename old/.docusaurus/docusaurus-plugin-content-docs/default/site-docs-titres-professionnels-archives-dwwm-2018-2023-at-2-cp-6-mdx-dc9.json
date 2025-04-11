@@ -1,0 +1,29 @@
+{
+  "id": "titres-professionnels/archives/DWWM/2018-2023/AT2/CP6",
+  "title": "CP 6",
+  "description": "Synthèse de la CP 5 \"Développer les composants d'accès aux données\" du titre professionnel Développeur Web et Web Mobile (DWWM TP-01280m03, référentiel expiré).",
+  "source": "@site/docs/titres-professionnels/archives/DWWM/2018-2023/AT2/CP6.mdx",
+  "sourceDirName": "titres-professionnels/archives/DWWM/2018-2023/AT2",
+  "slug": "/titres-professionnels/archives/DWWM/2018-2023/AT2/CP6",
+  "permalink": "/titres-professionnels/archives/DWWM/2018-2023/AT2/CP6",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/preparation-tp/memento-dev/tree/main/docs/titres-professionnels/archives/DWWM/2018-2023/AT2/CP6.mdx",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 6,
+  "frontMatter": {
+    "sidebar_position": 6,
+    "title": "CP 6",
+    "description": "Synthèse de la CP 5 \"Développer les composants d'accès aux données\" du titre professionnel Développeur Web et Web Mobile (DWWM TP-01280m03, référentiel expiré)."
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "CP 5",
+    "permalink": "/titres-professionnels/archives/DWWM/2018-2023/AT2/CP5"
+  },
+  "next": {
+    "title": "CP 7",
+    "permalink": "/titres-professionnels/archives/DWWM/2018-2023/AT2/CP7"
+  }
+}

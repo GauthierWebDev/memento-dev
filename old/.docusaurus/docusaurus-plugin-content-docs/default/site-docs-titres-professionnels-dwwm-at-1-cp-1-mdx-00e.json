@@ -1,0 +1,44 @@
+{
+  "id": "titres-professionnels/DWWM/AT1/CP1",
+  "title": "CP 1",
+  "description": "Synthèse de la CP 1 \"Installer et configurer son environnement de travail en fonction du projet web ou web mobile\" du titre professionnel Développeur Web et Web Mobile (DWWM TP-01280m04).",
+  "source": "@site/docs/titres-professionnels/DWWM/AT1/CP1.mdx",
+  "sourceDirName": "titres-professionnels/DWWM/AT1",
+  "slug": "/titres-professionnels/DWWM/AT1/CP1",
+  "permalink": "/titres-professionnels/DWWM/AT1/CP1",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/preparation-tp/memento-dev/tree/main/docs/titres-professionnels/DWWM/AT1/CP1.mdx",
+  "tags": [
+    {
+      "inline": true,
+      "label": "DWWM",
+      "permalink": "/tags/dwwm"
+    },
+    {
+      "inline": true,
+      "label": "Environnement de développement",
+      "permalink": "/tags/environnement-de-developpement"
+    }
+  ],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1,
+    "title": "CP 1",
+    "description": "Synthèse de la CP 1 \"Installer et configurer son environnement de travail en fonction du projet web ou web mobile\" du titre professionnel Développeur Web et Web Mobile (DWWM TP-01280m04).",
+    "tags": [
+      "DWWM",
+      "Environnement de développement"
+    ]
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "La soutenance DWWM",
+    "permalink": "/titres-professionnels/DWWM/soutenance"
+  },
+  "next": {
+    "title": "CP 2",
+    "permalink": "/titres-professionnels/DWWM/AT1/CP2"
+  }
+}
