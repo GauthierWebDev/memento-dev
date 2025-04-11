@@ -1,7 +1,10 @@
 export const navigation = [
   {
     title: "React",
-    links: [{ title: "Introduction", href: "/docs/react" }],
+    links: [
+      { title: "Introduction", href: "/docs/react" },
+      { title: "Initialisation", href: "/docs/react/initialisation" },
+    ],
   },
   {
     title: "Merise",

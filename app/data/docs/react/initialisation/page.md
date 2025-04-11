@@ -1,0 +1,169 @@
+---
+title: Initialisation d'un projet React
+description: Initialisons un nouveau projet React, avec ou sans TypeScript.
+tags: [Frontend, React, JavaScript, TypeScript, Bibliothèque, Interface utilisateur (UI), Vite, Vike]
+---
+
+Allez, on se lance dans la création d'un projet React ! 🚀
+
+L'article sera très court, car il n'y a pas grand chose à dire sur la création d'un projet React.  
+Tu vas voir à quel point c'est simple !
+
+## 👴 Ancienne méthode _(CRA)_
+
+{% callout type="warning" title="Dépréciation de `create-react-app`" %}
+
+Sur cette courte section on va parler d'une méthode qui est **dépréciée**.
+Ne l'utilise donc pas pour créer de nouveaux projets !
+
+{% /callout %}
+
+Il y a encore quelques mois/années, on passait régulièrement par le **CRA**, ou `create-react-app`, pour initialiser un projet React.  
+L'avantage que proposait cette méthode était de nous fournir un projet prêt à l'emploi, avec une structure de fichiers déjà en place, et des dépendances déjà installées.
+
+Cependant, cette méthode est désormais dépréciée. Au delà d'être dépréciée, cette méthode a même été **totalement retirée** de la documentation officielle de React.
+
+À la place, la documentation nous propose plutôt d'utiliser :
+
+- [Next.js _(App Router)_](https://react.dev/learn/creating-a-react-app#nextjs-app-router)
+- [React Router _(v7)_](https://react.dev/learn/creating-a-react-app#react-router-v7)
+- [Expo _(pour les applications natives)_](https://react.dev/learn/creating-a-react-app#expo)
+- [Vite](https://react.dev/learn/build-a-react-app-from-scratch#vite)
+- [Parcel](https://react.dev/learn/build-a-react-app-from-scratch#parcel)
+- [Rsbuild](https://react.dev/learn/build-a-react-app-from-scratch#rsbuild)
+
+Mais dans cet article, je vais plutôt te montrer comment initialiser un projet React avec Vite et par la suite : [Vike](https://vike.dev/).
+
+Et si tu te demandes "pourquoi" _(à juste titre !)_, c'est tout simplement car il s'agit d'une solution plus légère, plus flexible et qui est en constante amélioration par la communauté !
+
+## 🏃 Vite
+
+Vite est un outil de développement web _(frontend)_ créé par [Evan You](https://evanyou.me/), le créateur de Vue.js.  
+Et si tu connais Vue.js, tu sais déjà qu'on parle d'un outil de qualité !
+
+L'objectif principal derrière Vite, c'est d'améliorer considérablement la rapidité de développement de nos applications web, avec notamment un serveur de développement ultra-rapide, et une compilation de production optimisée.
+
+On peut notamment comparer Vite à Webpack, Grunt ou encore Gulp, mais en beaucoup plus rapide et plus simple à utiliser.  
+Beaucoup moins "usine à gaz", beaucoup plus "plug-and-play".
+
+Et si on voyait comment initialiser un projet React avec Vite ?  
+C'est parti ! 🚀
+
+## 👷 Initialisation
+
+Avant de commencer, assure-toi d'avoir Node.js installé sur ta machine.
+Si ce n'est pas le cas, tu peux le télécharger ici.
+
+Prépare toi maintenant pour la partie la plus difficile de cet article...
+Ouvre ton terminal, et tape la commande suivante :
+
+{% tabs defaultSelectedTab="npm" %}
+
+{% tab value="npm" label="NPM" %}
+
+```bash
+npm init vite
+```
+
+{% /tab %}
+
+{% tab value="yarn" label="Yarn" %}
+
+```bash
+yarn create vite
+```
+
+{% /tab %}
+
+{% tab value="pnpm" label="PNPM" %}
+
+```bash
+pnpm create vite
+```
+
+{% /tab %}
+
+{% /tabs %}
+
+Tu vas ensuite devoir répondre à quelques questions, notamment le nom de ton projet, le template que tu souhaites utiliser _(React, Vue, Vanilla, etc.)_, et si tu souhaites utiliser TypeScript.
+
+Je te laisse la liberté de répondre comme tu veux à ces questions, mais pour un projet React, tu vas devoir choisir le template `react` _(logique non ?)_.
+
+Et voilà, c'est tout !  
+... oui j'ai menti, c'était vraiment pas difficile. 😅
+
+## 🚀 Lancement
+
+Une fois que tu as répondu à toutes les questions, tu vas devoir te rendre dans le dossier de ton projet, et lancer le serveur de développement :
+
+{% tabs defaultSelectedTab="npm" %}
+
+{% tab value="npm" label="NPM" %}
+
+```bash
+cd mon-projet # Se rendre dans le dossier du projet
+npm install # Installer les dépendances
+npm run dev # Lancer le serveur de développement
+```
+
+{% /tab %}
+
+{% tab value="yarn" label="Yarn" %}
+
+```bash
+cd mon-projet # Se rendre dans le dossier du projet
+yarn install # Installer les dépendances
+yarn dev # Lancer le serveur de développement
+```
+
+{% /tab %}
+
+{% tab value="pnpm" label="PNPM" %}
+
+```bash
+cd mon-projet # Se rendre dans le dossier du projet
+pnpm install # Installer les dépendances
+pnpm dev # Lancer le serveur de développement
+```
+
+{% /tab %}
+
+{% /tabs %}
+
+{% callout type="warning" title="Dépendances" %}
+
+Pense à installer les dépendances de ton projet avant de lancer le moindre script _(comme `dev`, `build` etc)_, sinon ça ne va pas très bien se passer !
+
+{% /callout %}
+
+Tu auras ensuite un message dans ton terminal qui t'indiquera l'adresse à laquelle tu pourras accéder à ton application.  
+En général, il s'agit de http://localhost:4173 _(le port peut varier)_.
+
+Et voilà, tu as maintenant un projet React initialisé avec Vite ! 🎉
+
+Par contre je préfère te prévenir, avec cette solution on va davantage s'orienter sur des applications **CSR** _(Client-Side Rendering)_, mais on pourra également voir comment faire du **SSR** _(Server-Side Rendering)_ ou du **SSG** _(Static Site Generation)_ avec **Vike**.
+
+## 💪 Vike
+
+**Vike**, ou anciennement `vite-plugin-ssr`, est un **framework** basé sur Vite qui va nous permettre de créer des applications web avec presque n'importe quelle bibliothèque _(React, Vue, Svelte, etc.)_.
+
+Dans notre cas, on s'en servira comme alternative au géant du SSR React : Next.js.
+
+L'énorme avantage de Vike au delà de pouvoir utiliser n'importe quel framework/bibliothèque UI _(et même un framework maison ou du vanilla JS !)_, c'est que tout comme Vite, il est **extrêmement plus léger** et **flexible**.
+
+Au niveau des fonctionnalités natives, on va retrouver un peu la même chose que Next.js, avec notamment :
+
+- De quoi gérer le rendu à effectuer _(SSR, SSG, CSR)_
+- Un système de layouts
+- Un système de routage
+- Un système pour séparer la logique front et la logique back
+
+Et bien d'autres !
+
+Mais on se réserve ça pour un autre article, car il est nécessaire de bien comprendre comment fonctionne React 😉.
+
+## Conclusion
+
+Tu l'auras remarqué, initialiser un projet React avec Vite est vraiment très simple !
+
+On parle ici d'une simple petite commande et de questions auxquelles répondre, et le tour est joué 🚀
