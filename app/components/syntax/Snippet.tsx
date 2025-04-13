@@ -10,35 +10,59 @@ import { Fragment, useMemo } from "react";
 
 const CSRSnippet = clientOnly(() => import("./CSRSnippet"));
 
-function SSRSnippet({ language, children }: { language: string; children: string }) {
+function SSRSnippet({
+  language,
+  children,
+  label,
+  showLineNumbers = false,
+}: {
+  language: string;
+  children: string;
+  label?: string;
+  showLineNumbers?: boolean;
+}) {
   const { theme } = useTheme();
+
   const prismTheme = useMemo(() => {
     return prismThemes[theme];
   }, [theme]);
 
   return (
-    <Highlight code={children.trimEnd()} language={language} theme={prismTheme} prism={Prism}>
-      {({ className, style, tokens, getTokenProps }) => (
-        <pre className={className} style={style}>
-          <code>
-            {tokens.map((line, lineIndex) => (
-              <Fragment key={lineIndex}>
-                {line
-                  .filter((token) => !token.empty)
-                  .map((token, tokenIndex) => (
-                    <span key={tokenIndex} {...getTokenProps({ token })} />
-                  ))}
-                {"\n"}
-              </Fragment>
-            ))}
-          </code>
-        </pre>
-      )}
-    </Highlight>
+    <>
+      {label && <div className="text-sm text-gray-500 dark:text-gray-400 mb-2">{label}</div>}
+      <Highlight code={children.trimEnd()} language={language} theme={prismTheme} prism={Prism}>
+        {({ className, style, tokens, getTokenProps }) => (
+          <pre className={className} style={style}>
+            <code>
+              {tokens.map((line, lineIndex) => (
+                <Fragment key={lineIndex}>
+                  {line
+                    .filter((token) => !token.empty)
+                    .map((token, tokenIndex) => (
+                      <span key={tokenIndex} {...getTokenProps({ token })} />
+                    ))}
+                  {"\n"}
+                </Fragment>
+              ))}
+            </code>
+          </pre>
+        )}
+      </Highlight>
+    </>
   );
 }
 
-export function Snippet({ path, language, label }: { path: string; language: string; label?: string }) {
+export function Snippet({
+  path,
+  language,
+  label,
+  showLineNumbers,
+}: {
+  path: string;
+  language: string;
+  label?: string;
+  showLineNumbers: boolean;
+}) {
   const { snippets } = useData<Data>();
 
   const snippet = snippets.find((snippet) => snippet.path === path);
@@ -47,6 +71,7 @@ export function Snippet({ path, language, label }: { path: string; language: str
   const props = {
     language,
     label,
+    showLineNumbers,
     children: snippet.content,
   };
 

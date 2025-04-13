@@ -83,44 +83,12 @@ const tags = {
       },
       label: { type: String },
       path: { type: String },
+      showLineNumbers: {
+        type: Boolean,
+        default: false,
+      },
     },
   },
-  // snippet: {
-  //   // render: Fence2,
-  //   attributes: {
-  //     language: {
-  //       type: String,
-  //       default: "auto",
-  //     },
-  //     label: { type: String },
-  //     description: { type: String },
-  //     path: { type: String },
-  //   },
-  //   async transform(node: any, config: any) {
-  //     const attributes = node.transformAttributes(config);
-
-  //     const pathValue = attributes.path;
-
-  //     let language = attributes.language ?? "auto";
-  //     let content = "";
-
-  //     if (!pathValue) {
-  //       console.warn("No path provided for snippet tag");
-  //     } else {
-  //       const absolutePath = path.resolve(__dirname, pathValue);
-  //       // Read the file content
-  //       try {
-  //         content = await fs.readFile(absolutePath, "utf-8");
-  //       } catch (error) {
-  //         console.error("Error reading file:", error);
-  //         content = `Error reading file: ${absolutePath}`;
-  //         language = "plain";
-  //       }
-
-  //       // return new Tag("fence2", { ...attributes, language, content, label: "Temp" });
-  //     }
-  //   },
-  // },
 };
 
 export default tags;

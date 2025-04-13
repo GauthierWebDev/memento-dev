@@ -50,7 +50,7 @@ Parlons dans un premier temps de la signature d'un reducer :
 
 {% tab value="jsx" label="JSX" %}
 
-{% snippet path="data/docs/react/usereducer/reducer-example.jsx" language="jsx" label="test" /%}
+{% snippet path="data/docs/react/usereducer/reducer-example.jsx" language="jsx" label="test" showLineNumbers=true /%}
 
 {% /tab %}
 
