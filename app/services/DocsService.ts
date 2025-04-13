@@ -20,6 +20,7 @@ type DocData = { title: string; description: string; content: string; sections: 
 type DocExtension = "mdx" | "md";
 
 class DocsService {
+  private static readonly SNIPPETS_PATH = path.resolve(path.join(__dirname, "data", "snippets"));
   private static readonly DOCS_PATH = path.resolve(path.join(__dirname, "data"));
   private static readonly DOCS_EXTS: DocExtension[] = ["mdx", "md"]; // Order matters
   private static instance: DocsService;
@@ -83,18 +84,23 @@ class DocsService {
   }
 
   public fetchSnippets(content: string) {
-    const identifierResults = snippetsService.identifyNewSnippets(content);
-    if (!identifierResults) return;
+    try {
+      const identifierResults = snippetsService.identifyNewSnippets(content);
+      if (!identifierResults) return [];
 
-    const [snippetsToFetch, allSnippets] = identifierResults;
+      const [snippetsToFetch, allSnippets] = identifierResults;
 
-    for (const snippet of snippetsToFetch) {
-      const absolutePath = path.resolve(__dirname, snippet);
-      const content = fs.readFileSync(absolutePath, "utf-8");
-      snippetsService.setToCache(snippet, content);
+      for (const snippet of snippetsToFetch) {
+        const absolutePath = path.resolve(DocsService.SNIPPETS_PATH, snippet);
+        const content = fs.readFileSync(absolutePath, "utf-8");
+        snippetsService.setToCache(snippet, content);
+      }
+
+      return allSnippets || [];
+    } catch (error) {
+      console.error("Error fetching snippets:", error);
+      return [];
     }
-
-    return allSnippets;
   }
 
   public async fetchDocs() {
@@ -109,15 +115,13 @@ class DocsService {
           .replace(`.${extension}`, "")
           .replace(/\/$/g, "");
 
-        const allSnippets = this.fetchSnippets(content);
-
         const ast = Markdoc.parse(content);
         const title = ast.attributes?.frontmatter?.match(/^title:\s*(.*?)\s*$/m)?.[1];
         const description = ast.attributes?.frontmatter?.match(/^description:\s*(.*?)\s*$/m)?.[1]?.replaceAll('"', "");
         const sections: DocSection[] = [[title, null, []]];
 
         this.extractSections(ast, sections);
-        this.setToCache(key, { title, description, content, sections, snippets: allSnippets || [] });
+        this.setToCache(key, { title, description, content, sections, snippets: this.fetchSnippets(content) });
 
         return { key, sections };
       }),
@@ -152,6 +156,7 @@ class DocsService {
 
       return doc;
     } catch (error) {
+      console.error("Error fetching docs:", error);
       return null;
     }
   }

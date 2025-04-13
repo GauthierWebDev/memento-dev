@@ -47,19 +47,13 @@ Comme expliqué plus tôt, un reducer est une fonction qui prend en paramètre u
 Parlons dans un premier temps de la signature d'un reducer :
 
 {% tabs defaultSelectedTab="jsx" %}
-
 {% tab value="jsx" label="JSX" %}
-
-{% snippet path="data/docs/react/usereducer/reducer-example.jsx" language="jsx" showLineNumbers=true /%}
-
+{% snippet path="react/reducer/reducer-example.jsx" language="jsx" showLineNumbers=true /%}
 {% /tab %}
 
 {% tab value="tsx" label="TSX" %}
-
-{% snippet path="data/docs/react/usereducer/reducer-example.tsx" language="tsx" showLineNumbers=true /%}
-
+{% snippet path="react/reducer/reducer-example.tsx" language="tsx" showLineNumbers=true /%}
 {% /tab %}
-
 {% /tabs %}
 
 Comme tu peux le voir, on récupère bien deux paramètres : `state` et `action`.
@@ -82,7 +76,7 @@ En déversant le contenu de l'état actuel, on s'assure de ne pas perdre ces pro
 
 Par exemple :
 
-{% snippet path="data/docs/react/usereducer/reducer-why-spread-operator.jsx" language="jsx" showLineNumbers=true /%}
+{% snippet path="react/reducer/reducer-why-spread-operator.jsx" language="jsx" showLineNumbers=true /%}
 
 On perdrait ici la propriété `message` si on ne la déversait pas dans le nouvel état.
 
@@ -103,20 +97,13 @@ Ensuite, on va définir notre état initial :
 {% tabs defaultSelectedTab="js" %}
 {% tab value="js" label="JavaScript" %}
 
-```js
-const initialState = { count: 0 };
-```
+{% snippet path="react/reducer/reducer-initial-state.js" language="js" /%}
 
 {% /tab %}
 
 {% tab value="ts" label="TypeScript" %}
 
-```ts
-type State = {
-  count: number;
-};
-const initialState: State = { count: 0 };
-```
+{% snippet path="react/reducer/reducer-initial-state.ts" language="ts" /%}
 
 {% /tab %}
 
@@ -128,52 +115,13 @@ On peut maintenant définir notre reducer :
 
 {% tab value="js" label="JavaScript" %}
 
-```js
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "INCREMENT":
-      return { ...state, count: state.count + 1 };
-    case "DECREMENT":
-      return { ...state, count: state.count - 1 };
-    case "RESET":
-      return { ...state, count: 0 };
-    case "SET":
-      return { ...state, count: action.payload };
-    default:
-      return state;
-  }
-};
-```
+{% snippet path="react/reducer/reducer.js" language="js" showLineNumbers=true /%}
 
 {% /tab %}
 
 {% tab value="ts" label="TypeScript" %}
 
-```ts
-type State = {
-  count: number;
-};
-
-type Action = {
-  type: "INCREMENT" | "DECREMENT" | "RESET" | "SET";
-  payload?: number;
-};
-
-const reducer = (state: State, action: Action) => {
-  switch (action.type) {
-    case "INCREMENT":
-      return { ...state, count: state.count + 1 };
-    case "DECREMENT":
-      return { ...state, count: state.count - 1 };
-    case "RESET":
-      return { ...state, count: 0 };
-    case "SET":
-      return { ...state, count: action.payload! };
-    default:
-      return state;
-  }
-};
-```
+{% snippet path="react/reducer/reducer.ts" language="ts" showLineNumbers=true /%}
 
 {% /tab %}
 
@@ -196,17 +144,13 @@ Enfin, on peut utiliser le hook useReducer dans notre composant :
 
 {% tab value="js" label="JavaScript" %}
 
-```js
-const [state, dispatch] = useReducer(reducer, initialState);
-```
+{% snippet path="react/reducer/reducer-hook.js" language="js" /%}
 
 {% /tab %}
 
 {% tab value="ts" label="TypeScript" %}
 
-```ts
-const [state, dispatch] = useReducer<State, Action>(reducer, initialState);
-```
+{% snippet path="react/reducer/reducer-hook.ts" language="ts" /%}
 
 {% /tab %}
 

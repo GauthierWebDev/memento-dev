@@ -20,5 +20,5 @@
       "@syntax/*": ["./components/syntax/*"]
     }
   },
-  "exclude": ["dist"]
+  "exclude": ["dist", "data/snippets"]
 }

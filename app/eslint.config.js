@@ -10,6 +10,7 @@ export default tseslint.config(
   {
     ignores: [
       "dist/*",
+      "data/snippets/*",
       // Temporary compiled files
       "**/*.ts.build-*.mjs",
 
