@@ -4,7 +4,7 @@ export const navigation = [
     type: "global",
     links: [
       { title: "Memento Dev", href: "/" },
-      { title: "Certifications", href: "/tp" },
+      { title: "Certifications", href: "/certifications" },
       { title: "Documentations", href: "/docs" },
     ],
   },

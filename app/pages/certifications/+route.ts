@@ -1,9 +1,9 @@
 import type { PageContext } from "vike/types";
 
-const routeRegex = /^\/docs\/(.*)$/;
+const routeRegex = /^\/certifications\/(.*)$/;
 
 export function route(pageContext: PageContext) {
-  if (pageContext.urlPathname === "/docs") {
+  if (pageContext.urlPathname === "/certifications") {
     return { routeParams: { key: "index" } };
   }
 
