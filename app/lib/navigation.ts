@@ -20,4 +20,11 @@ export const navigation = [
       { title: "Modèle Conceptuel de Données", href: "/docs/merise/modele-conceptuel-de-donnees" },
     ],
   },
+  {
+    title: "Communauté",
+    links: [
+      { title: "Influenceurs", href: "/docs/communaute/influenceurs" },
+      { title: "Partages et réutilisations", href: "/docs/communaute/partages" },
+    ],
+  },
 ];
