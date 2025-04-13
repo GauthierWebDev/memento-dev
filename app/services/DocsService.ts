@@ -91,7 +91,7 @@ class DocsService {
 
       const ast = Markdoc.parse(content);
       const title = ast.attributes?.frontmatter?.match(/^title:\s*(.*?)\s*$/m)?.[1];
-      const description = ast.attributes?.frontmatter?.match(/^description:\s*(.*?)\s*$/m)?.[1];
+      const description = ast.attributes?.frontmatter?.match(/^description:\s*(.*?)\s*$/m)?.[1]?.replaceAll('"', "");
       const sections: DocSection[] = [[title, null, []]];
 
       this.extractSections(ast, sections);

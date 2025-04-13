@@ -5,6 +5,7 @@ import { DocsLayout } from "@syntax/DocsLayout";
 import Markdoc from "@markdoc/markdoc";
 import { Fence } from "@syntax/Fence";
 import yaml from "js-yaml";
+import { Link } from "@/components/common/Link";
 
 const { nodes: defaultNodes, Tag } = Markdoc;
 
@@ -67,6 +68,10 @@ const nodes = {
         type: String,
       },
     },
+  },
+  link: {
+    ...defaultNodes.link,
+    render: Link,
   },
 };
 

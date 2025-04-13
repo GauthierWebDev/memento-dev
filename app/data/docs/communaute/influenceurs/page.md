@@ -40,13 +40,6 @@ Il peut s'agir d'un HUB _(Linktree, Bento, etc.)_ où l'on peut retrouver tous t
 
 {% /callout %}
 
-{% callout type="warning" title="Ordre d'apparition" %}
-
-Aucun influenceur ou créateur de contenu, en dehors des coups de coeurs de Memento Dev, n'est mis en avant par rapport à un autre dans cette page.  
-Les noms sont listés par ordre alphabétique, peu importe le nombre d'abonnés ou de vues.
-
-{% /callout %}
-
 ## 🥷 Disparaître de cette page
 
 Pour retirer ton nom de cette page, même fonctionnement que pour apparaître sur cette page : tu peux m'envoyer un [email _(gauthier@gauthierdaniels.fr)_](mailto:gauthier@gauthierdaniels?subject=Demande%20de%20suppression%20de%20la%20page%20des%20influenceurs%20Memento%20Dev).
