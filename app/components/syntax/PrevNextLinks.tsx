@@ -22,6 +22,10 @@ function PageLink({
   href: string;
   dir?: "previous" | "next";
 }) {
+  const pageCategory = navigation.find((section) => {
+    return section.links.some((link) => link.href === href);
+  })!;
+
   return (
     <div {...props}>
       <dt className="font-display text-sm font-medium text-slate-900 dark:text-white">
@@ -31,12 +35,15 @@ function PageLink({
         <Link
           href={href}
           className={clsx(
-            "flex items-center gap-x-1 text-base font-semibold text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300",
+            "flex items-center gap-x-2 text-base font-semibold text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300",
             dir === "previous" && "flex-row-reverse",
           )}
         >
-          {title}
-          <ArrowIcon className={clsx("h-4 w-4 flex-none fill-current", dir === "previous" && "-scale-x-100")} />
+          <p className="flex flex-col gap-0">
+            <span className="text-violet-600 dark:text-violet-400 text-sm -mb-3">{pageCategory.title}</span>
+            <span>{title}</span>
+          </p>
+          <ArrowIcon className={clsx("h-6 w-6 flex-none fill-current", dir === "previous" && "-scale-x-100")} />
         </Link>
       </dd>
     </div>
@@ -44,12 +51,12 @@ function PageLink({
 }
 
 export function PrevNextLinks() {
-  let { urlPathname } = usePageContext();
+  const { urlPathname } = usePageContext();
 
-  let allLinks = navigation.flatMap((section) => section.links);
-  let linkIndex = allLinks.findIndex((link) => link.href === urlPathname);
-  let previousPage = linkIndex > -1 ? allLinks[linkIndex - 1] : null;
-  let nextPage = linkIndex > -1 ? allLinks[linkIndex + 1] : null;
+  const allLinks = navigation.flatMap((section) => section.links);
+  const linkIndex = allLinks.findIndex((link) => link.href === urlPathname);
+  const previousPage = linkIndex > -1 ? allLinks[linkIndex - 1] : null;
+  const nextPage = linkIndex > -1 ? allLinks[linkIndex + 1] : null;
 
   if (!nextPage && !previousPage) {
     return null;
