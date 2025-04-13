@@ -47,6 +47,7 @@ Comme expliqué plus tôt, un reducer est une fonction qui prend en paramètre u
 Parlons dans un premier temps de la signature d'un reducer :
 
 {% tabs defaultSelectedTab="jsx" %}
+
 {% tab value="jsx" label="JSX" %}
 {% snippet path="react/reducer/reducer-example.jsx" language="jsx" showLineNumbers=true /%}
 {% /tab %}
@@ -54,6 +55,7 @@ Parlons dans un premier temps de la signature d'un reducer :
 {% tab value="tsx" label="TSX" %}
 {% snippet path="react/reducer/reducer-example.tsx" language="tsx" showLineNumbers=true /%}
 {% /tab %}
+
 {% /tabs %}
 
 Comme tu peux le voir, on récupère bien deux paramètres : `state` et `action`.
@@ -95,16 +97,13 @@ import { useReducer } from "react";
 Ensuite, on va définir notre état initial :
 
 {% tabs defaultSelectedTab="js" %}
+
 {% tab value="js" label="JavaScript" %}
-
 {% snippet path="react/reducer/reducer-initial-state.js" language="js" /%}
-
 {% /tab %}
 
 {% tab value="ts" label="TypeScript" %}
-
 {% snippet path="react/reducer/reducer-initial-state.ts" language="ts" /%}
-
 {% /tab %}
 
 {% /tabs %}
@@ -114,15 +113,11 @@ On peut maintenant définir notre reducer :
 {% tabs defaultSelectedTab="js" %}
 
 {% tab value="js" label="JavaScript" %}
-
 {% snippet path="react/reducer/reducer.js" language="js" showLineNumbers=true /%}
-
 {% /tab %}
 
 {% tab value="ts" label="TypeScript" %}
-
 {% snippet path="react/reducer/reducer.ts" language="ts" showLineNumbers=true /%}
-
 {% /tab %}
 
 {% /tabs %}
@@ -143,15 +138,11 @@ Enfin, on peut utiliser le hook useReducer dans notre composant :
 {% tabs defaultSelectedTab="js" %}
 
 {% tab value="js" label="JavaScript" %}
-
 {% snippet path="react/reducer/reducer-hook.js" language="js" /%}
-
 {% /tab %}
 
 {% tab value="ts" label="TypeScript" %}
-
 {% snippet path="react/reducer/reducer-hook.ts" language="ts" /%}
-
 {% /tab %}
 
 {% /tabs %}
@@ -160,9 +151,7 @@ Enfin, on peut utiliser le hook useReducer dans notre composant :
 
 Pour modifier l'état, on va donc appeler `dispatch` avec une action :
 
-```js
-dispatch({ type: "INCREMENT" });
-```
+{% snippet path="react/reducer/reducer-dispatch-increment.js" language="js" /%}
 
 Et voilà, tu sais maintenant comment utiliser `useReducer` dans une application React ! 🎉
 
@@ -186,12 +175,7 @@ Pour contrer ces problèmes, on va créer des actions et des types d'actions pou
 
 Nos types d'actions seront tous des chaînes de caractères. On va donc pouvoir les définir sous forme de constantes.
 
-```js
-export const INCREMENT = "INCREMENT";
-export const DECREMENT = "DECREMENT";
-export const RESET = "RESET";
-export const SET = "SET";
-```
+{% snippet path="react/reducer/reducer-actions-constants.js" language="js" /%}
 
 {% callout type="note" title="Regrouper les exports" %}
 
@@ -202,29 +186,11 @@ Bien vu ! Et pour TypeScript, on peut aller encore plus loin en créant un `enum
 {% tabs defaultSelectedTab="js" %}
 
 {% tab value="js" label="JavaScript" %}
-
-```js
-export const CounterActionTypes = {
-  INCREMENT: "INCREMENT",
-  DECREMENT: "DECREMENT",
-  RESET: "RESET",
-  SET: "SET",
-};
-```
-
+{% snippet path="react/reducer/reducer-actions-enum.js" language="js" /%}
 {% /tab %}
 
 {% tab value="ts" label="TypeScript" %}
-
-```ts
-export const enum CounterActionTypes {
-  INCREMENT = "INCREMENT",
-  DECREMENT = "DECREMENT",
-  RESET = "RESET",
-  SET = "SET",
-}
-```
-
+{% snippet path="react/reducer/reducer-actions-enum.ts" language="ts" /%}
 {% /tab %}
 
 {% /tabs %}
@@ -237,32 +203,11 @@ Si tu utilises JavaScript, je suis désolé de te dire que tu ne peux pas **fort
 
 En revanche, si tu utilises TypeScript, tu peux définir les actions de la manière suivante :
 
-```ts
-export type CounterAction =
-  | { type: CounterActionTypes.INCREMENT }
-  | { type: CounterActionTypes.DECREMENT }
-  | { type: CounterActionTypes.RESET }
-  | { type: CounterActionTypes.SET; payload: number };
-```
+{% snippet path="react/reducer/reducer-actions-union.ts" language="ts" /%}
 
 Tu pourras alors utiliser `CounterAction` pour typer les actions de ton reducer :
 
-```ts
-const reducer = (state: State, action: CounterAction) => {
-  switch (action.type) {
-    case CounterActionTypes.INCREMENT:
-      return { ...state, count: state.count + 1 };
-    case CounterActionTypes.DECREMENT:
-      return { ...state, count: state.count - 1 };
-    case CounterActionTypes.RESET:
-      return { ...state, count: 0 };
-    case CounterActionTypes.SET:
-      return { ...state, count: action.payload };
-    default:
-      return state;
-  }
-};
-```
+{% snippet path="react/reducer/reducer-actions-union-use.ts" language="ts" /%}
 
 ### Action creators
 
@@ -271,195 +216,48 @@ Pour éviter de se tromper dans le type de l'action, on peut se créer des fonct
 {% tabs defaultSelectedTab="js" %}
 
 {% tab value="js" label="JavaScript" %}
-
-```js
-export const actions = {
-  increment: () => ({ type: CounterActionTypes.INCREMENT }),
-  decrement: () => ({ type: CounterActionTypes.DECREMENT }),
-  reset: () => ({ type: CounterActionTypes.RESET }),
-  set: (value) => ({ type: CounterActionTypes.SET, payload: value }),
-};
-```
-
+{% snippet path="react/reducer/reducer-action-creator.js" language="js" /%}
 {% /tab %}
 
 {% tab value="ts" label="TypeScript" %}
-
-```ts
-export const actions = {
-  increment: (): CounterAction => ({ type: CounterActionTypes.INCREMENT }),
-  decrement: (): CounterAction => ({ type: CounterActionTypes.DECREMENT }),
-  reset: (): CounterAction => ({ type: CounterActionTypes.RESET }),
-  set: (value: number): CounterAction => ({ type: CounterActionTypes.SET, payload: value }),
-};
-```
-
+{% snippet path="react/reducer/reducer-action-creator.ts" language="ts" /%}
 {% /tab %}
 
 {% /tabs %}
 
 Maintenant le dispatch de nos actions sera beaucoup plus simple et éviter davantage les erreurs lors du développement !
 
-```js
-dispatch(actions.increment());
-dispatch(actions.set(10));
-```
+{% snippet path="react/reducer/reducer-dispatch-action-creator.js" language="js" /%}
 
 ## Les fichiers complets
 
 On a vu beaucoup de chose et les fichiers sont un peu éparpillés.  
 Pour t'aider à mieux comprendre le fonctionnement du hook `useReducer` et comment l'implementer, voici les fichiers complets :
 
-### Fichier `counterReducer.js` ou `counterReducer.ts`
+### Fichier counterReducer.js ou counterReducer.ts
 
 {% tabs defaultSelectedTab="js" %}
 
 {% tab value="js" label="JavaScript" %}
-
-```js
-const CounterActionTypes = {
-  INCREMENT: "INCREMENT",
-  DECREMENT: "DECREMENT",
-  RESET: "RESET",
-  SET: "SET",
-};
-
-export const initialState = { count: 0 };
-
-export const reducer = (state, action) => {
-  switch (action.type) {
-    case CounterActionTypes.INCREMENT:
-      return { ...state, count: state.count + 1 };
-    case CounterActionTypes.DECREMENT:
-      return { ...state, count: state.count - 1 };
-    case CounterActionTypes.RESET:
-      return { ...state, count: 0 };
-    case CounterActionTypes.SET:
-      return { ...state, count: action.payload };
-    default:
-      return state;
-  }
-};
-
-export const actions = {
-  increment: () => ({ type: CounterActionTypes.INCREMENT }),
-  decrement: () => ({ type: CounterActionTypes.DECREMENT }),
-  reset: () => ({ type: CounterActionTypes.RESET }),
-  set: (value) => ({ type: CounterActionTypes.SET, payload: value }),
-};
-```
-
+{% snippet path="react/reducer/file-counterReducer.js" language="js" showLineNumbers=true label="src/reducers/counterReducer.js" /%}
 {% /tab %}
 
 {% tab value="ts" label="TypeScript" %}
-
-```ts
-const enum CounterActionTypes {
-  INCREMENT = "INCREMENT",
-  DECREMENT = "DECREMENT",
-  RESET = "RESET",
-  SET = "SET",
-}
-
-type State = {
-  count: number;
-};
-
-type Action =
-  | { type: CounterActionTypes.INCREMENT }
-  | { type: CounterActionTypes.DECREMENT }
-  | { type: CounterActionTypes.RESET }
-  | { type: CounterActionTypes.SET; payload: number };
-
-export const initialState: State = { count: 0 };
-
-export const reducer = (state: State, action: Action) => {
-  switch (action.type) {
-    case CounterActionTypes.INCREMENT:
-      return { ...state, count: state.count + 1 };
-    case CounterActionTypes.DECREMENT:
-      return { ...state, count: state.count - 1 };
-    case CounterActionTypes.RESET:
-      return { ...state, count: 0 };
-    case CounterActionTypes.SET:
-      return { ...state, count: action.payload };
-    default:
-      return state;
-  }
-};
-
-export const actions = {
-  increment: (): Action => ({ type: CounterActionTypes.INCREMENT }),
-  decrement: (): Action => ({ type: CounterActionTypes.DECREMENT }),
-  reset: (): Action => ({ type: CounterActionTypes.RESET }),
-  set: (value: number): Action => ({ type: CounterActionTypes.SET, payload: value }),
-};
-```
-
+{% snippet path="react/reducer/file-counterReducer.ts" language="ts" showLineNumbers=true label="src/reducers/counterReducer.ts" /%}
 {% /tab %}
 
 {% /tabs %}
 
-### Fichier `Counter.jsx` ou `Counter.tsx`
+### Fichier Counter.jsx ou Counter.tsx
 
 {% tabs defaultSelectedTab="jsx" %}
 
 {% tab value="jsx" label="JSX" %}
-
-```jsx
-import { initialState, actions, reducer } from "../reducers/counterReducer";
-import { useReducer } from "react";
-
-const Counter = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
-
-  return (
-    <div>
-      <p>Count: {state.count}</p>
-
-      <button onClick={() => dispatch(actions.increment())}>Increment</button>
-
-      <button onClick={() => dispatch(actions.decrement())}>Decrement</button>
-
-      <button onClick={() => dispatch(actions.reset())}>Reset</button>
-
-      <button onClick={() => dispatch(actions.set(10))}>Set counter to 10</button>
-    </div>
-  );
-};
-
-export default Counter;
-```
-
+{% snippet path="react/reducer/file-counter.jsx" language="jsx" showLineNumbers=true label="src/components/Counter.jsx" /%}
 {% /tab %}
 
 {% tab value="tsx" label="TSX" %}
-
-```tsx
-import { initialState, actions, reducer } from "../reducers/counterReducer";
-import { useReducer } from "react";
-
-const Counter = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
-
-  return (
-    <div>
-      <p>Count: {state.count}</p>
-
-      <button onClick={() => dispatch(actions.increment())}>Increment</button>
-
-      <button onClick={() => dispatch(actions.decrement())}>Decrement</button>
-
-      <button onClick={() => dispatch(actions.reset())}>Reset</button>
-
-      <button onClick={() => dispatch(actions.set(10))}>Set counter to 10</button>
-    </div>
-  );
-};
-
-export default Counter;
-```
-
+{% snippet path="react/reducer/file-counter.tsx" language="tsx" showLineNumbers=true label="src/components/Counter.tsx" /%}
 {% /tab %}
 
 {% /tabs %}
