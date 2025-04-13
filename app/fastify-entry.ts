@@ -5,10 +5,6 @@ import { fileURLToPath } from "node:url";
 import { dirname } from "node:path";
 import Fastify from "fastify";
 
-import { Prism } from "prism-react-renderer";
-(typeof global !== "undefined" ? global : window).Prism = Prism;
-require("prismjs/components/prism-bash");
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 

@@ -50,18 +50,7 @@ Parlons dans un premier temps de la signature d'un reducer :
 
 {% tab value="jsx" label="JSX" %}
 
-```jsx
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "TYPE_1":
-      return { ...state /* Nouvel état */ };
-    case "TYPE_2":
-      return { ...state /* Nouvel état */ };
-    default:
-      return state;
-  }
-};
-```
+{% snippet path="data/docs/react/usereducer/reducer-example.jsx" language="jsx" label="test" /%}
 
 {% /tab %}
 

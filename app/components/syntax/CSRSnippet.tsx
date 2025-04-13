@@ -3,9 +3,9 @@ import { prismThemes } from "@/data/themes/prism";
 import { Highlight } from "prism-react-renderer";
 import { useTheme } from "@/hooks/useTheme";
 import { Fragment, useMemo } from "react";
+import { toast } from "react-toastify";
 import { Button } from "./Button";
 import Prism from "prismjs";
-import { toast } from "react-toastify";
 
 export default function CSRFence({ children, language }: { children: string; language: string }) {
   const { theme } = useTheme();
@@ -16,7 +16,7 @@ export default function CSRFence({ children, language }: { children: string; lan
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(children.trimEnd());
-    toast.success("Code copied to clipboard!");
+    toast.success("Code copié dans le presse-papier");
   };
 
   return (
@@ -39,6 +39,7 @@ export default function CSRFence({ children, language }: { children: string; lan
           </pre>
         )}
       </Highlight>
+
       <Button
         className="absolute top-2 right-2 w-8 h-8 aspect-square opacity-0 group-hover:opacity-50 hover:opacity-100 transition-opacity"
         size="sm"

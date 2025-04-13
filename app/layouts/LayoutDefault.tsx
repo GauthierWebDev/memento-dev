@@ -14,6 +14,7 @@ import "./style.css";
 import "./tailwind.css";
 import "./prism.css";
 import "unfonts.css";
+import { ToastContainer } from "react-toastify";
 
 function GitHubIcon(props: React.ComponentPropsWithoutRef<"svg">) {
   return (
@@ -93,6 +94,7 @@ export default function DefaultLayout({ children }: { children: React.ReactNode 
           {children}
         </div>
       </div>
+      <ToastContainer />
     </ThemeProvider>
   );
 }

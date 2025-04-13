@@ -1,5 +1,6 @@
 import type { Node } from "@markdoc/markdoc";
 
+import { snippetsService } from "@/services/SnippetsService";
 import { slugifyWithCounter } from "@sindresorhus/slugify";
 import { buildFlexSearch } from "./FlexSearchService";
 import Markdoc from "@markdoc/markdoc";
@@ -9,19 +10,22 @@ import glob from "fast-glob";
 import path from "path";
 import fs from "fs";
 
+const __dirname = path.resolve();
+
 export type FlexSearchData = { key: string; sections: DocSection[] }[];
 
 type DocsCache = Map<string, DocData>;
 type DocSection = [string, string | null, string[]];
-type DocData = { title: string; description: string; content: string; sections: DocSection[] };
+type DocData = { title: string; description: string; content: string; sections: DocSection[]; snippets: string[] };
 type DocExtension = "mdx" | "md";
 
 class DocsService {
-  private static readonly DOCS_PATH = path.resolve("../../app/data");
+  private static readonly DOCS_PATH = path.resolve(path.join(__dirname, "data"));
   private static readonly DOCS_EXTS: DocExtension[] = ["mdx", "md"]; // Order matters
   private static instance: DocsService;
 
   public search: ReturnType<typeof buildFlexSearch> = buildFlexSearch([]);
+
   private slugify = slugifyWithCounter();
   private cache: DocsCache = new Map();
 
@@ -78,27 +82,46 @@ class DocsService {
     }
   }
 
+  public fetchSnippets(content: string) {
+    const identifierResults = snippetsService.identifyNewSnippets(content);
+    if (!identifierResults) return;
+
+    const [snippetsToFetch, allSnippets] = identifierResults;
+
+    for (const snippet of snippetsToFetch) {
+      const absolutePath = path.resolve(__dirname, snippet);
+      const content = fs.readFileSync(absolutePath, "utf-8");
+      snippetsService.setToCache(snippet, content);
+    }
+
+    return allSnippets;
+  }
+
   public async fetchDocs() {
     const docs = glob.sync(DocsService.DOCS_PATH + `/**/*.{${DocsService.DOCS_EXTS.join(",")}}`);
-    const data = docs.map((doc) => {
-      const content = fs.readFileSync(doc, "utf-8");
-      const extension = path.extname(doc).slice(1) as DocExtension;
-      const key = doc
-        .replace(DocsService.DOCS_PATH, "")
-        .replace(`page.${extension}`, "")
-        .replace(`.${extension}`, "")
-        .replace(/\/$/g, "");
+    const data = await Promise.all(
+      docs.map((doc) => {
+        const content = fs.readFileSync(doc, "utf-8");
+        const extension = path.extname(doc).slice(1) as DocExtension;
+        const key = doc
+          .replace(DocsService.DOCS_PATH, "")
+          .replace(`page.${extension}`, "")
+          .replace(`.${extension}`, "")
+          .replace(/\/$/g, "");
 
-      const ast = Markdoc.parse(content);
-      const title = ast.attributes?.frontmatter?.match(/^title:\s*(.*?)\s*$/m)?.[1];
-      const description = ast.attributes?.frontmatter?.match(/^description:\s*(.*?)\s*$/m)?.[1]?.replaceAll('"', "");
-      const sections: DocSection[] = [[title, null, []]];
+        const allSnippets = this.fetchSnippets(content);
 
-      this.extractSections(ast, sections);
-      this.setToCache(key, { title, description, content, sections });
+        const ast = Markdoc.parse(content);
+        const title = ast.attributes?.frontmatter?.match(/^title:\s*(.*?)\s*$/m)?.[1];
+        const description = ast.attributes?.frontmatter?.match(/^description:\s*(.*?)\s*$/m)?.[1]?.replaceAll('"', "");
+        const sections: DocSection[] = [[title, null, []]];
 
-      return { key, sections };
-    });
+        this.extractSections(ast, sections);
+        this.setToCache(key, { title, description, content, sections, snippets: allSnippets || [] });
+
+        return { key, sections };
+      }),
+    );
 
     return data;
   }

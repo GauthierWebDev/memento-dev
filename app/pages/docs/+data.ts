@@ -1,5 +1,6 @@
 import type { PageContext } from "vike/types";
 
+import { snippetsService } from "@/services/SnippetsService";
 import { docsService } from "@/services/DocsService";
 import { readingTime } from "reading-time-estimator";
 import { useConfig } from "vike-react/useConfig";
@@ -28,5 +29,10 @@ export async function data(pageContext: PageContext) {
 
   docsService.transform(doc);
 
-  return { doc, estimatedReadingTime: readingTimeObject.text };
+  const snippets = Array.from(doc.snippets).map((snippetPath) => ({
+    path: snippetPath,
+    content: snippetsService.getFromCache(snippetPath),
+  }));
+
+  return { doc, estimatedReadingTime: readingTimeObject.text, snippets };
 }
