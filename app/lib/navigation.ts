@@ -1,7 +1,14 @@
+const navigationsTypes = {
+  GLOBAL: "👋 Général",
+  CERTIFICATIONS: "🎓 Certifications",
+  DOCUMENTATIONS: "📚 Documentations",
+};
+
 export const navigation = [
   {
     title: "Préambule",
-    type: "global",
+    type: navigationsTypes.GLOBAL,
+    position: "start",
     links: [
       { title: "Memento Dev", href: "/" },
       { title: "Certifications", href: "/certifications" },
@@ -9,8 +16,37 @@ export const navigation = [
     ],
   },
   {
+    title: "Développeur Web et Web Mobile",
+    type: navigationsTypes.CERTIFICATIONS,
+    position: "auto",
+    links: [
+      { title: "Résumé", href: "/certifications/dwwm" },
+      {
+        title: "Activité Type 1",
+        href: "/certifications/dwwm/at1",
+        subitems: [
+          { title: "CP 1", href: "/certifications/dwwm/at1/cp1" },
+          { title: "CP 2", href: "/certifications/dwwm/at1/cp2" },
+          { title: "CP 3", href: "/certifications/dwwm/at1/cp3" },
+          { title: "CP 4", href: "/certifications/dwwm/at1/cp4" },
+        ],
+      },
+      {
+        title: "Activité Type 2",
+        href: "/certifications/dwwm/at2",
+        subitems: [
+          { title: "CP 5", href: "/certifications/dwwm/at2/cp5" },
+          { title: "CP 6", href: "/certifications/dwwm/at2/cp6" },
+          { title: "CP 7", href: "/certifications/dwwm/at2/cp7" },
+          { title: "CP 8", href: "/certifications/dwwm/at2/cp8" },
+        ],
+      },
+    ],
+  },
+  {
     title: "React",
-    type: "documentation",
+    type: navigationsTypes.DOCUMENTATIONS,
+    position: "auto",
     links: [
       { title: "Introduction", href: "/docs/react" },
       { title: "Initialisation", href: "/docs/react/initialisation" },
@@ -24,7 +60,8 @@ export const navigation = [
   },
   {
     title: "Merise",
-    type: "documentation",
+    type: navigationsTypes.DOCUMENTATIONS,
+    position: "auto",
     links: [
       { title: "Introduction", href: "/docs/merise" },
       { title: "Dictionnaire de données", href: "/docs/merise/dictionnaire-de-donnees" },
@@ -33,7 +70,8 @@ export const navigation = [
   },
   {
     title: "Communauté",
-    type: "global",
+    type: navigationsTypes.GLOBAL,
+    position: "start",
     links: [
       { title: "Influenceurs", href: "/docs/communaute/influenceurs" },
       { title: "Partages et réutilisations", href: "/docs/communaute/partages" },
