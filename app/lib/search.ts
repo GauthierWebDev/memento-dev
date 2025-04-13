@@ -85,7 +85,6 @@ export function buildSearchIndex(pagesDir: string): FlexSearch.Document<SearchRe
       sections = cache.get(file)![1];
     } else {
       const ast = Markdoc.parse(md);
-      console.log(ast.attributes);
       const title = ast.attributes?.frontmatter?.match(/^title:\s*(.*?)\s*$/m)?.[1];
       sections = [{ content: title ?? "", subsections: [] }];
       extractSections(ast, sections);
@@ -118,8 +117,6 @@ export function search(
     ...options,
     enrich: true,
   });
-
-  // console.log({ sectionIndex, query, options, results });
 
   if (results.length === 0) {
     return [];

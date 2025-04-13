@@ -14,8 +14,6 @@ export function ThemeProvider(props: ThemeProviderProps) {
 
     rootElement.classList.toggle("dark", theme === "dark");
     rootElement.classList.toggle("light", theme === "light");
-
-    console.log("changed theme to", theme);
   }, [theme]);
 
   return <ThemeContext.Provider value={{ theme, setTheme }}>{props.children}</ThemeContext.Provider>;

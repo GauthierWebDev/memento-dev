@@ -1,9 +1,12 @@
-import { Config, nodes as defaultNodes, Node, Tag } from "@markdoc/markdoc";
+import type { Config, Node } from "@markdoc/markdoc";
+
 import { slugifyWithCounter } from "@sindresorhus/slugify";
+import { DocsLayout } from "@syntax/DocsLayout";
+import Markdoc from "@markdoc/markdoc";
+import { Fence } from "@syntax/Fence";
 import yaml from "js-yaml";
 
-import { DocsLayout } from "@syntax/DocsLayout";
-import { Fence } from "@syntax/Fence";
+const { nodes: defaultNodes, Tag } = Markdoc;
 
 let documentSlugifyMap = new Map();
 

@@ -1,16 +1,16 @@
-import { dirname } from "node:path";
-import { fileURLToPath } from "node:url";
-
-import { vikeHandler } from "./server/vike-handler";
-import { telefuncHandler } from "./server/telefunc-handler";
-import Fastify from "fastify";
 import { createHandler } from "@universal-middleware/fastify";
+import { telefuncHandler } from "./server/telefunc-handler";
+import { vikeHandler } from "./server/vike-handler";
+import { fileURLToPath } from "node:url";
+import { dirname } from "node:path";
+import Fastify from "fastify";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const root = __dirname;
-const port = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
+
 const hmrPort = process.env.HMR_PORT ? parseInt(process.env.HMR_PORT, 10) : 24678;
+const port = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
+const root = __dirname;
 
 async function startServer() {
   const app = Fastify();
@@ -57,12 +57,6 @@ async function startServer() {
 
 const app = await startServer();
 
-app.listen(
-  {
-    port: port,
-    host: "0.0.0.0",
-  },
-  () => {
-    console.log(`Server listening on http://localhost:${port}`);
-  },
-);
+app.listen({ port, host: "0.0.0.0" }, () => {
+  console.log(`Server listening on http://localhost:${port}`);
+});

@@ -24,7 +24,6 @@ const tags = {
       collapsible?: boolean;
       children: React.ReactNode;
     }) => {
-      console.log(props);
       return <Callout {...props} collapsible={props.collapsible} type={props.type || "note"} />;
     },
   },

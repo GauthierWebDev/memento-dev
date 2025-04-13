@@ -12,17 +12,6 @@ services:
     volumes:
       - ./app:/app
     restart: unless-stopped
-    networks:
-      - memento-data
-
-  memento-dev-redis:
-    container_name: memento-dev-redis
-    image: redis:alpine
-    volumes:
-      - redis-data:/data
-    restart: unless-stopped
-    networks:
-      - memento-data
 
 networks:
   memento-data:
