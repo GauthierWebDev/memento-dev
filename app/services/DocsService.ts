@@ -91,9 +91,13 @@ class DocsService {
       const [snippetsToFetch, allSnippets] = identifierResults;
 
       for (const snippet of snippetsToFetch) {
-        const absolutePath = path.resolve(DocsService.SNIPPETS_PATH, snippet);
-        const content = fs.readFileSync(absolutePath, "utf-8");
-        snippetsService.setToCache(snippet, content);
+        try {
+          const absolutePath = path.resolve(DocsService.SNIPPETS_PATH, snippet);
+          const content = fs.readFileSync(absolutePath, "utf-8");
+          snippetsService.setToCache(snippet, content);
+        } catch (error) {
+          console.error(`Error reading snippet file ${snippet}:`, error);
+        }
       }
 
       return allSnippets || [];
