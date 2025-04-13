@@ -1,17 +1,20 @@
+import { Highlight, Prism } from "prism-react-renderer";
 import { prismThemes } from "@/data/themes/prism";
-import { Highlight } from "prism-react-renderer";
 import { useTheme } from "@/hooks/useTheme";
 import { Fragment, useMemo } from "react";
 
-export function Fence({ children, language }: { children: string; language: string }) {
-  const { theme } = useTheme();
+import { clientOnly } from "vike-react/clientOnly";
 
+const CSRFence = clientOnly(() => import("./CSRFence"));
+
+function SSRFence({ children, language }: { children: string; language: string }) {
+  const { theme } = useTheme();
   const prismTheme = useMemo(() => {
     return prismThemes[theme];
   }, [theme]);
 
   return (
-    <Highlight code={children.trimEnd()} language={language} theme={prismTheme}>
+    <Highlight code={children.trimEnd()} language={language} theme={prismTheme} prism={Prism}>
       {({ className, style, tokens, getTokenProps }) => (
         <pre className={className} style={style}>
           <code>
@@ -29,5 +32,15 @@ export function Fence({ children, language }: { children: string; language: stri
         </pre>
       )}
     </Highlight>
+  );
+}
+
+export function Fence({ children, language }: { children: string; language: string }) {
+  return (
+    <div className="relative group">
+      <CSRFence language={language} fallback={<SSRFence language={language} children={children} />}>
+        {children}
+      </CSRFence>
+    </div>
   );
 }

@@ -45,3 +45,11 @@ pre[class*="language-"] {
 .token.combinator {
   color: var(--color-slate-400);
 }
+
+.prism-code {
+  margin: 0;
+}
+
+.prism-code + .prism-code {
+  margin-bottom: 1rem;
+}
