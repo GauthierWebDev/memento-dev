@@ -97,7 +97,7 @@ Ensuite, on va définir notre état initial :
 {% tabs defaultSelectedTab="js" %}
 {% tab value="js" label="JavaScript" %}
 
-{% snippet path="react/reducer/reducer-initial-state.js" language="js" /%}
+{% snippet path="react/reducer/reducer-initial-statse.js" language="js" /%}
 
 {% /tab %}
 

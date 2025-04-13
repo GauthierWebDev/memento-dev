@@ -18,9 +18,19 @@ export function Snippet({
   showLineNumbers: boolean;
 }) {
   const { snippets } = useData<Data>();
-
   const snippet = snippets.find((snippet) => snippet.path === path);
-  if (!snippet || !snippet.content) return null;
+
+  if (!snippet || !snippet.content) {
+    return (
+      <div className="bg-red-600/10 p-4 rounded-md flex items-center justify-center">
+        <p className="text-red-500 text-center">
+          <b className="uppercase">Snippet introuvable</b>
+          <br />
+          <code>{path}</code>
+        </p>
+      </div>
+    );
+  }
 
   const props = {
     language,
