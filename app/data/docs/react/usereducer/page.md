@@ -50,24 +50,13 @@ Parlons dans un premier temps de la signature d'un reducer :
 
 {% tab value="jsx" label="JSX" %}
 
-{% snippet path="data/docs/react/usereducer/reducer-example.jsx" language="jsx" label="test" showLineNumbers=true /%}
+{% snippet path="data/docs/react/usereducer/reducer-example.jsx" language="jsx" showLineNumbers=true /%}
 
 {% /tab %}
 
 {% tab value="tsx" label="TSX" %}
 
-```tsx
-const reducer = (state: State, action: Action) => {
-  switch (action.type) {
-    case "TYPE_1":
-      return { ...state /* Nouvel état */ };
-    case "TYPE_2":
-      return { ...state /* Nouvel état */ };
-    default:
-      return state;
-  }
-};
-```
+{% snippet path="data/docs/react/usereducer/reducer-example.tsx" language="tsx" showLineNumbers=true /%}
 
 {% /tab %}
 
@@ -93,18 +82,7 @@ En déversant le contenu de l'état actuel, on s'assure de ne pas perdre ces pro
 
 Par exemple :
 
-```js
-const initialState = { count: 0, message: "Hello" };
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "INCREMENT":
-      return { count: state.count + 1 };
-    default:
-      return state;
-  }
-};
-```
+{% snippet path="data/docs/react/usereducer/reducer-why-spread-operator.jsx" language="jsx" showLineNumbers=true /%}
 
 On perdrait ici la propriété `message` si on ne la déversait pas dans le nouvel état.
 
