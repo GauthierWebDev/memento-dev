@@ -50,7 +50,7 @@ function NavigationItem(props: NavigationItemProps) {
       {isOpened && (
         <ul
           role="list"
-          className="mt-2 space-y-2 border-l-2 border-slate-100 lg:mt-4 lg:space-y-4 lg:border-slate-200 dark:border-slate-800 mb-9"
+          className="mt-2 space-y-2 border-l-2 border-slate-100 lg:mt-4 lg:space-y-4 lg:border-slate-200 dark:border-slate-800 mb-4"
         >
           {props.section.links.map((link) => (
             <li key={link.href} className="relative">
@@ -67,7 +67,9 @@ function NavigationItem(props: NavigationItemProps) {
                 )}
               >
                 {link.title}
-                {link.subitems && <span className="text-slate-400 dark:text-slate-500"> ({link.subitems.length})</span>}
+                {link.subitems.length > 0 && (
+                  <span className="text-slate-400 dark:text-slate-500"> ({link.subitems.length})</span>
+                )}
               </Link>
               {link.subitems && (
                 <ul
@@ -125,11 +127,12 @@ export function Navigation({
   return (
     <nav className={clsx("text-base lg:text-sm", className)}>
       <ul role="list" className="space-y-4">
-        {firstSections.map((section) => (
-          <li key={section.title}>
-            <NavigationItem section={section} onLinkClick={onLinkClick} />
-          </li>
-        ))}
+        <li>
+          <h2 className="font-display font-bold text-base text-slate-900 dark:text-white">{firstSections[0]?.type}</h2>
+          {firstSections.map((section) => (
+            <NavigationItem key={section.title} section={section} onLinkClick={onLinkClick} />
+          ))}
+        </li>
         {Object.entries(filteredSections).map(([type, sections]) => (
           <li key={type}>
             <h2 className="font-display font-bold text-base text-slate-900 dark:text-white">{type}</h2>

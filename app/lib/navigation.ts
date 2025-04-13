@@ -4,15 +4,42 @@ const navigationsTypes = {
   DOCUMENTATIONS: "📚 Documentations",
 };
 
-export const navigation = [
+export type NavigationSection = {
+  title: string;
+  type: (typeof navigationsTypes)[keyof typeof navigationsTypes];
+  position: "start" | "auto";
+  links: NavigationLink[];
+};
+
+export type NavigationLink = {
+  title: string;
+  href: string;
+  subitems: NavigationSubItem[];
+};
+
+export type NavigationSubItem = {
+  title: string;
+  href: string;
+};
+
+export const navigation: NavigationSection[] = [
   {
     title: "Préambule",
     type: navigationsTypes.GLOBAL,
     position: "start",
     links: [
-      { title: "Memento Dev", href: "/" },
-      { title: "Certifications", href: "/certifications" },
-      { title: "Documentations", href: "/docs" },
+      { title: "Memento Dev", href: "/", subitems: [] },
+      { title: "Certifications", href: "/certifications", subitems: [] },
+      { title: "Documentations", href: "/docs", subitems: [] },
+    ],
+  },
+  {
+    title: "Communauté",
+    type: navigationsTypes.GLOBAL,
+    position: "start",
+    links: [
+      { title: "Influenceurs", href: "/docs/communaute/influenceurs", subitems: [] },
+      { title: "Partages et réutilisations", href: "/docs/communaute/partages", subitems: [] },
     ],
   },
   {
@@ -20,7 +47,7 @@ export const navigation = [
     type: navigationsTypes.CERTIFICATIONS,
     position: "auto",
     links: [
-      { title: "Résumé", href: "/certifications/dwwm" },
+      { title: "Résumé", href: "/certifications/dwwm", subitems: [] },
       {
         title: "Activité Type 1",
         href: "/certifications/dwwm/at1",
@@ -44,37 +71,38 @@ export const navigation = [
     ],
   },
   {
-    title: "React",
+    title: "Front-end",
     type: navigationsTypes.DOCUMENTATIONS,
     position: "auto",
     links: [
-      { title: "Introduction", href: "/docs/react" },
-      { title: "Initialisation", href: "/docs/react/initialisation" },
-      { title: "Syntaxe JSX", href: "/docs/react/jsx" },
-      { title: "Premier composant", href: "/docs/react/premier-composant" },
-      { title: "State et cycle de vie", href: "/docs/react/state-et-cycle-de-vie" },
-      { title: "Hooks", href: "/docs/react/hooks" },
-      { title: "Le hook useContext", href: "/docs/react/use-context" },
-      { title: "Le hook useReducer", href: "/docs/react/use-reducer" },
+      {
+        title: "React",
+        href: "/docs/react",
+        subitems: [
+          { title: "Initialisation", href: "/docs/react/initialisation" },
+          { title: "Syntaxe JSX", href: "/docs/react/jsx" },
+          { title: "Premier composant", href: "/docs/react/premier-composant" },
+          { title: "State et cycle de vie", href: "/docs/react/state-et-cycle-de-vie" },
+          { title: "Hooks", href: "/docs/react/hooks" },
+          { title: "Le hook useContext", href: "/docs/react/use-context" },
+          { title: "Le hook useReducer", href: "/docs/react/use-reducer" },
+        ],
+      },
     ],
   },
   {
-    title: "Merise",
+    title: "Base de données",
     type: navigationsTypes.DOCUMENTATIONS,
     position: "auto",
     links: [
-      { title: "Introduction", href: "/docs/merise" },
-      { title: "Dictionnaire de données", href: "/docs/merise/dictionnaire-de-donnees" },
-      { title: "Modèle Conceptuel de Données", href: "/docs/merise/modele-conceptuel-de-donnees" },
-    ],
-  },
-  {
-    title: "Communauté",
-    type: navigationsTypes.GLOBAL,
-    position: "start",
-    links: [
-      { title: "Influenceurs", href: "/docs/communaute/influenceurs" },
-      { title: "Partages et réutilisations", href: "/docs/communaute/partages" },
+      {
+        title: "Merise",
+        href: "/docs/merise",
+        subitems: [
+          { title: "Dictionnaire de données", href: "/docs/merise/dictionnaire-de-donnees" },
+          { title: "Modèle Conceptuel de Données", href: "/docs/merise/modele-conceptuel-de-donnees" },
+        ],
+      },
     ],
   },
 ];

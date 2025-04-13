@@ -1,8 +1,7 @@
+import { navigation, NavigationLink, type NavigationSubItem } from "@/lib/navigation";
 import { usePageContext } from "vike-react/usePageContext";
 import { Link } from "@/components/common/Link";
 import clsx from "clsx";
-
-import { navigation } from "@/lib/navigation";
 
 function ArrowIcon(props: React.ComponentPropsWithoutRef<"svg">) {
   return (
@@ -23,8 +22,8 @@ function PageLink({
   dir?: "previous" | "next";
 }) {
   const pageCategory = navigation.find((section) => {
-    return section.links.some((link) => link.href === href);
-  })!;
+    return section.links.some((link) => link.href === href || link.subitems.some((subitem) => subitem.href === href));
+  });
 
   return (
     <div {...props}>
@@ -40,7 +39,9 @@ function PageLink({
           )}
         >
           <p className="flex flex-col gap-0">
-            <span className="text-violet-600 dark:text-violet-400 text-sm -mb-3">{pageCategory.title}</span>
+            {pageCategory && (
+              <span className="text-violet-600 dark:text-violet-400 text-sm -mb-3">{pageCategory.title}</span>
+            )}
             <span>{title}</span>
           </p>
           <ArrowIcon className={clsx("h-6 w-6 flex-none fill-current", dir === "previous" && "-scale-x-100")} />
@@ -51,12 +52,45 @@ function PageLink({
 }
 
 export function PrevNextLinks() {
+  const allLinks = navigation.flatMap((section) => section.links);
   const { urlPathname } = usePageContext();
 
-  const allLinks = navigation.flatMap((section) => section.links);
-  const linkIndex = allLinks.findIndex((link) => link.href === urlPathname);
-  const previousPage = linkIndex > -1 ? allLinks[linkIndex - 1] : null;
-  const nextPage = linkIndex > -1 ? allLinks[linkIndex + 1] : null;
+  let subItemElement: undefined | NavigationSubItem;
+
+  const findLinkIndex = (pathname = urlPathname) => {
+    for (let i = 0; i < allLinks.length; i++) {
+      const link = allLinks[i];
+
+      if (link.href === urlPathname) {
+        return i;
+      }
+
+      if (link.subitems) {
+        const subitemIndex = link.subitems.findIndex((subitem) => subitem.href === urlPathname);
+
+        if (subitemIndex !== -1) {
+          subItemElement = link.subitems[subitemIndex];
+          return i;
+        }
+      }
+    }
+  };
+
+  const linkIndex = findLinkIndex();
+  if (linkIndex === undefined) return null;
+
+  let previousPage: NavigationSubItem | NavigationLink | null = linkIndex > -1 ? allLinks[linkIndex - 1] : null;
+  let nextPage: NavigationSubItem | NavigationLink | null = linkIndex > -1 ? allLinks[linkIndex + 1] : null;
+
+  if (subItemElement !== undefined) {
+    const subItemIndex = findLinkIndex(subItemElement.href)!;
+    const currentPage = allLinks[subItemIndex];
+    const subItemIndexInLink = currentPage.subitems?.findIndex((subitem) => subitem.href === urlPathname);
+    if (subItemIndexInLink !== undefined && subItemIndexInLink > -1) {
+      previousPage = currentPage.subitems[subItemIndexInLink - 1];
+      nextPage = currentPage.subitems[subItemIndexInLink + 1];
+    }
+  }
 
   if (!nextPage && !previousPage) {
     return null;
