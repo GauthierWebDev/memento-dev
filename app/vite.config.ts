@@ -9,7 +9,7 @@ import vike from "vike/plugin";
 export default defineConfig({
   plugins: [
     prismjsVitePlugin({
-      languages: ["javascript", "typescript", "tsx", "jsx", "css", "html", "bash"],
+      languages: ["javascript", "typescript", "tsx", "jsx", "css", "html", "bash", "nginx"],
     }),
     Unfonts({
       fontsource: {

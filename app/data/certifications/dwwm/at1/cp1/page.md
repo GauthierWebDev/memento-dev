@@ -40,7 +40,7 @@ Toutefois, il est préférable que tu saches expliquer comment installer et conf
 
 {% /callout %}
 
-### ➕ Informations complémentaires
+## ➕ Informations complémentaires
 
 {% callout type="warning" title="Versions des outils et dépendances" %}
 
@@ -50,11 +50,11 @@ Même si le choix des outils que tu utilises est libre, il est important de pré
 
 {% /callout %}
 
-### 🛠️ Ressources conseillées
+## 🛠️ Ressources conseillées
 
-TODO
+_En cours de rédaction..._
 
-### 🎯 Critères d'évaluation
+## 🎯 Critères d'évaluation
 
 - Les outils de développement nécessaires sont installés et configurés
 - Les outils de gestion de versions et de collaboration sont installés

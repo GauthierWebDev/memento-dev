@@ -6,6 +6,7 @@ import { Callout } from "@syntax/Callout";
 // import { Tag } from "./Tag";
 import React from "react";
 import { Snippet } from "@/components/syntax/Snippet";
+import { Iframe } from "@/components/common/Iframe";
 // import path from "path";
 
 // const __dirname = path.resolve();
@@ -88,6 +89,16 @@ const tags = {
         default: false,
       },
     },
+  },
+  iframe: {
+    render: Iframe,
+    attributes: {
+      src: { type: String },
+      width: { type: String },
+      height: { type: String },
+      className: { type: String },
+    },
+    selfClosing: true,
   },
 };
 
