@@ -1,5 +1,5 @@
 ---
-title: Synthèses et ressources pour développeurs
+title: Documentation Memento Dev
 description: Plonge toi dans une documentation synthétique et concise, conçue pour les développeurs ou passionnés de l'information en quête de savoir !
 tags: []
 ---

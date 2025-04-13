@@ -1,10 +1,16 @@
 export const navigation = [
   {
     title: "Préambule",
-    links: [{ title: "Memento Dev", href: "/docs" }],
+    type: "global",
+    links: [
+      { title: "Memento Dev", href: "/" },
+      { title: "Certifications", href: "/tp" },
+      { title: "Documentations", href: "/docs" },
+    ],
   },
   {
     title: "React",
+    type: "documentation",
     links: [
       { title: "Introduction", href: "/docs/react" },
       { title: "Initialisation", href: "/docs/react/initialisation" },
@@ -18,6 +24,7 @@ export const navigation = [
   },
   {
     title: "Merise",
+    type: "documentation",
     links: [
       { title: "Introduction", href: "/docs/merise" },
       { title: "Dictionnaire de données", href: "/docs/merise/dictionnaire-de-donnees" },
@@ -26,6 +33,7 @@ export const navigation = [
   },
   {
     title: "Communauté",
+    type: "global",
     links: [
       { title: "Influenceurs", href: "/docs/communaute/influenceurs" },
       { title: "Partages et réutilisations", href: "/docs/communaute/partages" },
