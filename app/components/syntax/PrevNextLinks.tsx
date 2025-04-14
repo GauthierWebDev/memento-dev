@@ -1,6 +1,6 @@
-import { navigation, NavigationLink, type NavigationSubItem } from "@/lib/navigation";
 import { usePageContext } from "vike-react/usePageContext";
 import { Link } from "@/components/common/Link";
+import { navigation } from "@/lib/navigation";
 import clsx from "clsx";
 
 function ArrowIcon(props: React.ComponentPropsWithoutRef<"svg">) {
@@ -52,12 +52,13 @@ function PageLink({
 }
 
 export function PrevNextLinks() {
+  const { urlPathname } = usePageContext();
+
   const allLinks = navigation
     .flatMap((section) => section.links)
     .flatMap((link) => {
       return link.subitems ? [link, ...link.subitems] : link;
     });
-  const { urlPathname } = usePageContext();
 
   const getNeighboringLinks = () => {
     const linkIndex = allLinks.findIndex((link) => link.href === urlPathname);
@@ -70,7 +71,6 @@ export function PrevNextLinks() {
   };
 
   const [previousPage, nextPage] = getNeighboringLinks();
-
   if (!nextPage && !previousPage) return null;
 
   return (
