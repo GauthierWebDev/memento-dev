@@ -52,49 +52,26 @@ function PageLink({
 }
 
 export function PrevNextLinks() {
-  const allLinks = navigation.flatMap((section) => section.links);
+  const allLinks = navigation
+    .flatMap((section) => section.links)
+    .flatMap((link) => {
+      return link.subitems ? [link, ...link.subitems] : link;
+    });
   const { urlPathname } = usePageContext();
 
-  let subItemElement: undefined | NavigationSubItem;
+  const getNeighboringLinks = () => {
+    const linkIndex = allLinks.findIndex((link) => link.href === urlPathname);
+    if (linkIndex === -1) return [null, null];
 
-  const findLinkIndex = (pathname = urlPathname) => {
-    for (let i = 0; i < allLinks.length; i++) {
-      const link = allLinks[i];
+    const previousPage = allLinks[linkIndex - 1] || null;
+    const nextPage = allLinks[linkIndex + 1] || null;
 
-      if (link.href === urlPathname) {
-        return i;
-      }
-
-      if (link.subitems) {
-        const subitemIndex = link.subitems.findIndex((subitem) => subitem.href === urlPathname);
-
-        if (subitemIndex !== -1) {
-          subItemElement = link.subitems[subitemIndex];
-          return i;
-        }
-      }
-    }
+    return [previousPage, nextPage];
   };
 
-  const linkIndex = findLinkIndex();
-  if (linkIndex === undefined) return null;
+  const [previousPage, nextPage] = getNeighboringLinks();
 
-  let previousPage: NavigationSubItem | NavigationLink | null = linkIndex > -1 ? allLinks[linkIndex - 1] : null;
-  let nextPage: NavigationSubItem | NavigationLink | null = linkIndex > -1 ? allLinks[linkIndex + 1] : null;
-
-  if (subItemElement !== undefined) {
-    const subItemIndex = findLinkIndex(subItemElement.href)!;
-    const currentPage = allLinks[subItemIndex];
-    const subItemIndexInLink = currentPage.subitems?.findIndex((subitem) => subitem.href === urlPathname);
-    if (subItemIndexInLink !== undefined && subItemIndexInLink > -1) {
-      previousPage = currentPage.subitems[subItemIndexInLink - 1];
-      nextPage = currentPage.subitems[subItemIndexInLink + 1];
-    }
-  }
-
-  if (!nextPage && !previousPage) {
-    return null;
-  }
+  if (!nextPage && !previousPage) return null;
 
   return (
     <dl className="mt-12 flex border-t border-slate-200 pt-6 dark:border-slate-800">
