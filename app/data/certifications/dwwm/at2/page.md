@@ -1,6 +1,6 @@
 ---
 title: Activité Type 2 - Développer la partie back-end d'une application web ou web mobile sécurisée
-description: Synthèse et explications des attentes relatives à l'activité type 2 du titre professionnel DWWM (01280m04).
+description: Synthèse et explications des attentes relatives à l'activité type 2 du titre professionnel Développeur Web et Web Mobile (DWWM-01280m04).
 tags: [DWWM]
 ---
 
@@ -11,13 +11,13 @@ tags: [DWWM]
 
 ## 📋 En résumé
 
-Cette activité type concerne tout ce qui est relatif à la conception _(maquettes, arborescence etc.)_ et à la création de l'interface.
+Cette activité type concerne tout ce qui est relatif à la conception _(diagrammes, documentation etc.)_ et au développement de la logique métier côté serveur.
 
 Voyons un peu plus en détail ce qui est attendu pour chacune de ces compétences professionnelles ! 🚀
 
 Elle est divisée en 4 **compétences professionnelles** _(CP)_ :
 
-- **CP 1** : Installer et configurer son environnement de travail en fonction du projet web ou web mobile
-- **CP 2** : Maquetter des interfaces utilisateur web ou web mobile
-- **CP 3** : Réaliser des interfaces utilisateur statiques web ou web mobile
-- **CP 4** : Développer la partie dynamique des interfaces utilisateur web ou web mobile
+- **CP 5** : Mettre en place une base de données relationnelle
+- **CP 6** : Développer des composants d'accès aux données SQL et NoSQL
+- **CP 7** : Développer des composants métier coté serveur
+- **CP 8** : Documenter le déploiement d'une application dynamique web ou web mobile

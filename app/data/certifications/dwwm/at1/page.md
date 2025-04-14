@@ -1,6 +1,6 @@
 ---
 title: Activité Type 1 - Développer la partie front-end d'une application web ou web mobile sécurisée
-description: Synthèse et explications des attentes relatives à l'activité type 1 du titre professionnel DWWM (01280m04).
+description: Synthèse et explications des attentes relatives à l'activité type 1 du titre professionnel Développeur Web et Web Mobile (DWWM-01280m04).
 tags: [DWWM]
 ---
 

@@ -7,6 +7,7 @@ import { Callout } from "@syntax/Callout";
 import React from "react";
 import { Snippet } from "@/components/syntax/Snippet";
 import { Iframe } from "@/components/common/Iframe";
+import { Mermaid } from "@/components/common/Mermaid";
 // import path from "path";
 
 // const __dirname = path.resolve();
@@ -89,6 +90,23 @@ const tags = {
         default: false,
       },
     },
+  },
+  mermaid: {
+    render: Mermaid,
+    attributes: {
+      path: { type: String },
+    },
+  },
+  img: {
+    render: ({ src, alt = "", className = "" }: { src: string; alt: string; className: string }) => (
+      <img src={src} alt={alt} className={className} loading="lazy" />
+    ),
+    attributes: {
+      src: { type: String },
+      alt: { type: String },
+      className: { type: String },
+    },
+    selfClosing: true,
   },
   iframe: {
     render: Iframe,

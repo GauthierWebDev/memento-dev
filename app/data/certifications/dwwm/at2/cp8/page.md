@@ -1,44 +1,21 @@
 ---
-title: DWWM CP 1 - Installer et configurer son environnement de travail en fonction du projet web ou web mobile
-description: Synthèse et explications des attentes relatives à la compétence professionnelle 1 du titre professionnel DWWM (01280m04).
-tags: [DWWM]
+title: CP 8 - Documenter le déploiement d'une application dynamique web ou web mobile
+description: Synthèse et explications des attentes relatives à la compétence professionnelle 8 du titre professionnel Développeur Web et Web Mobile (DWWM-01280m04).
+tags: [DWWM, Déploiement, Backend, Reverse Proxy, Serveur Web]
 ---
 
 ## 📚 Références
 
-- REAC _(mise à jour du 02/07/2024)_, pages 15 et 16
-- RE _(mise à jour du 02/07/2024)_, page 9
+- REAC _(mise à jour du 02/07/2024)_, page 29
+- RE _(mise à jour du 02/07/2024)_, page 12
 
 ## 📋 En résumé
 
-Ce qui est attendu de ta part, c'est d'expliquer **comment** on peut installer et configurer les prérequis pour exécuter ton projet.
+Allez, on clos la dernière compétence professionnelle de ce millésime 2023 avec la documentation du déploiement !  
+Et heureusement, on n'attend pas de toi de maîtriser un serveur dans les détails, mais d'expliquer **comment** mettre en ligne ton projet.
 
-Tu as utilisé un framework PHP et React en front ?  
-Tu devras alors expliquer comment installer PHP, Composer, Node.js, npm _(ou autre gestionnaire de dépendances Node)_ et les autres dépendances nécessaires à ton projet comme la base de données !
-
-Et pour te donner un ordre d'idée, voici ce que ça peut donner :
-
-- Versionning _(Git, SVN, ...)_
-- IDE ou éditeur de code _(Visual Studio Code, PhpStorm, ...)_
-- Langages/runtimes _(PHP, Node.js, ...)_
-- Gestionnaires de dépendances _(Composer, npm, ...)_
-- Serveurs web _(Apache, Nginx, ...)_
-- Base de données _(MySQL, PostgreSQL, ...)_
-- DevOps _(Docker, Vagrant, ...)_
-- etc.
-
-Tu l'as compris, c'est vaste !  
-Mais heureusement, tu dois uniquement expliquer comment installer et configurer les outils que tu as utilisés pour ton projet.
-
-Si tu fais un projet Laravel et React, pas besoin d'expliquer comment installer et configurer Ruby et Java, par exemple 😉
-
-{% callout type="note" title="Utilisation de XAMPP, WAMP, MAMP, LAMP, Laragon etc." %}
-
-Si tu utilises un logiciel comme XAMPP, WAMP, MAMP, LAMP, Laragal etc., tu as évidemment le droit de le mentionner dans ta présentation et dossier de projet.
-
-Toutefois, il est préférable que tu saches expliquer comment installer et configurer les éléments nécessaires de manières individuelles.
-
-{% /callout %}
+Tu as le droit d'utiliser des plateformes de déploiement en ligne comme Vercel, Netlify, Heroku, etc.  
+Mais la compréhension, même basique, d'un serveur Linux est quelque chose d'extrêmement apprécié et enrichissant.
 
 ## ➕ Informations complémentaires
 

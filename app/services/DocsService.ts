@@ -152,7 +152,6 @@ class DocsService {
   public async getDoc(namespace: "docs" | "certifications", key: string) {
     try {
       await this.fetchDocs();
-      console.log(this.cache.keys());
       const doc = this.getFromCache(`/${namespace}/${key}`);
 
       if (!doc) {
