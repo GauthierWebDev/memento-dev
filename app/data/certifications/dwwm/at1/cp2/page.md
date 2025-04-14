@@ -1,7 +1,7 @@
 ---
-title: DWWM CP 2 - Maquetter des interfaces utilisateur web ou web mobile
-description: Synthèse et explications des attentes relatives à la compétence professionnelle 2 du titre professionnel DWWM (01280m04).
-tags: [DWWM]
+title: CP 2 - Maquetter des interfaces utilisateur web ou web mobile
+description: Synthèse et explications des attentes relatives à la compétence professionnelle 2 du titre professionnel Développeur Web et Web Mobile (DWWM-01280m04).
+tags: [DWWM, Éco-conception, Accessibilité, SEO, Maquettage, UX, UI, Zoning, Wireframe, Prototypage, Design, Frontend]
 ---
 
 ## 📚 Références

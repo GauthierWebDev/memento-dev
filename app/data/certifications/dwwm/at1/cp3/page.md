@@ -1,7 +1,23 @@
 ---
-title: DWWM CP 3 - Réaliser des interfaces utilisateur statiques web ou web mobile
-description: Synthèse et explications des attentes relatives à la compétence professionnelle 3 du titre professionnel DWWM (01280m04).
-tags: [DWWM]
+title: CP 3 - Réaliser des interfaces utilisateur statiques web ou web mobile
+description: Synthèse et explications des attentes relatives à la compétence professionnelle 3 du titre professionnel Développeur Web et Web Mobile (DWWM-01280m04).
+tags:
+  [
+    DWWM,
+    Intégration,
+    Responsive,
+    HTML,
+    CSS,
+    Accessibilité,
+    Éco-conception,
+    UX,
+    UI,
+    SEO,
+    Déploiement,
+    Reverse Proxy,
+    Frontend,
+    Serveur Web,
+  ]
 ---
 
 ## 📚 Références

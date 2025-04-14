@@ -1,7 +1,7 @@
 ---
-title: CP 1 - Installer et configurer son environnement de travail en fonction du projet web ou web mobile
-description: Synthèse et explications des attentes relatives à la compétence professionnelle 1 du titre professionnel Développeur Web et Web Mobile (DWWM-01280m04).
-tags: [DWWM, Environnement de développement]
+title: DWWM CP 1 - Installer et configurer son environnement de travail en fonction du projet web ou web mobile
+description: Synthèse et explications des attentes relatives à la compétence professionnelle 1 du titre professionnel DWWM (01280m04).
+tags: [DWWM]
 ---
 
 ## 📚 Références
