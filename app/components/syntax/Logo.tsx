@@ -33,7 +33,7 @@ function LogomarkPaths() {
   );
 }
 
-export function Logo(props: React.ComponentPropsWithoutRef<"svg">) {
+export function LogoWithText(props: React.ComponentPropsWithoutRef<"svg">) {
   return (
     <svg viewBox="0 0 231 38" {...props}>
       <LogomarkPaths />
@@ -48,6 +48,14 @@ export function Logo(props: React.ComponentPropsWithoutRef<"svg">) {
       >
         Memento Dev
       </text>
+    </svg>
+  );
+}
+
+export function Logo(props: React.ComponentPropsWithoutRef<"svg">) {
+  return (
+    <svg viewBox="0 0 58 38" {...props}>
+      <LogomarkPaths />
     </svg>
   );
 }

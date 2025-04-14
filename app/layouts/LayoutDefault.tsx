@@ -7,7 +7,7 @@ import { Link } from "@/components/common/Link";
 import { useEffect, useState } from "react";
 import { Search } from "@syntax/Search";
 import { Hero } from "@syntax/Hero";
-import { Logo } from "@syntax/Logo";
+import { Logo, LogoWithText } from "@syntax/Logo";
 import clsx from "clsx";
 
 import "./style.css";
@@ -52,8 +52,9 @@ function Header() {
       </div>
 
       <div className="relative flex grow basis-0 items-center">
-        <Link href="/" aria-label="Home page">
-          <Logo className="h-9 w-auto lg:block" />
+        <Link href="/" aria-label="Home page" className="flex items-center gap-2">
+          <Logo className="h-9 w-auto" />
+          <span className="hidden lg:inline text-2xl font-bold -tracking-tight">Memento Dev</span>
         </Link>
       </div>
 

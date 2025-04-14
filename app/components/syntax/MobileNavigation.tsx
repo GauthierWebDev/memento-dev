@@ -55,9 +55,11 @@ export function MobileNavigation() {
       >
         <MenuIcon className="h-6 w-6 stroke-slate-500" />
       </button>
+
       <Suspense fallback={null}>
         <CloseOnNavigation close={close} />
       </Suspense>
+
       <Dialog
         open={isOpen}
         onClose={() => close()}
@@ -71,7 +73,7 @@ export function MobileNavigation() {
             </button>
 
             <Link href="/" className="ml-6" aria-label="Page d'accueil">
-              <Logo className="h-9 w-9" />
+              <Logo className="h-6 w-auto shrink-0" />
             </Link>
           </div>
           <Navigation className="mt-5 px-1" onLinkClick={onLinkClick} />
