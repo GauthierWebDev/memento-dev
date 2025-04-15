@@ -9,9 +9,21 @@ Découvre donc de bons conseils pour t'aider à te préparer au mieux !
 
 ## Certifications couvertes sur le Memento
 
-- **DWWM** : Développeur Web et Web Mobile
+{% quick-links %}
+
+{% quick-link
+  title="DWWM"
+  description="Titre professionnel Développeur Web et Web Mobile"
+  href="/certifications/dwwm"
+  icon="presets"
+/%}
+
+{% /quick-links %}
+
+## Certifications en cours de rédaction
+
 - **CDA** : Concepteur Développeur d'Applications
-- **CDUI** : Concepteur Développeur d'Interfaces Utilisateurs
+- **CDUI** : Concepteur Designer UI
 
 ## Besoin d'un accompagnement ?
 

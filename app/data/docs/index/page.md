@@ -16,8 +16,8 @@ En prime, tu trouveras également des synthèses de certains référentiels de t
 
 Le contenu de cette plateforme est divisé en plusieurs sections :
 
-- **Documentation** : Une documentation synthétique _(mais complète et détaillée)_ sur les différentes technologies du développement web.
-- **Référentiels** : Des synthèses de référentiels de titres professionnels pour t'aider à te préparer aux examens.
+- [**Certifications**](/certifications) : Des synthèses de référentiels des certifications de titres professionnels pour t'aider à te préparer aux examens.
+- [**Documentations**](/docs) : Une documentation synthétique _(mais complète et détaillée)_ sur les différentes technologies du développement web.
 
 Les différents contenus ne sont pas uniquement destinées aux développeurs, mais également aux passionnés de l'information en quête de savoir !  
 Il est donc possible que tu trouves des articles qui ne te concernent pas directement, mais qui pourraient t'intéresser tout de même ! 😊
