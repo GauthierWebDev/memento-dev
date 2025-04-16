@@ -6,11 +6,29 @@ tags: []
 
 ## Documentations rédigées
 
-- [React](/docs/react)
+{% quick-links %}
+
+{% quick-link
+  title="React"
+  description="Introduction et synthèse de la bibliothèque React"
+  href="/docs/react"
+  icon="presets"
+/%}
+
+{% /quick-links %}
 
 ## Documentations en cours de rédaction
 
-- [Merise](/docs/merise)
+{% quick-links %}
+
+{% quick-link
+  title="Merise"
+  description="Introduction et synthèse de la méthode Merise"
+  href="/docs/merise"
+  icon="presets"
+/%}
+
+{% /quick-links %}
 
 ## Documentations à venir
 

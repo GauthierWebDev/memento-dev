@@ -24,11 +24,54 @@ On parlera ici que de la partie **modélisation** de Merise, même si Merise com
 
 Merise se compose de plusieurs schémas qui permettent de représenter les données et leurs relations.
 
-1. **Dictionnaire de données** : Il contient toutes les informations sur les données métier qui seront stockées.
-2. **MCD** _(Modèle Conceptuel de Données)_ : Il représente les données et les relations entre ces données.
-3. **MLD** _(Modèle Logique de Données)_ : Il ajoute des détails techniques au MCD.
-4. **MRD** _(Modèle Relationnel de Données)_ : Il est une représentation textuelle du MLD.
-5. **MPD** _(Modèle Physique de Données)_ : Il ajoute les types de données et les contraintes spécifiques au SGBD utilisé.
+1. **Dictionnaire de données**
+2. **MCD** _(Modèle Conceptuel de Données)_
+3. **MLD** _(Modèle Logique de Données)_
+4. **MRD** _(Modèle Relationnel de Données)_
+5. **MPD** _(Modèle Physique de Données)_
+
+Voyons un peu plus en détail chacun de ces schémas, et comment ils s'articulent entre eux.  
+Des fiches détaillées seront individuellement rédigées pour chaque schéma, mais ici on va juste faire un petit tour d'horizon pour resituer le contexte.
+
+### Dictionnaire de données
+
+Le **dictionnaire de données** est un tableau qui va nous permettre de lister toutes les données que l'on doit stocker dans notre base de données.  
+Ces données proviendront de l'analyse des besoins du client, avec qui on aura discuté de ce qu'il souhaite faire avec son application.
+
+Ce document doit être le plus simple possible et ne pas contenir de détails techniques.  
+Il doit être compréhensible par le client, qui pourra ainsi valider les données que l'on va stocker dans la base de données.
+
+### MCD
+
+Le **MCD** _(Modèle Conceptuel de Données)_ est un schéma qui va nous permettre de représenter les données que l'on a récupérées dans le dictionnaire de données.  
+Il va nous permettre de représenter les différentes données que l'on a, regroupée dans un rectangle nommé **entité**, ainsi que les relations entre elles.
+
+Ce document, tout comme le dictionnaire de données, doit rester compréhensible par le client en évitant les détails techniques.
+
+### MLD
+
+Le **MLD** _(Modèle Logique de Données)_ est un schéma qui se base directement sur le MCD.  
+Il vient ajouter des détails techniques sur les entités et les relations, comme par exemple :
+
+- Les tables et leurs colonnes _(sans les types de données)_
+- Les clés primaires et étrangères
+- Les tables de jointure _(tables pivot, de liaison, etc.)_
+
+### MRD
+
+Le **MRD** _(Modèle Relationnel de Données)_ est un schéma qui est une version textuelle du MLD.  
+Il s'agit d'une "fausse" étape, car le MRD n'est pas un schéma à proprement parler.
+
+La plupart du temps, on parle de MLD textuel puisqu'il s'agit de la même chose.
+
+### MPD
+
+Pour terminer : le **MPD** _(Modèle Physique de Données)_ !
+
+Le MPD est un schéma qui va nous permettre de représenter les données de manière physique, c'est-à-dire en tenant compte des spécificités du SGBD _(Système de Gestion de Base de Données)_ que l'on va utiliser.  
+Il va nous permettre de représenter les tables, les colonnes, les types de données, les index, les contraintes d'intégrité, etc.
+
+Le MPD est donc un schéma qui est spécifique à un SGBD, et qui ne peut pas être utilisé tel quel sur un autre SGBD.
 
 ## Outils pour Merise
 
@@ -67,7 +110,5 @@ Je recommande énormément le livre [Guide pratique (4e édition)](https://www.e
 - [Mocodo](https://mocodo.net/)
 - [La vérité sur les id - Jean Prulière](https://jeanpruliere.medium.com/la-v%C3%A9rit%C3%A9-sur-les-id-507134adda12))
 - [Merise - Wikipedia](<https://fr.wikipedia.org/wiki/Merise_(informatique)>)
-
----
 
 Prochaine étape, on parle du **dictionnaire de données** !

@@ -191,7 +191,7 @@ Il nous manque juste un petit détail : la **quantité** vendue d'une variété 
 
 ## Relations N-N
 
-Si on regarde de plus prêt notre relation **INCLURE** entre **Pomme de terre** et **Vente**, on se rend compte qu'il s'agit d'une relation **N-N** _(N-N)_.
+Si on regarde de plus prêt notre relation **INCLURE** entre **Pomme de terre** et **Vente**, on se rend compte qu'il s'agit d'une relation **N-N** _(Many to Many)_.
 
 Ce type de relation permet l'ajout d'attributs à la relation elle-même.  
 Lors de l'étape suivante _(MLD)_, on verra comment gérer ce type de relation.

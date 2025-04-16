@@ -10,110 +10,61 @@ Ici, on ne va pas parler de tables, de colonnes ou de relations, mais uniquement
 
 En gros : Le dictionnaire de données se veut **non technique** et **compréhensible par le client**.
 
-Pour cet article et les suivants, on va se reposer sur une mise en situation fictive, pour un client qui vend des pommes de terre.
+Pour cet article et les suivants, on va se reposer sur une mise en situation fictive pour un contexte d'organisation d'un groupe de musique. _(Rassure-toi, pas besoin d'être musicien pour comprendre !)_
 
 ## Brief avec le client
 
-Le client nous a demandé de réaliser une application pour qu'il puisse s'organiser entre ses salariés et ses pommes de terre à vendre.
+Le client est un petit groupe local qui doit faciliter l'organisation interne pour la gestion de ses différentes activités (répétitions, concerts, etc.).  
+Il souhaite donc créer une application pour gérer les informations suivantes :
 
-Voici ce qu'il nous a dit :
+- **Membre** : Nom, prénom, instruments, date de naissance, adresse e-mail
+- **Album** : Titre, date de sortie
+- **Musique** : Titre, durée
+- **Concert** : Date, lieu, heure, tarif
+- **Répétition** : Date, heure, lieu
 
-> Je souhaite une application qui me permette de connaître mon stock de pommes de terre et savoir combien j'en ai vendu. Plusieurs de mes salariés s'occupent d'en vendre, il faut que je sois en mesure de connaître les performances de vente de chacun d'eux. Pour les pommes de terre, j'en possède plusieurs variétés.
+Pour le moment, on ne va pas se soucier de la technique, mais juste de lister les données que l'on doit stocker dans la base de données.
+On va donc créer un tableau qui va nous permettre de lister toutes les données que l'on doit stocker dans notre base de données.
 
-Évidemment, même si l'idée principale est facilement compréhensible, on aura besoin de creuser un peu plus pour savoir ce qu'il veut vraiment.  
-On réservera ça pour la finalisation du dictionnaire de données !
+## Informations du dictionnaire de données
 
-## Retranscription du brief
+Avant de créer notre dictionnaire de données, regardons un peu ce qu'on peut y mettre :
 
-Si on résume ce qu'on sait, on a :
+- **Nom** : Nom de la donnée que l'on va stocker dans la base de données
+- **Format** : Format de la donnée que l'on va stocker dans la base de données _(on y revient juste après !)_
+- **Longueur** : Longueur de la donnée que l'on va stocker dans la base de données
+- **Contraintes** : Contraintes sur la donnée que l'on va stocker dans la base de données
+- **Document** : Document qui contient la donnée que l'on va stocker dans la base de données, un "groupe de données"
 
-- **Pommes de terre** :
+### Les différents formats
 
-  - **Variété** : Nom de la variété de la pomme de terre
-  - **Stock** : Quantité de pommes de terre en stock
+Rappelons-nous que le dictionnaire de données doit rester compréhensible par le client. Du moins, dans un premier temps.  
+Rien ne nous empêche de le rendre technique par la suite, cependant comme nous sommes en phase de conception : on doit rester simple.
 
-- **Salarié** :
+Voici les différents formats que l'on peut utiliser dans le dictionnaire de données :
 
-  - **Nom** : Nom du salarié
-  - **Prénom** : Prénom du salarié
+- **Alphabétique** _(Chaîne de caractères, uniquement A-Z)_
+- **Alphanumérique** _(Chaîne de caractères, A-Z et 0-9)_
+- **Numérique** _(Entier/flottant etc)_
+- **Date**
+- **Logique** _(Vrai/Faux)_
 
-- **Vente** :
-  - **Date** : Date de la vente
-  - **Quantité** : Quantité de pommes de terre vendues
-  - **Prix** : Prix de vente unitaire
-  - **Vendeur** : Nom du salarié qui a vendu les pommes de terre
+Et c'est tout ! On ne parle surtout pas de types de données techniques comme `VARCHAR`, `INT`, `FLOAT`, etc.  
+Le client n'a pas besoin de savoir ce que c'est, et on ne va pas lui en parler _(et s'il est vraiment curieux, il pourra consulter le futur **MPD**)_.
 
-Ce sont ces informations que l'on va devoir stocker dans notre base de données.
+### Contraintes
 
-## Dictionnaire de données
+Pour les contraintes, on reprendra les informations que l'on a récupérées dans le brief avec le client.  
+Si le client nous dit qu'une certaine donnée est obligatoire, on peut l'indiquer dans le dictionnaire de données. De même pour les valeurs par défaut, les valeurs uniques, etc.
 
-En reprenant les informations que l'on a, on va pouvoir créer notre dictionnaire de données.
+Cependant, on n'ira pas plus loin sur ce terrain pour maintenir une compréhension simple par le client !  
+Que je ne te surprenne pas à lui dire "Alors là j'ai mis des ID en AUTO_INCREMENT, des clés primaires et étrangères, et j'ai mis des contraintes d'unicité sur les colonnes !".
 
-| Groupe de la donnée | Nom de la donnée           | Type de donnée | Description                                    |
-| ------------------- | -------------------------- | -------------- | ---------------------------------------------- |
-| Pommes de terre     | variété                    | Texte          | Nom de la variété de la pomme de terre         |
-| Pommes de terre     | stock                      | Nombre         | Quantité de pommes de terre en stock           |
-| Salarié             | matricule                  | Texte          | Numéro d'immatriculation du salarié, unique    |
-| Salarié             | nom                        | Texte          | Nom du salarié                                 |
-| Salarié             | prénom                     | Texte          | Prénom du salarié                              |
-| Vente               | date                       | Date           | Date de la vente                               |
-| Vente               | quantité vendue            | Nombre         | Quantité de pommes de terre vendues            |
-| Vente               | prix total                 | Nombre         | Prix de vente unitaire                         |
-| Vente               | Salarié (individuel)       | Non applicable | Salarié en charge de la vente                  |
-| Vente               | Pomme de terre (multiples) | Non applicable | Pommes de terre vendues lors d'une transaction |
+Tu risques de retrouver ton client en train de convulser sur le sol : **pas glop**.
 
-Comme tu peux le voir, nous utilisons des termes simples et compréhensibles par le client.  
-Il ne faut **surtout pas** perdre le client avec des termes techniques comme `VARCHAR` par exemple.
+## Notre dictionnaire de données
 
-Maintenant que nos données sont relativement bien définies, on va pouvoir refaire un point avec le client pour **lui faire valider** cette ébauche et lui demander des précisions sur les données.
+Voici donc le dictionnaire de données que l'on va créer pour notre application :
 
-## Validation du dictionnaire de données
-
-De retour avec notre client, on commence par lui présenter notre dictionnaire de données.  
-Si on a bien fait notre travail, il devrait être capable de comprendre ce que l'on lui présente.
-
-Et encore mieux, il devrait être capable de nous dire si on a bien compris ses besoins ou pas !
-
-On profite de cette validation pour lui poser quelques questions sur les données que l'on a.  
-C'est l'occasion de connaître la forme et les contraintes de certaines données.
-
-Ici on se concentrera sur la modélisation de la base de données, mais c'est aussi le moment de voir avec lui comment il souhaite que l'application réagisse en fonction de certaines actions et données _(rupture de stock, alerte sur les ventes, etc.)_ pour la partie applicative.
-
-On peut lui poser des questions comme :
-
-- Quelle est la quantité minimale de pommes de terre à avoir en stock ? _(Permet de savoir si on doit gérer un stock négatif ou pas.)_
-- Pouvez-vous nous donner une liste des variétés de pommes de terre que vous vendez ? _(Permet d'estimer le nombre de caractères à allouer au champ `variété`.)_
-
-## Dictionnaire de données finalisé
-
-Selon les questions posées et les réponses obtenues par le client, on va pouvoir finaliser notre dictionnaire de données.  
-On va donc ajouter des précisions sur les données, comme la taille attendue, le type de données et si la taille est fixe ou pas.
-
-| Groupe de la donnée | Nom de la donnée           | Type de donnée | Taille attendue | Taille fixe ?  | Description                                    |
-| ------------------- | -------------------------- | -------------- | --------------- | -------------- | ---------------------------------------------- |
-| Pomme de terre      | variété                    | Texte          | 50 caractères   | Non            | Nom de la variété de la pomme de terre         |
-| Pomme de terre      | stock                      | Nombre         | 8 chiffres      | Non applicable | Quantité de pommes de terre en stock           |
-| Salarié             | matricule                  | Texte          | 10 caractères   | Oui            | Numéro d'immatriculation du salarié, unique    |
-| Salarié             | nom                        | Texte          | 50 caractères   | Non            | Nom du salarié                                 |
-| Salarié             | prénom                     | Texte          | 50 caractères   | Non            | Prénom du salarié                              |
-| Vente               | date                       | Date           | Non applicable  | Non            | Date de la vente                               |
-| Vente               | quantité vendue            | Nombre         | 8 chiffres      | Non applicable | Quantité de pommes de terre vendues            |
-| Vente               | prix total                 | Nombre         | 8 chiffres      | Non applicable | Prix de vente unitaire                         |
-| Vente               | Salarié (individuel)       | Non applicable | Non applicable  | Non            | Salarié en charge de la vente                  |
-| Vente               | Pomme de terre (multiples) | Non applicable | Non applicable  | Non applicable | Pommes de terre vendues lors d'une transaction |
-
-Dans cet exemple, on a ajouté la **taille** des données, mais ce n'est pas toujours le cas.  
-Lorsque ce n'est pas pertinent, on peut indiquer `Non applicable` _(ou un autre terme équivoque)_ pour la taille attendue.
-
-On a aussi ajouté une colonne pour savoir si la taille est **fixe** ou pas. Dans certains cas, comme pour le matricule, on sait que la taille est fixe.  
-Dans les autres cas, soit on autorisera une taille **variable**, soit on considère que la donnée n'est pas concernée par cette question _(comme pour le stock par exemple)_.
-
-## Conclusion
-
-Le dictionnaire fait partie intégrante des bonnes pratiques de modélisation de données, et est essentiel pour la bonne compréhension des données par le client.
-
-Ce document est précieux et nous sera utile pour la suite de la modélisation de la base de données. Sans ce document, il sera difficile de savoir quelles données on doit stocker et comment les stocker.
-
----
-
-Prochaine étape, on parle du **MCD** _(Modèle Conceptuel de Données)_ !
+| Nom de la donnée | Format | Longueur | Contraintes | Document |
+| ---------------- | ------ | -------- | ----------- | -------- |
