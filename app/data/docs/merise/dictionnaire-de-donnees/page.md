@@ -89,4 +89,18 @@ Dans certains cas, on a précisé des longueurs de données. On l'a fait uniquem
 Au niveau des contraintes, on a majoritairement _(sauf pour le tarif d'un concert)_ mis des contraintes d'obligation sur les données.
 On a aussi mis une contrainte d'unicité sur l'adresse e-mail, car il ne peut pas y avoir deux membres avec la même adresse e-mail.
 
+Dans certains cas, on a mis des contraintes de longueur sur les données. On a fait ça pour éviter de stocker des données trop longues dans la base de données.  
+Bien entendu, une date ne peut pas avoir de longueur, on a donc mis un tiret pour indiquer que ce n'est pas applicable.
+
+Pour le mot de passe, on a mis une contrainte de longueur supérieure à 12 caractères.  
+Évidemment on ne viendra pas stocker le mot de passe en clair dans la base de données, on va utiliser la donnée réelle _(non transformée)_ pour éviter de perdre le client entre la longueur réelle du mot de passe et la longueur de son hash.
+
 {% /callout %}
+
+## Conclusion
+
+Voilà, on a créé notre dictionnaire de données pour notre application de gestion de groupe de musique.
+
+Pour le moment ça ne nous permet pas de créer notre base de données, mais au moins on a une bonne idée de ce que l'on doit stocker dans la base de données !
+
+Pour la suite, on va se pencher sur le **MCD** _(Modèle Conceptuel de Données)_ qui va nous permettre de modéliser les données que l'on vient de récupérer et formaliser.
