@@ -1,6 +1,6 @@
 ---
-title: Introduction à Merise
-description: Parlons un peu de Merise, la fameuse méthodologie de modélisation pour la conception de bases de données.
+title: Dictionnaire de données pour Merise
+description: Apprends à créer un dictionnaire de données pour Merise
 tags: [Backend, Merise, BDD, MCD, MLD, MPD, SQL]
 ---
 
@@ -17,11 +17,9 @@ Pour cet article et les suivants, on va se reposer sur une mise en situation fic
 Le client est un petit groupe local qui doit faciliter l'organisation interne pour la gestion de ses différentes activités (répétitions, concerts, etc.).  
 Il souhaite donc créer une application pour gérer les informations suivantes :
 
-- **Membre** : Nom, prénom, instruments, date de naissance, adresse e-mail
-- **Album** : Titre, date de sortie
-- **Musique** : Titre, durée
-- **Concert** : Date, lieu, heure, tarif
-- **Répétition** : Date, heure, lieu
+- **Membre** : Nom, prénom, instruments, adresse e-mail, mot de passe
+- **Concert** : Date et heure, lieu, tarif
+- **Répétition** : Date et heure, lieu
 
 Pour le moment, on ne va pas se soucier de la technique, mais juste de lister les données que l'on doit stocker dans la base de données.
 On va donc créer un tableau qui va nous permettre de lister toutes les données que l'on doit stocker dans notre base de données.
@@ -57,8 +55,9 @@ Le client n'a pas besoin de savoir ce que c'est, et on ne va pas lui en parler _
 Pour les contraintes, on reprendra les informations que l'on a récupérées dans le brief avec le client.  
 Si le client nous dit qu'une certaine donnée est obligatoire, on peut l'indiquer dans le dictionnaire de données. De même pour les valeurs par défaut, les valeurs uniques, etc.
 
-Cependant, on n'ira pas plus loin sur ce terrain pour maintenir une compréhension simple par le client !  
-Que je ne te surprenne pas à lui dire "Alors là j'ai mis des ID en AUTO_INCREMENT, des clés primaires et étrangères, et j'ai mis des contraintes d'unicité sur les colonnes !".
+Cependant, on n'ira pas plus loin sur ce terrain pour maintenir une compréhension simple par le client ! Que je ne te surprenne pas à lui dire :
+
+> Alors là j'ai mis des ID en AUTO_INCREMENT, des clés primaires et étrangères, et j'ai mis des contraintes d'unicité sur les colonnes !
 
 Tu risques de retrouver ton client en train de convulser sur le sol : **pas glop**.
 
@@ -66,5 +65,28 @@ Tu risques de retrouver ton client en train de convulser sur le sol : **pas glop
 
 Voici donc le dictionnaire de données que l'on va créer pour notre application :
 
-| Nom de la donnée | Format | Longueur | Contraintes | Document |
-| ---------------- | ------ | -------- | ----------- | -------- |
+| Nom de la donnée            | Format         | Longueur | Contraintes         | Document(s) |
+| --------------------------- | -------------- | -------- | ------------------- | ----------- |
+| Nom                         | Alphabétique   | 30       | Obligatoire         | Membre      |
+| Prénom                      | Alphabétique   | 30       | Obligatoire         | Membre      |
+| Instruments                 | Alphabétique   | 30       | Obligatoire         | Membre      |
+| Adresse e-mail              | Alphanumérique | 50       | Obligatoire, unique | Membre      |
+| Mot de passe                | Alphanumérique | > 12     | Obligatoire         | Membre      |
+| Date et heure de concert    | Date           | -        | Obligatoire         | Concert     |
+| Lieu de concert             | Alphabétique   | 50       | Obligatoire         | Concert     |
+| Tarif                       | Numérique      | -        | -                   | Concert     |
+| Date et heure de répétition | Date           | -        | Obligatoire         | Répétition  |
+| Lieu de répétition          | Alphabétique   | 50       | Obligatoire         | Répétition  |
+
+Voilà, on a notre dictionnaire de données !
+
+Faisons quand même un petit point sur les données que l'on a récupérées et la façon dont on les a représentées.
+
+{% callout type="note" title="Retour rapide sur le dictionnaire de données" %}
+
+Dans certains cas, on a précisé des longueurs de données. On l'a fait uniquement pour des données textuelles _(Alphabétiques et Alphanumériques)_.
+
+Au niveau des contraintes, on a majoritairement _(sauf pour le tarif d'un concert)_ mis des contraintes d'obligation sur les données.
+On a aussi mis une contrainte d'unicité sur l'adresse e-mail, car il ne peut pas y avoir deux membres avec la même adresse e-mail.
+
+{% /callout %}
