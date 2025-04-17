@@ -61,12 +61,22 @@ jobs:
           ssh -i ~/.ssh/id_ed25519 -p $VPS_PORT $VPS_USER@$VPS_HOST "cd $VPS_PATH && docker compose run --rm memento-dev build"
           echo "📦 The application have been builded on the VPS."
 
-      - name: Restart the application
+      - name: Stop the application
         env:
           VPS_USER: ${{ secrets.VPS_USER }}
           VPS_HOST: ${{ secrets.VPS_HOST }}
           VPS_PATH: ${{ secrets.VPS_PATH }}
           VPS_PORT: ${{ secrets.VPS_PORT }}
         run: |
-          ssh -i ~/.ssh/id_ed25519 -p $VPS_PORT $VPS_USER@$VPS_HOST "cd $VPS_PATH && docker compose restart"
+          ssh -i ~/.ssh/id_ed25519 -p $VPS_PORT $VPS_USER@$VPS_HOST "cd $VPS_PATH && docker compose down"
+          echo "🚀 The application has been started on the VPS."
+
+      - name: Start the application
+        env:
+          VPS_USER: ${{ secrets.VPS_USER }}
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_PATH: ${{ secrets.VPS_PATH }}
+          VPS_PORT: ${{ secrets.VPS_PORT }}
+        run: |
+          ssh -i ~/.ssh/id_ed25519 -p $VPS_PORT $VPS_USER@$VPS_HOST "cd $VPS_PATH && docker compose up -d"
           echo "🚀 The application has been started on the VPS."
