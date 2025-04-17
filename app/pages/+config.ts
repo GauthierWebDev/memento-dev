@@ -22,8 +22,6 @@ export default {
   bodyAttributes: {
     class: "flex min-h-full bg-white dark:bg-slate-900",
   },
-
-  prerender: true,
   prefetchStaticAssets: "hover",
 
   extends: vikeReact,
