@@ -23,5 +23,7 @@ export default {
     class: "flex min-h-full bg-white dark:bg-slate-900",
   },
 
+  prefetchStaticAssets: "hover",
+
   extends: vikeReact,
 } satisfies Config;
