@@ -1,6 +1,6 @@
 import { HeroBackground } from "@syntax/HeroBackground";
-import blurIndigoImage from "@/images/blur-indigo.png";
-import blurCyanImage from "@/images/blur-cyan.png";
+import blurIndigoImage from "@/images/blur-indigo.webp";
+import blurCyanImage from "@/images/blur-cyan.webp";
 import { Image } from "@/components/common/Image";
 import { Highlight } from "prism-react-renderer";
 import { Button } from "@syntax/Button";
