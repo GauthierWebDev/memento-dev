@@ -1,6 +1,9 @@
 name: Update Memento Dev on VPS
 run-name: ${{ gitea.actor }} is deploying the application on the VPS 🚀
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   deploy:

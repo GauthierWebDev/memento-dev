@@ -164,6 +164,17 @@ class DocsService {
       return null;
     }
   }
+
+  public async getUrls(namespace: "docs" | "certifications") {
+    try {
+      await this.fetchDocs();
+      const docs = Array.from(this.cache.keys()).filter((key) => key.startsWith(`/${namespace}`));
+      return docs;
+    } catch (error) {
+      console.error("Error fetching URLs:", error);
+      return [];
+    }
+  }
 }
 
 export const docsService = DocsService.getInstance();
