@@ -6,7 +6,7 @@ RUN npm install -g pnpm
 
 COPY ./app/package.json ./app/pnpm-lock.yaml ./
 
-RUN pnpm install --frozen-lockfile --production
+RUN pnpm install --frozen-lockfile --prod false
 
 COPY ./app /app
 
