@@ -38,7 +38,7 @@ jobs:
           VPS_PATH: ${{ secrets.VPS_PATH }}
           VPS_PORT: ${{ secrets.VPS_PORT }}
         run: |
-          ssh -i ~/.ssh/id_ed25519 -p $VPS_PORT $VPS_USER@$VPS_HOST "sudo docker compose build"
+          ssh -i ~/.ssh/id_ed25519 -p $VPS_PORT $VPS_USER@$VPS_HOST "docker compose build"
           echo "📦 The services have been builded on the VPS."
 
       - name: Installing the dependencies
@@ -48,7 +48,7 @@ jobs:
           VPS_PATH: ${{ secrets.VPS_PATH }}
           VPS_PORT: ${{ secrets.VPS_PORT }}
         run: |
-          ssh -i ~/.ssh/id_ed25519 -p $VPS_PORT $VPS_USER@$VPS_HOST "sudo docker compose run --rm memento-dev install"
+          ssh -i ~/.ssh/id_ed25519 -p $VPS_PORT $VPS_USER@$VPS_HOST "docker compose run --rm memento-dev install"
           echo "📦 The dependencies has been installed."
 
       - name: Building the application
@@ -58,7 +58,7 @@ jobs:
           VPS_PATH: ${{ secrets.VPS_PATH }}
           VPS_PORT: ${{ secrets.VPS_PORT }}
         run: |
-          ssh -i ~/.ssh/id_ed25519 -p $VPS_PORT $VPS_USER@$VPS_HOST "sudo docker compose run --rm memento-dev build"
+          ssh -i ~/.ssh/id_ed25519 -p $VPS_PORT $VPS_USER@$VPS_HOST "docker compose run --rm memento-dev build"
           echo "📦 The application have been builded on the VPS."
 
       - name: Restart the application
@@ -68,5 +68,5 @@ jobs:
           VPS_PATH: ${{ secrets.VPS_PATH }}
           VPS_PORT: ${{ secrets.VPS_PORT }}
         run: |
-          ssh -i ~/.ssh/id_ed25519 -p $VPS_PORT $VPS_USER@$VPS_HOST "sudo docker compose restart"
+          ssh -i ~/.ssh/id_ed25519 -p $VPS_PORT $VPS_USER@$VPS_HOST "docker compose restart"
           echo "🚀 The application has been started on the VPS."
