@@ -53,8 +53,8 @@ export function Hero() {
                 Découvrez des ressources essentielles pour améliorer tes compétences en développement.
               </p>
               <div className="mt-8 flex gap-4 md:justify-center lg:justify-start">
-                <Button href="/">Accédez aux ressources</Button>
-                <Button href="/" variant="secondary">
+                <Button href="/docs">Accédez aux ressources</Button>
+                <Button href="https://github.com/GauthierWebDev/memento-dev" variant="secondary">
                   Voir sur Github
                 </Button>
               </div>
