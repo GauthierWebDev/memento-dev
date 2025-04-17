@@ -2,3 +2,4 @@
 app/.pnpm-store
 app/node_modules
 app/dist
+**/*~lock*
