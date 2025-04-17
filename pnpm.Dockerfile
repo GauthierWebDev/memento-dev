@@ -12,4 +12,4 @@ RUN chmod -R 775 /app
 EXPOSE 3000
 
 ENTRYPOINT [ "pnpm" ]
-CMD [ "sh", "-c", "if [ \"$NODE_ENV\" = 'production' ]; then pnpm i -P false && pnpm build && pnpm preview; else pnpm dev; fi" ]
+CMD [ "sh", "-c", "if [ \"$NODE_ENV\" = 'production' ]; then pnpm preview; else pnpm dev; fi" ]
