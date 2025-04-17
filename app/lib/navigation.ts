@@ -47,11 +47,12 @@ export const navigation: NavigationSection[] = [
     type: navigationsTypes.CERTIFICATIONS,
     position: "auto",
     links: [
-      { title: "Résumé", href: "/certifications/dwwm", subitems: [] },
+      { title: "Résumé du titre", href: "/certifications/dwwm", subitems: [] },
       {
         title: "Activité Type 1",
         href: "/certifications/dwwm/at1",
         subitems: [
+          { title: "Résumé de l'AT", href: "/certifications/dwwm/at1" },
           { title: "CP 1", href: "/certifications/dwwm/at1/cp1" },
           { title: "CP 2", href: "/certifications/dwwm/at1/cp2" },
           { title: "CP 3", href: "/certifications/dwwm/at1/cp3" },
@@ -62,6 +63,7 @@ export const navigation: NavigationSection[] = [
         title: "Activité Type 2",
         href: "/certifications/dwwm/at2",
         subitems: [
+          { title: "Résumé de l'AT", href: "/certifications/dwwm/at2" },
           { title: "CP 5", href: "/certifications/dwwm/at2/cp5" },
           { title: "CP 6", href: "/certifications/dwwm/at2/cp6" },
           { title: "CP 7", href: "/certifications/dwwm/at2/cp7" },
@@ -79,6 +81,7 @@ export const navigation: NavigationSection[] = [
         title: "React",
         href: "/docs/react",
         subitems: [
+          { title: "Introduction", href: "/docs/react" },
           { title: "Initialisation", href: "/docs/react/initialisation" },
           { title: "Syntaxe JSX", href: "/docs/react/jsx" },
           { title: "Premier composant", href: "/docs/react/premier-composant" },
@@ -99,8 +102,11 @@ export const navigation: NavigationSection[] = [
         title: "Merise",
         href: "/docs/merise",
         subitems: [
+          { title: "Introduction", href: "/docs/merise" },
           { title: "Dictionnaire de données", href: "/docs/merise/dictionnaire-de-donnees" },
-          { title: "Modèle Conceptuel de Données", href: "/docs/merise/modele-conceptuel-de-donnees" },
+          { title: "Modèle Conceptuel de Données", href: "/docs/merise/mcd" },
+          { title: "Modèle Logique de Données", href: "/docs/merise/mld" },
+          { title: "Modèle Physique de Données", href: "/docs/merise/mpd" },
         ],
       },
     ],

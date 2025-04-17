@@ -1,6 +1,6 @@
 ---
-title: Dictionnaire de données pour Merise
-description: Apprends à créer un dictionnaire de données pour Merise
+title: Dictionnaire de Données Merise
+description: Explorez le dictionnaire de données dans Merise, essentiel pour structurer et documenter les informations de votre système.
 tags: [Backend, Merise, BDD, MCD, MLD, MPD, SQL]
 ---
 
@@ -65,18 +65,18 @@ Tu risques de retrouver ton client en train de convulser sur le sol : **pas glop
 
 Voici donc le dictionnaire de données que l'on va créer pour notre application :
 
-| Nom de la donnée            | Format         | Longueur | Contraintes         | Document(s) |
-| --------------------------- | -------------- | -------- | ------------------- | ----------- |
-| Nom                         | Alphabétique   | 30       | Obligatoire         | Membre      |
-| Prénom                      | Alphabétique   | 30       | Obligatoire         | Membre      |
-| Instruments                 | Alphabétique   | 30       | Obligatoire         | Membre      |
-| Adresse e-mail              | Alphanumérique | 50       | Obligatoire, unique | Membre      |
-| Mot de passe                | Alphanumérique | > 12     | Obligatoire         | Membre      |
-| Date et heure de concert    | Date           | -        | Obligatoire         | Concert     |
-| Lieu de concert             | Alphabétique   | 50       | Obligatoire         | Concert     |
-| Tarif                       | Numérique      | -        | -                   | Concert     |
-| Date et heure de répétition | Date           | -        | Obligatoire         | Répétition  |
-| Lieu de répétition          | Alphabétique   | 50       | Obligatoire         | Répétition  |
+| Nom de la donnée            | Format         | Longueur | Contraintes         | Document   |
+| --------------------------- | -------------- | -------- | ------------------- | ---------- |
+| Nom                         | Alphabétique   | 30       | Obligatoire         | Membre     |
+| Prénom                      | Alphabétique   | 30       | Obligatoire         | Membre     |
+| Instruments                 | Alphabétique   | 30       | Obligatoire         | Membre     |
+| Adresse e-mail              | Alphanumérique | 50       | Obligatoire, unique | Membre     |
+| Mot de passe                | Alphanumérique | > 12     | Obligatoire         | Membre     |
+| Date et heure de concert    | Date           | -        | Obligatoire         | Concert    |
+| Lieu de concert             | Alphabétique   | 50       | Obligatoire         | Concert    |
+| Tarif                       | Numérique      | -        | -                   | Concert    |
+| Date et heure de répétition | Date           | -        | Obligatoire         | Répétition |
+| Lieu de répétition          | Alphabétique   | 50       | Obligatoire         | Répétition |
 
 Voilà, on a notre dictionnaire de données !
 
