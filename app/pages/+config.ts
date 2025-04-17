@@ -23,6 +23,8 @@ export default {
     class: "flex min-h-full bg-white dark:bg-slate-900",
   },
 
+  image: null,
+
   // prerender: true,
   prefetchStaticAssets: "hover",
 
