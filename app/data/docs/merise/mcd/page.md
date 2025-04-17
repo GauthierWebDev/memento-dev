@@ -119,13 +119,89 @@ Pour rappel, voici notre dictionnaire de données :
 
 | Nom de la donnée            | Format         | Longueur | Contraintes         | Document   |
 | --------------------------- | -------------- | -------- | ------------------- | ---------- |
-| Nom                         | Alphabétique   | 30       | Obligatoire         | Membre     |
-| Prénom                      | Alphabétique   | 30       | Obligatoire         | Membre     |
-| Instruments                 | Alphabétique   | 30       | Obligatoire         | Membre     |
-| Adresse e-mail              | Alphanumérique | 50       | Obligatoire, unique | Membre     |
-| Mot de passe                | Alphanumérique | > 12     | Obligatoire         | Membre     |
+| Nom                         | Alphabétique   | 30       | Obligatoire         | Musicien   |
+| Prénom                      | Alphabétique   | 30       | Obligatoire         | Musicien   |
+| Instruments                 | Alphabétique   | 30       | Obligatoire         | Musicien   |
+| Adresse e-mail              | Alphanumérique | 50       | Obligatoire, unique | Musicien   |
+| Mot de passe                | Alphanumérique | > 12     | Obligatoire         | Musicien   |
 | Date et heure de concert    | Date           | -        | Obligatoire         | Concert    |
 | Lieu de concert             | Alphabétique   | 50       | Obligatoire         | Concert    |
 | Tarif                       | Numérique      | -        | -                   | Concert    |
 | Date et heure de répétition | Date           | -        | Obligatoire         | Répétition |
 | Lieu de répétition          | Alphabétique   | 50       | Obligatoire         | Répétition |
+
+### Les entités
+
+On va donc créer trois entités :
+
+- **Musicien**
+- **Concert**
+- **Répétition**
+
+Ces entités vont contenir les attributs que l'on a récupérés dans le dictionnaire de données.
+
+On se retrouve pour le moment avec un MCD qui ressemble à ça :
+![MCD avec uniquement les entités](/merise/mcd-1.webp)
+
+On est déjà pas trop mal, il nous reste plus qu'à ajouter les relations entre les entités et les cardinalités !
+
+### Les relations
+
+On va donc ajouter les relations entre les entités.
+
+Sachant qu'un musicien peut participer à plusieurs concerts, et qu'un concert peut avoir plusieurs musiciens, on va créer une relation entre les deux entités.
+On va donc créer une relation **"Participer"** entre les entités **Musicien** et **Concert**.
+
+On en fera une relation **0,N** - **1,N**.
+
+Pour la répétition, on va faire la même chose !
+On va créer une relation **"Répéter"** entre les entités **Musicien** et **Répétition**.
+
+À la fin, on se retrouve avec un MCD qui ressemble à ça :
+![MCD avec les relations](/merise/mcd-2.webp)
+
+Et c'est tout ! Notre MCD est terminé... enfin presque !
+
+### Aller plus loin
+
+Si on souhaite aller plus loin, on peut ajouter de l'héritage.
+
+{% callout type="note" title="Rapide point sur l'héritage" %}
+L'héritage _(ou aussi appelé **spécialisation** ou **généralisation**)_ est un concept qui va nous permettre de factoriser les propriétés identiques dans une entité commune. Cette entitée est appelée **entité générique** _(ou **sur-type**)_.
+
+Les entités qui héritent de l'entité générique sont appelées **entités spécialisées** _(ou **sous-types**)_.
+{% /callout %}
+
+En regardant bien notre MCD, on se rend compte que les entités **Concert** et **Répétition** ont des attributs communs :
+
+- Date et heure
+- Lieu
+
+La seule différence est que le concert a un tarif, contrairement à la répétition.  
+On va donc pouvoir créer une entité **générique** que l'on appelera **Événement**.
+
+Cette entité générique va contenir les attributs communs aux deux entités, et on va faire hériter les entités **Concert** et **Répétition** de cette entité.  
+On se retrouve donc avec ces trois entités _(**Événement**, **Concert** et **Répétition**)_ :
+![MCD avec héritage](/merise/mcd-3.webp)
+
+{% callout type="question" title="Pourquoi ne pas stocker le type d'événement ?" %}
+Effectivement, on aurait pu stocker le type d'événement dans l'entité **Événement** !  
+Il s'agit d'une autre approche qui est tout à fait valable.
+
+Cependant, il est plus simple de créer une entité générique qui va nous permettre de factoriser les attributs communs et éviter de devoir rendre plusieurs attributs nullables en fonction du type d'événement.
+
+On renforce ainsi l'intégrité de la base de données.
+{% /callout %}
+
+Le MCD final ressemble donc à ça :
+![MCD final](/merise/mcd-4.webp)
+
+Si tu souhaites télécharger le MCD que l'on vient de créer, tu peux le faire ici : [MCD Merise pour Looping](/downloads/merise/band-manager.loo).
+
+## Conclusion
+
+En conclusion, le MCD dans Merise est un outil indispensable pour structurer et visualiser les données de manière claire et cohérente.
+
+Grâce à des entités, des attributs, des relations et des cardinalités, le MCD permet de représenter les informations de façon abstraite, tout en restant compréhensible pour le client.
+
+Prochaine étape : le **MLD** _(Modèle Logique de Données)_ et le **MRD** _(Modèle Relationnel de Données)_ !

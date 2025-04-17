@@ -14,12 +14,17 @@ Pour cet article et les suivants, on va se reposer sur une mise en situation fic
 
 ## Brief avec le client
 
-Le client est un petit groupe local qui doit faciliter l'organisation interne pour la gestion de ses différentes activités (répétitions, concerts, etc.).  
+Le client est un groupe qui doit faciliter l'organisation interne pour la gestion de ses différentes activités (répétitions, concerts, etc.).  
 Il souhaite donc créer une application pour gérer les informations suivantes :
 
-- **Membre** : Nom, prénom, instruments, adresse e-mail, mot de passe
+- **Musicien** : Nom, prénom, instruments, adresse e-mail, mot de passe
 - **Concert** : Date et heure, lieu, tarif
 - **Répétition** : Date et heure, lieu
+
+Le client a aussi précisé que le mot de passe doit faire plus de 12 caractères, et que l'adresse e-mail doit être unique.
+
+En ce qui concerne les répétitions et les concerts, il nous a indiqué que tous les musiciens ne sont pas forcément présents à chaque répétition ou concert.  
+Il faut donc prévoir un moyen pour savoir qui est présent à chaque répétition et concert.
 
 Pour le moment, on ne va pas se soucier de la technique, mais juste de lister les données que l'on doit stocker dans la base de données.
 On va donc créer un tableau qui va nous permettre de lister toutes les données que l'on doit stocker dans notre base de données.
@@ -67,11 +72,11 @@ Voici donc le dictionnaire de données que l'on va créer pour notre application
 
 | Nom de la donnée            | Format         | Longueur | Contraintes         | Document   |
 | --------------------------- | -------------- | -------- | ------------------- | ---------- |
-| Nom                         | Alphabétique   | 30       | Obligatoire         | Membre     |
-| Prénom                      | Alphabétique   | 30       | Obligatoire         | Membre     |
-| Instruments                 | Alphabétique   | 30       | Obligatoire         | Membre     |
-| Adresse e-mail              | Alphanumérique | 50       | Obligatoire, unique | Membre     |
-| Mot de passe                | Alphanumérique | > 12     | Obligatoire         | Membre     |
+| Nom                         | Alphabétique   | 30       | Obligatoire         | Musicien   |
+| Prénom                      | Alphabétique   | 30       | Obligatoire         | Musicien   |
+| Instruments                 | Alphabétique   | 30       | Obligatoire         | Musicien   |
+| Adresse e-mail              | Alphanumérique | 50       | Obligatoire, unique | Musicien   |
+| Mot de passe                | Alphanumérique | > 12     | Obligatoire         | Musicien   |
 | Date et heure de concert    | Date           | -        | Obligatoire         | Concert    |
 | Lieu de concert             | Alphabétique   | 50       | Obligatoire         | Concert    |
 | Tarif                       | Numérique      | -        | -                   | Concert    |
