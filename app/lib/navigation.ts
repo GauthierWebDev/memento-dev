@@ -119,15 +119,17 @@ export const navigation: NavigationSection[] = [
   },
 ];
 
-export function findNavigationLink(namespace: string, href: string) {
+export function findNavigationLink(namespace: string, href: string): NavigationLink | undefined {
   const currentUrl = `/${namespace}/${href}`.replace(/\/+/g, "/").replace(/\/$/, "");
 
-  const links = navigation.flatMap((section) => section.links);
-  const subitems = links.flatMap((link) => link.subitems);
-  const allLinks = new Set([...links, ...subitems]);
-  const foundLink = Array.from(allLinks).find((link) => link.href === currentUrl);
-
-  console.log({ allLinks, currentUrl });
+  const foundLink = navigation
+    .flatMap((section) => section.links)
+    .find((link) => {
+      link.href === currentUrl ||
+        link.subitems.some((subitem) => {
+          subitem.href === currentUrl;
+        });
+    });
 
   return foundLink;
 }

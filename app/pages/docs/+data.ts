@@ -27,7 +27,7 @@ export async function data(pageContext: PageContext) {
   config({
     title: buildTitle(doc.title),
     description: doc.description,
-    image: link?.og?.image || "notfound",
+    image: link?.og?.image || "/og.webp",
   });
 
   docsService.transform(doc);
