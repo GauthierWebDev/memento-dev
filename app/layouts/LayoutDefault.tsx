@@ -88,7 +88,7 @@ function CookieModal() {
 
   if (isSelectionOpen) {
     return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50">
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 backdrop-blur-sm">
         <div className="relative flex flex-col gap-2 bg-slate-50 dark:bg-slate-800 rounded-md shadow-xl w-full max-w-sm p-4">
           <Button
             variant="ghost"
