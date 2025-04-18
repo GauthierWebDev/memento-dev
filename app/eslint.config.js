@@ -36,6 +36,7 @@ export default tseslint.config(
       "@typescript-eslint/no-unused-vars": [1, { argsIgnorePattern: "^_" }],
       "@typescript-eslint/no-namespace": 0,
       "react/react-in-jsx-scope": "warn",
+      "react/no-unescaped-entities": "off",
       "react/jsx-filename-extension": [1, { extensions: [".tsx"] }],
     },
   },

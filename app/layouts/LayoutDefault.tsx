@@ -10,7 +10,6 @@ import { clientOnly } from "vike-react/clientOnly";
 import React, { useEffect, useState } from "react";
 import { Navigation } from "@syntax/Navigation";
 import { Link } from "@/components/common/Link";
-import { navigation } from "@/lib/navigation";
 import { reload } from "vike/client/router";
 import { Hero } from "@syntax/Hero";
 import { Logo } from "@syntax/Logo";
@@ -108,7 +107,7 @@ function CookieModal() {
           <div className="flex flex-col gap-2 w-full items-start">
             <Toggle
               id="cookies-analytics"
-              label="Cookies d'analyse (Umami et Google Analytics)"
+              label="Cookies d&lsquo;analyse (Umami et Google Analytics)"
               checked={consentCookies.analytics}
               onChange={(checked) => {
                 setConsentCookies({ ...consentCookies, analytics: checked });
@@ -158,13 +157,13 @@ function CookieModal() {
 
       <div className="flex flex-col gap-2 p-4">
         <p className="font-display dark:text-slate-300">
-          <span className="text-sm">Coucou c'est nous...</span>
+          <span className="text-sm">Coucou c&apos;est nous...</span>
           <br />
           <span className="font-bold text-lg">les cookies ! 🍪</span>
         </p>
 
         <p className="text-slate-700 dark:text-slate-300">
-          On ne t'embête pas longtemps, on te laisse même le choix <em>(si ça c'est pas la classe 😎)</em>.
+          On ne t&lsquo;embête pas longtemps, on te laisse même le choix <em>(si ça c&lsquo;est pas la classe 😎)</em>.
         </p>
 
         <p className="text-slate-700 dark:text-slate-300">
@@ -209,7 +208,7 @@ function CookieModal() {
               });
           }}
         >
-          Oui, j'ai faim !
+          Oui, j&lsquo;ai faim !
         </button>
       </div>
     </div>
@@ -228,7 +227,7 @@ function Footer() {
 
           <p>
             Plateforme de ressources et documentations synthétiques et concises, conçue pour les développeurs ou
-            passionnés de l'informatique en quête de savoir.
+            passionnés de l&lsquo;informatique en quête de savoir.
           </p>
         </section>
 
