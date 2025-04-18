@@ -1,13 +1,12 @@
 import type { Config, Node } from "@markdoc/markdoc";
 
 import { slugifyWithCounter } from "@sindresorhus/slugify";
+import { nodes as defaultNodes } from "@markdoc/markdoc";
 import { DocsLayout } from "@syntax/DocsLayout";
-import Markdoc from "@markdoc/markdoc";
-import { Fence } from "@syntax/Fence";
-import yaml from "js-yaml";
 import { Link } from "@/components/common/Link";
-
-const { nodes: defaultNodes, Tag } = Markdoc;
+import { Fence } from "@syntax/Fence";
+import { Tag } from "./Tag";
+import yaml from "js-yaml";
 
 let documentSlugifyMap = new Map();
 
@@ -19,7 +18,7 @@ const nodes = {
       documentSlugifyMap.set(config, slugifyWithCounter());
 
       return new Tag(
-        this.render,
+        this.render as unknown as string,
         {
           frontmatter: yaml.load(node.attributes.frontmatter),
           estimatedReadingTime: config?.variables?.estimatedReadingTime,
