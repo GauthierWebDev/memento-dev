@@ -10,6 +10,7 @@ import { clientOnly } from "vike-react/clientOnly";
 import React, { useEffect, useState } from "react";
 import { Navigation } from "@syntax/Navigation";
 import { Link } from "@/components/common/Link";
+import { navigation } from "@/lib/navigation";
 import { reload } from "vike/client/router";
 import { Hero } from "@syntax/Hero";
 import { Logo } from "@syntax/Logo";
@@ -60,7 +61,9 @@ function Header() {
       <div className="relative flex grow basis-0 items-center">
         <Link href="/" aria-label="Home page" className="flex items-center gap-2">
           <Logo className="h-9 w-auto" />
-          <span className="hidden lg:inline text-2xl font-bold -tracking-tight">Memento Dev</span>
+          <span className="hidden lg:inline text-2xl font-bold -tracking-tight text-slate-900 dark:text-slate-50">
+            Memento Dev
+          </span>
         </Link>
       </div>
 
@@ -213,6 +216,42 @@ function CookieModal() {
   );
 }
 
+function Footer() {
+  return (
+    <footer className="bg-slate-50 dark:bg-slate-950 text-slate-700 dark:text-slate-200">
+      <div className="mx-auto w-full flex flex-col max-w-8xl sm:px-2 lg:px-8 xl:px-12 py-8">
+        <section>
+          <header className="flex items-center gap-2 mb-2">
+            <Logo className="h-8 w-auto" />
+            <h2 className="font-display text-2xl">Memento Dev</h2>
+          </header>
+
+          <p>
+            Plateforme de ressources et documentations synthétiques et concises, conçue pour les développeurs ou
+            passionnés de l'informatique en quête de savoir.
+          </p>
+        </section>
+
+        <hr className="my-6 border-slate-200 dark:border-slate-600" />
+
+        <section>
+          <header className="flex items-center gap-2">
+            <h2 className="font-display">&copy; 2022 - {new Date().getFullYear()} Memento Dev. Tous droits réservés</h2>
+          </header>
+
+          <p className="text-sm text-slate-500 dark:text-slate-400">
+            Memento Dev est une plateforme open-source, développée par{" "}
+            <Link href="https://gauthierdaniels.fr" className="font-bold">
+              Gauthier Daniels
+            </Link>
+            , soutenue et maintenue par une communauté de contributeurs passionnés.
+          </p>
+        </section>
+      </div>
+    </footer>
+  );
+}
+
 export default function DefaultLayout({ children }: { children: React.ReactNode }) {
   const { urlPathname, cookies } = usePageContext();
   const isHomePage = urlPathname === "/";
@@ -237,6 +276,8 @@ export default function DefaultLayout({ children }: { children: React.ReactNode 
           </div>
           {children}
         </div>
+
+        <Footer />
       </div>
       <ToastContainer />
     </ThemeProvider>
