@@ -18,13 +18,13 @@ const root = __dirname;
 declare global {
   namespace Vike {
     interface PageContext {
-      cookies: Partial<{
+      cookies: {
         consent: {
           analytics: boolean;
           customization: boolean;
         };
         theme: Theme;
-      }>;
+      };
     }
   }
 }
