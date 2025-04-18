@@ -40,9 +40,9 @@ function PageLink({
         >
           <p className="flex flex-col gap-0">
             {pageCategory && (
-              <span className="text-violet-600 dark:text-violet-400 text-sm -mb-3">{pageCategory.title}</span>
+              <span className="text-violet-600 dark:text-violet-400 text-sm mb-1 leading-3">{pageCategory.title}</span>
             )}
-            <span>{title}</span>
+            <span className="leading-4">{title}</span>
           </p>
           <ArrowIcon className={clsx("h-6 w-6 flex-none fill-current", dir === "previous" && "-scale-x-100")} />
         </Link>
