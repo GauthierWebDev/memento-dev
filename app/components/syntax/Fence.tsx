@@ -1,5 +1,6 @@
 import { clientOnly } from "vike-react/clientOnly";
 import { SSRSnippet } from "./SSRSnippet";
+import React from "react";
 
 const CSRSnippet = clientOnly(() => import("./CSRSnippet"));
 

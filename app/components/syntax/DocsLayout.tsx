@@ -5,6 +5,7 @@ import { PrevNextLinks } from "@syntax/PrevNextLinks";
 import { collectSections } from "@/lib/sections";
 import { DocsHeader } from "@syntax/DocsHeader";
 import { Prose } from "@syntax/Prose";
+import React from "react";
 
 export function DocsLayout({
   children,

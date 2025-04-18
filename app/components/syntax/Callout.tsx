@@ -1,4 +1,5 @@
 import { Icon } from "@syntax/Icon";
+import React from "react";
 import clsx from "clsx";
 
 const styles = {

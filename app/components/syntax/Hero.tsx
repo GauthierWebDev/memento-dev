@@ -3,8 +3,8 @@ import blurIndigoImage from "@/images/blur-indigo.webp";
 import blurCyanImage from "@/images/blur-cyan.webp";
 import { Image } from "@/components/common/Image";
 import { Highlight } from "prism-react-renderer";
+import React, { Fragment } from "react";
 import { Button } from "@syntax/Button";
-import { Fragment } from "react";
 import clsx from "clsx";
 
 const codeLanguage = "javascript";

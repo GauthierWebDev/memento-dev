@@ -1,8 +1,8 @@
 import { ClipboardDocumentIcon } from "@heroicons/react/24/outline";
 import { prismThemes } from "@/data/themes/prism";
+import React, { Fragment, useMemo } from "react";
 import { Highlight } from "prism-react-renderer";
 import { useTheme } from "@/hooks/useTheme";
-import { Fragment, useMemo } from "react";
 import { toast } from "react-toastify";
 import { Button } from "./Button";
 import Prism from "prismjs";
