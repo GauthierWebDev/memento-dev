@@ -133,7 +133,7 @@ export function doesLinkSubitemExist(link: NavigationLink, subitemHref: string):
   return link.subitems.some((subitem) => subitem.href === subitemHref);
 }
 
-export function findNavigationLink(namespace: string, href: string): NavigationLink | undefined {
+export function findNavigationLink(namespace: string, href?: string): NavigationLink | undefined {
   const currentUrl = `/${namespace}/${href}`.replace(/\/+/g, "/").replace(/\/$/, "");
 
   const foundLink = navigation

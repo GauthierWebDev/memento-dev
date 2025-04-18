@@ -152,14 +152,12 @@ class DocsService {
     };
   }
 
-  public async getDoc(namespace: "root"): Promise<DocData | undefined>;
-  public async getDoc(namespace: "docs" | "certifications", key: string): Promise<DocData | undefined>;
   public async getDoc(namespace: "root" | "docs" | "certifications", key?: string): Promise<DocData | undefined> {
     try {
       await this.fetchDocs();
       let doc: DocData | undefined;
 
-      if (namespace === "root") {
+      if (namespace === "root" || key === "index") {
         doc = this.getFromCache(`/${namespace}`);
       } else {
         doc = this.getFromCache(`/${namespace}/${key}`);
