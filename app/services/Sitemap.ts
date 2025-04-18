@@ -91,7 +91,7 @@ class Sitemap {
       return path.join(this.pagesPath, href.replace("/", ""), "+Page.tsx");
     }
 
-    return path.join(this.pagesPath, href.replace("/", ""), "page.md");
+    return path.join(this.dataPath, href.replace("/", ""), "page.md");
   }
 
   private loadSubitems(subitems: (typeof navigation)[number]["links"][number]["subitems"]): void {
@@ -117,6 +117,9 @@ class Sitemap {
         return this.loadSubitems(link.subitems);
       }
 
+      const fileLocation = this.getFileServerLocation(link.href);
+      console.log("File location:", fileLocation);
+
       const priority = this.loadPriority(link.href);
       const lastmod = this.loadLastModified(link.href);
       const location = `${this.baseUrl}${link.href}`;
@@ -135,8 +138,6 @@ class Sitemap {
     this.urls = Array.from(new Set(this.urls)).sort((a, b) => {
       return a.location.localeCompare(b.location);
     });
-
-    console.log("Loaded URLs:", this.urls);
   }
 
   public generateSitemap(): void {
