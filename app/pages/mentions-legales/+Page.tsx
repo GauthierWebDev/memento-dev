@@ -2,7 +2,7 @@ import React from "react";
 
 export function Page() {
   return (
-    <div className="px-4 py-16 lg:max-w-none lg:pr-0 lg:pl-8 xl:px-16 flex flex-col gap-4 text-slate-700 dark:text-slate-300">
+    <div className="grow px-4 py-16 lg:max-w-none lg:pr-0 lg:pl-8 xl:px-16 flex flex-col gap-4 text-slate-700 dark:text-slate-300">
       <h1 className="font-display text-3xl tracking-tight text-slate-900 dark:text-white">Mentions légales</h1>
 
       <section>
