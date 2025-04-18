@@ -50,7 +50,7 @@ function NavigationItem(props: NavigationItemProps) {
       {isOpened && (
         <ul
           role="list"
-          className="!mt-0 ml-2 space-y-2 border-l-2 border-slate-100 lg:mt-4 lg:space-y-4 lg:border-slate-200 dark:border-slate-800 mb-4"
+          className="!mt-0 ml-2 space-y-1 border-l-2 border-slate-100 lg:mt-4 lg:space-y-2 lg:border-slate-200 dark:border-slate-800 mb-4"
         >
           {props.section.links.map((link) => (
             <li key={link.href} className="relative">
@@ -126,10 +126,10 @@ function NavigationSubItem(props: NavigationSubItemProps) {
           )}
         </Link>
       </span>
-      {props.link.subitems && isOpened && (
+      {props.link.subitems.length > 0 && isOpened && (
         <ul
           role="list"
-          className="ml-4 border-l-2 border-slate-100 lg:space-y-1 lg:border-slate-200 dark:border-slate-800 mb-4"
+          className="ml-4 border-l-2 border-slate-100 space-y-1 lg:space-y-2 lg:border-slate-200 dark:border-slate-800 mb-4"
         >
           {props.link.subitems.map((subitem) => (
             <li key={subitem.href} className="relative">
