@@ -7,7 +7,7 @@ export function Page() {
   const { setIsOpen } = useContext(CookiesContext);
 
   return (
-    <div className="flex flex-col gap-4 p-4">
+    <div className="flex flex-col gap-4 p-4 text-slate-700 dark:text-slate-300">
       <h1 className="font-display text-3xl tracking-tight text-slate-900 dark:text-white">
         Politique de confidentialité
       </h1>
