@@ -1,4 +1,4 @@
-import { useId, useState, useEffect, createContext, useContext, Fragment } from "react";
+import React, { useId, useState, useEffect, createContext, useContext, Fragment } from "react";
 import { SearchResult } from "@/services/FlexSearchService";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { useDebounce } from "@/hooks/useDebounce";

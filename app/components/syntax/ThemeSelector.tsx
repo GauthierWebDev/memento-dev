@@ -1,5 +1,5 @@
 import { Label, Listbox, ListboxButton, ListboxOption, ListboxOptions } from "@headlessui/react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTheme } from "@/hooks/useTheme";
 import clsx from "clsx";
 
@@ -33,8 +33,8 @@ function DarkIcon(props: React.ComponentPropsWithoutRef<"svg">) {
 }
 
 export function ThemeSelector(props: React.ComponentPropsWithoutRef<typeof Listbox<"div">>) {
-  let [mounted, setMounted] = useState(false);
-  let { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     setMounted(true);

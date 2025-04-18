@@ -50,8 +50,8 @@ function extractSections(node: Node, sections: Section[], isRoot: boolean = true
   if (node.type === "heading" || node.type === "paragraph") {
     const content = toString(node).trim();
 
-    if (node.type === "heading" && node.attributes?.level! <= 2) {
-      let hash = node.attributes?.id ?? slugify(content);
+    if (node.attributes?.level && node.type === "heading" && node.attributes.level <= 2) {
+      const hash = node.attributes?.id ?? slugify(content);
       sections.push({ content, hash, subsections: [] });
     } else {
       sections[sections.length - 1].subsections.push(content);
