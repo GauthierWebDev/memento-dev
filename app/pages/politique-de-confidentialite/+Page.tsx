@@ -34,7 +34,7 @@ export function Page() {
           pour améliorer votre expérience utilisateur et analyser l'utilisation du site.
         </p>
 
-        <section>
+        <section className="ml-4">
           <h3 className="font-display text-lg text-slate-900 dark:text-slate-100">a. Google Analytics</h3>
           <p>
             J'utilise <strong>Google Analytics</strong> pour analyser le trafic et l'utilisation de mon site. Les
@@ -42,7 +42,7 @@ export function Page() {
           </p>
         </section>
 
-        <section>
+        <section className="ml-4">
           <h3 className="font-display text-lg text-slate-900 dark:text-slate-100">b. Umami</h3>
           <p>
             <strong>Umami</strong> est un autre outil d'analyse que j'utilise pour comprendre comment les visiteurs
@@ -51,7 +51,7 @@ export function Page() {
           </p>
         </section>
 
-        <section>
+        <section className="ml-4">
           <h3 className="font-display text-lg text-slate-900 dark:text-slate-100">c. Cookie "theme"</h3>
           <p>
             J'utilise et dépose un cookie nommé "theme" pour mémoriser votre préférence de thème (clair ou sombre). Ce
@@ -93,32 +93,38 @@ export function Page() {
 
         <ul className="list-disc pl-4">
           <li>
-            <Link href="https://support.google.com/chrome/answer/95647?hl=fr" className="text-violet-500">
+            <Link
+              href="https://support.google.com/chrome/answer/95647?hl=fr"
+              className="text-violet-500 dark:text-violet-400"
+            >
               Google Chrome
             </Link>
           </li>
           <li>
-            <Link href="https://support.mozilla.org/fr/kb/activer-desactiver-cookies" className="text-violet-500">
+            <Link
+              href="https://support.mozilla.org/fr/kb/activer-desactiver-cookies"
+              className="text-violet-500 dark:text-violet-400"
+            >
               Mozilla Firefox
             </Link>
           </li>
           <li>
             <Link
               href="https://support.microsoft.com/fr-fr/help/278835/how-to-delete-cookie-files-in-internet-explorer"
-              className="text-violet-500"
+              className="text-violet-500 dark:text-violet-400"
             >
               Internet Explorer
             </Link>
           </li>
           <li>
-            <Link href="https://support.apple.com/fr-fr/HT201265" className="text-violet-500">
+            <Link href="https://support.apple.com/fr-fr/HT201265" className="text-violet-500 dark:text-violet-400">
               Safari
             </Link>
           </li>
           <li>
             <Link
               href="https://support.microsoft.com/fr-fr/help/278835/how-to-delete-cookie-files-in-internet-explorer"
-              className="text-violet-500"
+              className="text-violet-500 dark:text-violet-400"
             >
               Microsoft Edge
             </Link>
@@ -140,10 +146,10 @@ export function Page() {
         <h2 className="font-display text-xl text-slate-900 dark:text-slate-100">5. Protection des données</h2>
 
         <p>
-          Les données collectées par Google Analytics et Umami sont anonymisées et stockées de manière sécurisée par ces
-          services. Je ne stocke aucune donnée personnelle sur mes propres serveurs. Pour plus d'informations sur la
-          manière dont ces services protègent vos données, veuillez consulter leurs politiques de confidentialité
-          respectives.
+          Les données collectées par <strong>Google Analytics</strong> et <strong>Umami</strong> sont anonymisées et
+          stockées de manière sécurisée par ces services. Je ne stocke aucune donnée personnelle sur mes propres
+          serveurs. Pour plus d'informations sur la manière dont ces services protègent vos données, veuillez consulter
+          leurs politiques de confidentialité respectives.
         </p>
       </section>
 
@@ -155,6 +161,27 @@ export function Page() {
           d'accès, de rectification ou de suppression de données personnelles. Cependant, vous pouvez gérer vos
           préférences de cookies directement via les paramètres de votre navigateur. Pour toute question concernant vos
           droits, veuillez me contacter à <strong>gauthier@gauthierdaniels.fr</strong>.
+        </p>
+      </section>
+
+      <section className="flex flex-col gap-2">
+        <h2 className="font-display text-xl text-slate-900 dark:text-slate-100">
+          7. Modifications de la Politique de Confidentialité
+        </h2>
+
+        <p>
+          Je me réserve le droit de modifier cette politique de confidentialité à tout moment. Les modifications seront
+          publiées sur cette page et entreront en vigueur immédiatement. Je vous encourage à consulter régulièrement
+          cette page pour rester informé de mes pratiques en matière de confidentialité.
+        </p>
+      </section>
+
+      <section className="flex flex-col gap-2">
+        <h2 className="font-display text-xl text-slate-900 dark:text-slate-100">8. Contact</h2>
+
+        <p>
+          Si vous avez des questions ou des préoccupations concernant ma politique de confidentialité, veuillez me
+          contacter à l'adresse suivante : <strong>gauthier@gauthierdaniels.fr</strong>.
         </p>
       </section>
     </div>
