@@ -2,12 +2,13 @@ const navigationsTypes = {
   GLOBAL: "👋 Général",
   CERTIFICATIONS: "🎓 Certifications",
   DOCUMENTATIONS: "📚 Documentations",
+  OTHER: "🔗 Autres",
 };
 
 export type NavigationSection = {
   title: string;
   type: (typeof navigationsTypes)[keyof typeof navigationsTypes];
-  position: "start" | "auto";
+  position: "start" | "end" | "auto";
   links: NavigationLink[];
 };
 
@@ -45,6 +46,15 @@ export const navigation: NavigationSection[] = [
     links: [
       { title: "Influenceurs", href: "/docs/communaute/influenceurs", subitems: [] },
       { title: "Partages et réutilisations", href: "/docs/communaute/partages", subitems: [] },
+    ],
+  },
+  {
+    title: "Légal",
+    type: navigationsTypes.OTHER,
+    position: "end",
+    links: [
+      { title: "Mentions légales", href: "/mentions-legales", subitems: [] },
+      { title: "Politique de confidentialité", href: "/politique-de-confidentialite", subitems: [] },
     ],
   },
   {

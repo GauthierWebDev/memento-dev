@@ -48,7 +48,7 @@ export function ThemeSelector(props: React.ComponentPropsWithoutRef<typeof Listb
     <Listbox as="div" value={theme} onChange={setTheme} {...props}>
       <Label className="sr-only">Theme</Label>
       <ListboxButton
-        className="flex h-6 w-6 items-center justify-center rounded-lg ring-1 shadow-md shadow-black/5 ring-black/5 dark:bg-slate-700 dark:ring-white/5 dark:ring-inset"
+        className="flex h-6 w-6 items-center justify-center rounded-lg ring-1 shadow-md shadow-black/5 ring-black/5 dark:bg-slate-700 dark:ring-white/5 dark:ring-inset cursor-pointer"
         aria-label="Theme"
       >
         <LightIcon className={clsx("h-4 w-4 dark:hidden", "fill-violet-400")} />

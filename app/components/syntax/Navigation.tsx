@@ -161,6 +161,7 @@ export function Navigation({
   onLinkClick?: React.MouseEventHandler<HTMLAnchorElement>;
 }) {
   const firstSections = navigation.filter((section) => section.position === "start");
+  const lastSections = navigation.filter((section) => section.position === "end");
 
   const filteredSections = navigation
     .filter((section) => section.position === "auto" || section.position === undefined)
@@ -192,6 +193,12 @@ export function Navigation({
             ))}
           </li>
         ))}
+        <li>
+          <h2 className="font-display font-bold text-base text-slate-900 dark:text-white">{lastSections[0]?.type}</h2>
+          {lastSections.map((section) => (
+            <NavigationItem key={section.title} section={section} onLinkClick={onLinkClick} />
+          ))}
+        </li>
       </ul>
     </nav>
   );

@@ -25,7 +25,7 @@ export default {
 
   image: "/og.webp",
 
-  // prerender: true,
+  passToClient: ["cookies"],
   prefetchStaticAssets: "hover",
 
   extends: vikeReact,
