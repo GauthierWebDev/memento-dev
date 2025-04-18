@@ -80,7 +80,7 @@ export function PrevNextLinks() {
   if (!nextPage && !previousPage) return null;
 
   return (
-    <dl className="mt-12 flex border-t border-slate-200 pt-6 dark:border-slate-800">
+    <dl className="mt-12 flex gap-4 border-t border-slate-200 pt-6 dark:border-slate-800">
       {previousPage && <PageLink dir="previous" {...previousPage} />}
       {nextPage && <PageLink className="ml-auto text-right" {...nextPage} />}
     </dl>

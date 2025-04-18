@@ -51,6 +51,16 @@ const nodes = {
       },
     },
   },
+  table: {
+    ...defaultNodes.table,
+    attributes: {
+      ...defaultNodes.table.attributes,
+      class: {
+        type: String,
+        default: "block max-w-full overflow-x-auto border-collapse text-sm",
+      },
+    },
+  },
   th: {
     ...defaultNodes.th,
     attributes: {
