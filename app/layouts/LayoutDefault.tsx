@@ -89,7 +89,16 @@ function CookieModal() {
   if (isSelectionOpen) {
     return (
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50">
-        <div className="flex flex-col gap-2 bg-slate-50 dark:bg-slate-800 rounded-md shadow-xl w-full max-w-sm p-4">
+        <div className="relative flex flex-col gap-2 bg-slate-50 dark:bg-slate-800 rounded-md shadow-xl w-full max-w-sm p-4">
+          <Button
+            variant="ghost"
+            size="sm"
+            className="absolute top-0 right-0"
+            onClick={() => setIsSelectionOpen(false)}
+          >
+            Fermer
+          </Button>
+
           <p className="font-display dark:text-slate-300 font-bold text-lg">Personnalisation des cookies 🍪</p>
 
           <div className="flex flex-col gap-2 w-full items-start">
@@ -120,6 +129,10 @@ function CookieModal() {
 
   return (
     <div className="flex flex-col fixed bottom-4 left-4 bg-slate-50 dark:bg-slate-800 z-50 rounded-md shadow-xl w-full max-w-sm overflow-hidden">
+      <Button variant="ghost" size="sm" className="absolute top-0 right-0" onClick={() => setIsOpen(false)}>
+        Fermer
+      </Button>
+
       <div className="flex flex-col gap-2 p-4">
         <p className="font-display dark:text-slate-300">
           <span className="text-sm">Coucou c'est nous...</span>
@@ -143,9 +156,7 @@ function CookieModal() {
       <div className="grid items-center grid-cols-3 justify-between bg-slate-100 dark:bg-slate-700">
         <button
           className="cursor-pointer px-2 py-1 text-slate-600 dark:text-slate-300"
-          onClick={async () => {
-            // TODO
-          }}
+          onClick={() => setIsOpen(false)}
         >
           Non merci
         </button>
@@ -158,7 +169,7 @@ function CookieModal() {
         </button>
 
         <button
-          className="cursor-pointer px-2 py-1 font-bold text-violet-600 dark:text-violet-300"
+          className="cursor-pointer px-2 py-1 font-bold text-white dark:text-black bg-violet-600 dark:bg-violet-300"
           onClick={async () => {
             // TODO
           }}
