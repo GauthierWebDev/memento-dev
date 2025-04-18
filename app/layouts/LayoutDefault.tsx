@@ -87,7 +87,7 @@ function CookieModal() {
   const [consentCookies, setConsentCookies] = useState(cookies.consent);
   const [isSelectionOpen, setIsSelectionOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(() => {
-    return Object.keys(cookies.consent).every((value) => value);
+    return !Object.keys(cookies.consent).every((value) => value);
   });
 
   if (isSelectionOpen) {
