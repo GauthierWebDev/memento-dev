@@ -1,4 +1,5 @@
 import { DarkMode, Gradient, LightMode } from "@syntax/Icon";
+import React from "react";
 
 export function WarningIcon({ id, color }: { id: string; color?: React.ComponentProps<typeof Gradient>["color"] }) {
   return (

@@ -1,3 +1,4 @@
+import React from "react";
 import clsx from "clsx";
 
 export function Prose<T extends React.ElementType = "div">({
@@ -7,7 +8,7 @@ export function Prose<T extends React.ElementType = "div">({
 }: React.ComponentPropsWithoutRef<T> & {
   as?: T;
 }) {
-  let Component = as ?? "div";
+  const Component = as ?? "div";
 
   return (
     <Component

@@ -3,6 +3,7 @@ import type { Data } from "@/pages/docs/+data";
 import { clientOnly } from "vike-react/clientOnly";
 import { useData } from "vike-react/useData";
 import { SSRSnippet } from "./SSRSnippet";
+import React from "react";
 
 const CSRSnippet = clientOnly(() => import("./CSRSnippet"));
 

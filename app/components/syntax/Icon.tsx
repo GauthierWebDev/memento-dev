@@ -5,7 +5,7 @@ import { PluginsIcon } from "@syntax/icons/PluginsIcon";
 import { PresetsIcon } from "@syntax/icons/PresetsIcon";
 import { ThemingIcon } from "@syntax/icons/ThemingIcon";
 import { WarningIcon } from "@syntax/icons/WarningIcon";
-import { useId } from "react";
+import React, { useId } from "react";
 import clsx from "clsx";
 
 const icons = {
@@ -32,8 +32,8 @@ export function Icon({
   color?: keyof typeof iconStyles;
   icon: keyof typeof icons;
 } & Omit<React.ComponentPropsWithoutRef<"svg">, "color">) {
-  let id = useId();
-  let IconComponent = icons[icon];
+  const id = useId();
+  const IconComponent = icons[icon];
 
   return (
     <svg aria-hidden="true" viewBox="0 0 32 32" fill="none" className={clsx(className, iconStyles[color])} {...props}>

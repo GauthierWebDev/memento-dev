@@ -1,11 +1,6 @@
-function LogomarkPaths() {
-  // return (
-  //   <g fill="none" stroke="#38BDF8" strokeLinejoin="round" strokeWidth={3}>
-  //     <path d="M10.308 5L18 17.5 10.308 30 2.615 17.5 10.308 5z" />
-  //     <path d="M18 17.5L10.308 5h15.144l7.933 12.5M18 17.5h15.385L25.452 30H10.308L18 17.5z" />
-  //   </g>
-  // );
+import React from "react";
 
+function LogomarkPaths() {
   return (
     <>
       <defs>
@@ -30,25 +25,6 @@ function LogomarkPaths() {
         />
       </g>
     </>
-  );
-}
-
-export function LogoWithText(props: React.ComponentPropsWithoutRef<"svg">) {
-  return (
-    <svg viewBox="0 0 231 38" {...props}>
-      <LogomarkPaths />
-      <text
-        className="hidden lg:block fill-zinc-900 dark:fill-zinc-100"
-        fontFamily="Inter Variable, sans-serif"
-        fontSize={24}
-        fontWeight="bold"
-        letterSpacing="-.02em"
-        x={74}
-        y={26}
-      >
-        Memento Dev
-      </text>
-    </svg>
   );
 }
 

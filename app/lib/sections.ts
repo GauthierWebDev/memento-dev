@@ -41,7 +41,8 @@ function isH3Node(node: Node): node is H3Node {
 
 function getNodeText(node: Node) {
   let text = "";
-  for (let child of node.children ?? []) {
+
+  for (const child of node.children ?? []) {
     if (child.type === "text") {
       text += child.attributes.content;
     }

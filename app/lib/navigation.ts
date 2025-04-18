@@ -119,16 +119,17 @@ export const navigation: NavigationSection[] = [
   },
 ];
 
+export function doesLinkSubitemExist(link: NavigationLink, subitemHref: string): boolean {
+  return link.subitems.some((subitem) => subitem.href === subitemHref);
+}
+
 export function findNavigationLink(namespace: string, href: string): NavigationLink | undefined {
   const currentUrl = `/${namespace}/${href}`.replace(/\/+/g, "/").replace(/\/$/, "");
 
   const foundLink = navigation
     .flatMap((section) => section.links)
     .find((link) => {
-      link.href === currentUrl ||
-        link.subitems.some((subitem) => {
-          subitem.href === currentUrl;
-        });
+      return link.href === currentUrl || doesLinkSubitemExist(link, currentUrl);
     });
 
   return foundLink;

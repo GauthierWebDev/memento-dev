@@ -1,16 +1,9 @@
 import { QuickLink, QuickLinks } from "@syntax/QuickLinks";
 import { TabContent, Tabs } from "@/components/md/Tabs";
-// import { Fence2 } from "@/components/syntax/Fence2";
-import { Callout } from "@syntax/Callout";
-// import fs from "fs/promises";
-// import { Tag } from "./Tag";
-import React from "react";
 import { Snippet } from "@/components/syntax/Snippet";
 import { Iframe } from "@/components/common/Iframe";
-import { Mermaid } from "@/components/common/Mermaid";
-// import path from "path";
-
-// const __dirname = path.resolve();
+import { Callout } from "@syntax/Callout";
+import React from "react";
 
 const tags = {
   callout: {
@@ -43,10 +36,10 @@ const tags = {
       alt: { type: String },
       caption: { type: String },
     },
-    render: ({ src, alt = "", caption }: { src: string; alt: string; caption: string }) => (
+    render: (props: { src: string; alt: string; caption: string }) => (
       <figure>
-        <img src={src} alt={alt} loading="lazy" />
-        <figcaption>{caption}</figcaption>
+        <img src={props.src} alt={props.alt} loading="lazy" />
+        <figcaption>{props.caption}</figcaption>
       </figure>
     ),
   },
@@ -91,15 +84,9 @@ const tags = {
       },
     },
   },
-  mermaid: {
-    render: Mermaid,
-    attributes: {
-      path: { type: String },
-    },
-  },
   img: {
-    render: ({ src, alt = "", className = "" }: { src: string; alt: string; className: string }) => (
-      <img src={src} alt={alt} className={className} loading="lazy" />
+    render: (props: { src: string; alt: string; className: string }) => (
+      <img src={props.src} alt={props.alt} className={props.className} loading="lazy" />
     ),
     attributes: {
       src: { type: String },

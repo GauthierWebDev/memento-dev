@@ -1,8 +1,8 @@
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/solid";
 import { usePageContext } from "vike-react/usePageContext";
+import React, { useEffect, useState } from "react";
 import { Link } from "@/components/common/Link";
 import { navigation } from "@/lib/navigation";
-import { useEffect, useState } from "react";
 import clsx from "clsx";
 
 type NavigationItemProps = {

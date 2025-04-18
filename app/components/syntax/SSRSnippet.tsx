@@ -1,7 +1,7 @@
 import { Highlight, Prism } from "prism-react-renderer";
 import { prismThemes } from "@/data/themes/prism";
+import React, { Fragment, useMemo } from "react";
 import { useTheme } from "@/hooks/useTheme";
-import { Fragment, useMemo } from "react";
 import clsx from "clsx";
 
 export function SSRSnippet({

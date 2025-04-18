@@ -2,19 +2,21 @@ import { MobileNavigation } from "@syntax/MobileNavigation";
 import { usePageContext } from "vike-react/usePageContext";
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import { ThemeSelector } from "@syntax/ThemeSelector";
+import { clientOnly } from "vike-react/clientOnly";
+import React, { useEffect, useState } from "react";
+import { ToastContainer } from "react-toastify";
 import { Navigation } from "@syntax/Navigation";
 import { Link } from "@/components/common/Link";
-import { useEffect, useState } from "react";
-import { Search } from "@syntax/Search";
 import { Hero } from "@syntax/Hero";
-import { Logo, LogoWithText } from "@syntax/Logo";
+import { Logo } from "@syntax/Logo";
 import clsx from "clsx";
 
 import "./style.css";
 import "./tailwind.css";
 import "./prism.css";
 import "unfonts.css";
-import { ToastContainer } from "react-toastify";
+
+const Search = clientOnly(() => import("@syntax/Search").then((module) => module.Search));
 
 function GitHubIcon(props: React.ComponentPropsWithoutRef<"svg">) {
   return (
@@ -25,7 +27,7 @@ function GitHubIcon(props: React.ComponentPropsWithoutRef<"svg">) {
 }
 
 function Header() {
-  let [isScrolled, setIsScrolled] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     function onScroll() {
@@ -59,7 +61,7 @@ function Header() {
       </div>
 
       <div className="-my-5 mr-6 sm:mr-8 md:mr-0">
-        <Search />
+        <Search fallback={<div className="h-6 w-6 animate-pulse rounded-full bg-slate-200 dark:bg-slate-700" />} />
       </div>
 
       <div className="relative flex basis-0 justify-end gap-6 sm:gap-8 md:grow">
