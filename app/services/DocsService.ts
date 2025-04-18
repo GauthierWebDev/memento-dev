@@ -109,15 +109,18 @@ class DocsService {
 
   public async fetchDocs() {
     const docs = glob.sync(DocsService.DOCS_PATH + `/**/*.{${DocsService.DOCS_EXTS.join(",")}}`);
+
     const data = await Promise.all(
       docs.map((doc) => {
         const content = fs.readFileSync(doc, "utf-8");
         const extension = path.extname(doc).slice(1) as DocExtension;
-        const key = doc
+        let key = doc
           .replace(DocsService.DOCS_PATH, "")
           .replace(`page.${extension}`, "")
           .replace(`.${extension}`, "")
           .replace(/\/$/g, "");
+
+        if (key === "") key = "/root";
 
         const ast = Markdoc.parse(content);
         const title = ast.attributes?.frontmatter?.match(/^title:\s*(.*?)\s*$/m)?.[1];
@@ -149,23 +152,30 @@ class DocsService {
     };
   }
 
-  public async getDoc(namespace: "docs" | "certifications", key: string) {
+  public async getDoc(namespace: "root"): Promise<DocData | undefined>;
+  public async getDoc(namespace: "docs" | "certifications", key: string): Promise<DocData | undefined>;
+  public async getDoc(namespace: "root" | "docs" | "certifications", key?: string): Promise<DocData | undefined> {
     try {
       await this.fetchDocs();
-      const doc = this.getFromCache(`/${namespace}/${key}`);
+      let doc: DocData | undefined;
 
-      if (!doc) {
-        throw new Error("Doc not found");
+      if (namespace === "root") {
+        doc = this.getFromCache(`/${namespace}`);
+      } else {
+        doc = this.getFromCache(`/${namespace}/${key}`);
       }
+
+      if (!doc) throw new Error("Doc not found");
 
       return doc;
     } catch (error) {
       console.error("Error fetching docs:", error);
-      return null;
+
+      return undefined;
     }
   }
 
-  public async getUrls(namespace: "docs" | "certifications") {
+  public async getUrls(namespace: "root" | "docs" | "certifications") {
     try {
       await this.fetchDocs();
       const docs = Array.from(this.cache.keys()).filter((key) => key.startsWith(`/${namespace}`));

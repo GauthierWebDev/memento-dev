@@ -12,11 +12,8 @@ export type Data = Awaited<ReturnType<typeof data>>;
 export async function data(_pageContext: PageContext) {
   const config = useConfig();
 
-  const doc = await docsService.getDoc("docs", "index");
-
-  if (!doc) {
-    throw render(404);
-  }
+  const doc = await docsService.getDoc("root");
+  if (!doc) throw render(404);
 
   const readingTimeObject = readingTime(doc.content, 300, "fr");
 
