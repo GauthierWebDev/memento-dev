@@ -16,8 +16,8 @@ export const vikeHandler: Get<[], UniversalHandler> = () => async (request, cont
     headersOriginal: request.headers,
     cookies: {
       consent: {
-        analytics: cookies.get("analytics", Boolean) || false,
-        customization: cookies.get("customization", Boolean) || false,
+        analytics: cookies.get<boolean>("analytics", (value) => value === "true") || false,
+        customization: cookies.get<boolean>("customization", (value) => value === "true") || false,
       },
       settings: {
         theme: cookies.get("theme") || "light",

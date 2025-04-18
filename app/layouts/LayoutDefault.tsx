@@ -1,4 +1,4 @@
-import { onUpdateConsentCookie } from "./LayoutDefault.telefunc";
+import { onUpdateConsentCookie, onAcceptAllConsentCookie } from "./LayoutDefault.telefunc";
 import { MobileNavigation } from "@syntax/MobileNavigation";
 import { usePageContext } from "vike-react/usePageContext";
 import { ThemeProvider } from "@/providers/ThemeProvider";
@@ -133,7 +133,10 @@ function CookieModal() {
                     success: "Cookies mis à jour !",
                     error: "Erreur lors de la mise à jour des cookies.",
                   })
-                  .finally(reload);
+                  .then((data) => {
+                    setConsentCookies({ ...consentCookies, [data.cookieName]: data.cookieValue });
+                    reload();
+                  });
               }}
             />
           </div>
@@ -141,6 +144,8 @@ function CookieModal() {
       </div>
     );
   }
+
+  if (!isOpen) return null;
 
   return (
     <div className="flex flex-col fixed bottom-4 left-4 bg-slate-50 dark:bg-slate-800 z-50 rounded-md shadow-xl w-full max-w-sm overflow-hidden">
@@ -185,8 +190,20 @@ function CookieModal() {
 
         <button
           className="cursor-pointer px-2 py-1 font-bold text-white dark:text-black bg-violet-600 dark:bg-violet-300"
-          onClick={async () => {
-            // TODO
+          onClick={() => {
+            setConsentCookies({ analytics: true, customization: true });
+
+            toast
+              .promise(onAcceptAllConsentCookie(), {
+                pending: "Mise à jour des cookies...",
+                success: "Cookies mis à jour !",
+                error: "Erreur lors de la mise à jour des cookies.",
+              })
+              .then(() => {
+                setIsOpen(false);
+                setIsOpen(false);
+                reload();
+              });
           }}
         >
           Oui, j'ai faim !

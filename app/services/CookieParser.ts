@@ -17,8 +17,8 @@ export class CookieParser {
     this.parse();
   }
 
-  parse(): Record<string, string> {
-    return this.rawCookies.split("; ").reduce(
+  parse() {
+    this.cookies = this.rawCookies.split("; ").reduce(
       (acc, cookie) => {
         const [key, value] = cookie.split("=");
         acc[key] = decodeURIComponent(value);
@@ -28,10 +28,10 @@ export class CookieParser {
     );
   }
 
-  get(key: CookieKeys, formatter?: Function): string | undefined {
+  get(key: CookieKeys): string | undefined;
+  get<T = unknown>(key: CookieKeys, formatter: (value: string) => T): T | undefined;
+  get<T = unknown>(key: CookieKeys, formatter?: (value: string) => T): T | string | undefined {
     const value = this.cookies[key];
-
-    console.log({ key, value });
 
     if (formatter) return formatter(value);
     return value;
