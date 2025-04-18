@@ -15,7 +15,10 @@ export const vikeHandler: Get<[], UniversalHandler> = () => async (request, cont
     urlOriginal: request.url,
     headersOriginal: request.headers,
     cookies: {
-      consent: cookies.get("consent", Boolean) || false,
+      consent: {
+        analytics: cookies.get("consent-analytics", Boolean) || false,
+        customization: cookies.get("consent-customization", Boolean) || false,
+      },
       theme: cookies.get("theme") || "light",
     },
   };

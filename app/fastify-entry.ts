@@ -19,7 +19,10 @@ declare global {
   namespace Vike {
     interface PageContext {
       cookies: Partial<{
-        consent: boolean;
+        consent: {
+          analytics: boolean;
+          customization: boolean;
+        };
         theme: Theme;
       }>;
     }
