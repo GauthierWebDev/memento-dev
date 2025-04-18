@@ -3,6 +3,7 @@ import type { Theme } from "@/contexts/ThemeContext";
 import { createHandler } from "@universal-middleware/fastify";
 import { telefuncHandler } from "./server/telefunc-handler";
 import { vikeHandler } from "./server/vike-handler";
+import { sitemap } from "./services/Sitemap";
 import fastifyCookie from "@fastify/cookie";
 import { fileURLToPath } from "node:url";
 import { dirname } from "node:path";
@@ -33,6 +34,8 @@ declare global {
 
 async function startServer() {
   const app = Fastify();
+
+  sitemap.generateSitemap();
 
   app.register(fastifyCookie, {
     secret: "todo",
