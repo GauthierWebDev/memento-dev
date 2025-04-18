@@ -1,9 +1,9 @@
 import type { Config, Node } from "@markdoc/markdoc";
 
 import { slugifyWithCounter } from "@sindresorhus/slugify";
-import { nodes as defaultNodes } from "@markdoc/markdoc";
 import { DocsLayout } from "@syntax/DocsLayout";
 import { Link } from "@/components/common/Link";
+import Markdoc from "@markdoc/markdoc";
 import { Fence } from "@syntax/Fence";
 import { Tag } from "./Tag";
 import yaml from "js-yaml";
@@ -12,7 +12,7 @@ const documentSlugifyMap = new Map();
 
 const nodes = {
   document: {
-    ...defaultNodes.document,
+    ...Markdoc.nodes.document,
     render: DocsLayout,
     transform(node: Node, config: Config) {
       documentSlugifyMap.set(config, slugifyWithCounter());
@@ -29,7 +29,7 @@ const nodes = {
     },
   },
   heading: {
-    ...defaultNodes.heading,
+    ...Markdoc.nodes.heading,
     transform(node: Node, config: Config) {
       const slugify = documentSlugifyMap.get(config);
       const attributes = node.transformAttributes(config);
@@ -41,9 +41,9 @@ const nodes = {
     },
   },
   strong: {
-    ...defaultNodes.strong,
+    ...Markdoc.nodes.strong,
     attributes: {
-      ...defaultNodes.strong.attributes,
+      ...Markdoc.nodes.strong.attributes,
       class: {
         type: String,
         default: "font-semibold text-slate-800 dark:text-slate-200",
@@ -51,9 +51,9 @@ const nodes = {
     },
   },
   table: {
-    ...defaultNodes.table,
+    ...Markdoc.nodes.table,
     attributes: {
-      ...defaultNodes.table.attributes,
+      ...Markdoc.nodes.table.attributes,
       class: {
         type: String,
         default: "block max-w-full overflow-x-auto border-collapse text-sm",
@@ -61,9 +61,9 @@ const nodes = {
     },
   },
   th: {
-    ...defaultNodes.th,
+    ...Markdoc.nodes.th,
     attributes: {
-      ...defaultNodes.th.attributes,
+      ...Markdoc.nodes.th.attributes,
       scope: {
         type: String,
         default: "col",
@@ -79,7 +79,7 @@ const nodes = {
     },
   },
   link: {
-    ...defaultNodes.link,
+    ...Markdoc.nodes.link,
     render: Link,
   },
 };
