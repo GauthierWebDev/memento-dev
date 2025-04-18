@@ -79,33 +79,61 @@ class Sitemap {
     return (1 - countOfSlashes * 0.1).toFixed(1);
   }
 
-  private loadLastModified(href: string): string {}
+  private loadLastModified(href: string): string {
+    return this.lastModified;
+  }
 
-  private loadFile(href: string) {}
+  private getFileServerLocation(href: string) {
+    const jsxHref = ["/politique-de-confidentialite", "/mentions-legales"];
+    const isJsxFile = jsxHref.includes(href);
 
-  private loadSection(sectionLinks: (typeof navigation)[number]["links"]) {
-    return sectionLinks.map((link) => {
+    if (isJsxFile) {
+      return path.join(this.pagesPath, href.replace("/", ""), "+Page.tsx");
+    }
+
+    return path.join(this.pagesPath, href.replace("/", ""), "page.md");
+  }
+
+  private loadSubitems(subitems: (typeof navigation)[number]["links"][number]["subitems"]): void {
+    subitems.forEach((subitem) => {
+      const fileLocation = this.getFileServerLocation(subitem.href);
+      console.log("File location:", fileLocation);
+
+      const priority = this.loadPriority(subitem.href);
+      const lastmod = this.loadLastModified(subitem.href);
+      const location = `${this.baseUrl}${subitem.href}`;
+
+      this.urls.push({
+        location,
+        lastmod,
+        priority,
+      });
+    });
+  }
+
+  private loadSection(section: (typeof navigation)[number]): void {
+    section.links.forEach((link) => {
+      if (link.subitems.length > 0) {
+        return this.loadSubitems(link.subitems);
+      }
+
       const priority = this.loadPriority(link.href);
       const lastmod = this.loadLastModified(link.href);
       const location = `${this.baseUrl}${link.href}`;
 
-      return {
+      this.urls.push({
         location,
         lastmod,
         priority,
-      };
+      });
     });
   }
 
   private loadUrls(): void {
-    this.urls = navigation.flatMap((section) => {
-      return Array.from(
-        new Set(
-          this.loadSection(section.links)
-            .filter((url) => url !== null)
-            .sort((a, b) => a.location.localeCompare(b.location)),
-        ),
-      );
+    navigation.forEach(this.loadSection.bind(this));
+
+    this.urls = Array.from(new Set(this.urls)).sort((a, b) => {
+      return a.location.localeCompare(b.location);
     });
 
     console.log("Loaded URLs:", this.urls);
