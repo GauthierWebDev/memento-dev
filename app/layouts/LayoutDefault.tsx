@@ -2,11 +2,14 @@ import { MobileNavigation } from "@syntax/MobileNavigation";
 import { usePageContext } from "vike-react/usePageContext";
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import { ThemeSelector } from "@syntax/ThemeSelector";
+import { Button } from "@/components/syntax/Button";
+import { Toggle } from "@/components/common/Toggle";
 import { clientOnly } from "vike-react/clientOnly";
 import React, { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import { Navigation } from "@syntax/Navigation";
 import { Link } from "@/components/common/Link";
+import { reload } from "vike/client/router";
 import { Hero } from "@syntax/Hero";
 import { Logo } from "@syntax/Logo";
 import clsx from "clsx";
@@ -74,12 +77,107 @@ function Header() {
   );
 }
 
+function CookieModal() {
+  const { cookies } = usePageContext();
+
+  const [consentCookies, setConsentCookies] = useState(cookies.consent);
+  const [isSelectionOpen, setIsSelectionOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(() => {
+    return Object.keys(cookies.consent).every((value) => value);
+  });
+
+  if (isSelectionOpen) {
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50">
+        <div className="flex flex-col gap-2 bg-slate-50 dark:bg-slate-800 rounded-md shadow-xl w-full max-w-sm p-4">
+          <p className="font-display dark:text-slate-300 font-bold text-lg">Personnalisation des cookies 🍪</p>
+
+          <div className="flex flex-col gap-2 w-full items-start">
+            <Toggle
+              id="cookies-analytics"
+              label="Cookies d'analyse (Umami et Google Analytics)"
+              checked={cookies.consent.analytics}
+              onChange={(checked) => {
+                setConsentCookies((prev) => ({ ...prev, analytics: checked }));
+                reload();
+              }}
+            />
+
+            <Toggle
+              id="cookies-customization"
+              label="Cookie de personnalisation (thème)"
+              checked={cookies.consent.customization}
+              onChange={(checked) => {
+                setConsentCookies((prev) => ({ ...prev, customization: checked }));
+                reload();
+              }}
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex flex-col fixed bottom-4 left-4 bg-slate-50 dark:bg-slate-800 z-50 rounded-md shadow-xl w-full max-w-sm overflow-hidden">
+      <div className="flex flex-col gap-2 p-4">
+        <p className="font-display dark:text-slate-300">
+          <span className="text-sm">Coucou c'est nous...</span>
+          <br />
+          <span className="font-bold text-lg">les cookies ! 🍪</span>
+        </p>
+
+        <p className="text-slate-700 dark:text-slate-300">
+          On ne t'embête pas longtemps, on te laisse même le choix <em>(si ça c'est pas la classe 😎)</em>.
+        </p>
+
+        <p className="text-slate-700 dark:text-slate-300">
+          Si tu veux en savoir plus, tu peux consulter la page{" "}
+          <Link href="/politique-de-confidentialite" className="font-bold">
+            Politique de confidentialité
+          </Link>
+          .
+        </p>
+      </div>
+
+      <div className="grid items-center grid-cols-3 justify-between bg-slate-100 dark:bg-slate-700">
+        <button
+          className="cursor-pointer px-2 py-1 text-slate-600 dark:text-slate-300"
+          onClick={async () => {
+            // TODO
+          }}
+        >
+          Non merci
+        </button>
+
+        <button
+          className="cursor-pointer px-2 py-1 text-slate-600 dark:text-slate-300"
+          onClick={() => setIsSelectionOpen(true)}
+        >
+          Je choisis
+        </button>
+
+        <button
+          className="cursor-pointer px-2 py-1 font-bold text-violet-600 dark:text-violet-300"
+          onClick={async () => {
+            // TODO
+          }}
+        >
+          Oui, j'ai faim !
+        </button>
+      </div>
+    </div>
+  );
+}
+
 export default function DefaultLayout({ children }: { children: React.ReactNode }) {
   const { urlPathname, cookies } = usePageContext();
   const isHomePage = urlPathname === "/";
 
   return (
     <ThemeProvider defaultTheme={cookies.theme}>
+      <CookieModal />
+
       <div className="flex w-full flex-col font-sans">
         <Header />
 
