@@ -75,11 +75,11 @@ function Header() {
 }
 
 export default function DefaultLayout({ children }: { children: React.ReactNode }) {
-  const { urlPathname } = usePageContext();
+  const { urlPathname, cookies } = usePageContext();
   const isHomePage = urlPathname === "/";
 
   return (
-    <ThemeProvider>
+    <ThemeProvider defaultTheme={cookies.theme}>
       <div className="flex w-full flex-col font-sans">
         <Header />
 
