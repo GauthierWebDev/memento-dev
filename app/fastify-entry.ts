@@ -73,6 +73,11 @@ async function startServer() {
 
   app.post<{ Body: string }>("/_telefunc", createHandler(telefuncHandler)());
 
+  app.get("/sitemap.xml", async (_request, reply) => {
+    reply.type("application/xml");
+    reply.send(sitemap.getSitemap());
+  });
+
   /**
    * Vike route
    *

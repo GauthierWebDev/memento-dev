@@ -151,6 +151,11 @@ class Sitemap {
     });
   }
 
+  public getSitemap(): string {
+    if (!this.sitemap) this.generateSitemap();
+    return this.sitemap;
+  }
+
   public generateSitemap(): void {
     console.log("Generating sitemap...");
 
