@@ -40,7 +40,7 @@ export default function CSRSnippet({
                 {label}
               </div>
             )}
-            <pre className={clsx(className, { "pt-11": !!label })} style={style}>
+            <pre className={clsx(className, { "pt-11": label })} style={style}>
               <code>
                 {tokens.map((line, lineIndex) => (
                   <Fragment key={lineIndex}>
@@ -69,7 +69,7 @@ export default function CSRSnippet({
       <Button
         className={clsx(
           "absolute right-2 w-8 h-8 aspect-square opacity-0 group-hover:opacity-50 hover:opacity-100 transition-opacity",
-          !!label ? "top-10" : "top-2",
+          label ? "top-10" : "top-2",
         )}
         size="sm"
         variant="secondary"

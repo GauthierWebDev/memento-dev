@@ -37,10 +37,12 @@ export function Callout({
   type?: keyof typeof styles;
   collapsible?: boolean;
 }) {
-  let IconComponent = icons[type];
+  const IconComponent = icons[type];
 
   return (
-    <div className={clsx("my-8 flex flex-col rounded-3xl p-6", styles[type].container)}>
+    <div
+      className={clsx("my-8 flex flex-col rounded-3xl p-6", styles[type].container, { "cursor-pointer": collapsible })}
+    >
       <div className="flex items-center gap-6">
         <IconComponent className="h-8 w-8 flex-none" />
         <p className={clsx("!m-0 font-display text-xl text-balance", styles[type].title)}>{title}</p>

@@ -1,6 +1,6 @@
 import type { Dispatch, SetStateAction } from "react";
 
-import { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { Button } from "@syntax/Button";
 import clsx from "clsx";
 

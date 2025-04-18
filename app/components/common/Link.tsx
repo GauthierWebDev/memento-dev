@@ -1,8 +1,9 @@
 import { usePageContext } from "vike-react/usePageContext";
 import { prefetch } from "vike/client/router";
+import React from "react";
 import clsx from "clsx";
 
-export function Link(props: React.AnchorHTMLAttributes<HTMLAnchorElement> & { href: string }) {
+export function Link(props: React.AnchorHTMLAttributes<HTMLAnchorElement> & { href: string; className?: string }) {
   const { urlPathname } = usePageContext();
   const isActive = props.href === "/" ? urlPathname === props.href : urlPathname.startsWith(props.href);
   const isSameDomain = !(props.href.startsWith("http") || props.href.startsWith("mailto"));
