@@ -1,16 +1,13 @@
-import { onUpdateConsentCookie, onAcceptAllConsentCookie } from "./LayoutDefault.telefunc";
+import { CookiesContainer } from "@/components/common/Cookies";
 import { MobileNavigation } from "@syntax/MobileNavigation";
 import { usePageContext } from "vike-react/usePageContext";
 import { ThemeProvider } from "@/providers/ThemeProvider";
-import { ToastContainer, toast } from "react-toastify";
 import { ThemeSelector } from "@syntax/ThemeSelector";
-import { Button } from "@/components/syntax/Button";
-import { Toggle } from "@/components/common/Toggle";
 import { clientOnly } from "vike-react/clientOnly";
 import React, { useEffect, useState } from "react";
+import { ToastContainer } from "react-toastify";
 import { Navigation } from "@syntax/Navigation";
 import { Link } from "@/components/common/Link";
-import { reload } from "vike/client/router";
 import { Hero } from "@syntax/Hero";
 import { Logo } from "@syntax/Logo";
 import clsx from "clsx";
@@ -80,141 +77,6 @@ function Header() {
   );
 }
 
-function CookieModal() {
-  const { cookies } = usePageContext();
-
-  const [consentCookies, setConsentCookies] = useState(cookies.consent);
-  const [isSelectionOpen, setIsSelectionOpen] = useState(false);
-  const [isOpen, setIsOpen] = useState(() => {
-    return !Object.keys(cookies.consent).every((value) => value);
-  });
-
-  if (isSelectionOpen) {
-    return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 backdrop-blur-sm">
-        <div className="relative flex flex-col gap-2 bg-slate-50 dark:bg-slate-800 rounded-md shadow-xl w-full max-w-sm p-4">
-          <Button
-            variant="ghost"
-            size="sm"
-            className="absolute top-0 right-0"
-            onClick={() => setIsSelectionOpen(false)}
-          >
-            Fermer
-          </Button>
-
-          <p className="font-display dark:text-slate-300 font-bold text-lg">Personnalisation des cookies 🍪</p>
-
-          <div className="flex flex-col gap-2 w-full items-start">
-            <Toggle
-              id="cookies-analytics"
-              label="Cookies d&lsquo;analyse (Umami et Google Analytics)"
-              checked={consentCookies.analytics}
-              onChange={(checked) => {
-                setConsentCookies({ ...consentCookies, analytics: checked });
-
-                toast
-                  .promise(onUpdateConsentCookie("analytics", checked), {
-                    pending: "Mise à jour des cookies...",
-                    success: "Cookies mis à jour !",
-                    error: "Erreur lors de la mise à jour des cookies.",
-                  })
-                  .finally(reload);
-              }}
-            />
-
-            <Toggle
-              id="cookies-customization"
-              label="Cookie de personnalisation (thème)"
-              checked={consentCookies.customization}
-              onChange={(checked) => {
-                setConsentCookies({ ...consentCookies, analytics: checked });
-
-                toast
-                  .promise(onUpdateConsentCookie("customization", checked), {
-                    pending: "Mise à jour des cookies...",
-                    success: "Cookies mis à jour !",
-                    error: "Erreur lors de la mise à jour des cookies.",
-                  })
-                  .then((data) => {
-                    setConsentCookies({ ...consentCookies, [data.cookieName]: data.cookieValue });
-                    reload();
-                  });
-              }}
-            />
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  if (!isOpen) return null;
-
-  return (
-    <div className="flex flex-col fixed bottom-4 left-4 bg-slate-50 dark:bg-slate-800 z-50 rounded-md shadow-xl w-full max-w-sm overflow-hidden">
-      <Button variant="ghost" size="sm" className="absolute top-0 right-0" onClick={() => setIsOpen(false)}>
-        Fermer
-      </Button>
-
-      <div className="flex flex-col gap-2 p-4">
-        <p className="font-display dark:text-slate-300">
-          <span className="text-sm">Coucou c&apos;est nous...</span>
-          <br />
-          <span className="font-bold text-lg">les cookies ! 🍪</span>
-        </p>
-
-        <p className="text-slate-700 dark:text-slate-300">
-          On ne t&lsquo;embête pas longtemps, on te laisse même le choix <em>(si ça c&lsquo;est pas la classe 😎)</em>.
-        </p>
-
-        <p className="text-slate-700 dark:text-slate-300">
-          Si tu veux en savoir plus, tu peux consulter la page{" "}
-          <Link href="/politique-de-confidentialite" className="font-bold">
-            Politique de confidentialité
-          </Link>
-          .
-        </p>
-      </div>
-
-      <div className="grid items-center grid-cols-3 justify-between bg-slate-100 dark:bg-slate-700">
-        <button
-          className="cursor-pointer px-2 py-1 text-slate-600 dark:text-slate-300"
-          onClick={() => setIsOpen(false)}
-        >
-          Non merci
-        </button>
-
-        <button
-          className="cursor-pointer px-2 py-1 text-slate-600 dark:text-slate-300"
-          onClick={() => setIsSelectionOpen(true)}
-        >
-          Je choisis
-        </button>
-
-        <button
-          className="cursor-pointer px-2 py-1 font-bold text-white dark:text-black bg-violet-600 dark:bg-violet-300"
-          onClick={() => {
-            setConsentCookies({ analytics: true, customization: true });
-
-            toast
-              .promise(onAcceptAllConsentCookie(), {
-                pending: "Mise à jour des cookies...",
-                success: "Cookies mis à jour !",
-                error: "Erreur lors de la mise à jour des cookies.",
-              })
-              .then(() => {
-                setIsOpen(false);
-                setIsOpen(false);
-                reload();
-              });
-          }}
-        >
-          Oui, j&lsquo;ai faim !
-        </button>
-      </div>
-    </div>
-  );
-}
-
 function Footer() {
   return (
     <footer className="bg-slate-50 dark:bg-slate-950 text-slate-700 dark:text-slate-200">
@@ -256,29 +118,29 @@ export default function DefaultLayout({ children }: { children: React.ReactNode 
   const isHomePage = urlPathname === "/";
 
   return (
-    <ThemeProvider defaultTheme={cookies.settings.theme}>
-      <CookieModal />
+    <CookiesContainer>
+      <ThemeProvider defaultTheme={cookies.settings.theme}>
+        <div className="flex w-full flex-col font-sans">
+          <Header />
 
-      <div className="flex w-full flex-col font-sans">
-        <Header />
+          {isHomePage && <Hero />}
 
-        {isHomePage && <Hero />}
-
-        <div className="relative mx-auto w-full flex max-w-8xl flex-auto justify-center sm:px-2 lg:px-8 xl:px-12">
-          <div className="hidden lg:relative lg:block lg:flex-none">
-            <div className="absolute inset-y-0 right-0 w-[50vw] bg-slate-50 dark:hidden" />
-            <div className="absolute top-16 right-0 bottom-0 hidden h-12 w-px bg-linear-to-t from-slate-800 dark:block" />
-            <div className="absolute top-28 right-0 bottom-0 hidden w-px bg-slate-800 dark:block" />
-            <div className="sticky top-[4.75rem] -ml-0.5 h-[calc(100vh-4.75rem)] w-64 overflow-x-hidden overflow-y-auto py-16 pr-8 pl-0.5 xl:w-72 xl:pr-16">
-              <Navigation />
+          <div className="relative mx-auto w-full flex max-w-8xl flex-auto justify-center sm:px-2 lg:px-8 xl:px-12">
+            <div className="hidden lg:relative lg:block lg:flex-none">
+              <div className="absolute inset-y-0 right-0 w-[50vw] bg-slate-50 dark:hidden" />
+              <div className="absolute top-16 right-0 bottom-0 hidden h-12 w-px bg-linear-to-t from-slate-800 dark:block" />
+              <div className="absolute top-28 right-0 bottom-0 hidden w-px bg-slate-800 dark:block" />
+              <div className="sticky top-[4.75rem] -ml-0.5 h-[calc(100vh-4.75rem)] w-64 overflow-x-hidden overflow-y-auto py-16 pr-8 pl-0.5 xl:w-72 xl:pr-16">
+                <Navigation />
+              </div>
             </div>
+            {children}
           </div>
-          {children}
-        </div>
 
-        <Footer />
-      </div>
-      <ToastContainer />
-    </ThemeProvider>
+          <Footer />
+        </div>
+        <ToastContainer />
+      </ThemeProvider>
+    </CookiesContainer>
   );
 }

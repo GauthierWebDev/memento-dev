@@ -9,7 +9,7 @@ export function Page() {
         Politique de confidentialité
       </h1>
 
-      <section>
+      <section className="flex flex-col gap-2">
         <h2 className="font-display text-xl text-slate-900 dark:text-slate-100">1. Introduction</h2>
 
         <p>
@@ -23,7 +23,7 @@ export function Page() {
         </p>
       </section>
 
-      <section>
+      <section className="flex flex-col gap-2">
         <h2 className="font-display text-xl text-slate-900 dark:text-slate-100">2. Outils externes</h2>
 
         <p>
@@ -58,7 +58,7 @@ export function Page() {
         </section>
       </section>
 
-      <section>
+      <section className="flex flex-col gap-2">
         <h2 className="font-display text-xl text-slate-900 dark:text-slate-100">3. Cookies</h2>
 
         <p>
@@ -81,7 +81,7 @@ export function Page() {
 
         <Button
           variant="secondary"
-          className="mt-2"
+          className="w-max max-w-full"
           onClick={() => {
             // TODO
           }}
@@ -129,7 +129,7 @@ export function Page() {
         </ul>
       </section>
 
-      <section>
+      <section className="flex flex-col gap-2">
         <h2 className="font-display text-xl text-slate-900 dark:text-slate-100">4. Utilisation des données</h2>
 
         <p>
@@ -139,7 +139,7 @@ export function Page() {
         </p>
       </section>
 
-      <section>
+      <section className="flex flex-col gap-2">
         <h2 className="font-display text-xl text-slate-900 dark:text-slate-100">5. Protection des données</h2>
 
         <p>
@@ -150,7 +150,7 @@ export function Page() {
         </p>
       </section>
 
-      <section>
+      <section className="flex flex-col gap-2">
         <h2 className="font-display text-xl text-slate-900 dark:text-slate-100">6. Vos droits</h2>
 
         <p>
