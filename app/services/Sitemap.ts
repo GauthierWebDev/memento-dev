@@ -79,8 +79,8 @@ class Sitemap {
     return (1 - countOfSlashes * 0.1).toFixed(1);
   }
 
-  private loadLastModified(href: string): string {
-    return this.lastModified;
+  private loadLastModified(stat?: fs.Stats): string {
+    return stat ? stat.mtime.toISOString() : this.lastModified;
   }
 
   private getFileServerLocation(href: string) {
@@ -97,10 +97,15 @@ class Sitemap {
   private loadSubitems(subitems: (typeof navigation)[number]["links"][number]["subitems"]): void {
     subitems.forEach((subitem) => {
       const fileLocation = this.getFileServerLocation(subitem.href);
-      console.log("File location:", fileLocation);
+      let fileDetails: fs.Stats | undefined;
+      try {
+        fileDetails = fs.statSync(fileLocation);
+      } catch (error) {
+        console.error(`Error loading file for ${subitem.href}:`, error);
+      }
 
       const priority = this.loadPriority(subitem.href);
-      const lastmod = this.loadLastModified(subitem.href);
+      const lastmod = this.loadLastModified(fileDetails);
       const location = `${this.baseUrl}${subitem.href}`;
 
       this.urls.push({
@@ -118,10 +123,16 @@ class Sitemap {
       }
 
       const fileLocation = this.getFileServerLocation(link.href);
-      console.log("File location:", fileLocation);
+      let fileDetails: fs.Stats | undefined;
+
+      try {
+        fileDetails = fs.statSync(fileLocation);
+      } catch (error) {
+        console.error(`Error loading file for ${link.href}:`, error);
+      }
 
       const priority = this.loadPriority(link.href);
-      const lastmod = this.loadLastModified(link.href);
+      const lastmod = this.loadLastModified(fileDetails);
       const location = `${this.baseUrl}${link.href}`;
 
       this.urls.push({
