@@ -1,6 +1,9 @@
+import type { Theme } from "@/contexts/ThemeContext";
+
 import { createHandler } from "@universal-middleware/fastify";
 import { telefuncHandler } from "./server/telefunc-handler";
 import { vikeHandler } from "./server/vike-handler";
+import fastifyCookie from "@fastify/cookie";
 import { fileURLToPath } from "node:url";
 import { dirname } from "node:path";
 import Fastify from "fastify";
@@ -12,8 +15,25 @@ const hmrPort = process.env.HMR_PORT ? parseInt(process.env.HMR_PORT, 10) : 2467
 const port = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 const root = __dirname;
 
+declare global {
+  namespace Vike {
+    interface PageContext {
+      cookies: Partial<{
+        consent: boolean;
+        theme: Theme;
+      }>;
+    }
+  }
+}
+
 async function startServer() {
   const app = Fastify();
+
+  app.register(fastifyCookie, {
+    secret: "todo",
+    hook: "onRequest",
+    parseOptions: {},
+  });
 
   // Avoid pre-parsing body, otherwise it will cause issue with universal handlers
   // This will probably change in the future though, you can follow https://github.com/magne4000/universal-middleware for updates

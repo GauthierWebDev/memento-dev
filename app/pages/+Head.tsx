@@ -1,7 +1,12 @@
+import { usePageContext } from "vike-react/usePageContext";
 import logoUrl from "@/assets/logo.svg";
 import React from "react";
 
 export default function HeadDefault() {
+  const pageContext = usePageContext();
+
+  console.log("pageContext", pageContext.cookies);
+
   return (
     <>
       <link rel="icon" href={logoUrl} />
