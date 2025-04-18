@@ -134,7 +134,7 @@ export default function DefaultLayout({ children }: { children: React.ReactNode 
                 <Navigation />
               </div>
             </div>
-            {children}
+            <div className="grow">{children}</div>
           </div>
 
           <Footer />
