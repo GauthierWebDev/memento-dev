@@ -1,8 +1,11 @@
-import { Link } from "@/components/common/Link";
+import { CookiesContext } from "@/components/common/Cookies";
 import { Button } from "@/components/syntax/Button";
-import React from "react";
+import { Link } from "@/components/common/Link";
+import React, { useContext } from "react";
 
 export function Page() {
+  const { setIsOpen } = useContext(CookiesContext);
+
   return (
     <div className="flex flex-col gap-4 p-4">
       <h1 className="font-display text-3xl tracking-tight text-slate-900 dark:text-white">
@@ -79,13 +82,7 @@ export function Page() {
           paragraphe.
         </p>
 
-        <Button
-          variant="secondary"
-          className="w-max max-w-full"
-          onClick={() => {
-            // TODO
-          }}
-        >
+        <Button variant="secondary" className="w-max max-w-full" onClick={() => setIsOpen(true)}>
           Paramétrer les cookies
         </Button>
 
