@@ -30,33 +30,33 @@ export function Page() {
         <h2 className="font-display text-xl text-slate-900 dark:text-slate-100">2. Outils externes</h2>
 
         <p>
-          Mon site ne collecte aucune donnée personnelle de manière directe. Cependant, j'utilise des outils externes
-          pour améliorer votre expérience utilisateur et analyser l'utilisation du site.
+          Mon site ne collecte aucune donnée personnelle de manière directe. Cependant, j&apos;utilise des outils
+          externes pour améliorer votre expérience utilisateur et analyser l&apos;utilisation du site.
         </p>
 
         <section className="ml-4">
           <h3 className="font-display text-lg text-slate-900 dark:text-slate-100">a. Google Analytics</h3>
           <p>
-            J'utilise <strong>Google Analytics</strong> pour analyser le trafic et l'utilisation de mon site. Les
-            données collectées par Google Analytics sont anonymisées et ne sont pas partagées avec des tiers.
+            J&apos;utilise <strong>Google Analytics</strong> pour analyser le trafic et l&apos;utilisation de mon site.
+            Les données collectées par Google Analytics sont anonymisées et ne sont pas partagées avec des tiers.
           </p>
         </section>
 
         <section className="ml-4">
           <h3 className="font-display text-lg text-slate-900 dark:text-slate-100">b. Umami</h3>
           <p>
-            <strong>Umami</strong> est un autre outil d'analyse que j'utilise pour comprendre comment les visiteurs
-            interagissent avec mon site. Comme <strong>Google Analytics</strong>, les données collectées sont
+            <strong>Umami</strong> est un autre outil d&apos;analyse que j&apos;utilise pour comprendre comment les
+            visiteurs interagissent avec mon site. Comme <strong>Google Analytics</strong>, les données collectées sont
             anonymisées et ne sont pas tranmises à des tiers.
           </p>
         </section>
 
         <section className="ml-4">
-          <h3 className="font-display text-lg text-slate-900 dark:text-slate-100">c. Cookie "theme"</h3>
+          <h3 className="font-display text-lg text-slate-900 dark:text-slate-100">c. Cookie &quot;theme&quot;</h3>
           <p>
-            J'utilise et dépose un cookie nommé "theme" pour mémoriser votre préférence de thème (clair ou sombre). Ce
-            cookie est utilisé uniquement pour personnaliser votre expérience utilisateur et n'est pas utilisé à des
-            fins de suivi ou de marketing.
+            J&apos;utilise et dépose un cookie nommé &quot;theme&quot; pour mémoriser votre préférence de thème (clair
+            ou sombre). Ce cookie est utilisé uniquement pour personnaliser votre expérience utilisateur et n&apos;est
+            pas utilisé à des fins de suivi ou de marketing.
           </p>
         </section>
       </section>
@@ -65,9 +65,9 @@ export function Page() {
         <h2 className="font-display text-xl text-slate-900 dark:text-slate-100">3. Cookies</h2>
 
         <p>
-          Ce site utilise des cookies pour améliorer votre expérience utilisateur et analyser l'utilisation du site. Les
-          cookies sont de petits fichiers texte stockés sur votre appareil lorsque vous visitez un site web. Ils
-          permettent de mémoriser vos préférences et d'analyser le trafic du site.
+          Ce site utilise des cookies pour améliorer votre expérience utilisateur et analyser l&apos;utilisation du
+          site. Les cookies sont de petits fichiers texte stockés sur votre appareil lorsque vous visitez un site web.
+          Ils permettent de mémoriser vos préférences et d&apos;analyser le trafic du site.
         </p>
 
         <p>
@@ -78,8 +78,8 @@ export function Page() {
         </p>
 
         <p>
-          Pour reconfigurer les cookies, vous pouvez appuyer sur le bouton "Paramétrer les cookies" à la suite de ce
-          paragraphe.
+          Pour reconfigurer les cookies, vous pouvez appuyer sur le bouton &quot;Paramétrer les cookies&quot; à la suite
+          de ce paragraphe.
         </p>
 
         <Button variant="secondary" className="w-max max-w-full" onClick={() => setIsOpen(true)}>
@@ -87,7 +87,7 @@ export function Page() {
         </Button>
 
         <p>
-          Pour plus d'informations sur la gestion des cookies, vous pouvez consulter la documentation de votre
+          Pour plus d&apos;informations sur la gestion des cookies, vous pouvez consulter la documentation de votre
           navigateur. Voici quelques liens utiles :
         </p>
 
@@ -136,9 +136,9 @@ export function Page() {
         <h2 className="font-display text-xl text-slate-900 dark:text-slate-100">4. Utilisation des données</h2>
 
         <p>
-          Les données collectées par les outils d'analyse sont utilisées uniquement pour améliorer le site Memento Dev
-          et comprendre comment les visiteurs l'utilisent. Je n'utilise pas ces données à des fins commerciales ou pour
-          cibler des publicités.
+          Les données collectées par les outils d&apos;analyse sont utilisées uniquement pour améliorer le site Memento
+          Dev et comprendre comment les visiteurs l&apos;utilisent. Je n&apos;utilise pas ces données à des fins
+          commerciales ou pour cibler des publicités.
         </p>
       </section>
 
@@ -148,8 +148,8 @@ export function Page() {
         <p>
           Les données collectées par <strong>Google Analytics</strong> et <strong>Umami</strong> sont anonymisées et
           stockées de manière sécurisée par ces services. Je ne stocke aucune donnée personnelle sur mes propres
-          serveurs. Pour plus d'informations sur la manière dont ces services protègent vos données, veuillez consulter
-          leurs politiques de confidentialité respectives.
+          serveurs. Pour plus d&apos;informations sur la manière dont ces services protègent vos données, veuillez
+          consulter leurs politiques de confidentialité respectives.
         </p>
       </section>
 
@@ -158,7 +158,7 @@ export function Page() {
 
         <p>
           Étant donné que je ne stocke aucune donnée personnelle, je ne suis pas en mesure de répondre aux demandes
-          d'accès, de rectification ou de suppression de données personnelles. Cependant, vous pouvez gérer vos
+          d&apos;accès, de rectification ou de suppression de données personnelles. Cependant, vous pouvez gérer vos
           préférences de cookies directement via les paramètres de votre navigateur. Pour toute question concernant vos
           droits, veuillez me contacter à <strong>gauthier@gauthierdaniels.fr</strong>.
         </p>
@@ -181,7 +181,7 @@ export function Page() {
 
         <p>
           Si vous avez des questions ou des préoccupations concernant ma politique de confidentialité, veuillez me
-          contacter à l'adresse suivante : <strong>gauthier@gauthierdaniels.fr</strong>.
+          contacter à l&apos;adresse suivante : <strong>gauthier@gauthierdaniels.fr</strong>.
         </p>
       </section>
     </div>
