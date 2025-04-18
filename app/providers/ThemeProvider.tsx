@@ -18,6 +18,7 @@ export function ThemeProvider(props: ThemeProviderProps) {
     rootElement.classList.toggle("light", theme === "light");
 
     if (cookies.consent.customization) {
+      console.log(`ThemeProvider: ${theme}`);
       // TODO: update the theme in the cookies
     }
   }, [theme]);
