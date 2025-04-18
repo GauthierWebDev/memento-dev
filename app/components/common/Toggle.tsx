@@ -26,7 +26,7 @@ export function Toggle(props: ToggleProps) {
           <span
             className={clsx(
               "h-4 w-4 rounded-full bg-white shadow-md transition-transform duration-200 ease-in-out z-10",
-              props.checked ? "translate-x-full" : "translate-x-0",
+              props.checked ? "translate-x-[calc(100%+.25em)]" : "translate-x-1",
             )}
           />
           <span

@@ -105,9 +105,9 @@ function CookieModal() {
             <Toggle
               id="cookies-analytics"
               label="Cookies d'analyse (Umami et Google Analytics)"
-              checked={cookies.consent.analytics}
+              checked={consentCookies.analytics}
               onChange={(checked) => {
-                setConsentCookies((prev) => ({ ...prev, analytics: checked }));
+                setConsentCookies({ ...consentCookies, analytics: checked });
                 reload();
               }}
             />
@@ -115,7 +115,7 @@ function CookieModal() {
             <Toggle
               id="cookies-customization"
               label="Cookie de personnalisation (thème)"
-              checked={cookies.consent.customization}
+              checked={consentCookies.customization}
               onChange={(checked) => {
                 setConsentCookies((prev) => ({ ...prev, customization: checked }));
                 reload();

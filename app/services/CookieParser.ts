@@ -1,3 +1,5 @@
+import { FastifyReply } from "fastify";
+
 export class CookieParser {
   private rawCookies: string;
   private cookies: Record<string, string>;
@@ -24,5 +26,19 @@ export class CookieParser {
 
     if (formatter) return formatter(value);
     return value;
+  }
+
+  set(reply: FastifyReply, key: string, value: string, daysDuration = 30): FastifyReply {
+    const options = {
+      path: "/",
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      expires: new Date(Date.now() + 60 * 60 * 24 * daysDuration * 1000),
+    };
+
+    reply.setCookie(key, value, options);
+    this.cookies[key] = value;
+
+    return reply;
   }
 }
