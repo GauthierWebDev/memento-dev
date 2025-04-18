@@ -53,7 +53,13 @@ class Sitemap {
     this.sitemap += `</urlset>`;
   }
 
-  private addSitemapElement(url: SitemapElement): void {}
+  private addSitemapElement(url: SitemapElement): void {
+    this.sitemap += `<url>`;
+    this.sitemap += `<loc>${url.location}</loc>`;
+    this.sitemap += `<lastmod>${url.lastmod || this.lastModified}</lastmod>`;
+    this.sitemap += `<priority>${url.priority}</priority>`;
+    this.sitemap += `</url>`;
+  }
 
   private buildSitemap(): void {
     this.prependSitemap();
@@ -67,34 +73,40 @@ class Sitemap {
 
   private loadPriority(href: string): string {
     const isRootUrl = ["/", ""].includes(href);
-    const isMainUrl = ["/docs", "/certifications", "/politique-de-confidentialite", "/mentions-legales"].includes(href);
 
     if (isRootUrl) return "1.0";
-    if (isMainUrl) return "0.9";
-    return "0.8";
+    const countOfSlashes = (href.match(/\//g) || []).length;
+    return (1 - countOfSlashes * 0.1).toFixed(1);
   }
 
   private loadLastModified(href: string): string {}
 
   private loadFile(href: string) {}
 
-  private loadUrls(): void {
-    this.urls = navigation.flatMap((item) => {
-      return item.links
-        .map((link) => {
-          const file = this.loadFile(link.href);
-          if (!file) {
-            console.warn(`File not found for URL: ${link.href}`);
-            return null;
-          }
+  private loadSection(sectionLinks: (typeof navigation)[number]["links"]) {
+    return sectionLinks.map((link) => {
+      const href = link.href;
+      const priority = this.loadPriority(href);
+      const lastmod = this.loadLastModified(href);
+      const location = `${this.baseUrl}${href}`;
 
-          return {
-            location: `${this.baseUrl}${link.href}`,
-            lastmod: this.loadLastModified(link.href),
-            priority: this.loadPriority(link.href),
-          };
-        })
-        .filter((url) => url !== null);
+      return {
+        location,
+        lastmod,
+        priority,
+      };
+    });
+  }
+
+  private loadUrls(): void {
+    this.urls = navigation.flatMap((section) => {
+      return Array.from(
+        new Set(
+          this.loadSection(section.links)
+            .filter((url) => url !== null)
+            .sort((a, b) => a.location.localeCompare(b.location)),
+        ),
+      );
     });
 
     console.log("Loaded URLs:", this.urls);
