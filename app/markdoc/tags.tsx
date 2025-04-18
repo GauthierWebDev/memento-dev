@@ -36,10 +36,10 @@ const tags = {
       alt: { type: String },
       caption: { type: String },
     },
-    render: ({ src, alt = "", caption }: { src: string; alt: string; caption: string }) => (
+    render: (props: { src: string; alt: string; caption: string }) => (
       <figure>
-        <img src={src} alt={alt} loading="lazy" />
-        <figcaption>{caption}</figcaption>
+        <img src={props.src} alt={props.alt} loading="lazy" />
+        <figcaption>{props.caption}</figcaption>
       </figure>
     ),
   },
@@ -85,8 +85,8 @@ const tags = {
     },
   },
   img: {
-    render: ({ src, alt = "", className = "" }: { src: string; alt: string; className: string }) => (
-      <img src={src} alt={alt} className={className} loading="lazy" />
+    render: (props: { src: string; alt: string; className: string }) => (
+      <img src={props.src} alt={props.alt} className={props.className} loading="lazy" />
     ),
     attributes: {
       src: { type: String },

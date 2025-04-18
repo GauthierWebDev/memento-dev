@@ -1,5 +1,3 @@
-import path from "path";
-
 type SnippetsCache = Map<string, string>;
 
 class SnippetsService {

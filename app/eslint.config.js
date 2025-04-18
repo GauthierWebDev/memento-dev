@@ -1,10 +1,10 @@
 // @ts-nocheck
 
-import eslint from "@eslint/js";
-import prettier from "eslint-plugin-prettier/recommended";
 import react from "eslint-plugin-react/configs/recommended.js";
-import globals from "globals";
+import prettier from "eslint-plugin-prettier/recommended";
 import tseslint from "typescript-eslint";
+import eslint from "@eslint/js";
+import globals from "globals";
 
 export default tseslint.config(
   {
@@ -33,14 +33,10 @@ export default tseslint.config(
   },
   {
     rules: {
-      "@typescript-eslint/no-unused-vars": [
-        1,
-        {
-          argsIgnorePattern: "^_",
-        },
-      ],
+      "@typescript-eslint/no-unused-vars": [1, { argsIgnorePattern: "^_" }],
       "@typescript-eslint/no-namespace": 0,
-      "react/react-in-jsx-scope": false,
+      "react/react-in-jsx-scope": "warn",
+      "react/jsx-filename-extension": [1, { extensions: [".tsx"] }],
     },
   },
 

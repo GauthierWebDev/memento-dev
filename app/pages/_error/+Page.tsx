@@ -1,8 +1,10 @@
 import { usePageContext } from "vike-react/usePageContext";
 import { Link } from "@/components/common/Link";
+import React from "react";
 
 export default function Page() {
   const { is404 } = usePageContext();
+
   if (is404) {
     return (
       <>
@@ -16,7 +18,7 @@ export default function Page() {
               Désolé, nous ne pouvons pas trouver la page que vous recherchez.
             </p>
             <Link href="/" className="mt-8 text-sm font-medium text-slate-900 dark:text-white">
-              Retour à l'accueil
+              Retour à l&apos;accueil
             </Link>
           </div>
         </div>

@@ -8,7 +8,7 @@ import { Fence } from "@syntax/Fence";
 import { Tag } from "./Tag";
 import yaml from "js-yaml";
 
-let documentSlugifyMap = new Map();
+const documentSlugifyMap = new Map();
 
 const nodes = {
   document: {

@@ -5,6 +5,8 @@ import glob from "fast-glob";
 import * as path from "path";
 import * as fs from "fs";
 
+type SearchOptionValue = string | number | boolean | null | undefined | object | unknown;
+
 const slugify = slugifyWithCounter();
 
 interface Node {
@@ -32,20 +34,22 @@ export interface SearchResult {
 
 function toString(node: Node): string {
   let str = node.type === "text" && typeof node.attributes?.content === "string" ? node.attributes.content : "";
+
   if ("children" in node) {
-    for (let child of node.children!) {
+    for (const child of node.children!) {
       str += toString(child);
     }
   }
+
   return str;
 }
 
 function extractSections(node: Node, sections: Section[], isRoot: boolean = true): void {
-  if (isRoot) {
-    slugify.reset();
-  }
+  if (isRoot) slugify.reset();
+
   if (node.type === "heading" || node.type === "paragraph") {
-    let content = toString(node).trim();
+    const content = toString(node).trim();
+
     if (node.type === "heading" && node.attributes?.level! <= 2) {
       let hash = node.attributes?.id ?? slugify(content);
       sections.push({ content, hash, subsections: [] });
@@ -53,7 +57,7 @@ function extractSections(node: Node, sections: Section[], isRoot: boolean = true
       sections[sections.length - 1].subsections.push(content);
     }
   } else if ("children" in node) {
-    for (let child of node.children!) {
+    for (const child of node.children!) {
       extractSections(child, sections, false);
     }
   }
@@ -111,18 +115,18 @@ export function buildSearchIndex(pagesDir: string): FlexSearch.Document<SearchRe
 export function search(
   sectionIndex: FlexSearch.Document<SearchResult>,
   query: string,
-  options: Record<string, any> = {},
+  options: Record<string, SearchOptionValue> = {},
 ): SearchResult[] {
   const results = sectionIndex.search(query, {
     ...options,
     enrich: true,
   });
 
-  if (results.length === 0) {
-    return [];
-  }
+  if (results.length === 0) return [];
 
-  return results[0].result.map((item: any) => ({
+  const searchResults = results[0].result as unknown as { id: string; doc: { title: string; pageTitle: string } }[];
+
+  return searchResults.map((item) => ({
     url: item.id,
     title: item.doc.title,
     pageTitle: item.doc.pageTitle,

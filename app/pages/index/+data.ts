@@ -9,7 +9,7 @@ import { render } from "vike/abort";
 
 export type Data = Awaited<ReturnType<typeof data>>;
 
-export async function data(pageContext: PageContext) {
+export async function data(_pageContext: PageContext) {
   const config = useConfig();
 
   const doc = await docsService.getDoc("docs", "index");
