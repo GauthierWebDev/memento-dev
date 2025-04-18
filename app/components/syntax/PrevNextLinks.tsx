@@ -65,7 +65,13 @@ export function PrevNextLinks() {
     if (linkIndex === -1) return [null, null];
 
     const previousPage = allLinks[linkIndex - 1] || null;
-    const nextPage = allLinks[linkIndex + 1] || null;
+    let nextPage = allLinks[linkIndex + 1] || null;
+
+    // In case the next page is the same as the current page (in subitems),
+    // we need to skip it to get the correct next page.
+    if (nextPage.href === urlPathname) {
+      nextPage = allLinks[linkIndex + 2] || null;
+    }
 
     return [previousPage, nextPage];
   };
