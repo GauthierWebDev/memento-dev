@@ -85,10 +85,9 @@ class Sitemap {
 
   private loadSection(sectionLinks: (typeof navigation)[number]["links"]) {
     return sectionLinks.map((link) => {
-      const href = link.href;
-      const priority = this.loadPriority(href);
-      const lastmod = this.loadLastModified(href);
-      const location = `${this.baseUrl}${href}`;
+      const priority = this.loadPriority(link.href);
+      const lastmod = this.loadLastModified(link.href);
+      const location = `${this.baseUrl}${link.href}`;
 
       return {
         location,
