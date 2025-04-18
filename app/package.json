@@ -1,6 +1,7 @@
 {
   "scripts": {
     "dev": "tsx ./fastify-entry.ts",
+    "dev:sitemap": "tsx --watch ./sitemap.ts",
     "build": "vike build",
     "preview": "cross-env NODE_ENV=production tsx ./fastify-entry.ts",
     "lint": "eslint .",
