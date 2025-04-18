@@ -70,7 +70,7 @@ export function PrevNextLinks() {
 
     // In case the next page is the same as the current page (in subitems),
     // we need to skip it to get the correct next page.
-    if (nextPage.href === urlPathname) {
+    if (nextPage?.href === urlPathname) {
       nextPage = allLinks[linkIndex + 2] || null;
     }
 
