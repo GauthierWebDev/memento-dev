@@ -1,16 +1,9 @@
 import { QuickLink, QuickLinks } from "@syntax/QuickLinks";
 import { TabContent, Tabs } from "@/components/md/Tabs";
-// import { Fence2 } from "@/components/syntax/Fence2";
-import { Callout } from "@syntax/Callout";
-// import fs from "fs/promises";
-// import { Tag } from "./Tag";
-import React from "react";
 import { Snippet } from "@/components/syntax/Snippet";
 import { Iframe } from "@/components/common/Iframe";
-import { Mermaid } from "@/components/common/Mermaid";
-// import path from "path";
-
-// const __dirname = path.resolve();
+import { Callout } from "@syntax/Callout";
+import React from "react";
 
 const tags = {
   callout: {
@@ -89,12 +82,6 @@ const tags = {
         type: Boolean,
         default: false,
       },
-    },
-  },
-  mermaid: {
-    render: Mermaid,
-    attributes: {
-      path: { type: String },
     },
   },
   img: {
