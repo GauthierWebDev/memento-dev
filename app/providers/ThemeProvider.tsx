@@ -1,6 +1,8 @@
+import { onUpdateThemeCookie } from "@/providers/ThemeProvider.telefunc";
 import { ThemeContext, type Theme } from "@/contexts/ThemeContext";
 import { usePageContext } from "vike-react/usePageContext";
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 type ThemeProviderProps = {
   children: React.ReactNode;
@@ -18,8 +20,9 @@ export function ThemeProvider(props: ThemeProviderProps) {
     rootElement.classList.toggle("light", theme === "light");
 
     if (cookies.consent.customization) {
-      console.log(`ThemeProvider: ${theme}`);
-      // TODO: update the theme in the cookies
+      onUpdateThemeCookie(theme).catch(() => {
+        toast.error("Erreur lors de la mise à jour du cookie de thème");
+      });
     }
   }, [theme]);
 
