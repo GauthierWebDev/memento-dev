@@ -13,7 +13,20 @@ export default defineConfig({
     }),
     Unfonts({
       fontsource: {
-        families: ["Inter Variable", "Lexend Variable"],
+        families: [
+          {
+            name: "Lexend Variable",
+            weights: [400],
+            styles: ["normal"],
+            subset: "latin",
+          },
+          {
+            name: "Inter Variable",
+            weights: [400, 500, 600, 700],
+            styles: ["normal"],
+            subset: "latin",
+          },
+        ],
       },
     }),
     vike({}),

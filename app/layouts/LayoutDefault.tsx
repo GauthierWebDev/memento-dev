@@ -80,7 +80,7 @@ export default function DefaultLayout({ children }: { children: React.ReactNode 
 
   return (
     <ThemeProvider>
-      <div className="flex w-full flex-col">
+      <div className="flex w-full flex-col font-sans">
         <Header />
 
         {isHomePage && <Hero />}
