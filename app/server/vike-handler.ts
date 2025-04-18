@@ -16,10 +16,12 @@ export const vikeHandler: Get<[], UniversalHandler> = () => async (request, cont
     headersOriginal: request.headers,
     cookies: {
       consent: {
-        analytics: cookies.get("consent-analytics", Boolean) || false,
-        customization: cookies.get("consent-customization", Boolean) || false,
+        analytics: cookies.get("analytics", Boolean) || false,
+        customization: cookies.get("customization", Boolean) || false,
       },
-      theme: cookies.get("theme") || "light",
+      settings: {
+        theme: cookies.get("theme") || "light",
+      },
     },
   };
   const pageContext = await renderPage(pageContextInit);

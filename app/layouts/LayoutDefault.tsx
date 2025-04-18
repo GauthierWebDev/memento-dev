@@ -1,12 +1,13 @@
+import { onUpdateConsentCookie } from "./LayoutDefault.telefunc";
 import { MobileNavigation } from "@syntax/MobileNavigation";
 import { usePageContext } from "vike-react/usePageContext";
 import { ThemeProvider } from "@/providers/ThemeProvider";
+import { ToastContainer, toast } from "react-toastify";
 import { ThemeSelector } from "@syntax/ThemeSelector";
 import { Button } from "@/components/syntax/Button";
 import { Toggle } from "@/components/common/Toggle";
 import { clientOnly } from "vike-react/clientOnly";
 import React, { useEffect, useState } from "react";
-import { ToastContainer } from "react-toastify";
 import { Navigation } from "@syntax/Navigation";
 import { Link } from "@/components/common/Link";
 import { reload } from "vike/client/router";
@@ -108,7 +109,14 @@ function CookieModal() {
               checked={consentCookies.analytics}
               onChange={(checked) => {
                 setConsentCookies({ ...consentCookies, analytics: checked });
-                reload();
+
+                toast
+                  .promise(onUpdateConsentCookie("analytics", checked), {
+                    pending: "Mise à jour des cookies...",
+                    success: "Cookies mis à jour !",
+                    error: "Erreur lors de la mise à jour des cookies.",
+                  })
+                  .finally(reload);
               }}
             />
 
@@ -117,8 +125,15 @@ function CookieModal() {
               label="Cookie de personnalisation (thème)"
               checked={consentCookies.customization}
               onChange={(checked) => {
-                setConsentCookies((prev) => ({ ...prev, customization: checked }));
-                reload();
+                setConsentCookies({ ...consentCookies, analytics: checked });
+
+                toast
+                  .promise(onUpdateConsentCookie("customization", checked), {
+                    pending: "Mise à jour des cookies...",
+                    success: "Cookies mis à jour !",
+                    error: "Erreur lors de la mise à jour des cookies.",
+                  })
+                  .finally(reload);
               }}
             />
           </div>
@@ -186,7 +201,7 @@ export default function DefaultLayout({ children }: { children: React.ReactNode 
   const isHomePage = urlPathname === "/";
 
   return (
-    <ThemeProvider defaultTheme={cookies.theme}>
+    <ThemeProvider defaultTheme={cookies.settings.theme}>
       <CookieModal />
 
       <div className="flex w-full flex-col font-sans">

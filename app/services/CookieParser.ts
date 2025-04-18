@@ -1,4 +1,11 @@
+import type { PageContext } from "vike/types";
+
 import { FastifyReply } from "fastify";
+
+type ConsentCookies = keyof PageContext["cookies"]["consent"];
+type SettingsCookie = keyof PageContext["cookies"]["settings"];
+
+type CookieKeys = ConsentCookies | SettingsCookie;
 
 export class CookieParser {
   private rawCookies: string;
@@ -21,14 +28,16 @@ export class CookieParser {
     );
   }
 
-  get(key: string, formatter?: Function): string | undefined {
+  get(key: CookieKeys, formatter?: Function): string | undefined {
     const value = this.cookies[key];
+
+    console.log({ key, value });
 
     if (formatter) return formatter(value);
     return value;
   }
 
-  set(reply: FastifyReply, key: string, value: string, daysDuration = 30): FastifyReply {
+  static set(reply: FastifyReply, key: CookieKeys, value: string, daysDuration = 30): FastifyReply {
     const options = {
       path: "/",
       httpOnly: true,
@@ -37,7 +46,6 @@ export class CookieParser {
     };
 
     reply.setCookie(key, value, options);
-    this.cookies[key] = value;
 
     return reply;
   }

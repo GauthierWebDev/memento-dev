@@ -1,7 +1,11 @@
+import type { PageContext } from "vike/types";
+
 import { getTelefuncContext } from "@/lib/getTelefuncContext";
 import { CookieParser } from "@/services/CookieParser";
 
-export async function onUpdateConsentCookie(cookieName: string, cookieValue: boolean) {
+type ConsentCookies = keyof PageContext["cookies"]["consent"];
+
+export async function onUpdateConsentCookie(cookieName: ConsentCookies, cookieValue: boolean) {
   const context = getTelefuncContext();
   console.log(`Updating cookie ${cookieName} to ${cookieValue}`);
 

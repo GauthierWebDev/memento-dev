@@ -23,7 +23,9 @@ declare global {
           analytics: boolean;
           customization: boolean;
         };
-        theme: Theme;
+        settings: {
+          theme: Theme;
+        };
       };
     }
   }
