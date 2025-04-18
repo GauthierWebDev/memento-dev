@@ -1,6 +1,7 @@
 import { usePageContext } from "vike-react/usePageContext";
 import { Link } from "@/components/common/Link";
 import { navigation } from "@/lib/navigation";
+import React from "react";
 import clsx from "clsx";
 
 function ArrowIcon(props: React.ComponentPropsWithoutRef<"svg">) {
