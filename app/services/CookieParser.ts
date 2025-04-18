@@ -17,6 +17,23 @@ export class CookieParser {
     this.parse();
   }
 
+  public static buildOptions(daysDuration: number | Date) {
+    let expires: Date;
+
+    if (daysDuration instanceof Date) {
+      expires = daysDuration;
+    } else {
+      expires = new Date(Date.now() + 60 * 60 * 24 * daysDuration * 1000);
+    }
+
+    return {
+      path: "/",
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      expires,
+    };
+  }
+
   parse() {
     this.cookies = this.rawCookies.split("; ").reduce(
       (acc, cookie) => {
@@ -38,14 +55,15 @@ export class CookieParser {
   }
 
   static set(reply: FastifyReply, key: CookieKeys, value: string, daysDuration = 30): FastifyReply {
-    const options = {
-      path: "/",
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      expires: new Date(Date.now() + 60 * 60 * 24 * daysDuration * 1000),
-    };
-
+    const options = CookieParser.buildOptions(daysDuration);
     reply.setCookie(key, value, options);
+
+    return reply;
+  }
+
+  static delete(reply: FastifyReply, key: CookieKeys): FastifyReply {
+    const options = CookieParser.buildOptions(new Date("1900-01-01"));
+    reply.setCookie(key, "", options);
 
     return reply;
   }

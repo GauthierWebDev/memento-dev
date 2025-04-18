@@ -1,5 +1,5 @@
-import { onUpdateConsentCookie, onAcceptAllConsentCookie, type ConsentCookies } from "./Cookies.telefunc";
-import React, { useState, useContext, createContext } from "react";
+import { onUpdateConsentCookie, onSetAllConsentCookie, type ConsentCookies } from "./Cookies.telefunc";
+import React, { useState, useContext, createContext, useMemo } from "react";
 import { usePageContext } from "vike-react/usePageContext";
 import { reload } from "vike/client/router";
 import { Button } from "@syntax/Button";
@@ -13,7 +13,7 @@ export const CookiesContext = createContext<{
     customization: boolean;
   };
   setCookie: (cookieName: ConsentCookies, cookieValue: boolean) => void;
-  acceptAll: () => void;
+  setAllCookies: (cookieValue: boolean) => void;
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
   isSelectionOpen: boolean;
@@ -24,7 +24,7 @@ export const CookiesContext = createContext<{
     customization: false,
   },
   setCookie: (_cookieName: ConsentCookies, _cookieValue: boolean) => {},
-  acceptAll: () => {},
+  setAllCookies: () => {},
   isOpen: false,
   setIsOpen: () => {},
   isSelectionOpen: false,
@@ -44,38 +44,35 @@ export function CookiesContainer(props: CookiesContainerProps) {
     return !Object.keys(cookies.consent).every((value) => value);
   });
 
+  const toastPromiseMessages = useMemo(
+    () => ({
+      pending: "Mise à jour des cookies...",
+      success: "Cookies mis à jour !",
+      error: "Erreur lors de la mise à jour des cookies",
+    }),
+    [],
+  );
+
   const handleUpdateCookie = (cookieName: ConsentCookies, cookieValue: boolean) => {
     setConsentCookies((prev) => ({
       ...prev,
       [cookieName]: cookieValue,
     }));
 
-    toast
-      .promise(onUpdateConsentCookie(cookieName, cookieValue), {
-        pending: "Mise à jour des cookies...",
-        success: "Cookies mis à jour !",
-        error: "Erreur lors de la mise à jour des cookies",
-      })
-      .then(() => {
-        setIsOpen(false);
-        reload();
-      });
+    toast.promise(onUpdateConsentCookie(cookieName, cookieValue), toastPromiseMessages).then(() => {
+      setIsOpen(false);
+      reload();
+    });
   };
 
-  const handleAcceptAll = () => {
+  const handleSetAll = (value: boolean) => {
     setConsentCookies({ analytics: true, customization: true });
 
-    toast
-      .promise(onAcceptAllConsentCookie(), {
-        pending: "Acceptation des cookies...",
-        success: "Cookies acceptés !",
-        error: "Erreur lors de l'acceptation des cookies",
-      })
-      .then(() => {
-        setIsOpen(false);
-        setIsSelectionOpen(false);
-        reload();
-      });
+    toast.promise(onSetAllConsentCookie(value), toastPromiseMessages).then(() => {
+      setIsOpen(false);
+      setIsSelectionOpen(false);
+      reload();
+    });
   };
 
   return (
@@ -83,7 +80,7 @@ export function CookiesContainer(props: CookiesContainerProps) {
       value={{
         cookies: consentCookies,
         setCookie: handleUpdateCookie,
-        acceptAll: handleAcceptAll,
+        setAllCookies: handleSetAll,
         isOpen,
         setIsOpen,
         isSelectionOpen,
@@ -171,7 +168,7 @@ function CookieModal() {
       <div className="grid items-center grid-cols-3 justify-between bg-slate-100 dark:bg-slate-700">
         <button
           className="cursor-pointer px-2 py-1 text-slate-600 dark:text-slate-300"
-          onClick={() => cookiesContext.setIsOpen(false)}
+          onClick={() => cookiesContext.setAllCookies(false)}
         >
           Non merci
         </button>
@@ -185,7 +182,7 @@ function CookieModal() {
 
         <button
           className="cursor-pointer px-2 py-1 font-bold text-white dark:text-black bg-violet-600 dark:bg-violet-300"
-          onClick={cookiesContext.acceptAll}
+          onClick={() => cookiesContext.setAllCookies(true)}
         >
           Oui, j&lsquo;ai faim !
         </button>

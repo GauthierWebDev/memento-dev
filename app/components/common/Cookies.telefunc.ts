@@ -14,12 +14,12 @@ export async function onUpdateConsentCookie(cookieName: ConsentCookies, cookieVa
   return { ok: true, message: "Updated consent cookie", cookieName, cookieValue };
 }
 
-export async function onAcceptAllConsentCookie() {
+export async function onSetAllConsentCookie(cookieValue: boolean) {
   const context = getTelefuncContext();
   const { reply } = context;
 
-  CookieParser.set(reply, "analytics", "true", 365);
-  CookieParser.set(reply, "customization", "true", 365);
+  CookieParser.set(reply, "analytics", cookieValue.toString(), 365);
+  CookieParser.set(reply, "customization", cookieValue.toString(), 365);
 
   return { ok: true, message: "Updated consents cookies" };
 }

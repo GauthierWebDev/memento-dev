@@ -11,3 +11,12 @@ export async function onUpdateThemeCookie(value: Theme) {
 
   return { ok: true, message: "Updated theme cookie", value };
 }
+
+export async function onDeleteThemeCookie() {
+  const context = getTelefuncContext();
+  const { reply } = context;
+
+  CookieParser.delete(reply, "theme");
+
+  return { ok: true, message: "Deleted theme cookie" };
+}

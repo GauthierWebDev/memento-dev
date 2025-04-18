@@ -1,4 +1,4 @@
-import { onUpdateThemeCookie } from "@/providers/ThemeProvider.telefunc";
+import { onUpdateThemeCookie, onDeleteThemeCookie } from "@/providers/ThemeProvider.telefunc";
 import { ThemeContext, type Theme } from "@/contexts/ThemeContext";
 import { usePageContext } from "vike-react/usePageContext";
 import React, { useEffect, useState } from "react";
@@ -23,8 +23,12 @@ export function ThemeProvider(props: ThemeProviderProps) {
       onUpdateThemeCookie(theme).catch(() => {
         toast.error("Erreur lors de la mise à jour du cookie de thème");
       });
+    } else {
+      onDeleteThemeCookie().catch(() => {
+        toast.error("Erreur lors de la suppression du cookie de thème");
+      });
     }
-  }, [theme]);
+  }, [theme, cookies.consent.customization]);
 
   return <ThemeContext.Provider value={{ theme, setTheme }}>{props.children}</ThemeContext.Provider>;
 }
