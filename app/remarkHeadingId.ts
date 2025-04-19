@@ -140,7 +140,7 @@ const formatExportNode = (): MDXJSEsm => {
 	};
 };
 
-const remarkHeadingId: Plugin<[], Root> = () => (tree: Root, file) => {
+const remarkHeadingId: Plugin<[], Root> = () => (tree: Root) => {
 	const slugify = slugifyWithCounter();
 
 	visit(tree, "heading", (node) => {
