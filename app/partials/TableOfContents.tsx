@@ -80,14 +80,14 @@ export function TableOfContents(props: TableOfContentsProps) {
 												class={clsx(
 													isActive(section)
 														? "text-violet-500"
-														: "font-normal text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300",
+														: "font-normal text-slate-500 hover:text-slate-700",
 												)}
 											>
 												{section.title}
 											</Link>
 										</h3>
 										{section.children.length > 0 && (
-											<ol class="mt-2 space-y-3 pl-5 text-slate-500 dark:text-slate-400">
+											<ol class="mt-2 space-y-3 pl-5 text-slate-500">
 												<For each={section.children}>
 													{(subSection) => (
 														<li>
@@ -96,7 +96,7 @@ export function TableOfContents(props: TableOfContentsProps) {
 																class={
 																	isActive(subSection)
 																		? "text-violet-500"
-																		: "hover:text-slate-600 dark:hover:text-slate-300"
+																		: "hover:text-slate-600"
 																}
 															>
 																{subSection.title}

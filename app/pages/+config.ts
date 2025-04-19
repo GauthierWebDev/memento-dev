@@ -18,7 +18,7 @@ export default {
 		class: "h-full antialiased",
 	},
 	bodyAttributes: {
-		class: "flex min-h-full bg-white dark:bg-slate-900",
+		class: "flex min-h-full bg-white",
 	},
 
 	prerender: true,

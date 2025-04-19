@@ -36,7 +36,7 @@ function TrafficLightsIcon(props: JSX.IntrinsicElements["svg"]) {
 
 export function HeroSection() {
 	return (
-		<div class="overflow-hidden bg-slate-900 dark:mt-[-4.75rem] dark:-mb-32 dark:pt-[4.75rem] dark:pb-32">
+		<div class="overflow-hidden bg-slate-900">
 			<div class="py-16 sm:px-2 lg:relative lg:px-0 lg:py-20">
 				<div class="mx-auto grid max-w-2xl w-full grid-cols-1 items-center gap-x-8 gap-y-16 px-4 lg:max-w-8xl lg:grid-cols-2 lg:px-8 xl:gap-x-16 xl:px-12">
 					<div class="relative z-10 md:text-center lg:text-left">
@@ -67,7 +67,7 @@ export function HeroSection() {
 						</div>
 					</div>
 					<div class="relative lg:static xl:pl-10">
-						<div class="absolute inset-x-[-50vw] -top-32 -bottom-48 [mask-image:linear-gradient(transparent,white,white)] lg:-top-32 lg:right-0 lg:-bottom-32 lg:left-[calc(50%+14rem)] lg:[mask-image:none] dark:[mask-image:linear-gradient(transparent,white,transparent)] lg:dark:[mask-image:linear-gradient(white,white,transparent)]">
+						<div class="absolute inset-x-[-50vw] -top-32 -bottom-48 [mask-image:linear-gradient(transparent,white,white)] lg:-top-32 lg:right-0 lg:-bottom-32 lg:left-[calc(50%+14rem)] lg:[mask-image:none]">
 							<HeroBackground class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 lg:left-0 lg:translate-x-0 lg:translate-y-[-60%]" />
 						</div>
 						<div class="relative">
