@@ -1,5 +1,3 @@
-import type { readingTime } from "reading-time-estimator";
-
 import { fileURLToPath } from "node:url";
 import { dirname } from "node:path";
 import { config } from "./config";
@@ -11,22 +9,6 @@ const __dirname = dirname(__filename);
 const root = __dirname;
 
 const pagesDir = `${root}/dist/client`;
-
-declare global {
-	namespace Vike {
-		interface PageContext {
-			exports: {
-				frontmatter?: Partial<{
-					title: string;
-					description: string;
-					tags: string[];
-				}>;
-				readingTime?: ReturnType<typeof readingTime>;
-				[key: string]: unknown;
-			};
-		}
-	}
-}
 
 async function startServer() {
 	const app = Fastify();

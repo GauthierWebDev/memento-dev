@@ -1,26 +1,18 @@
-import type { Root, Literal } from "mdast";
 import type { Program } from "estree-jsx";
 import type { Plugin } from "unified";
 import type { VFile } from "vfile";
+import type { Root } from "mdast";
 
 import { readingTime } from "reading-time-estimator";
 import { visit } from "unist-util-visit";
 import yaml from "js-yaml";
 
-// Type pour le frontmatter
 export interface Frontmatter {
 	title: string;
 	description: string;
 	tags: string[];
 }
 
-// Interface pour le noeud YAML
-interface YamlNode extends Literal {
-	type: "yaml";
-	value: string;
-}
-
-// Interface pour le noeud MDX ESM
 interface MDXJSEsm {
 	type: "mdxjsEsm";
 	value: string;
@@ -29,7 +21,6 @@ interface MDXJSEsm {
 	};
 }
 
-// Type pour la VFile avec données personnalisées
 interface CustomVFile extends VFile {
 	data: {
 		frontmatter?: Frontmatter;
@@ -40,7 +31,7 @@ interface CustomVFile extends VFile {
 
 const remarkExtractFrontmatter: Plugin<[], Root> =
 	() => (tree: Root, file: CustomVFile) => {
-		visit(tree, "yaml", (node: YamlNode) => {
+		visit(tree, "yaml", (node) => {
 			try {
 				const data = (yaml.load(node.value) as Frontmatter) || {};
 

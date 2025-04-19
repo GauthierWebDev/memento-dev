@@ -1,3 +1,6 @@
+import type { readingTime } from "reading-time-estimator";
+import type { TableOfContents } from "./remarkHeadingId";
+
 import { createHandler } from "@universal-middleware/fastify";
 import { telefuncHandler } from "./server/telefunc-handler";
 import { vikeHandler } from "./server/vike-handler";
@@ -10,6 +13,23 @@ import Fastify from "fastify";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const root = __dirname;
+
+declare global {
+	namespace Vike {
+		interface PageContext {
+			exports: {
+				frontmatter?: Partial<{
+					title: string;
+					description: string;
+					tags: string[];
+				}>;
+				readingTime?: ReturnType<typeof readingTime>;
+				tableOfContents?: TableOfContents;
+				[key: string]: unknown;
+			};
+		}
+	}
+}
 
 async function startServer() {
 	const app = Fastify();
