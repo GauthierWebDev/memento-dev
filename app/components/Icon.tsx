@@ -28,7 +28,7 @@ const iconStyles = {
 
 export type IconColor = keyof typeof iconStyles;
 
-type IconProps = JSX.IntrinsicElements["svg"] & {
+export type IconProps = JSX.IntrinsicElements["svg"] & {
 	color?: IconColor;
 	icon: keyof typeof icons;
 };
