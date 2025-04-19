@@ -124,21 +124,6 @@ const formatExportNode = (): MDXJSEsm => {
 													method: false,
 													shorthand: false,
 												},
-												{
-													type: "Property",
-													key: {
-														type: "Identifier",
-														name: "path",
-													},
-													value: {
-														type: "Literal",
-														value: section.path,
-													},
-													kind: "init",
-													computed: false,
-													method: false,
-													shorthand: false,
-												},
 											],
 										})),
 									},
@@ -161,9 +146,6 @@ const remarkHeadingId: Plugin<[], Root> = () => (tree: Root, file) => {
 	visit(tree, "heading", (node) => {
 		const lastChild = node.children[node.children.length - 1];
 
-		const filePath = file.path;
-		console.log(`File path: ${filePath}`);
-
 		if (lastChild && lastChild.type === "text") {
 			const string = lastChild.value.replace(/ +$/, "");
 			const matched = string.match(/ {#(.*?)}$/);
@@ -181,7 +163,6 @@ const remarkHeadingId: Plugin<[], Root> = () => (tree: Root, file) => {
 			id: slug,
 			title: extractText(node.children),
 			level: depth,
-			path: filePath,
 		});
 	});
 
