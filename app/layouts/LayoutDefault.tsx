@@ -2,8 +2,8 @@ import type { JSX } from "solid-js";
 
 import "./tailwind.css";
 
-import logoUrl from "../assets/logo.svg";
-import { Link } from "../components/Link.js";
+import { Link } from "@/components/Link";
+import logoUrl from "@/assets/logo.svg";
 
 export default function LayoutDefault(props: { children?: JSX.Element }) {
 	return (
