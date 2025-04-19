@@ -2,9 +2,9 @@ import type { JSX } from "solid-js";
 
 import blurIndigoImage from "@/images/blur-indigo.webp";
 import blurCyanImage from "@/images/blur-cyan.webp";
+import { Highlight } from "@/components/Highlight";
 import { HeroBackground } from "./HeroBackground";
 import { Button } from "@/components/Button";
-import { Highlight } from "solid-highlight";
 import { Image } from "@/components/Image";
 import { For } from "solid-js";
 import clsx from "clsx";
@@ -132,23 +132,7 @@ export function HeroSection() {
 											</For>
 										</div>
 
-										<Highlight language={codeLanguage}>{code}</Highlight>
-
-										{/* <Highlight code={code} language={codeLanguage} theme={{ plain: {}, styles: [] }}>
-                      {({ class, style, tokens, getLineProps, getTokenProps }) => (
-                        <pre class={clsx(class, "flex overflow-x-auto pb-6")} style={style}>
-                          <code class="px-4">
-                            {tokens.map((line, lineIndex) => (
-                              <div key={lineIndex} {...getLineProps({ line })}>
-                                {line.map((token, tokenIndex) => (
-                                  <span key={tokenIndex} {...getTokenProps({ token })} />
-                                ))}
-                              </div>
-                            ))}
-                          </code>
-                        </pre>
-                      )}
-                    </Highlight> */}
+										<Highlight language={codeLanguage} code={code} />
 									</div>
 								</div>
 							</div>

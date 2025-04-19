@@ -1,3 +1,4 @@
+import prismjsVitePlugin from "vite-plugin-prismjs";
 import tailwindcss from "@tailwindcss/vite";
 import { telefunc } from "telefunc/vite";
 import vikeSolid from "vike-solid/vite";
@@ -10,6 +11,18 @@ const __dirname = path.resolve();
 
 export default defineConfig({
 	plugins: [
+		prismjsVitePlugin({
+			languages: [
+				"javascript",
+				"typescript",
+				"tsx",
+				"jsx",
+				"css",
+				"html",
+				"bash",
+				"nginx",
+			],
+		}),
 		vike(),
 		vikeSolid(),
 		mdx({ jsxImportSource: "solid-jsx", providerImportSource: "solid-mdx" }),

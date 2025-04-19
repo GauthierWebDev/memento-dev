@@ -13,10 +13,10 @@ import { Logo } from "@/components/Logo";
 import { Toaster } from "solid-toast";
 import clsx from "clsx";
 
-import "./style.css";
+// import "./style.css";
 import "./tailwind.css";
 // import "./prism.css";
-import "unfonts.css";
+// import "unfonts.css";
 
 // const Search = clientOnly(() => import("@/components/Search").then((module) => module.Search));
 

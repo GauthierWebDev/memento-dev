@@ -1,9 +1,9 @@
-import { fileURLToPath } from "node:url";
-import { dirname } from "node:path";
-
 import { createHandler } from "@universal-middleware/fastify";
 import { telefuncHandler } from "./server/telefunc-handler";
 import { vikeHandler } from "./server/vike-handler";
+import { createDevMiddleware } from "vike/server";
+import { fileURLToPath } from "node:url";
+import { dirname } from "node:path";
 import { config } from "./config";
 import Fastify from "fastify";
 
@@ -27,17 +27,13 @@ async function startServer() {
 			wildcard: false,
 		});
 	} else {
-		// Instantiate Vite's development server and integrate its middleware to our server.
-		// ⚠️ We should instantiate it *only* in development. (It isn't needed in production
-		// and would unnecessarily bloat our server in production.)
-		const vite = await import("vite");
-		const viteDevMiddleware = (
-			await vite.createServer({
-				root,
-				server: { middlewareMode: true, hmr: { port: config.HMR_PORT } },
-			})
-		).middlewares;
-		app.use(viteDevMiddleware);
+		const { devMiddleware } = await createDevMiddleware({
+			root,
+			viteConfig: {
+				server: { hmr: { port: config.HMR_PORT } },
+			},
+		});
+		app.use(devMiddleware);
 	}
 
 	app.post<{ Body: string }>("/_telefunc", createHandler(telefuncHandler)());
