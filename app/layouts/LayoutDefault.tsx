@@ -3,21 +3,17 @@ import type { JSX, JSXElement } from "solid-js";
 // import { CookiesContainer } from "@/components/common/Cookies";
 import { MobileNavigation } from "@/partials/MobileNavigation";
 import { usePageContext } from "vike-solid/usePageContext";
-// import { ThemeProvider } from "@/providers/ThemeProvider";
 // import { clientOnly } from "vike-react/clientOnly";
 import { createEffect, createSignal } from "solid-js";
 import { HeroSection } from "@/partials/HeroSection";
 import { Navigation } from "@/partials/Navigation";
+import { DocsLayout } from "./DocsLayout";
 import { Link } from "@/components/Link";
 import { Logo } from "@/components/Logo";
 import { Toaster } from "solid-toast";
 import clsx from "clsx";
 
-// import "./style.css";
 import "./tailwind.css";
-import { DocsLayout } from "./DocsLayout";
-// import "./prism.css";
-// import "unfonts.css";
 
 // const Search = clientOnly(() => import("@/components/Search").then((module) => module.Search));
 

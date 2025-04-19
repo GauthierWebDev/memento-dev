@@ -3,36 +3,37 @@ import type { JSXElement } from "solid-js";
 import { TableOfContents } from "@/partials/TableOfContents";
 import { PrevNextLinks } from "@/components/PrevNextLinks";
 import { usePageContext } from "vike-solid/usePageContext";
+import { createContext, useContext } from "solid-js";
 import { collectSections } from "@/libs/sections";
 import { navigation } from "@/libs/navigation";
 import { Prose } from "@/components/Prose";
+import { MDXProvider } from "solid-jsx";
 
 type DocsLayoutProps = {
 	children: JSXElement;
-	title?: string;
-	// frontmatter: { title?: string };
-	estimatedReadingTime?: string;
-	// nodes: Array<Node>;
 };
 
+const FrontmatterContext = createContext<DocsLayoutProps | null>(null);
+
 export function DocsLayout(props: DocsLayoutProps) {
+	const pageContext = usePageContext();
+	console.log("pageContext", pageContext.exports.frontmatter); // undefined
 	// const tableOfContents = collectSections(nodes);
 
 	return (
-		<>
-			<div class="max-w-2xl min-w-0 flex-auto px-4 py-16 lg:max-w-none lg:pr-0 lg:pl-8 xl:px-16 grow">
-				<article>
-					<DocsHeader
-						title={props.title}
-						estimatedReadingTime={props.estimatedReadingTime}
-					/>
-					<Prose>{props.children}</Prose>
-				</article>
-				<PrevNextLinks />
-			</div>
+		<FrontmatterContext.Provider value={props}>
+			<MDXProvider components={{}}>
+				<div class="max-w-2xl min-w-0 flex-auto px-4 py-16 lg:max-w-none lg:pr-0 lg:pl-8 xl:px-16 grow">
+					<article>
+						<DocsHeader />
+						<Prose>{props.children}</Prose>
+					</article>
+					<PrevNextLinks />
+				</div>
 
-			{/* <TableOfContents tableOfContents={tableOfContents} /> */}
-		</>
+				{/* <TableOfContents tableOfContents={tableOfContents} /> */}
+			</MDXProvider>
+		</FrontmatterContext.Provider>
 	);
 }
 
