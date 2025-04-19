@@ -27,9 +27,7 @@ function NavigationItem(props: NavigationItemProps) {
 			<h2
 				class={clsx(
 					"font-display font-medium cursor-pointer",
-					isOpened()
-						? "text-violet-600 dark:text-violet-200"
-						: "text-slate-900 dark:text-white ",
+					isOpened() ? "text-violet-600" : "text-slate-900",
 				)}
 			>
 				<button
@@ -54,14 +52,11 @@ function NavigationItem(props: NavigationItemProps) {
 
 					{props.section.title}
 
-					<span class="text-slate-400 dark:text-slate-500">
-						{" "}
-						({props.section.links.length})
-					</span>
+					<span class="text-slate-400"> ({props.section.links.length})</span>
 				</button>
 			</h2>
 			{isOpened() && (
-				<ul class="!mt-0 ml-2 space-y-1 border-l-2 border-slate-100 lg:mt-4 lg:space-y-2 lg:border-slate-200 dark:border-slate-800 mb-4">
+				<ul class="!mt-0 ml-2 space-y-1 border-l-2 border-slate-100 lg:mt-4 lg:space-y-2 lg:border-slate-200">
 					<For each={props.section.links}>
 						{(link) => (
 							<li class="relative">
@@ -139,20 +134,17 @@ function NavigationSubItem(props: NavigationSubItemProps) {
 						props.link.href !== urlPathname && "before:hidden",
 						isOpened()
 							? "text-violet-500 before:bg-violet-500"
-							: "text-slate-500 before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300",
+							: "text-slate-500 before:bg-slate-300 hover:text-slate-600 hover:before:block",
 					)}
 				>
 					{props.link.title}
 					{props.link.subitems.length > 0 && (
-						<span class="text-slate-400 dark:text-slate-500">
-							{" "}
-							({props.link.subitems.length})
-						</span>
+						<span class="text-slate-400"> ({props.link.subitems.length})</span>
 					)}
 				</Link>
 			</span>
 			{props.link.subitems.length > 0 && isOpened() && (
-				<ul class="ml-4 border-l-2 border-slate-100 space-y-1 lg:space-y-2 lg:border-slate-200 dark:border-slate-800 mb-4">
+				<ul class="ml-4 border-l-2 border-slate-100 space-y-1 lg:space-y-2 lg:border-slate-200 mb-4">
 					<For each={props.link.subitems}>
 						{(subitem) => (
 							<li class="relative">
@@ -163,7 +155,7 @@ function NavigationSubItem(props: NavigationSubItemProps) {
 										"block w-full pl-3.5 before:pointer-events-none before:absolute before:top-1/2 before:-left-1 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full",
 										subitem.href === urlPathname
 											? "font-semibold text-violet-500 before:bg-violet-500"
-											: "text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300",
+											: "text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block",
 									)}
 								>
 									{subitem.title}
@@ -208,7 +200,7 @@ export function Navigation(props: {
 		<nav class={clsx("text-base lg:text-sm", props.class)}>
 			<ul class="space-y-4">
 				<li>
-					<h2 class="font-display font-bold text-base text-slate-900 dark:text-white">
+					<h2 class="font-display font-bold text-base text-slate-900">
 						{firstSections[0]?.type}
 					</h2>
 					<For each={firstSections}>
@@ -224,7 +216,7 @@ export function Navigation(props: {
 				<For each={Object.entries(filteredSections)}>
 					{([type, sections]) => (
 						<li>
-							<h2 class="font-display font-bold text-base text-slate-900 dark:text-white">
+							<h2 class="font-display font-bold text-base text-slate-900">
 								{type}
 							</h2>
 
@@ -241,7 +233,7 @@ export function Navigation(props: {
 				</For>
 
 				<li>
-					<h2 class="font-display font-bold text-base text-slate-900 dark:text-white">
+					<h2 class="font-display font-bold text-base text-slate-900">
 						{lastSections[0]?.type}
 					</h2>
 					<For each={lastSections}>

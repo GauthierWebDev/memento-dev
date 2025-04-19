@@ -65,7 +65,7 @@ export function TableOfContents(props: TableOfContentsProps) {
 					<>
 						<h2
 							id="on-this-page-title"
-							class="font-display text-sm font-medium text-slate-900 dark:text-white"
+							class="font-display text-sm font-medium text-slate-900"
 						>
 							Table des matières
 						</h2>

@@ -42,9 +42,7 @@ export function Toggle(props: ToggleProps) {
 					/>
 				</span>
 
-				<span class="ml-2 text-sm text-slate-700 dark:text-slate-300">
-					{props.label}
-				</span>
+				<span class="ml-2 text-sm text-slate-700">{props.label}</span>
 			</label>
 		</div>
 	);

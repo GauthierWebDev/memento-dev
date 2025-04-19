@@ -9,7 +9,7 @@ const variantStyles = {
 	secondary:
 		"bg-slate-800 font-medium text-white hover:bg-slate-700 focus:outline-hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50 active:text-slate-400",
 	ghost:
-		"bg-transparent font-medium text-slate-900 dark:text-slate-400 hover:bg-slate-100 focus:outline-hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-300/50 active:bg-slate-200",
+		"bg-transparent font-medium text-slate-900 hover:bg-slate-100 focus:outline-hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-300/50 active:bg-slate-200",
 };
 
 const sizeStyles = {
