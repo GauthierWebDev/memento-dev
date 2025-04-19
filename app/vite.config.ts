@@ -1,6 +1,7 @@
 import remarkExtractFrontmatter from "./remarkExtractFrontmatter";
 import prismjsVitePlugin from "vite-plugin-prismjs";
 import remarkFrontmatter from "remark-frontmatter";
+import remarkHeadingId from "./remarkHeadingId";
 import tailwindcss from "@tailwindcss/vite";
 import { telefunc } from "telefunc/vite";
 import vikeSolid from "vike-solid/vite";
@@ -30,7 +31,11 @@ export default defineConfig({
 		mdx({
 			jsxImportSource: "solid-jsx",
 			providerImportSource: "solid-mdx",
-			remarkPlugins: [remarkFrontmatter, remarkExtractFrontmatter],
+			remarkPlugins: [
+				remarkFrontmatter,
+				remarkHeadingId,
+				remarkExtractFrontmatter,
+			],
 		}),
 		tailwindcss(),
 		telefunc(),

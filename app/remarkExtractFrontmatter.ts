@@ -3,16 +3,15 @@ import type { Program } from "estree-jsx";
 import type { Plugin } from "unified";
 import type { VFile } from "vfile";
 
+import { readingTime } from "reading-time-estimator";
 import { visit } from "unist-util-visit";
 import yaml from "js-yaml";
 
 // Type pour le frontmatter
 export interface Frontmatter {
-	title?: string;
-	description?: string;
-	date?: string;
-	tags?: string[];
-	[key: string]: unknown;
+	title: string;
+	description: string;
+	tags: string[];
 }
 
 // Interface pour le noeud YAML
@@ -34,6 +33,7 @@ interface MDXJSEsm {
 interface CustomVFile extends VFile {
 	data: {
 		frontmatter?: Frontmatter;
+		readingTime?: ReturnType<typeof readingTime>;
 		[key: string]: unknown;
 	};
 }
@@ -44,13 +44,19 @@ const remarkExtractFrontmatter: Plugin<[], Root> =
 			try {
 				const data = (yaml.load(node.value) as Frontmatter) || {};
 
+				const fileContent = file.toString();
+				const estimatedReadingTime = readingTime(fileContent, 300, "fr");
+
 				// Ajout du frontmatter au fichier virtual de remark
 				file.data.frontmatter = data;
+
+				// Ajout du temps de lecture au fichier virtual de remark
+				file.data.readingTime = estimatedReadingTime;
 
 				// Créer un noeud export pour le frontmatter
 				const exportNode: MDXJSEsm = {
 					type: "mdxjsEsm",
-					value: `export const frontmatter = ${JSON.stringify(data)};`,
+					value: `export const frontmatter = ${JSON.stringify(data)}; export const readingTime = ${JSON.stringify(estimatedReadingTime)};`,
 					data: {
 						estree: {
 							type: "Program",
@@ -70,6 +76,33 @@ const remarkExtractFrontmatter: Plugin<[], Root> =
 												init: {
 													type: "ObjectExpression",
 													properties: Object.entries(data).map(
+														([key, value]) => ({
+															type: "Property",
+															key: {
+																type: "Identifier",
+																name: key,
+															},
+															value: {
+																type: "Literal",
+																value: value,
+															},
+															kind: "init",
+															computed: false,
+															method: false,
+															shorthand: false,
+														}),
+													),
+												},
+											},
+											{
+												type: "VariableDeclarator",
+												id: {
+													type: "Identifier",
+													name: "readingTime",
+												},
+												init: {
+													type: "ObjectExpression",
+													properties: Object.entries(estimatedReadingTime).map(
 														([key, value]) => ({
 															type: "Property",
 															key: {
