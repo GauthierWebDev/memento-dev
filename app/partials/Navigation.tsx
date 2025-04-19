@@ -34,20 +34,20 @@ function NavigationItem(props: NavigationItemProps) {
 					onClick={() => setIsOpened((prev) => !prev)}
 					type="button"
 					aria-label={`${isOpened() ? "Masquer" : "Afficher"} les sous-sections de ${props.section.title}`}
+					class="contents cursor-pointer"
 				>
-					<span class="sr-only">{isOpened() ? "Masquer" : "Afficher"}</span>
-
 					{isOpened() ? (
 						<Icon
 							path={chevronUp}
-							class="inline-block mr-2 h-5 w-5 text-slate-400"
+							class="inline-block mr-2 h-5 w-5 text-slate-400 shrink-0"
 						/>
 					) : (
 						<Icon
 							path={chevronDown}
-							class="inline-block mr-2 h-5 w-5 text-slate-400"
+							class="inline-block mr-2 h-5 w-5 text-slate-400 shrink-0"
 						/>
 					)}
+
 					<span class="sr-only">{isOpened() ? "Masquer" : "Afficher"}</span>
 
 					{props.section.title}
