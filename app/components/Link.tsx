@@ -18,7 +18,9 @@ export function Link(props: LinkProps) {
 
 	const downloadExtensions = [".pdf", ".zip"];
 
-	const isDownload = downloadExtensions.some(props.href.endsWith);
+	const isDownload = downloadExtensions.some((extension) =>
+		props.href.endsWith(extension),
+	);
 
 	return (
 		<a
