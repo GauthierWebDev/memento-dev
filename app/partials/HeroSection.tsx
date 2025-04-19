@@ -34,7 +34,7 @@ function TrafficLightsIcon(props: JSX.IntrinsicElements["svg"]) {
 	);
 }
 
-export function Hero() {
+export function HeroSection() {
 	return (
 		<div class="overflow-hidden bg-slate-900 dark:mt-[-4.75rem] dark:-mb-32 dark:pt-[4.75rem] dark:pb-32">
 			<div class="py-16 sm:px-2 lg:relative lg:px-0 lg:py-20">
