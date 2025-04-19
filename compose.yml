@@ -1,5 +1,5 @@
 services:
-  app:
+  dev:
     container_name: memento-dev
     image: oven/bun:alpine
     env_file:
@@ -11,3 +11,16 @@ services:
       - ./app:/app
     working_dir: /app
     command: bun run dev
+
+  prod:
+    container_name: memento-prod
+    image: oven/bun:alpine
+    env_file:
+      - .env
+    ports:
+      - "${PORT}:${PORT}"
+      - "${HMR_PORT}:${HMR_PORT}"
+    volumes:
+      - ./app:/app
+    working_dir: /app
+    command: bun run production

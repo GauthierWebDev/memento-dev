@@ -1,0 +1,4 @@
+{
+  "biome.searchInPath": false,
+  "biome.lspBin": "app/node_modules/@biomejs/biome/bin/biome",
+}
