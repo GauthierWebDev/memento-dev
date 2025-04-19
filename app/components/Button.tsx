@@ -24,7 +24,7 @@ type ButtonProps = {
 	className?: string;
 } & (
 	| JSX.IntrinsicElements["button"]
-	| (JSX.IntrinsicElements["a"] & { href?: undefined })
+	| (JSX.IntrinsicElements["a"] & { href: string })
 );
 
 export function Button({
