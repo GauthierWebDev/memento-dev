@@ -1,8 +1,8 @@
 {
   "scripts": {
-    "dev": "tsx ./fastify-entry.ts",
+    "dev": "bun ./fastify-entry.ts",
     "build": "vike build",
-    "preview": "cross-env NODE_ENV=production tsx ./fastify-entry.ts",
+    "preview": "cross-env NODE_ENV=production bun ./fastify-entry.ts",
     "lint": "biome lint --write .",
     "format": "biome format --write ."
   },
@@ -18,22 +18,21 @@
     "telefunc": "^0.2.3"
   },
   "devDependencies": {
-    "typescript": "^5.8.3",
-    "vite": "^6.2.6",
     "@biomejs/biome": "1.9.4",
-    "eslint": "^9.24.0",
     "@eslint/js": "^9.24.0",
-    "typescript-eslint": "^8.29.1",
-    "globals": "^16.0.0",
-    "eslint-plugin-prettier": "^5.2.6",
-    "eslint-config-prettier": "^10.1.2",
-    "eslint-plugin-solid": "^0.14.5",
+    "@tailwindcss/vite": "^4.1.3",
     "@types/node": "^18.19.86",
-    "tsx": "^4.19.3",
     "cross-env": "^7.0.3",
+    "eslint": "^9.24.0",
+    "eslint-config-prettier": "^10.1.2",
+    "eslint-plugin-prettier": "^5.2.6",
+    "eslint-plugin-solid": "^0.14.5",
+    "globals": "^16.0.0",
     "prettier": "^3.5.3",
     "tailwindcss": "^4.1.3",
-    "@tailwindcss/vite": "^4.1.3"
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.29.1",
+    "vite": "^6.2.6"
   },
   "type": "module"
 }
