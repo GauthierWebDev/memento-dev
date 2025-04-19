@@ -34,7 +34,7 @@ function LogomarkPaths() {
 
 export function Logo(props: JSX.IntrinsicElements["svg"]) {
 	return (
-		<svg view-box="0 0 58 38" {...props}>
+		<svg viewBox="0 0 58 38" {...props}>
 			<title>Memento Dev</title>
 			<LogomarkPaths />
 		</svg>
