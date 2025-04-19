@@ -13,6 +13,5 @@ export default {
   title: "My Vike App",
   description: "Demo showcasing Vike",
 
-  passToClient: ["user"],
   extends: vikeSolid,
 } satisfies Config;

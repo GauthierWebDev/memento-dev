@@ -1,11 +1,10 @@
 import { dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { authjsHandler, authjsSessionMiddleware } from "./server/authjs-handler";
 
 import { vikeHandler } from "./server/vike-handler";
 import { telefuncHandler } from "./server/telefunc-handler";
 import Fastify from "fastify";
-import { createHandler, createMiddleware } from "@universal-middleware/fastify";
+import { createHandler } from "@universal-middleware/fastify";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -43,14 +42,6 @@ async function startServer() {
     ).middlewares;
     app.use(viteDevMiddleware);
   }
-
-  await app.register(createMiddleware(authjsSessionMiddleware)());
-
-  /**
-   * Auth.js route
-   * @link {@see https://authjs.dev/getting-started/installation}
-   **/
-  app.all("/api/auth/*", createHandler(authjsHandler)());
 
   app.post<{ Body: string }>("/_telefunc", createHandler(telefuncHandler)());
 

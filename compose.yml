@@ -10,3 +10,4 @@ services:
     volumes:
       - ./app:/app
     working_dir: /app
+    command: bun run dev
