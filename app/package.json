@@ -1,8 +1,8 @@
 {
 	"scripts": {
 		"dev": "bun ./fastify-entry.ts",
-		"build": "vike build",
-		"preview": "cross-env NODE_ENV=production bun ./fastify-entry.ts",
+		"build": "cross-env DEBUG=vike:error,vike:log vike build",
+		"preview": "cross-env NODE_ENV=production bun ./fastify-server.ts",
 		"production": "bun run build && bun run preview",
 		"lint": "biome lint --write .",
 		"format": "biome format --write ."
