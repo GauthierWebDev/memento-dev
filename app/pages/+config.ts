@@ -25,7 +25,7 @@ export default {
 		class: "flex min-h-full bg-white",
 	},
 
-	image: "/og.webp",
+	image: "/og.png",
 
 	prerender: true,
 	prefetchStaticAssets: "hover",

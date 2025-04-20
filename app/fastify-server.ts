@@ -1,3 +1,4 @@
+import fastifyStatic from "@fastify/static";
 import { fileURLToPath } from "node:url";
 import { search } from "./libs/search";
 import { dirname } from "node:path";
@@ -14,7 +15,7 @@ const pagesDir = `${root}/dist/client`;
 async function startServer() {
 	const app = Fastify();
 
-	await app.register(await import("@fastify/static"), {
+	app.register(fastifyStatic, {
 		root: `${root}/dist/client`,
 		wildcard: false,
 	});
