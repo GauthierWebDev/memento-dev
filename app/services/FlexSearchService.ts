@@ -37,8 +37,10 @@ export function buildFlexSearch(data: FlexSearchData) {
 		for (const section of sections) {
 			const { content, hash, subsections } = section;
 
+			const url = key.replace("index", "").replace(/(\+Page)?.md(x)?$/, "");
+
 			sectionIndex.add({
-				url: key + (hash ? `#${hash}` : ""),
+				url: url + (hash ? `#${hash}` : ""),
 				title: content,
 				content: [content, ...subsections].join("\n"),
 				// @ts-ignore

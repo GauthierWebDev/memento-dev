@@ -31,10 +31,10 @@ const SearchContext = createContext<{
 	results: Accessor<SearchResult[]>;
 	isLoading: Accessor<boolean>;
 	isOpened: Accessor<boolean>;
-	setQuery: (query: string) => void;
-	setIsOpened: (isOpened: boolean) => void;
-	setIsLoading: (isLoading: boolean) => void;
-	setResults: (results: SearchResult[]) => void;
+	setQuery: Setter<string>;
+	setIsOpened: Setter<boolean>;
+	setIsLoading: Setter<boolean>;
+	setResults: Setter<SearchResult[]>;
 }>({
 	query: () => "",
 	close: () => {},
@@ -89,11 +89,11 @@ function SearchInput() {
 
 	return (
 		<div class="group relative flex h-12">
-			<SearchIcon class="pointer-events-none absolute top-0 left-4 h-full w-5 fill-slate-400 dark:fill-slate-500" />
+			<SearchIcon class="pointer-events-none absolute top-0 left-4 h-full w-5 fill-slate-400" />
 			<input
 				data-autofocus
 				class={clsx(
-					"flex-auto appearance-none bg-transparent pl-12 text-slate-900 outline-hidden placeholder:text-slate-400 focus:w-full focus:flex-none sm:text-sm dark:text-white [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden [&::-webkit-search-results-button]:hidden [&::-webkit-search-results-decoration]:hidden",
+					"flex-auto appearance-none bg-transparent pl-12 text-slate-900 outline-hidden placeholder:text-slate-400 focus:w-full focus:flex-none sm:text-sm [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden [&::-webkit-search-results-button]:hidden [&::-webkit-search-results-decoration]:hidden",
 					isLoading() ? "pr-11" : "pr-4",
 				)}
 				onKeyDown={(event) => {
@@ -108,11 +108,14 @@ function SearchInput() {
 					}
 				}}
 				value={query()}
-				onChange={(event) => setQuery(event.currentTarget.value)}
+				onInput={(event) => {
+					const { value } = event.currentTarget;
+					setQuery(value);
+				}}
 			/>
 			{isLoading() && (
 				<div class="absolute inset-y-0 right-3 flex items-center">
-					<LoadingIcon class="h-6 w-6 animate-spin stroke-slate-200 text-slate-400 dark:stroke-slate-700 dark:text-slate-500" />
+					<LoadingIcon class="h-6 w-6 animate-spin stroke-slate-200 text-slate-400" />
 				</div>
 			)}
 		</div>
@@ -146,7 +149,7 @@ function SearchResultItem(props: { result: SearchResult; query: string }) {
 
 	return (
 		<li
-			class="group block cursor-default rounded-lg px-3 py-2 aria-selected:bg-slate-100 dark:aria-selected:bg-slate-700/30 hover:bg-slate-100 dark:hover:bg-slate-700/30"
+			class="group block cursor-default rounded-lg px-3 py-2 aria-selected:bg-slate-100 hover:bg-slate-100"
 			aria-labelledby={`${id}-hierarchy ${id}-title`}
 			tab-index={0}
 			onKeyDown={(event) => {
@@ -163,7 +166,7 @@ function SearchResultItem(props: { result: SearchResult; query: string }) {
 			<div
 				id={`${id}-title`}
 				aria-hidden="true"
-				class="text-sm text-slate-700 group-aria-selected:text-violet-600 dark:text-slate-300 dark:group-aria-selected:text-violet-400"
+				class="text-sm text-slate-700 group-aria-selected:text-violet-600"
 			>
 				<HighlightQuery text={props.result.title} query={props.query} />
 			</div>
@@ -196,13 +199,11 @@ function SearchResultItem(props: { result: SearchResult; query: string }) {
 function SearchResults() {
 	const { results, query } = useContext(SearchContext);
 
-	if (results.length === 0) {
+	if (results().length === 0) {
 		return (
-			<p class="px-4 py-8 text-center text-sm text-slate-700 dark:text-slate-400">
+			<p class="px-4 py-8 text-center text-sm text-slate-700">
 				Aucun résultat pour &ldquo;
-				<span class="break-words text-slate-900 dark:text-white">
-					{query()}
-				</span>
+				<span class="break-words text-slate-900">{query()}</span>
 				&rdquo;
 			</p>
 		);
@@ -241,6 +242,14 @@ function SearchDialog(props: { class?: string }) {
 		};
 	}, [isOpened, setIsOpened]);
 
+	const handleClickOutside = (event: MouseEvent) => {
+		const { target, currentTarget } = event;
+
+		if (target instanceof Node && currentTarget instanceof Node) {
+			if (target === currentTarget) close();
+		}
+	};
+
 	return (
 		<>
 			<Dialog
@@ -250,12 +259,18 @@ function SearchDialog(props: { class?: string }) {
 			>
 				<div class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm" />
 
-				<div class="fixed inset-0 overflow-y-auto px-4 py-4 sm:px-6 sm:py-20 md:py-32 lg:px-8 lg:py-[15vh]">
-					<DialogPanel class="mx-auto transform-gpu overflow-hidden rounded-xl bg-white shadow-xl sm:max-w-xl dark:bg-slate-800 dark:ring-1 dark:ring-slate-700">
+				<div
+					class="fixed inset-0 overflow-y-auto px-4 py-4 sm:px-6 sm:py-20 md:py-32 lg:px-8 lg:py-[15vh]"
+					onClick={handleClickOutside}
+					onKeyDown={(event) => {
+						if (event.key === "Escape") close();
+					}}
+				>
+					<DialogPanel class="mx-auto transform-gpu overflow-hidden rounded-xl bg-white shadow-xl sm:max-w-xl">
 						<form onSubmit={(event) => event.preventDefault()}>
 							<SearchInput />
-							<div class="border-t border-slate-200 bg-white px-2 py-3 empty:hidden dark:border-slate-400/10 dark:bg-slate-800">
-								{results.length > 0 && <SearchResults />}
+							<div class="border-t border-slate-200 bg-white px-2 py-3 empty:hidden">
+								{results().length > 0 && <SearchResults />}
 							</div>
 						</form>
 					</DialogPanel>
@@ -267,11 +282,12 @@ function SearchDialog(props: { class?: string }) {
 
 export function Search() {
 	const [results, setResults] = createSignal<SearchResult[]>([]);
-	const [debouncedQuery, setDebouncedQuery] = useDebounce("");
 	const [modifierKey, setModifierKey] = createSignal<string>();
 	const [isLoading, setIsLoading] = createSignal(false);
 	const [isOpened, setIsOpened] = createSignal(false);
 	const [query, setQuery] = createSignal("");
+
+	const debouncedQuery = useDebounce(query, 300);
 
 	createEffect(() => {
 		const platform = navigator.userAgentData?.platform || navigator.platform;
@@ -279,11 +295,9 @@ export function Search() {
 	}, []);
 
 	createEffect(() => {
-		setDebouncedQuery(query());
-	}, [query()]);
+		const query = debouncedQuery();
 
-	createEffect(() => {
-		if (debouncedQuery.length === 0) {
+		if (query.length === 0) {
 			setIsLoading(false);
 			setResults([]);
 			return;
@@ -291,12 +305,12 @@ export function Search() {
 
 		setIsLoading(true);
 
-		onSearch(debouncedQuery())
+		onSearch(query)
 			.then(setResults)
 			.finally(() => {
 				setIsLoading(false);
 			});
-	}, [debouncedQuery()]);
+	});
 
 	return (
 		<SearchContext.Provider
@@ -314,15 +328,15 @@ export function Search() {
 		>
 			<button
 				type="button"
-				class="group flex h-6 w-6 items-center justify-center sm:justify-start md:h-auto md:w-80 md:flex-none md:rounded-lg md:py-2.5 md:pr-3.5 md:pl-4 md:text-sm md:ring-1 md:ring-slate-200 md:hover:ring-slate-300 lg:w-96 dark:md:bg-slate-800/75 dark:md:ring-white/5 dark:md:ring-inset dark:md:hover:bg-slate-700/40 dark:md:hover:ring-slate-500"
+				class="group flex h-6 w-6 items-center justify-center sm:justify-start md:h-auto md:w-80 md:flex-none md:rounded-lg md:py-2.5 md:pr-3.5 md:pl-4 md:text-sm md:ring-1 md:ring-slate-200 md:hover:ring-slate-300 lg:w-96"
 				onClick={() => setIsOpened(true)}
 			>
-				<SearchIcon class="h-5 w-5 flex-none fill-slate-400 group-hover:fill-slate-500 md:group-hover:fill-slate-400 dark:fill-slate-500" />
-				<span class="sr-only md:not-sr-only md:ml-2 md:text-slate-500 md:dark:text-slate-400">
+				<SearchIcon class="h-5 w-5 flex-none fill-slate-400 group-hover:fill-slate-500 md:group-hover:fill-slate-400" />
+				<span class="sr-only md:not-sr-only md:ml-2 md:text-slate-500">
 					Rechercher...
 				</span>
 				{modifierKey && (
-					<kbd class="ml-auto hidden font-medium text-slate-400 md:block dark:text-slate-500">
+					<kbd class="ml-auto hidden font-medium text-slate-400 md:block">
 						<kbd class="font-sans">{modifierKey()}</kbd>
 						<kbd class="font-sans">K</kbd>
 					</kbd>

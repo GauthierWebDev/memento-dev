@@ -1,23 +1,17 @@
-import type { Accessor, Setter } from "solid-js";
+import { createSignal, createEffect, onCleanup } from "solid-js";
+import type { Accessor } from "solid-js";
 
-import { createEffect, createSignal } from "solid-js";
-
-export function useDebounce<T>(
-	defaultValue: T,
-	debounceTime = 300,
-): [Accessor<T>, Setter<T>] {
-	const [debouncedValue, setDebouncedValue] = createSignal<T>(defaultValue);
-	const [value, setValue] = createSignal<T>(defaultValue);
+export function useDebounce<T>(value: Accessor<T>, delay = 1000): Accessor<T> {
+	const [debouncedValue, setDebouncedValue] = createSignal(value());
+	let timeoutId: ReturnType<typeof setTimeout>;
 
 	createEffect(() => {
-		const handler = setTimeout(() => {
-			setDebouncedValue(value());
-		}, debounceTime);
+		value();
+		clearTimeout(timeoutId);
+		timeoutId = setTimeout(() => setDebouncedValue(() => value()), delay);
+	});
 
-		return () => {
-			clearTimeout(handler);
-		};
-	}, [value()]);
+	onCleanup(() => clearTimeout(timeoutId));
 
-	return [debouncedValue, setValue];
+	return debouncedValue;
 }

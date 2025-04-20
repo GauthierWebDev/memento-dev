@@ -67,7 +67,6 @@ function Header() {
 				// 	<div class="h-6 w-6 animate-pulse rounded-full bg-slate-200" />
 				// }
 				/>
-				<div class="h-6 w-6 animate-pulse rounded-full bg-slate-200" />
 			</div>
 
 			<div class="relative flex basis-0 justify-end gap-6 sm:gap-8 md:grow">
