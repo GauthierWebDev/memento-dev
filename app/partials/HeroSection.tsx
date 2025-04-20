@@ -97,7 +97,7 @@ export function HeroSection() {
 							<div class="absolute inset-0 rounded-2xl bg-linear-to-tr from-violet-300 via-violet-300/70 to-purple-300 opacity-10 blur-lg" />
 							<div class="absolute inset-0 rounded-2xl bg-linear-to-tr from-violet-300 via-violet-300/70 to-purple-300 opacity-10" />
 
-							<Snippet class="min-h-64" snippets={snippets} />
+							<Snippet class="min-h-64" dark snippets={snippets} />
 						</div>
 					</div>
 				</div>

@@ -1,94 +1,86 @@
-import { Highlight } from "@/components/Highlight";
-import Tabs from "@/components/Tabs";
+import { Snippet } from "@/components/Snippet";
 
-export default {
-	reactTodolist: () => {
-		return (
-			<Tabs defaultSelectedTab="app">
-				<Tabs.Item value="app" label="App.tsx">
-					<Highlight language="tsx" withLineNumbers>
-						{`import TodoList from "./TodoList";
+const reactTodoListSnippets = [
+	{
+		name: "App.tsx",
+		codeLanguage: "tsx",
+		code: `import TodoList from "./TodoList";
 import React from "react";
 
 const App = () => {
   return (
     <div>
       <h1>TodoList</h1>
-
       <TodoList />
     </div>
   );
-};`}
-					</Highlight>
-				</Tabs.Item>
+};`,
+	},
+	{
+		name: "TodoList.tsx",
+		codeLanguage: "tsx",
+		code: `import TodoListItem from "./TodoListItem";
+import React from "react";
 
-				<Tabs.Item value="todolist" label="TodoList.tsx">
-					{`
-            \`\`\`tsx showLineNumbers
-            import TodoListItem from "./TodoListItem";
-            import React from "react";
+const TodoList = () => {
+  const [items, setItems] = React.useState<string[]>([]);
+  const [inputValue, setInputValue] = React.useState<string>("");
 
-            const TodoList = () => {
-              const [items, setItems] = React.useState<string[]>([]);
-              const [inputValue, setInputValue] = React.useState<string>("");
+  const handleInputValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value);
+  };
 
-              const handleInputValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-                setInputValue(event.target.value);
-              };
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    // On empêche le comportement par défaut du formulaire
+    event.preventDefault();
 
-              const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-                // On empêche le comportement par défaut du formulaire
-                event.preventDefault();
+    // On ajoute un nouvel élément à la liste des tâches
+    setItems([...items, inputValue]);
 
-                // On ajoute un nouvel élément à la liste des tâches
-                setItems([...items, inputValue]);
+    // On réinitialise la valeur de l'input
+    setInputValue("");
+  };
 
-                // On réinitialise la valeur de l'input
-                setInputValue("");
-              };
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="todolist-input"></label>
 
-              return (
-                <div>
-                  <form onSubmit={handleSubmit}>
-                    <label htmlFor="todolist-input"></label>
+        <input id="todolist-input" type="text" value={inputValue} onChange={handleInputValueChange} />
+      </form>
 
-                    <input id="todolist-input" type="text" value={inputValue} onChange={handleInputValueChange} />
-                  </form>
+      <ul>
+        {items.map((item, index) => (
+          <li key={index}>
+            <TodoListItem item={item} />
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
-                  <ul>
-                    {items.map((item, index) => (
-                      <li key={index}>
-                        <TodoListItem item={item} />
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              );
-            };
+export default TodoList;`,
+	},
+	{
+		name: "TodoListItem.tsx",
+		codeLanguage: "tsx",
+		code: `import React from "react";
 
-            export default TodoList;
-            \`\`\`
-          `}
-				</Tabs.Item>
+interface TodoListItemProps {
+  item: string;
+}
 
-				<Tabs.Item value="todolistitem" label="TodoListItem.tsx">
-					{`
-            \`\`\`tsx showLineNumbers
-            import React from "react";
+const TodoListItem = (props: TodoListItemProps) => {
+  return <span>{props.item}</span>;
+};
 
-            interface TodoListItemProps {
-              item: string;
-            }
+export default TodoListItem;`,
+	},
+];
 
-            const TodoListItem = (props: TodoListItemProps) => {
-              return <span>{props.item}</span>;
-            };
-
-            export default TodoListItem;
-            \`\`\`
-          `}
-				</Tabs.Item>
-			</Tabs>
-		);
+export default {
+	reactTodolist: () => {
+		return <Snippet snippets={reactTodoListSnippets} />;
 	},
 };
