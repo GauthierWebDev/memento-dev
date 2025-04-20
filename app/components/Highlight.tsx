@@ -1,6 +1,13 @@
 import type { ComponentProps, ParentComponent } from "solid-js";
 
-import { createEffect, createMemo, mergeProps, on, splitProps } from "solid-js";
+import {
+	createEffect,
+	createMemo,
+	For,
+	mergeProps,
+	on,
+	splitProps,
+} from "solid-js";
 import * as Prismjs from "prismjs";
 import clsx from "clsx";
 
@@ -314,6 +321,8 @@ export type Language = (typeof Language)[keyof typeof Language];
 
 type Props = {
 	language: string;
+	class?: string;
+	withLineNumbers?: boolean;
 } & ComponentProps<"code">;
 
 export const Highlight: ParentComponent<Props> = (_props) => {
@@ -326,16 +335,16 @@ export const Highlight: ParentComponent<Props> = (_props) => {
 	]);
 
 	const languageClass = createMemo(() => `language-${props.language}`);
+
 	const highlightedCode = createMemo<string | undefined>(() => {
 		const childrenString = props.children?.toString();
-		if (!childrenString) {
-			return;
-		}
+		if (!childrenString) return;
+
 		const grammar = Prismjs.languages[props.language];
-		if (!grammar) {
-			return;
-		}
+		if (!grammar) return;
+
 		const result = Prismjs.highlight(childrenString, grammar, props.language);
+
 		return result;
 	});
 
@@ -346,14 +355,46 @@ export const Highlight: ParentComponent<Props> = (_props) => {
 	);
 
 	return (
-		<pre class={clsx("prism-code flex overflow-x-auto pb-6", languageClass())}>
-			<code
-				class={clsx("px-4", props.class)}
-				innerHTML={highlightedCode()}
-				{...rest}
+		<div
+			class={clsx(
+				"rounded-xl shadow-lg flex items-start px-4 py-2 w-full",
+				props.class,
+			)}
+		>
+			{props.withLineNumbers && props.children?.toString() && (
+				<div
+					aria-hidden="true"
+					class="border-r leading-6 border-slate-300/5 pr-4 font-mono text-slate-600 select-none"
+				>
+					<For
+						each={Array.from({
+							length: props.children.toString().split("\n").length,
+						})}
+					>
+						{(_, index) => (
+							<>
+								{(index() + 1).toString().padStart(2, "0")}
+								<br />
+							</>
+						)}
+					</For>
+				</div>
+			)}
+
+			<pre
+				class={clsx(
+					"not-prose w-full prism-code flex overflow-x-auto",
+					languageClass(),
+				)}
 			>
-				{props.children}
-			</code>
-		</pre>
+				<code
+					class={clsx("px-4", "leading-6")}
+					innerHTML={highlightedCode()}
+					{...rest}
+				>
+					{props.children}
+				</code>
+			</pre>
+		</div>
 	);
 };

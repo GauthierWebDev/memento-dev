@@ -25,8 +25,6 @@ export function Prose(props: ProseProps) {
 				"prose-a:font-semibold",
 				// link underline
 				"prose-a:no-underline prose-a:shadow-[inset_0_-2px_0_0_var(--tw-prose-background,#fff),inset_0_calc(-1*(var(--tw-prose-underline-size,4px)+2px))_0_0_var(--tw-prose-underline,var(--color-violet-300))] prose-a:hover:[--tw-prose-underline-size:6px]",
-				// pre
-				"prose-pre:rounded-xl prose-pre:bg-slate-900 prose-pre:shadow-lg",
 			)}
 			{...props}
 		/>

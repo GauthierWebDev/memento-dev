@@ -42,6 +42,6 @@ export function Button(props: ButtonProps) {
 			href={props.href}
 		/>
 	) : (
-		<button class={className} {...(props as JSX.IntrinsicElements["button"])} />
+		<button {...(props as JSX.IntrinsicElements["button"])} class={className} />
 	);
 }

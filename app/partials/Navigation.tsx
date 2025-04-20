@@ -58,7 +58,7 @@ function NavigationItem(props: NavigationItemProps) {
 				</button>
 			</h3>
 			{isOpened() && (
-				<ul class="!mt-0 ml-2 space-y-1 border-l-2 border-slate-100 lg:mt-4 lg:space-y-2 lg:border-slate-200 mb-2">
+				<ul class="!mt-0 ml-2 border-l-2 border-slate-100 lg:mt-4 lg:space-y-1 lg:border-slate-200 mb-2">
 					<For each={props.section.links}>
 						{(link) => (
 							<li class="relative">

@@ -2,26 +2,35 @@ import type { JSX } from "solid-js";
 
 import blurIndigoImage from "@/images/blur-indigo.webp";
 import blurCyanImage from "@/images/blur-cyan.webp";
-import { Highlight } from "@/components/Highlight";
 import { HeroBackground } from "./HeroBackground";
+import { Snippet } from "@/components/Snippet";
 import { Button } from "@/components/Button";
 import { Image } from "@/components/Image";
-import { For } from "solid-js";
-import clsx from "clsx";
 
-const codeLanguage = "javascript";
-const code = `export default {
-  role: 'developer',
-  qualifications: [
-    'DWWM',
-    'CDA',
-    'CDUI',
-  ]
-}`;
-
-const tabs = [
-	{ name: "memento-dev.config.js", isActive: true },
-	{ name: "package.json", isActive: false },
+const snippets = [
+	{
+		name: "memento-dev.config.js",
+		codeLanguage: "javascript",
+		code: `export default {
+	role: "developer",
+	qualifications: [
+		"DWWM",
+		"CDA",
+		"CDUI",
+	]
+}`,
+	},
+	{
+		name: "package.json",
+		codeLanguage: "json",
+		code: `{
+	"name": "memento-dev",
+	"version": "2.0.0",
+	"description": "Memento Dev est une plateforme open-source, soutenue et maintenue par une communauté de contributeurs passionnés.",
+	"main": "index.ts",
+	"license": "MIT"
+}`,
+	},
 ];
 
 function TrafficLightsIcon(props: JSX.IntrinsicElements["svg"]) {
@@ -87,55 +96,8 @@ export function HeroSection() {
 							/>
 							<div class="absolute inset-0 rounded-2xl bg-linear-to-tr from-violet-300 via-violet-300/70 to-purple-300 opacity-10 blur-lg" />
 							<div class="absolute inset-0 rounded-2xl bg-linear-to-tr from-violet-300 via-violet-300/70 to-purple-300 opacity-10" />
-							<div class="relative rounded-2xl bg-[#0A101F]/80 ring-1 ring-white/10 backdrop-blur-sm">
-								<div class="absolute -top-px right-11 left-20 h-px bg-linear-to-r from-violet-300/0 via-violet-300/70 to-violet-300/0" />
-								<div class="absolute right-20 -bottom-px left-11 h-px bg-linear-to-r from-purple-400/0 via-purple-400 to-purple-400/0" />
-								<div class="pt-4 pl-4">
-									<TrafficLightsIcon class="h-2.5 w-auto stroke-slate-500/30" />
-									<div class="mt-4 flex space-x-2 text-xs">
-										<For each={tabs}>
-											{(tab) => (
-												<div
-													class={clsx(
-														"flex h-6 rounded-full",
-														tab.isActive
-															? "bg-linear-to-r from-violet-400/30 via-violet-400 to-violet-400/30 p-px font-medium text-violet-300"
-															: "text-slate-500",
-													)}
-												>
-													<div
-														class={clsx(
-															"flex items-center rounded-full px-2.5",
-															tab.isActive && "bg-slate-800",
-														)}
-													>
-														{tab.name}
-													</div>
-												</div>
-											)}
-										</For>
-									</div>
-									<div class="mt-6 flex items-start px-1 text-sm">
-										<div
-											aria-hidden="true"
-											class="border-r border-slate-300/5 pr-4 font-mono text-slate-600 select-none"
-										>
-											<For
-												each={Array.from({ length: code.split("\n").length })}
-											>
-												{(_, index) => (
-													<>
-														{(index() + 1).toString().padStart(2, "0")}
-														<br />
-													</>
-												)}
-											</For>
-										</div>
 
-										<Highlight language={codeLanguage}>{code}</Highlight>
-									</div>
-								</div>
-							</div>
+							<Snippet class="min-h-64" snippets={snippets} />
 						</div>
 					</div>
 				</div>
