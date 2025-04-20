@@ -25,6 +25,7 @@
 		"remark-frontmatter": "^5.0.0",
 		"remark-heading-id": "^1.0.1",
 		"solid-heroicons": "^3.2.4",
+		"solid-highlight-words": "^1.0.4",
 		"solid-js": "^1.9.5",
 		"solid-jsx": "^1.1.4",
 		"solid-mdx": "^0.0.7",

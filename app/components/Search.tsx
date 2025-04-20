@@ -19,7 +19,7 @@ import {
 } from "solid-js";
 import { Dialog, DialogPanel } from "terracotta";
 import { useDebounce } from "@/hooks/useDebounce";
-// import Highlighter from "react-highlight-words";
+import { Highlighter } from "solid-highlight-words";
 // import { navigation } from "@/lib/navigation";
 import { navigate } from "vike/client/router";
 import { onSearch } from "./Search.telefunc";
@@ -123,16 +123,14 @@ function SearchInput() {
 }
 
 function HighlightQuery({ text, query }: { text: string; query: string }) {
-	return <span>{text}</span>;
-
-	// return (
-	// 	<Highlighter
-	// 		highlightclass="group-aria-selected:underline bg-transparent text-violet-600 dark:text-violet-400"
-	// 		searchWords={[query]}
-	// 		autoEscape={true}
-	// 		textToHighlight={text}
-	// 	/>
-	// );
+	return (
+		<Highlighter
+			highlightClass="group-aria-selected:underline bg-transparent text-violet-600"
+			searchWords={[query]}
+			autoEscape={true}
+			textToHighlight={text}
+		/>
+	);
 }
 
 function SearchResultItem(props: { result: SearchResult; query: string }) {
