@@ -1,16 +1,7 @@
 import type { SearchResult } from "@/services/FlexSearchService";
 import type { JSX, Accessor, Setter } from "solid-js";
 
-// import React, {
-// 	useId,
-// 	createSignal,
-// 	createEffect,
-// 	createContext,
-// 	useContext,
-// 	Fragment,
-// } from "react";
 import {
-	createUniqueId,
 	createContext,
 	useContext,
 	For,
@@ -20,9 +11,9 @@ import {
 import { Dialog, DialogPanel } from "terracotta";
 import { useDebounce } from "@/hooks/useDebounce";
 import { Highlighter } from "solid-highlight-words";
-// import { navigation } from "@/lib/navigation";
 import { navigate } from "vike/client/router";
 import { onSearch } from "./Search.telefunc";
+import { useId } from "@/hooks/useId";
 import clsx from "clsx";
 
 const SearchContext = createContext<{
@@ -56,7 +47,7 @@ function SearchIcon(props: JSX.IntrinsicElements["svg"]) {
 }
 
 function LoadingIcon(props: JSX.IntrinsicElements["svg"]) {
-	const id = createUniqueId();
+	const id = useId();
 
 	return (
 		<svg viewBox="0 0 20 20" fill="none" aria-hidden="true" {...props}>
@@ -135,15 +126,7 @@ function HighlightQuery({ text, query }: { text: string; query: string }) {
 
 function SearchResultItem(props: { result: SearchResult; query: string }) {
 	const { close } = useContext(SearchContext);
-	const id = createUniqueId();
-
-	// const sectionTitle = navigation.find((section) =>
-	// 	section.links.find((link) => link.href === result.url.split("#")[0]),
-	// )?.title;
-
-	// const hierarchy = [sectionTitle, result.pageTitle].filter(
-	// 	(x): x is string => typeof x === "string",
-	// );
+	const id = useId();
 
 	return (
 		<li

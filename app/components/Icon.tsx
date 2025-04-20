@@ -7,7 +7,8 @@ import { PluginsIcon } from "@/icons/PluginsIcon";
 import { PresetsIcon } from "@/icons/PresetsIcon";
 import { ThemingIcon } from "@/icons/ThemingIcon";
 import { WarningIcon } from "@/icons/WarningIcon";
-import { createUniqueId, For } from "solid-js";
+import { useId } from "@/hooks/useId";
+import { For } from "solid-js";
 import clsx from "clsx";
 
 const icons = {
@@ -34,7 +35,7 @@ export type IconProps = JSX.IntrinsicElements["svg"] & {
 };
 
 export function Icon(props: IconProps) {
-	const id = createUniqueId();
+	const id = useId();
 	const IconComponent = icons[props.icon];
 
 	return (

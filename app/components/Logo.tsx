@@ -1,9 +1,9 @@
 import type { JSX } from "solid-js";
 
-import { createUniqueId } from "solid-js";
+import { useId } from "@/hooks/useId";
 
 function LogomarkPaths() {
-	const id = createUniqueId();
+	const id = useId();
 
 	return (
 		<>

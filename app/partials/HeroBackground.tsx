@@ -1,9 +1,9 @@
 import type { JSX } from "solid-js";
 
-import { createUniqueId } from "solid-js";
+import { useId } from "@/hooks/useId";
 
 export function HeroBackground(props: JSX.IntrinsicElements["svg"]) {
-	const id = createUniqueId();
+	const id = useId();
 
 	return (
 		<svg
