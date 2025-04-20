@@ -26,7 +26,7 @@ function NavigationItem(props: NavigationItemProps) {
 
 	return (
 		<>
-			<h2
+			<h3
 				class={clsx(
 					"font-display font-medium cursor-pointer",
 					isOpened() ? "text-violet-600" : "text-slate-900",
@@ -56,9 +56,9 @@ function NavigationItem(props: NavigationItemProps) {
 
 					<span class="text-slate-400"> ({props.section.links.length})</span>
 				</button>
-			</h2>
+			</h3>
 			{isOpened() && (
-				<ul class="!mt-0 ml-2 space-y-1 border-l-2 border-slate-100 lg:mt-4 lg:space-y-2 lg:border-slate-200">
+				<ul class="!mt-0 ml-2 space-y-1 border-l-2 border-slate-100 lg:mt-4 lg:space-y-2 lg:border-slate-200 mb-2">
 					<For each={props.section.links}>
 						{(link) => (
 							<li class="relative">

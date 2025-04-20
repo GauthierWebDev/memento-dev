@@ -3,7 +3,6 @@ import type { JSXElement } from "solid-js";
 import { TableOfContents } from "@/partials/TableOfContents";
 import { PrevNextLinks } from "@/components/PrevNextLinks";
 import { usePageContext } from "vike-solid/usePageContext";
-import { clientOnly } from "vike-solid/clientOnly";
 import { clock } from "solid-heroicons/outline";
 import { navigation } from "@/libs/navigation";
 import { Prose } from "@/components/Prose";
@@ -12,10 +11,6 @@ import { Icon } from "solid-heroicons";
 type DocsLayoutProps = {
 	children: JSXElement;
 };
-
-// const TableOfContents = clientOnly(() =>
-// 	import("@/partials/TableOfContents").then((m) => m.TableOfContents),
-// );
 
 export function DocsLayout(props: DocsLayoutProps) {
 	const pageContext = usePageContext();
