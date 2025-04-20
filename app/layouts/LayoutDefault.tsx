@@ -3,7 +3,8 @@ import type { JSX, JSXElement } from "solid-js";
 // import { CookiesContainer } from "@/components/common/Cookies";
 import { MobileNavigation } from "@/partials/MobileNavigation";
 import { usePageContext } from "vike-solid/usePageContext";
-// import { clientOnly } from "vike-react/clientOnly";
+// import { clientOnly } from "vike-solid/clientOnly";
+import { Search } from "@/components/Search";
 import { createEffect, createSignal } from "solid-js";
 import { HeroSection } from "@/partials/HeroSection";
 import { Navigation } from "@/partials/Navigation";
@@ -15,11 +16,9 @@ import clsx from "clsx";
 
 import "./tailwind.css";
 
-// const Search = clientOnly(() => import("@/components/Search").then((module) => module.Search));
-
-function Search() {
-	return null;
-}
+// const Search = clientOnly(() =>
+// 	import("@/components/Search").then((module) => module.Search),
+// );
 
 function GitHubIcon(props: JSX.IntrinsicElements["svg"]) {
 	return (
@@ -63,7 +62,11 @@ function Header() {
 			</div>
 
 			<div class="-my-5 mr-6 sm:mr-8 md:mr-0">
-				{/* <Search fallback={<div class="h-6 w-6 animate-pulse rounded-full bg-slate-200" />} /> */}
+				<Search
+				// fallback={
+				// 	<div class="h-6 w-6 animate-pulse rounded-full bg-slate-200" />
+				// }
+				/>
 				<div class="h-6 w-6 animate-pulse rounded-full bg-slate-200" />
 			</div>
 
