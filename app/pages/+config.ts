@@ -25,8 +25,8 @@ export default {
 		class: "flex min-h-full bg-white",
 	},
 
-	// prerender: true,
-	// prefetchStaticAssets: "hover",
+	prerender: true,
+	prefetchStaticAssets: "hover",
 
 	extends: [vikeSolid],
 } satisfies Config;

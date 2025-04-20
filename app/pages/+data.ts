@@ -21,13 +21,12 @@ export async function data(pageContext: PageContext) {
 		description: frontmatter?.description,
 	});
 
-	let doc: SectionCache | undefined;
-
-	if (urlParsed.pathname === "/") {
-		doc = docCache.get("index");
-	} else {
-		doc = docCache.get(urlParsed.pathname);
+	let cachePathname = urlParsed.pathname.replace(/\/$/, "").replace(/^\//, "");
+	if (cachePathname === "") {
+		cachePathname = "index";
 	}
+
+	const doc = docCache.get(cachePathname);
 
 	return {
 		sections: doc?.sections || [],
