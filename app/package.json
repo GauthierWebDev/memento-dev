@@ -24,6 +24,7 @@
 		"reading-time-estimator": "^1.14.0",
 		"remark-frontmatter": "^5.0.0",
 		"remark-heading-id": "^1.0.1",
+		"solid-devtools": "^0.34.0",
 		"solid-heroicons": "^3.2.4",
 		"solid-highlight-words": "^1.0.4",
 		"solid-js": "^1.9.5",

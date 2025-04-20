@@ -9,6 +9,9 @@ import { Prose } from "@/components/Prose";
 import { MDXProvider } from "solid-jsx";
 import { Icon } from "solid-heroicons";
 
+import QuickLinks from "@/components/QuickLinks";
+import QuickLink from "@/components/QuickLink";
+
 type DocsLayoutProps = {
 	children: JSXElement;
 };
@@ -23,7 +26,7 @@ export function DocsLayout(props: DocsLayoutProps) {
 	} = usePageContext();
 
 	return (
-		<MDXProvider components={{}}>
+		<MDXProvider components={{ QuickLinks, QuickLink }}>
 			<div class="max-w-2xl min-w-0 flex-auto px-4 py-16 lg:max-w-none lg:pr-0 lg:pl-8 xl:px-16 grow">
 				<article>
 					<DocsHeader

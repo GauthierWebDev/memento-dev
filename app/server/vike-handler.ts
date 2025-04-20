@@ -15,6 +15,7 @@ export const vikeHandler: Get<[], UniversalHandler> =
 			headersOriginal: request.headers,
 			baseUrl: config.BASE_URL,
 		};
+
 		const pageContext = await renderPage(pageContextInit);
 		const response = pageContext.httpResponse;
 

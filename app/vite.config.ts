@@ -30,7 +30,7 @@ export default defineConfig({
 		vikeSolid(),
 		mdx({
 			jsxImportSource: "solid-jsx",
-			providerImportSource: "solid-mdx",
+			// providerImportSource: "solid-mdx",
 			remarkPlugins: [
 				remarkFrontmatter,
 				remarkHeadingId,
