@@ -15,14 +15,14 @@ type DefaultLayoutProps = {
 };
 
 export default function DefaultLayout(props: DefaultLayoutProps) {
-	const { urlPathname } = usePageContext();
+	const pageContext = usePageContext();
 
 	return (
 		<>
 			<div class="flex w-full flex-col font-sans">
 				<Header />
 
-				{urlPathname === "/" && <HeroSection />}
+				{pageContext.urlPathname === "/" && <HeroSection />}
 
 				<div class="relative mx-auto w-full flex max-w-8xl flex-auto justify-center sm:px-2 lg:px-8 xl:px-12">
 					<div class="hidden lg:relative lg:block lg:flex-none">

@@ -7,19 +7,15 @@ import { Link } from "@/components/Link";
 import clsx from "clsx";
 
 export function TableOfContents() {
-	const { sections } = useData<Data>();
-	if (!sections) return null;
+	const data = useData<Data>();
+	if (!data.sections) return null;
 
-	createEffect(() => {
-		for (const [key, value] of Object.entries(sections)) {
-			console.log(`${key}: ${JSON.stringify(value)}`);
-		}
-	});
-
-	const [currentSection, setCurrentSection] = createSignal(sections[0]?.hash);
+	const [currentSection, setCurrentSection] = createSignal(
+		data.sections[0]?.hash,
+	);
 
 	const getHeadings = () => {
-		return sections
+		return data.sections
 			.map((section) => {
 				if (!section.hash) return null;
 
@@ -36,7 +32,7 @@ export function TableOfContents() {
 	};
 
 	createEffect(() => {
-		if (sections.length === 0) return;
+		if (data.sections.length === 0) return;
 		const headings = getHeadings();
 
 		function onScroll() {
@@ -55,7 +51,7 @@ export function TableOfContents() {
 		return () => {
 			window.removeEventListener("scroll", onScroll);
 		};
-	}, [getHeadings, sections]);
+	}, [getHeadings, data.sections]);
 
 	function isActive(section: DocSection) {
 		if (section.hash === currentSection()) return true;
@@ -76,7 +72,7 @@ export function TableOfContents() {
 				</h2>
 
 				<ol class="mt-4 space-y-3 text-sm">
-					<For each={sections}>
+					<For each={data.sections}>
 						{(section) => (
 							<li>
 								<h3>

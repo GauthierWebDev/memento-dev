@@ -12,13 +12,15 @@ type NavigationItemProps = {
 };
 
 function NavigationItem(props: NavigationItemProps) {
-	const { urlPathname } = usePageContext();
+	const pageContext = usePageContext();
 
 	const [isOpened, setIsOpened] = createSignal(
 		props.section.links.some(
 			(link) =>
-				link.href === urlPathname ||
-				link.subitems?.some((subitem) => subitem.href === urlPathname),
+				link.href === pageContext.urlPathname ||
+				link.subitems?.some(
+					(subitem) => subitem.href === pageContext.urlPathname,
+				),
 		),
 	);
 
@@ -64,9 +66,9 @@ function NavigationItem(props: NavigationItemProps) {
 									link={link}
 									onLinkClick={props.onLinkClick}
 									isOpened={
-										link.href === urlPathname ||
+										link.href === pageContext.urlPathname ||
 										link.subitems?.some(
-											(subitem) => subitem.href === urlPathname,
+											(subitem) => subitem.href === pageContext.urlPathname,
 										)
 									}
 								/>
@@ -87,14 +89,16 @@ type NavigationSubItemProps = {
 
 function NavigationSubItem(props: NavigationSubItemProps) {
 	const [isOpened, setIsOpened] = createSignal(props.isOpened);
-	const { urlPathname } = usePageContext();
+	const pageContext = usePageContext();
 
 	createEffect(() => {
 		setIsOpened(
-			props.link.href === urlPathname ||
-				props.link.subitems?.some((subitem) => subitem.href === urlPathname),
+			props.link.href === pageContext.urlPathname ||
+				props.link.subitems?.some(
+					(subitem) => subitem.href === pageContext.urlPathname,
+				),
 		);
-	}, [urlPathname, props.link]);
+	}, [pageContext.urlPathname, props.link]);
 
 	return (
 		<>
@@ -131,7 +135,7 @@ function NavigationSubItem(props: NavigationSubItemProps) {
 							"before:top-3 before:-translate-y-1/2 font-semibold":
 								props.link.subitems,
 						},
-						props.link.href !== urlPathname && "before:hidden",
+						props.link.href !== pageContext.urlPathname && "before:hidden",
 						isOpened()
 							? "text-violet-500 before:bg-violet-500"
 							: "text-slate-500 before:bg-slate-300 hover:text-slate-600 hover:before:block",
@@ -153,7 +157,7 @@ function NavigationSubItem(props: NavigationSubItemProps) {
 									onClick={props.onLinkClick}
 									class={clsx(
 										"block w-full pl-3.5 before:pointer-events-none before:absolute before:top-1/2 before:-left-1 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full",
-										subitem.href === urlPathname
+										subitem.href === pageContext.urlPathname
 											? "font-semibold text-violet-500 before:bg-violet-500"
 											: "text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block",
 									)}
