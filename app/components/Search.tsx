@@ -12,7 +12,6 @@ import { Dialog, DialogPanel } from "terracotta";
 import { useDebounce } from "@/hooks/useDebounce";
 import { Highlighter } from "solid-highlight-words";
 import { navigate } from "vike/client/router";
-import { onSearch } from "./Search.telefunc";
 import { useId } from "@/hooks/useId";
 import clsx from "clsx";
 
@@ -270,6 +269,15 @@ export function Search() {
 
 	const debouncedQuery = useDebounce(query, 300);
 
+	const onSearch = async (query: string) => {
+		const response = await fetch(`/search?query=${query}`);
+		if (!response.ok) {
+			throw new Error("Network response was not ok");
+		}
+		const data = await response.json();
+		return data;
+	};
+
 	createEffect(() => {
 		const platform = navigator.userAgentData?.platform || navigator.platform;
 		setModifierKey(/(Mac|iPhone|iPod|iPad)/i.test(platform) ? "⌘" : "Ctrl ");
@@ -288,9 +296,7 @@ export function Search() {
 
 		onSearch(query)
 			.then(setResults)
-			.finally(() => {
-				setIsLoading(false);
-			});
+			.finally(() => setIsLoading(false));
 	});
 
 	return (

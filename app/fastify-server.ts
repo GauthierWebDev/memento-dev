@@ -1,4 +1,5 @@
 import { fileURLToPath } from "node:url";
+import { search } from "./libs/search";
 import { dirname } from "node:path";
 import { config } from "./config";
 import Fastify from "fastify";
@@ -31,6 +32,18 @@ async function startServer() {
 		reply.type("text/html").send(stream);
 	});
 
+	app.get("/search", async (request, reply) => {
+		const { query } = request.query as { query: string };
+		if (!query) {
+			reply.status(400).send("Query parameter is required");
+			return;
+		}
+
+		const results = search(query);
+
+		reply.status(200).send(results);
+	});
+
 	return app;
 }
 
@@ -44,3 +57,5 @@ app.listen({ port: config.PORT, host: "0.0.0.0" }, (error, address) => {
 
 	console.log(`Server listening on ${address}`);
 });
+
+export default app;

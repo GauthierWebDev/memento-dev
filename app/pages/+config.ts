@@ -23,5 +23,5 @@ export default {
 
 	prerender: true,
 
-	extends: vikeSolid,
+	extends: [vikeSolid],
 } satisfies Config;

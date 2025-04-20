@@ -2,15 +2,14 @@ import type { readingTime } from "reading-time-estimator";
 import type { TableOfContents } from "./remarkHeadingId";
 
 import { createHandler } from "@universal-middleware/fastify";
-import { telefuncHandler } from "./server/telefunc-handler";
 import { vikeHandler } from "./server/vike-handler";
 import { createDevMiddleware } from "vike/server";
 import { docCache } from "./services/DocCache";
 import { fileURLToPath } from "node:url";
+import { search } from "./libs/search";
 import { dirname } from "node:path";
 import { config } from "./config";
 import Fastify from "fastify";
-import { buildFlexSearch } from "./services/FlexSearchService";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -60,7 +59,17 @@ async function startServer() {
 		app.use(devMiddleware);
 	}
 
-	app.post<{ Body: string }>("/_telefunc", createHandler(telefuncHandler)());
+	app.get("/search", async (request, reply) => {
+		const { query } = request.query as { query: string };
+		if (!query) {
+			reply.status(400).send("Query parameter is required");
+			return;
+		}
+
+		const results = search(query);
+
+		reply.status(200).send(results);
+	});
 
 	/**
 	 * Vike route
