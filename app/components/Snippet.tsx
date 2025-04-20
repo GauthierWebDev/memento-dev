@@ -72,9 +72,10 @@ export function Snippet(props: SnippetProps) {
 									type="button"
 									class={clsx(
 										"flex items-center rounded-full px-2.5",
-										isActive(tab) && props.dark
-											? "bg-slate-800"
-											: "bg-violet-100",
+										isActive(tab) && {
+											"bg-slate-800": props.dark,
+											"bg-violet-100": !props.dark,
+										},
 									)}
 									disabled={!tab.codeLanguage}
 									onClick={() => selectTab(tab.name)}
