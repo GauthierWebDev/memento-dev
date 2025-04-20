@@ -114,13 +114,13 @@ function SearchInput() {
 	);
 }
 
-function HighlightQuery({ text, query }: { text: string; query: string }) {
+function HighlightQuery(props: { text: string; query: string }) {
 	return (
 		<Highlighter
 			highlightClass="group-aria-selected:underline bg-transparent text-violet-600"
-			searchWords={[query]}
+			searchWords={[props.query]}
 			autoEscape={true}
-			textToHighlight={text}
+			textToHighlight={props.text}
 		/>
 	);
 }

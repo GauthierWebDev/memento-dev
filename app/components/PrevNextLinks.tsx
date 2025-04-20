@@ -63,7 +63,7 @@ function PageLink(props: PageLinkProps) {
 }
 
 export function PrevNextLinks() {
-	const { urlPathname } = usePageContext();
+	const pageContext = usePageContext();
 
 	const allLinks = navigation
 		.flatMap((section) => section.links)
@@ -72,13 +72,15 @@ export function PrevNextLinks() {
 		});
 
 	const getNeighboringLinks = () => {
-		const linkIndex = allLinks.findIndex((link) => link.href === urlPathname);
+		const linkIndex = allLinks.findIndex(
+			(link) => link.href === pageContext.urlPathname,
+		);
 		if (linkIndex === -1) return [null, null];
 
 		const previousPage = allLinks[linkIndex - 1] || null;
 		let nextPage = allLinks[linkIndex + 1] || null;
 
-		if (nextPage?.href === urlPathname) {
+		if (nextPage?.href === pageContext.urlPathname) {
 			nextPage = allLinks[linkIndex + 2] || null;
 		}
 
