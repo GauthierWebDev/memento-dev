@@ -4,7 +4,7 @@ import { Link } from "@/components/Link";
 export function Footer() {
 	return (
 		<footer class="bg-slate-50 text-slate-700">
-			<div class="mx-auto w-full flex flex-col max-w-8xl sm:px-2 lg:px-8 xl:px-12 py-8">
+			<div class="mx-auto w-full flex flex-col max-w-8xl sm:px-6 lg:px-8 py-8">
 				<div>
 					<div class="flex items-center gap-2 mb-2">
 						<Logo class="h-8 w-auto" />
