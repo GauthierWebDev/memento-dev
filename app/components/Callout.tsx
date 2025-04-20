@@ -31,7 +31,7 @@ const icons = {
 	),
 };
 
-export function Callout({
+export default function Callout({
 	title,
 	children,
 	type = "note",

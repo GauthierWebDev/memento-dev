@@ -46,12 +46,12 @@ export const navigation: NavigationSection[] = [
 		links: [
 			{
 				title: "Influenceurs",
-				href: "/docs/communaute/influenceurs",
+				href: "/communaute/influenceurs",
 				subitems: [],
 			},
 			{
 				title: "Partages et réutilisations",
-				href: "/docs/communaute/partages",
+				href: "/communaute/partages",
 				subitems: [],
 			},
 		],
