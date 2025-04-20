@@ -6,10 +6,7 @@ import { clientOnly } from "vike-solid/clientOnly";
 import { clock } from "solid-heroicons/outline";
 import { navigation } from "@/libs/navigation";
 import { Prose } from "@/components/Prose";
-import { MDXProvider } from "solid-jsx";
 import { Icon } from "solid-heroicons";
-
-import QuickLinks from "@/components/QuickLinks";
 
 type DocsLayoutProps = {
 	children: JSXElement;
@@ -20,17 +17,15 @@ const TableOfContents = clientOnly(() =>
 );
 
 export function DocsLayout(props: DocsLayoutProps) {
-	const {
-		exports: { frontmatter, readingTime },
-	} = usePageContext();
+	const pageContext = usePageContext();
 
 	return (
-		<MDXProvider components={{ QuickLinks, QuickLink: QuickLinks.QuickLink }}>
+		<>
 			<div class="max-w-2xl min-w-0 flex-auto px-4 py-16 lg:max-w-none lg:pr-0 lg:pl-8 xl:px-16 grow">
 				<article>
 					<DocsHeader
-						title={frontmatter?.title}
-						estimatedReadingTime={readingTime?.text}
+						title={pageContext.exports.frontmatter?.title}
+						estimatedReadingTime={pageContext.exports.readingTime?.text}
 					/>
 					<Prose>{props.children}</Prose>
 				</article>
@@ -38,7 +33,7 @@ export function DocsLayout(props: DocsLayoutProps) {
 			</div>
 
 			<TableOfContents fallback={null} />
-		</MDXProvider>
+		</>
 	);
 }
 
