@@ -8,9 +8,11 @@ import {
 	createEffect,
 	createSignal,
 } from "solid-js";
-import { Dialog, DialogPanel } from "terracotta";
-import { useDebounce } from "@/hooks/useDebounce";
+
 import { Highlighter } from "solid-highlight-words";
+import { useDebounce } from "@/hooks/useDebounce";
+import { Dialog, DialogPanel } from "terracotta";
+import { navigation } from "@/libs/navigation";
 import { navigate } from "vike/client/router";
 import { useId } from "@/hooks/useId";
 import clsx from "clsx";
@@ -127,6 +129,18 @@ function SearchResultItem(props: { result: SearchResult; query: string }) {
 	const { close } = useContext(SearchContext);
 	const id = useId();
 
+	const getHierarchy = (): string[] => {
+		const sectionTitle = navigation.find((section) => {
+			return section.links.find(
+				(link) => link.href === props.result.url.split("#")[0],
+			);
+		})?.title;
+
+		return [sectionTitle, props.result.pageTitle].filter(
+			(x): x is string => typeof x === "string",
+		);
+	};
+
 	return (
 		<li
 			class="group block cursor-default rounded-lg px-3 py-2 aria-selected:bg-slate-100 hover:bg-slate-100"
@@ -150,28 +164,30 @@ function SearchResultItem(props: { result: SearchResult; query: string }) {
 			>
 				<HighlightQuery text={props.result.title} query={props.query} />
 			</div>
-			{/* {props.result.length > 0 && (
+			{getHierarchy().length > 0 && (
 				<div
 					id={`${id}-hierarchy`}
 					aria-hidden="true"
 					class="mt-0.5 truncate text-xs whitespace-nowrap text-slate-500 dark:text-slate-400"
 				>
-					{hierarchy.map((item, itemIndex, items) => (
-						<Fragment key={itemIndex}>
-							<HighlightQuery text={item} query={query} />
-							<span
-								class={
-									itemIndex === items.length - 1
-										? "sr-only"
-										: "mx-2 text-slate-300 dark:text-slate-700"
-								}
-							>
-								/
-							</span>
-						</Fragment>
-					))}
+					<For each={getHierarchy()}>
+						{(item, itemIndex) => (
+							<>
+								<HighlightQuery text={item} query={props.query} />
+								<span
+									class={
+										itemIndex() === getHierarchy().length - 1
+											? "sr-only"
+											: "mx-2 text-slate-300 dark:text-slate-700"
+									}
+								>
+									/
+								</span>
+							</>
+						)}
+					</For>
 				</div>
-			)} */}
+			)}
 		</li>
 	);
 }
