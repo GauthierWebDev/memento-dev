@@ -1,5 +1,6 @@
 import type { JSXElement } from "solid-js";
 
+import { TableOfContents } from "@/partials/TableOfContents";
 import { PrevNextLinks } from "@/components/PrevNextLinks";
 import { usePageContext } from "vike-solid/usePageContext";
 import { clientOnly } from "vike-solid/clientOnly";
@@ -12,9 +13,9 @@ type DocsLayoutProps = {
 	children: JSXElement;
 };
 
-const TableOfContents = clientOnly(() =>
-	import("@/partials/TableOfContents").then((m) => m.TableOfContents),
-);
+// const TableOfContents = clientOnly(() =>
+// 	import("@/partials/TableOfContents").then((m) => m.TableOfContents),
+// );
 
 export function DocsLayout(props: DocsLayoutProps) {
 	const pageContext = usePageContext();
@@ -32,7 +33,7 @@ export function DocsLayout(props: DocsLayoutProps) {
 				<PrevNextLinks />
 			</div>
 
-			<TableOfContents fallback={null} />
+			<TableOfContents />
 		</>
 	);
 }
