@@ -25,7 +25,7 @@ export default {
 		class: "flex min-h-full bg-white",
 	},
 
-	image: "/og.png",
+	image: "/opengraph/og.png",
 
 	prerender: true,
 	prefetchStaticAssets: "hover",

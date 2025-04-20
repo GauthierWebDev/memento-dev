@@ -14,8 +14,6 @@ export async function data(pageContext: PageContext) {
 	} = pageContext;
 	const isRoot = urlParsed.pathname === "/";
 
-	console.log({ isRoot, urlParsed });
-
 	config({
 		title: buildTitle(isRoot ? undefined : frontmatter?.title),
 		description: frontmatter?.description,
