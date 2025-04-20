@@ -11,9 +11,13 @@ export default {
 	// @ts-ignore
 	Layout,
 
+	lang: "fr",
+
 	// https://vike.dev/head-tags
-	title: "My Vike App",
-	description: "Demo showcasing Vike",
+	title: "Memento Dev",
+	description:
+		"Découvrez des synthèses et ressources open-source dans le développement informatique.",
+
 	htmlAttributes: {
 		class: "h-full antialiased",
 	},
@@ -21,7 +25,10 @@ export default {
 		class: "flex min-h-full bg-white",
 	},
 
+	image: "/og.webp",
+
 	prerender: true,
+	prefetchStaticAssets: "hover",
 
 	extends: [vikeSolid],
 } satisfies Config;

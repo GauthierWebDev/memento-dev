@@ -1,3 +1,5 @@
+import logoUrl from "@/assets/logo.svg";
+
 /* eslint-disable solid/no-innerhtml */
 
 // https://vike.dev/Head
@@ -5,6 +7,8 @@
 export default function HeadDefault() {
 	return (
 		<>
+			<link rel="icon" href={logoUrl} />
+
 			<script
 				async
 				src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.PUBLIC_ENV__GOOGLE_ANALYTICS}`}
