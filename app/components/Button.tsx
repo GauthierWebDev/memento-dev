@@ -27,24 +27,19 @@ type ButtonProps = {
 	| (JSX.IntrinsicElements["a"] & { href: string })
 );
 
-export function Button({
-	variant = "primary",
-	size = "md",
-	className,
-	...props
-}: ButtonProps) {
-	className = clsx(
-		variantStyles[variant],
-		sizeStyles[size],
+export function Button(props: ButtonProps) {
+	const className = clsx(
+		variantStyles[props.variant ?? "primary"],
+		sizeStyles[props.size ?? "md"],
 		"cursor-pointer",
-		className,
+		props.className,
 	);
 
 	return "href" in props && props.href ? (
 		<Link
+			{...(props as JSX.IntrinsicElements["a"])}
 			class={className}
 			href={props.href}
-			{...(props as JSX.IntrinsicElements["a"])}
 		/>
 	) : (
 		<button class={className} {...(props as JSX.IntrinsicElements["button"])} />

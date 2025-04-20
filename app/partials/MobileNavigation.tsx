@@ -25,24 +25,24 @@ function MenuIcon(props: JSX.IntrinsicElements["svg"]) {
 function CloseIcon(props: JSX.IntrinsicElements["svg"]) {
 	return (
 		<svg
+			{...props}
 			aria-hidden="true"
 			viewBox="0 0 24 24"
 			fill="none"
 			stroke-width="2"
 			stroke-linecap="round"
-			{...props}
 		>
 			<path d="M5 5l14 14M19 5l-14 14" />
 		</svg>
 	);
 }
 
-function CloseOnNavigation({ close }: { close: () => void }) {
-	const { urlPathname } = usePageContext();
+function CloseOnNavigation(props: { close: () => void }) {
+	const pageContext = usePageContext();
 
 	createEffect(() => {
-		close();
-	}, [urlPathname, close]);
+		props.close();
+	}, [pageContext.urlPathname, props.close]);
 
 	return null;
 }

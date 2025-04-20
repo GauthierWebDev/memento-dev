@@ -31,25 +31,20 @@ const icons = {
 	),
 };
 
-export default function Callout({
-	title,
-	children,
-	type = "note",
-	collapsible = false,
-}: {
+export default function Callout(props: {
 	title: string;
 	children: JSX.Element;
 	type?: keyof typeof styles;
 	collapsible?: boolean;
 }) {
-	const IconComponent = icons[type];
+	const IconComponent = icons[props.type || "note"];
 
 	return (
 		<div
 			class={clsx(
 				"my-8 flex flex-col rounded-3xl p-6",
-				styles[type].container,
-				{ "cursor-pointer": collapsible },
+				styles[props.type || "note"].container,
+				{ "cursor-pointer": props.collapsible },
 			)}
 		>
 			<div class="flex items-center gap-6">
@@ -57,14 +52,16 @@ export default function Callout({
 				<p
 					class={clsx(
 						"!m-0 font-display text-xl text-balance",
-						styles[type].title,
+						styles[props.type || "note"].title,
 					)}
 				>
-					{title}
+					{props.title}
 				</p>
 			</div>
 			<div class="mt-4 flex-auto">
-				<div class={clsx("prose mt-2.5", styles[type].body)}>{children}</div>
+				<div class={clsx("prose mt-2.5", styles[props.type || "note"].body)}>
+					{props.children}
+				</div>
 			</div>
 		</div>
 	);
