@@ -1,11 +1,8 @@
-import { config } from "@/config";
+import type { PageContext } from "vike/types";
 
-export function buildPublicUrl(resource: string) {
-	const { BASE_URL } = config;
+export function buildPublicUrl(pageContext: PageContext, resource: string) {
+	const { baseUrl } = pageContext;
+	const url = new URL(resource, baseUrl).toString();
 
-	if (BASE_URL) {
-		return new URL(resource, BASE_URL).toString();
-	}
-
-	return resource;
+	return url;
 }

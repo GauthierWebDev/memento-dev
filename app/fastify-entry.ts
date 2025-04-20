@@ -18,6 +18,7 @@ const root = __dirname;
 declare global {
 	namespace Vike {
 		interface PageContext {
+			baseUrl: string;
 			exports: {
 				frontmatter?: Partial<{
 					title: string;

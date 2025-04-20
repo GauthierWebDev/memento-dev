@@ -1,6 +1,5 @@
 import type { Config } from "vike/types";
 
-import { buildPublicUrl } from "@/buildPublicUrl";
 import Layout from "@/layouts/LayoutDefault";
 import vikeSolid from "vike-solid/config";
 
@@ -25,8 +24,6 @@ export default {
 	bodyAttributes: {
 		class: "flex min-h-full bg-white",
 	},
-
-	image: buildPublicUrl("/opengraph/default.png"),
 
 	prerender: true,
 	prefetchStaticAssets: "hover",
