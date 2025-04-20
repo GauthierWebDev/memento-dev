@@ -1,7 +1,8 @@
-import type { JSX, ComponentProps, ParentComponent } from "solid-js";
+import type { ComponentProps, ParentComponent } from "solid-js";
 
 import { createEffect, createMemo, mergeProps, on, splitProps } from "solid-js";
 import * as Prismjs from "prismjs";
+import clsx from "clsx";
 
 /**
  * @see https://prismjs.com/#supported-languages
@@ -345,9 +346,9 @@ export const Highlight: ParentComponent<Props> = (_props) => {
 	);
 
 	return (
-		<pre>
+		<pre class={clsx("prism-code flex overflow-x-auto pb-6", languageClass())}>
 			<code
-				class={`${languageClass()} ${props.class || ""}`}
+				class={clsx("px-4", props.class)}
 				innerHTML={highlightedCode()}
 				{...rest}
 			>
