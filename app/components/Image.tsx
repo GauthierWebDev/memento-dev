@@ -9,7 +9,6 @@ export function Image(props: ImageProps) {
 		<img
 			{...props}
 			src={props.src}
-			role={isDecorationImage ? "presentation" : undefined}
 			aria-hidden={isDecorationImage ? "true" : undefined}
 			alt={isDecorationImage ? undefined : props.alt}
 			loading="lazy"

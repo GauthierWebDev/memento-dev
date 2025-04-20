@@ -86,7 +86,7 @@ function Footer() {
 	return (
 		<footer class="bg-slate-50 text-slate-700">
 			<div class="mx-auto w-full flex flex-col max-w-8xl sm:px-2 lg:px-8 xl:px-12 py-8">
-				<section>
+				<div>
 					<div class="flex items-center gap-2 mb-2">
 						<Logo class="h-8 w-auto" />
 						<strong class="font-display text-2xl">Memento Dev</strong>
@@ -97,17 +97,17 @@ function Footer() {
 						conçue pour les développeurs ou passionnés de l&lsquo;informatique
 						en quête de savoir.
 					</p>
-				</section>
+				</div>
 
 				<hr class="my-6 border-slate-200" />
 
-				<section>
-					<header class="flex items-center gap-2">
+				<div>
+					<div class="flex items-center gap-2">
 						<strong class="font-display">
 							&copy; 2022 - {new Date().getFullYear()} Memento Dev. Tous droits
 							réservés
 						</strong>
-					</header>
+					</div>
 
 					<p class="text-sm text-slate-500">
 						Memento Dev est une plateforme open-source, développée par{" "}
@@ -117,7 +117,7 @@ function Footer() {
 						, soutenue et maintenue par une communauté de contributeurs
 						passionnés.
 					</p>
-				</section>
+				</div>
 			</div>
 		</footer>
 	);
