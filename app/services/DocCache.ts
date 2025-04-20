@@ -1,4 +1,5 @@
 import type { FlexSearchData } from "./FlexSearchService";
+import type { TableOfContents } from "@/remarkHeadingId";
 import type { Node } from "@markdoc/markdoc";
 
 import { slugifyWithCounter } from "@sindresorhus/slugify";
@@ -7,7 +8,6 @@ import { hrtime } from "node:process";
 import fs from "node:fs/promises";
 import path from "node:path";
 import yaml from "js-yaml";
-import { copyFile } from "node:fs";
 
 const __dirname = path.resolve();
 
@@ -15,12 +15,14 @@ export type SectionCache = {
 	content: string;
 	frontmatter?: SectionFrontmatter;
 	markdocNode: Node;
+	sections: DocSection[];
 };
 
 export type DocSection = {
 	content: string;
 	hash?: string;
 	subsections: string[];
+	level?: number;
 };
 
 type SectionFrontmatter = {
@@ -99,7 +101,12 @@ class DocCache {
 			if (node.type === "heading" && node.attributes?.level <= 2) {
 				const hash = (node.attributes?.id as string) ?? this.slugify(content);
 				const subsections: string[] = [];
-				sections.push({ content, hash, subsections });
+				sections.push({
+					content,
+					hash,
+					subsections,
+					level: node.attributes?.level,
+				});
 			} else {
 				sections.at(-1)?.subsections.push(content);
 			}
@@ -124,9 +131,26 @@ class DocCache {
 		return data;
 	}
 
+	private getTableOfContents(markdocNode: Node) {
+		const sections: DocSection[] = [];
+		this.extractSections(markdocNode, sections);
+
+		return sections;
+	}
+
 	private async cacheFile(file: string): Promise<void> {
 		const [content, frontmatter, markdocNode] = await this.getFileContent(file);
-		this.cache.set(file, { content, frontmatter, markdocNode });
+		const filePath = file
+			.replace(/\+Page\.md(x)?$/, "")
+			.replace(/\/+/, "/")
+			.replace(/\/$/, "");
+
+		this.cache.set(filePath, {
+			content,
+			frontmatter,
+			markdocNode,
+			sections: this.getTableOfContents(markdocNode),
+		});
 	}
 
 	private async populateCache(): Promise<void> {
@@ -155,6 +179,10 @@ class DocCache {
 
 	public static getCache(): Map<string, SectionCache> {
 		return DocCache.getInstance().cache;
+	}
+
+	public getCache(): Map<string, SectionCache> {
+		return this.cache;
 	}
 
 	public get(file: string): SectionCache | undefined {

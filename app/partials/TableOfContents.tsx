@@ -1,5 +1,4 @@
-import type { TableOfContents as TableOfContentsType } from "@/remarkHeadingId";
-import type { Section } from "@/libs/sections";
+import type { DocSection } from "@/services/DocCache";
 import type { Data } from "@/pages/+data";
 
 import { createSignal, createEffect, For } from "solid-js";
@@ -8,31 +7,36 @@ import { Link } from "@/components/Link";
 import clsx from "clsx";
 
 export function TableOfContents() {
-	const { tableOfContents } = useData<Data>();
+	const { sections } = useData<Data>();
+	if (!sections) return null;
 
-	if (!tableOfContents) return null;
+	createEffect(() => {
+		for (const [key, value] of Object.entries(sections)) {
+			console.log(`${key}: ${JSON.stringify(value)}`);
+		}
+	});
 
-	const [currentSection, setCurrentSection] = createSignal(
-		tableOfContents[0]?.id,
-	);
+	const [currentSection, setCurrentSection] = createSignal(sections[0]?.hash);
 
 	const getHeadings = () => {
-		return tableOfContents
+		return sections
 			.map((section) => {
-				const el = document.getElementById(section.id);
+				if (!section.hash) return null;
+
+				const el = document.getElementById(section.hash);
 				if (!el) return null;
 
 				const style = window.getComputedStyle(el);
 				const scrollMt = Number.parseFloat(style.scrollMarginTop);
 
 				const top = window.scrollY + el.getBoundingClientRect().top - scrollMt;
-				return { id: section.id, top };
+				return { id: section.hash, top };
 			})
 			.filter((x): x is { id: string; top: number } => x !== null);
 	};
 
 	createEffect(() => {
-		if (tableOfContents.length === 0) return;
+		if (sections.length === 0) return;
 		const headings = getHeadings();
 
 		function onScroll() {
@@ -51,10 +55,10 @@ export function TableOfContents() {
 		return () => {
 			window.removeEventListener("scroll", onScroll);
 		};
-	}, [getHeadings, tableOfContents]);
+	}, [getHeadings, sections]);
 
-	function isActive(section: Section) {
-		if (section.id === currentSection()) return true;
+	function isActive(section: DocSection) {
+		if (section.hash === currentSection()) return true;
 		return false;
 		// if (!section.children) return false;
 
@@ -72,19 +76,19 @@ export function TableOfContents() {
 				</h2>
 
 				<ol class="mt-4 space-y-3 text-sm">
-					<For each={tableOfContents}>
+					<For each={sections}>
 						{(section) => (
 							<li>
 								<h3>
 									<Link
-										href={`#${section.id}`}
+										href={`#${section.hash}`}
 										class={clsx(
 											isActive(section)
 												? "text-violet-500"
 												: "font-normal text-slate-500 hover:text-slate-700",
 										)}
 									>
-										{section.title}
+										{section.content}
 									</Link>
 								</h3>
 							</li>
