@@ -30,7 +30,7 @@ function PageLink(props: PageLinkProps) {
 	});
 
 	return (
-		<div {...cleanProps(props, "dir", "title")}>
+		<div {...cleanProps(props, "dir", "title", "href", "subitems")}>
 			<dt class="font-display text-sm font-medium text-slate-900">
 				{props.dir === "next" ? "Suivant" : "Précédent"}
 			</dt>

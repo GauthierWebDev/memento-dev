@@ -132,7 +132,7 @@ export function HeroSection() {
 											</For>
 										</div>
 
-										<Highlight language={codeLanguage} code={code} />
+										<Highlight language={codeLanguage}>{code}</Highlight>
 									</div>
 								</div>
 							</div>

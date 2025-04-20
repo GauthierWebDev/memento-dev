@@ -85,10 +85,10 @@ function Footer() {
 		<footer class="bg-slate-50 text-slate-700">
 			<div class="mx-auto w-full flex flex-col max-w-8xl sm:px-2 lg:px-8 xl:px-12 py-8">
 				<section>
-					<header class="flex items-center gap-2 mb-2">
+					<div class="flex items-center gap-2 mb-2">
 						<Logo class="h-8 w-auto" />
-						<h2 class="font-display text-2xl">Memento Dev</h2>
-					</header>
+						<strong class="font-display text-2xl">Memento Dev</strong>
+					</div>
 
 					<p>
 						Plateforme de ressources et documentations synthétiques et concises,
@@ -101,10 +101,10 @@ function Footer() {
 
 				<section>
 					<header class="flex items-center gap-2">
-						<h2 class="font-display">
+						<strong class="font-display">
 							&copy; 2022 - {new Date().getFullYear()} Memento Dev. Tous droits
 							réservés
-						</h2>
+						</strong>
 					</header>
 
 					<p class="text-sm text-slate-500">

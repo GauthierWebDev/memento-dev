@@ -5,10 +5,12 @@ import { createHandler } from "@universal-middleware/fastify";
 import { telefuncHandler } from "./server/telefunc-handler";
 import { vikeHandler } from "./server/vike-handler";
 import { createDevMiddleware } from "vike/server";
+import { docCache } from "./services/DocCache";
 import { fileURLToPath } from "node:url";
 import { dirname } from "node:path";
 import { config } from "./config";
 import Fastify from "fastify";
+import { buildFlexSearch } from "./services/FlexSearchService";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -32,6 +34,8 @@ declare global {
 }
 
 async function startServer() {
+	await docCache.waitingForCache(20000);
+
 	const app = Fastify();
 
 	// Avoid pre-parsing body, otherwise it will cause issue with universal handlers

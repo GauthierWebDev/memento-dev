@@ -313,10 +313,7 @@ export type Language = (typeof Language)[keyof typeof Language];
 
 type Props = {
 	language: string;
-} & (
-	| (ComponentProps<"code"> & { code?: never })
-	| (Omit<JSX.IntrinsicElements["code"], "children"> & { code: string })
-);
+} & ComponentProps<"code">;
 
 export const Highlight: ParentComponent<Props> = (_props) => {
 	const props = mergeProps({ language: "javascript" }, _props);
@@ -354,7 +351,7 @@ export const Highlight: ParentComponent<Props> = (_props) => {
 				innerHTML={highlightedCode()}
 				{...rest}
 			>
-				{props.code || props.children}
+				{props.children}
 			</code>
 		</pre>
 	);

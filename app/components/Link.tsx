@@ -25,7 +25,7 @@ export function Link(props: LinkProps) {
 	return (
 		<a
 			{...props}
-			{...(isActive && { ariaCurrent: "page" })}
+			{...(isActive && { "aria-current": "page" })}
 			{...(isDownload && { download: true })}
 			{...(!isSameDomain || isDownload
 				? { target: "_blank", rel: "noopener noreferrer" }
