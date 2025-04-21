@@ -4,6 +4,7 @@ description: Explorez le dictionnaire de données dans Merise, essentiel pour st
 tags: [Backend, Merise, BDD, MCD, MLD, MPD, SQL]
 ---
 
+import DictionnaryTable from "./DictionnaryTable";
 import Callout from "@/components/Callout";
 
 Le **dictionnaire de données** est un document qui contient toutes les informations sur les données qui vont être stockées dans la future base de données.
@@ -72,18 +73,7 @@ Tu risques de retrouver ton client en train de convulser sur le sol : **pas glop
 
 Voici donc le dictionnaire de données que l'on va créer pour notre application :
 
-| Nom de la donnée            | Format         | Longueur | Contraintes         | Document   |
-| --------------------------- | -------------- | -------- | ------------------- | ---------- |
-| Nom                         | Alphabétique   | 30       | Obligatoire         | Musicien   |
-| Prénom                      | Alphabétique   | 30       | Obligatoire         | Musicien   |
-| Instruments                 | Alphabétique   | 30       | Obligatoire         | Musicien   |
-| Adresse e-mail              | Alphanumérique | 50       | Obligatoire, unique | Musicien   |
-| Mot de passe                | Alphanumérique | > 12     | Obligatoire         | Musicien   |
-| Date et heure de concert    | Date           | -        | Obligatoire         | Concert    |
-| Lieu de concert             | Alphabétique   | 50       | Obligatoire         | Concert    |
-| Tarif                       | Numérique      | -        | -                   | Concert    |
-| Date et heure de répétition | Date           | -        | Obligatoire         | Répétition |
-| Lieu de répétition          | Alphabétique   | 50       | Obligatoire         | Répétition |
+<DictionnaryTable />
 
 Voilà, on a notre dictionnaire de données !
 
