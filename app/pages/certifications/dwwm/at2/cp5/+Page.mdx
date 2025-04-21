@@ -4,6 +4,10 @@ description: Synthèse et explications des attentes relatives à la compétence 
 tags: [DWWM]
 ---
 
+import QuickLinks from "@/components/QuickLinks";
+import Callout from "@/components/Callout";
+import tabs from "./tabs";
+
 ## 📚 Références
 
 - REAC _(mise à jour du 02/07/2024)_, pages 23 et 24
@@ -14,11 +18,11 @@ tags: [DWWM]
 Le front-end : c'est **fini** !  
 Mais avant de nous attaquer au back-end d'un point de vue code, on va voir ce qui est attendu dans cette CP qui parle de la mise en place d'une base de données relationnelle.
 
-{% callout type="question" title="Mais attend ! J'ai juste une base de données non relationnelle à mettre en place, c'est bon ?" %}
-J'aurai aimé te dire que oui, mais ça va être un poil trop léger pour cette compétence...  
-Mais garde sous la main ta base de données non relationnelles
-pour la prochaine compétence, ça te servira 😉
-{% /callout %}
+<Callout type="question" title="Mais attend ! J'ai juste une base de données non relationnelle à mettre en place, c'est bon ?">
+  J'aurai aimé te dire que oui, mais ça va être un poil trop léger pour cette compétence...  
+  Mais garde sous la main ta base de données non relationnelles
+  pour la prochaine compétence, ça te servira 😉
+</Callout>
 
 ## 🎨 Modélisation de la base de données
 
@@ -41,12 +45,12 @@ Donc si tu réalises un dictionnaire de données après avoir fait ton MPD, c'es
 Si tu souhaites en savoir plus sur la méthode Merise, je t'invite à lire les articles dédiés sur le Memento.  
 Voici un lien vers l'introduction de la méthode Merise !
 
-{% quick-link
+<QuickLinks.QuickLink
   title="Introduction à Merise"
   href="/docs/merise/"
   description="Parlons un peu de Merise, la fameuse méthodologie de modélisation pour la conception de bases de données."
   icon="presets"
-/%}
+/>
 
 ## 💾 Sauvegardes de la base de données
 
@@ -68,18 +72,18 @@ Sans rentrer dans les détails de configuration d'une tâche cron, on va devoir 
 - **La fréquence d'exécution** : qui va déterminer à quelle fréquence notre tâche va s'exécuter _(toutes les heures, tous les jours, toutes les semaines, etc.)_
 - **Le compte utilisateur** : qui va exécuter la tâche, généralement le compte de l'utilisateur qui a les droits d'accès à la base de données
 
-{% callout type="note" title="Exemple de script `bash` pour sauvegarder une base de données PostgreSQL" %}
-{% snippet path="bash/pg_cron_file.sh" language="bash" showLineNumbers=true /%}
+<Callout type="note" title="Exemple de script `bash` pour sauvegarder une base de données PostgreSQL">
+  <tabs.bashPgCronFile />
 
-Ce script va permettre de sauvegarder une base de données PostgreSQL en exportant son contenu dans un fichier SQL.  
-Il est important de remplacer les variables `DB_USER`, `DB_NAME` et `BACKUP_DIR` par les informations de ta base de données.
+  Ce script va permettre de sauvegarder une base de données PostgreSQL en exportant son contenu dans un fichier SQL.  
+  Il est important de remplacer les variables `DB_USER`, `DB_NAME` et `BACKUP_DIR` par les informations de ta base de données.
 
-Une fois ce script créé, il suffira de le rendre exécutable et de le planifier dans une tâche cron pour automatiser la sauvegarde de ta base de données.
+  Une fois ce script créé, il suffira de le rendre exécutable et de le planifier dans une tâche cron pour automatiser la sauvegarde de ta base de données.
 
-{% snippet path="bash/pg_cron_register.sh" language="bash" /%}
+  <tabs.bashPgCronRegister />
 
-Et voilà ! Ta base de données sera sauvegardée toutes les nuits à minuit, sans que tu aies besoin d'intervenir manuellement.
-{% /callout %}
+  Et voilà ! Ta base de données sera sauvegardée toutes les nuits à minuit, sans que tu aies besoin d'intervenir manuellement.
+</Callout>
 
 ## 🛡️ Sécurité et confidentialité des données
 
@@ -97,38 +101,34 @@ Mais la sécurité ne s'arrête pas là, il est également important de garantir
 
 - **Le chiffrement des données** : pour éviter que des tiers puissent lire les données stockées, en cas de fuite
 
-{% callout type="warning" title="Identifiants de connexion" %}
-Même en développement sur ta machine locale, prend l'habitude de ne jamais utiliser les identifiants par défaut de ta base de données _(comme `root` sans mot de passe par exemple)_.
+<Callout type="warning" title="Identifiants de connexion">
+  Même en développement sur ta machine locale, prend l'habitude de ne jamais utiliser les identifiants par défaut de ta base de données _(comme `root` sans mot de passe par exemple)_.
 
-L'objectif est de te mettre dans les conditions réelles d'un environnement de production, où la sécurité est primordiale. Ça t'évitera de prendre de mauvaises habitudes qui pourraient te coûter cher par la suite.
-{% /callout %}
+  L'objectif est de te mettre dans les conditions réelles d'un environnement de production, où la sécurité est primordiale. Ça t'évitera de prendre de mauvaises habitudes qui pourraient te coûter cher par la suite.
+</Callout>
 
 ## ➕ Informations complémentaires
 
 Si tu utilises une autre méthode de modélisation que Merise, tu as évidemment le droit de le faire !  
 Fais juste attention à une chose...
 
-{% callout type="warning" title="Attention au respect des documents !" %}
-Si tu utilises une autre méthode de modélisation, fais attention à bien respecter les noms des documents.
+<Callout type="warning" title="Attention au respect des documents !">
+  Si tu utilises une autre méthode de modélisation, fais attention à bien respecter les noms des documents.
 
-Par exemple, si tu fais un MCD, il faut que tu l'appelles comme ça et pas autrement.  
-Mais si tu fais un MCD il faut qu'il respecte la méthode Merise, **sinon ce n'est pas un MCD**.
+  Par exemple, si tu fais un MCD, il faut que tu l'appelles comme ça et pas autrement.  
+  Mais si tu fais un MCD il faut qu'il respecte la méthode Merise, **sinon ce n'est pas un MCD**.
 
-Ton jury peut être très pointilleux là-dessus, donc fais attention à bien respecter les noms des documents, leur contenu et leur structure.
+  Ton jury peut être très pointilleux là-dessus, donc fais attention à bien respecter les noms des documents, leur contenu et leur structure.
 
-N'oublie pas : tu as toutes les ressources nécessaires pour réaliser un MCD, un MLD ou un MPD sur le Memento 😉
+  N'oublie pas : tu as toutes les ressources nécessaires pour réaliser un MCD, un MLD ou un MPD sur le Memento 😉
 
-{% quick-link
-  title="Introduction à Merise"
-  href="/docs/merise/"
-  description="Parlons un peu de Merise, la fameuse méthodologie de modélisation pour la conception de bases de données."
-  icon="presets"
-/%}
-{% /callout %}
-
-## 🛠️ Ressources conseillées
-
-_En cours de rédaction..._
+  <QuickLinks.QuickLink
+    title="Introduction à Merise"
+    href="/docs/merise/"
+    description="Parlons un peu de Merise, la fameuse méthodologie de modélisation pour la conception de bases de données."
+    icon="presets"
+  />
+</Callout>
 
 ## 🎯 Critères d'évaluation
 
