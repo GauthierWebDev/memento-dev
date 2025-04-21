@@ -2,7 +2,7 @@ import type { JSX } from "solid-js";
 
 type ImageProps = JSX.IntrinsicElements["img"] & { src: string; alt: string };
 
-export function Image(props: ImageProps) {
+export default function Image(props: ImageProps) {
 	const isDecorationImage = props.alt === "";
 
 	return (

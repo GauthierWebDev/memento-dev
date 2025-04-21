@@ -4,6 +4,10 @@ description: Synthèse et explications des attentes relatives à la compétence 
 tags: [DWWM]
 ---
 
+import Callout from "@/components/Callout";
+import Image from "@/components/Image";
+import tabs from "./tabs";
+
 ## 📚 Références
 
 - REAC _(mise à jour du 02/07/2024)_, pages 21 et 22
@@ -13,7 +17,7 @@ tags: [DWWM]
 
 Ça y est, on commence à parler développement pour de vrai maintenant ! On quitte doucement l'intégration pour maintenant rajouter de l'interactivité à nos interfaces utilisateur, ce qui veut dire "utilisation d'un langage script côté client", soit...
 
-{% iframe src="https://giphy.com/embed/SvFocn0wNMx0iv2rYz" width="480" height="480" className="mx-auto" /%}
+<Image src="https://i.giphy.com/SvFocn0wNMx0iv2rYz.webp" width="480" height="480" class="mx-auto rounded-md" />
 
 C'est le meilleur moment pour parler de nombreuses fonctionnalités implémentées sur ton application avec JavaScript, comme :
 
@@ -22,21 +26,21 @@ C'est le meilleur moment pour parler de nombreuses fonctionnalités implémenté
 - Les interactions avec l'utilisateur _(drag and drop, ouverture de fenêtre modale, etc.)_
 - Les appels à des services web _(API REST, etc.)_
 
-{% callout type="note" title="Consommation d'API" %}
-Bien que j'ai mentionné le fait que faire des appels à des services web corresponde entièrement à cette CP, il est important de noter que la consommation d'API est une compétence à part entière, qui sera abordée dans la CP 7 qui correspond à la mise en place de services web et composants métier.
+<Callout type="note" title="Consommation d'API">
+  Bien que j'ai mentionné le fait que faire des appels à des services web corresponde entièrement à cette CP, il est important de noter que la consommation d'API est une compétence à part entière, qui sera abordée dans la CP 7 qui correspond à la mise en place de services web et composants métier.
 
-Ne te focalise donc pas sur ce que fait l'API en arrière plan, concentre toi sur comment configurer tes requêtes et comment traiter les réponses obtenues !
-{% /callout %}
+  Ne te focalise donc pas sur ce que fait l'API en arrière plan, concentre toi sur comment configurer tes requêtes et comment traiter les réponses obtenues !
+</Callout>
 
-{% callout type="question" title="Mon site est fait avec React/Angular/Vue.js, donc je valide automatiquement cette CP ?" %}
-Pas si vite ! 😏  
-Effectivement, ton site répond _(en théorie)_ en tous points pour la compétence actuelle, mais il est important de montrer que tu sais comment fonctionne le JavaScript "vanilla" _(c'est-à-dire sans framework ou bibliothèque)_.
+<Callout type="question" title="Mon site est fait avec React/Angular/Vue.js, donc je valide automatiquement cette CP ?">
+  Pas si vite ! 😏  
+  Effectivement, ton site répond _(en théorie)_ en tous points pour la compétence actuelle, mais il est important de montrer que tu sais comment fonctionne le JavaScript "vanilla" _(c'est-à-dire sans framework ou bibliothèque)_.
 
-Si tu as utilisé un framework, tu peux tout à fait montrer des extraits de code en JavaScript pur pour montrer que tu sais comment ça fonctionne "sous le capot" !
+  Si tu as utilisé un framework, tu peux tout à fait montrer des extraits de code en JavaScript pur pour montrer que tu sais comment ça fonctionne "sous le capot" !
 
-Mais on ne va pas se le cacher, si tu as réussi à réaliser un projet avec un framework, c'est déjà un très bon point pour toi qui permet de démontrer que tu as de bonnes connaissances en JavaScript.  
-Cependant il va potentiellement y avoir un défaut majeur sur ton projet : le référencement naturel _(SEO)_.
-{% /callout %}
+  Mais on ne va pas se le cacher, si tu as réussi à réaliser un projet avec un framework, c'est déjà un très bon point pour toi qui permet de démontrer que tu as de bonnes connaissances en JavaScript.  
+  Cependant il va potentiellement y avoir un défaut majeur sur ton projet : le référencement naturel _(SEO)_.
+</Callout>
 
 ## ➕ Informations complémentaires
 
@@ -58,59 +62,41 @@ Tu as aussi la possibilité d'utiliser [Next.js](https://nextjs.org/) pour React
 Je me permets également de lâcher une bombe sur une certaine techno JS : **jQuery**.  
 Bon sang, celui-là il me fait penser à un vieux pote qui a pris un coup de vieux... 😅
 
-{% callout type="question" title="jQuery, c'est quoi ?" %}
-jQuery est une bibliothèque JavaScript qui a été très populaire dans les années 2000 et 2010.  
-Elle a été créée pour simplifier l'écriture de scripts JavaScript et pour faciliter la manipulation du DOM.
+<Callout type="question" title="jQuery, c'est quoi ?">
+  jQuery est une bibliothèque JavaScript qui a été très populaire dans les années 2000 et 2010.  
+  Elle a été créée pour simplifier l'écriture de scripts JavaScript et pour faciliter la manipulation du DOM.
 
-jQuery a été très utilisée pour les animations, les requêtes AJAX, la manipulation du DOM, etc.  
-Mais depuis l'arrivée des frameworks front-end comme React, Angular ou Vue.js, jQuery a perdu de sa superbe et est de moins en moins utilisée.
+  jQuery a été très utilisée pour les animations, les requêtes AJAX, la manipulation du DOM, etc.  
+  Mais depuis l'arrivée des frameworks front-end comme React, Angular ou Vue.js, jQuery a perdu de sa superbe et est de moins en moins utilisée.
 
-Cependant, il est toujours bon de connaître jQuery, car il est possible que tu tombes sur un projet qui l'utilise encore, comme sur des templates Wordpress qui commencent à dater par exemple.
-{% /callout %}
+  Cependant, il est toujours bon de connaître jQuery, car il est possible que tu tombes sur un projet qui l'utilise encore, comme sur des templates Wordpress qui commencent à dater par exemple.
+</Callout>
 
 Mais alors, pourquoi je te parle de jQuery ?
 
 Eh bien.. pour faire simple, aujourd'hui jQuery est relativement obsolète et surtout très lourd pour ce que ça rajoute à un projet.  
 Dans la mesure du possible, il est recommandé de ne pas utiliser jQuery pour un nouveau projet, et de préférer JavaScript "vanilla" ou un framework ou bibliothèque front-end comme React, Angular ou Vue.js _(attention, d'un point de vue éco-conception l'utilisation d'un framework n'est pas forcément la meilleure solution)_.
 
-{% callout type="question" title="Mais comment je vais faire pour mes consommations d'API, vu que j'utilisais `jQuery.ajax()` ?!" %}
+<Callout type="question" title="Mais comment je vais faire pour mes consommations d'API, vu que j'utilisais `jQuery.ajax()` ?!">
+  Tout doux, tout doux, il existe une solution ! 😎
 
-Tout doux, tout doux, il existe une solution ! 😎
+  Si je te parle des requêtes XHR _(XMLHttpRequest)_ tu me dis... ?
 
-Si je te parle des requêtes XHR _(XMLHttpRequest)_ tu me dis... ?
+  > Mais c'est vieux ça, c'est pas du tout à la mode !
 
-> Mais c'est vieux ça, c'est pas du tout à la mode !
+  Et tu as raison, mais si maintenant je te dis qu'il y a une autre solution, native, plus moderne et plus performante, tu me dis... ?
 
-Et tu as raison, mais si maintenant je te dis qu'il y a une autre solution, native, plus moderne et plus performante, tu me dis... ?
+  > Fetch !
 
-> Fetch !
+  **Et sinon, pour faire simple :**
 
-**Et sinon, pour faire simple :**
+  Fetch est une API plus moderne et plus simple à utiliser que les requêtes XHR, et elle est supportée par tous les navigateurs modernes.  
+  Elle permet de faire des requêtes HTTP de manière asynchrone et de gérer les réponses de manière plus simple.
 
-Fetch est une API plus moderne et plus simple à utiliser que les requêtes XHR, et elle est supportée par tous les navigateurs modernes.  
-Elle permet de faire des requêtes HTTP de manière asynchrone et de gérer les réponses de manière plus simple.
+  <tabs.xhrRequest />
 
-{% tabs defaultSelectedTab="xhr" %}
-{% tab value="xhr" label="🥉 XHR" %}
-{% snippet path="js/xhr/xhr.js" language="js" showLineNumbers=true /%}
-{% /tab %}
-
-{% tab value="jquery" label="🥈 jQuery" %}
-{% snippet path="js/xhr/jquery-ajax.js" language="js" showLineNumbers=true /%}
-{% /tab %}
-
-{% tab value="fetch" label="🥇🏆 Fetch" %}
-{% snippet path="js/xhr/fetch.js" language="js" showLineNumbers=true /%}
-{% /tab %}
-{% /tabs %}
-
-Non seulement `fetch` est plus simple à utiliser et comprendre _(contrairement à XMLHttpRequest)_ mais elle est également plus légère que `jQuery.ajax()` puisqu'elle est native au navigateur ! Alors pourquoi s'en priver ? 😉
-
-{% /callout %}
-
-## 🛠️ Ressources conseillées
-
-_En cours de rédaction..._
+  Non seulement `fetch` est plus simple à utiliser et comprendre _(contrairement à XMLHttpRequest)_ mais elle est également plus légère que `jQuery.ajax()` puisqu'elle est native au navigateur ! Alors pourquoi s'en priver ? 😉
+</Callout>
 
 ## 🎯 Critères d'évaluation
 
@@ -143,28 +129,18 @@ Maintenant, on sait qu'on peut charger de manière "asynchrone" nos images et no
 Prenons l'exemple d'un site qui incorpore plusieurs dizaines de vidéos Youtube sur une seule page. On aura donc des `<iframe>` qui vont charger des vidéos Youtube, et ça, c'est pas très éco-responsable... 😕  
 Mais on peut améliorer notre page en mettant en place une légère interaction JavaScript pour charger l'iframe uniquement si l'utilisateur clique sur un bouton !
 
-{% callout type="note" title="Chargement d'un iframe Youtube uniquement au clic de l'utilisateur" %}
+<Callout type="note" title="Chargement d'un iframe Youtube uniquement au clic de l'utilisateur">
+  <tabs.deferIframe />
+</Callout>
 
-{% tabs defaultSelectedTab="html" %}
-{% tab value="html" label="HTML - 1ère étape" %}
-{% snippet path="html/defer-iframe.html" language="html" showLineNumbers=true /%}
-{% /tab %}
+<Callout type="question" title="Mais ça fait beaucoup de code juste pour charger des iframes, c'est vraiment nécessaire ?">
+  Pour être franc, il n'y a pas de solution idéale. Mais on peut améliorer les performances du site et gagner en sobriété numérique en ne chargeant pas des ressources lourdes inutilement.
 
-{% tab value="js" label="JavaScript - 2ème étape" %}
-{% snippet path="js/defer-iframe.ts" language="ts" showLineNumbers=true /%}
-{% /tab %}
-{% /tabs %}
+  Est-ce que tu savais que le simple fait de charger un iframe d'une vidéo Youtube demande au navigateur de faire une dizaine de requêtes HTTP pour charger la vidéo, les scripts et les styles de Youtube ? Imagine si on mixe plusieurs sources pour nos iframes, comme Dailymotion, Vimeo, etc. 😱
 
-{% /callout %}
-
-{% callout type="question" title="Mais ça fait beaucoup de code juste pour charger des iframes, c'est vraiment nécessaire ?" %}
-Pour être franc, il n'y a pas de solution idéale. Mais on peut améliorer les performances du site et gagner en sobriété numérique en ne chargeant pas des ressources lourdes inutilement.
-
-Est-ce que tu savais que le simple fait de charger un iframe d'une vidéo Youtube demande au navigateur de faire une dizaine de requêtes HTTP pour charger la vidéo, les scripts et les styles de Youtube ? Imagine si on mixe plusieurs sources pour nos iframes, comme Dailymotion, Vimeo, etc. 😱
-
-Et le pire dans tout ça, c'est que le navigateur va charger ces ressources même si l'utilisateur ne comptait pas regarder la vidéo !
-Alors autant faire en sorte que notre site réponde au besoin de l'utilisateur, sans pour autant supprimer les fonctionnalités _(comme nos iframes)_ qui peuvent être utiles.
-{% /callout %}
+  Et le pire dans tout ça, c'est que le navigateur va charger ces ressources même si l'utilisateur ne comptait pas regarder la vidéo !
+  Alors autant faire en sorte que notre site réponde au besoin de l'utilisateur, sans pour autant supprimer les fonctionnalités _(comme nos iframes)_ qui peuvent être utiles.
+</Callout>
 
 ## 🧠 Documentations
 

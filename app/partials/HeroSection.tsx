@@ -5,7 +5,7 @@ import blurCyanImage from "@/images/blur-cyan.webp";
 import { HeroBackground } from "./HeroBackground";
 import { Snippet } from "@/components/Snippet";
 import { Button } from "@/components/Button";
-import { Image } from "@/components/Image";
+import Image from "@/components/Image";
 
 const snippets = [
 	{
