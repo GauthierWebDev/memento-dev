@@ -22,8 +22,8 @@ export function DocsLayout(props: DocsLayoutProps) {
 
 	return (
 		<>
-			<div class="max-w-2xl min-w-0 flex-auto px-4 py-16 lg:max-w-none lg:pr-0 lg:pl-8 xl:px-16 grow">
-				<article>
+			<main class="max-w-2xl min-w-0 flex-auto px-4 py-16 lg:max-w-none lg:pr-0 lg:pl-8 xl:px-16 grow">
+				<article id="article-content">
 					<DocsHeader
 						title={pageContext.exports.frontmatter?.title}
 						estimatedReadingTime={pageContext.exports.readingTime?.text}
@@ -31,7 +31,7 @@ export function DocsLayout(props: DocsLayoutProps) {
 					<Prose>{props.children}</Prose>
 				</article>
 				<PrevNextLinks />
-			</div>
+			</main>
 
 			<TableOfContents />
 		</>

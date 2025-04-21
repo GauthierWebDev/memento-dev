@@ -3,12 +3,17 @@ import type { JSXElement } from "solid-js";
 import { usePageContext } from "vike-solid/usePageContext";
 import { HeroSection } from "@/partials/HeroSection";
 import { Navigation } from "@/partials/Navigation";
+import { clientOnly } from "vike-solid/clientOnly";
 import { Header } from "@/partials/Header";
 import { Footer } from "@/partials/Footer";
 import { DocsLayout } from "./DocsLayout";
 import { Toaster } from "solid-toast";
 
 import "./tailwind.css";
+
+const ReadProgressBar = clientOnly(
+	async () => (await import("@/partials/ReadProgressBar")).ReadProgressBar,
+);
 
 type DefaultLayoutProps = {
 	children: JSXElement;
@@ -21,6 +26,7 @@ export default function DefaultLayout(props: DefaultLayoutProps) {
 		<>
 			<div class="flex w-full flex-col font-sans">
 				<Header />
+				<ReadProgressBar />
 
 				{pageContext.urlPathname === "/" && <HeroSection />}
 
