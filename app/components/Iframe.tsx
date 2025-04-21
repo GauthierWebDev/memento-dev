@@ -10,12 +10,14 @@ type IframeProps = {
 
 export default function Iframe(props: IframeProps) {
 	return (
-		<iframe
-			src={props.src}
-			class={clsx("max-w-full pointer-events-none", props.class)}
-			width={props.width}
-			height={props.height}
-			title={props.title}
-		/>
+		<div class={clsx("max-w-full pointer-events-none w-full")}>
+			<iframe
+				src={props.src}
+				width={props.width}
+				height={props.height}
+				title={props.title}
+				class={props.class}
+			/>
+		</div>
 	);
 }
