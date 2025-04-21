@@ -50,7 +50,10 @@ export function SmoothScroll(props: SmoothScrollProps) {
 
 	const isElementScrollable = (element: HTMLElement) => {
 		if (!element) return false;
-		return element.scrollHeight > element.clientHeight;
+
+		return (
+			element.scrollHeight > element.clientHeight && element.tagName !== "HTML"
+		);
 	};
 
 	const findScrollableParent = (element: HTMLElement) => {
@@ -74,6 +77,7 @@ export function SmoothScroll(props: SmoothScrollProps) {
 			event.clientX,
 			event.clientY,
 		) as HTMLElement;
+
 		if (findScrollableParent(hoveredElement)) {
 			if (animationFrameId !== null) cancelAnimationFrame(animationFrameId);
 			return;
