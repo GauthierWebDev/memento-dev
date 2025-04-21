@@ -1,7 +1,6 @@
 import type { Root } from "postcss";
 
 import remarkExtractFrontmatter from "./remarkExtractFrontmatter";
-import { purgeCSSPlugin } from "@fullhuman/postcss-purgecss";
 import prismjsVitePlugin from "vite-plugin-prismjs";
 import remarkFrontmatter from "remark-frontmatter";
 import remarkHeadingId from "./remarkHeadingId";
@@ -54,24 +53,7 @@ export default defineConfig({
 	css: {
 		postcss: {
 			plugins: [
-				purgeCSSPlugin({
-					content: [
-						"./**/*.html",
-						"./**/*.js",
-						"./**/*.jsx",
-						"./**/*.ts",
-						"./**/*.tsx",
-						"./**/*.mdx",
-						"./**/*.md",
-					],
-					defaultExtractor: (content) => {
-						return content.match(/[\w-/:.\[\]\(\)_\[\]]+(?<!:)/g) || [];
-					},
-					variables: true,
-					keyframes: true,
-					fontFace: true,
-				}),
-				removeCommentRules,
+				...(process.env.NODE_ENV === "production" ? [removeCommentRules] : []),
 			],
 		},
 	},
