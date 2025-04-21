@@ -44,21 +44,23 @@ type DocsHeaderProps = {
 };
 
 export function DocsHeader(props: DocsHeaderProps) {
-	const { urlPathname } = usePageContext();
+	const pageContext = usePageContext();
 
-	const section = navigation.find((section) =>
-		section.links.find((link) => link.href === urlPathname),
-	);
+	const getSection = () => {
+		return navigation.find((section) =>
+			section.links.find((link) => link.href === pageContext.urlPathname),
+		);
+	};
 
-	if (!props.title && !section) {
+	if (!props.title && !getSection()) {
 		return null;
 	}
 
 	return (
 		<header class="mb-9 space-y-1">
-			{section && (
+			{getSection() && (
 				<p class="font-display text-sm font-medium text-violet-500">
-					{section.title}
+					{getSection()?.title}
 				</p>
 			)}
 			{props.title && (

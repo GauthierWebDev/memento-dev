@@ -1,3 +1,5 @@
+import type { NavigationLink } from "@/libs/navigation";
+
 import { chevronDown, chevronUp } from "solid-heroicons/solid";
 import { createEffect, createSignal, For } from "solid-js";
 import { usePageContext } from "vike-solid/usePageContext";
@@ -14,22 +16,32 @@ type NavigationItemProps = {
 function NavigationItem(props: NavigationItemProps) {
 	const pageContext = usePageContext();
 
-	const [isOpened, setIsOpened] = createSignal(
-		props.section.links.some(
-			(link) =>
-				link.href === pageContext.urlPathname ||
-				link.subitems?.some(
-					(subitem) => subitem.href === pageContext.urlPathname,
-				),
-		),
-	);
+	const checkIsLinkActive = (link: NavigationLink) => {
+		return (
+			link.href === pageContext.urlPathname ||
+			link.subitems?.some((subitem) => subitem.href === pageContext.urlPathname)
+		);
+	};
+
+	const checkIsActive = () => {
+		return props.section.links.some((link) => checkIsLinkActive(link));
+	};
+
+	const [isOpened, setIsOpened] = createSignal(checkIsActive());
+
+	createEffect(() => {
+		// If the current URL path is the same as the link's href, set isOpened to true
+		if (!isOpened() && checkIsActive()) {
+			setIsOpened(true);
+		}
+	}, [pageContext.urlPathname]);
 
 	return (
 		<>
 			<h3
 				class={clsx(
 					"font-display font-medium cursor-pointer",
-					isOpened() ? "text-violet-600" : "text-slate-900",
+					checkIsActive() ? "text-violet-600" : "text-slate-900",
 				)}
 			>
 				<button
@@ -65,12 +77,7 @@ function NavigationItem(props: NavigationItemProps) {
 								<NavigationSubItem
 									link={link}
 									onLinkClick={props.onLinkClick}
-									isOpened={
-										link.href === pageContext.urlPathname ||
-										link.subitems?.some(
-											(subitem) => subitem.href === pageContext.urlPathname,
-										)
-									}
+									isOpened={checkIsLinkActive(link)}
 								/>
 							</li>
 						)}
@@ -82,7 +89,7 @@ function NavigationItem(props: NavigationItemProps) {
 }
 
 type NavigationSubItemProps = {
-	link: (typeof navigation)[number]["links"][number];
+	link: NavigationLink;
 	onLinkClick?: (event: MouseEvent) => void;
 	isOpened?: boolean;
 };
@@ -91,13 +98,15 @@ function NavigationSubItem(props: NavigationSubItemProps) {
 	const [isOpened, setIsOpened] = createSignal(props.isOpened);
 	const pageContext = usePageContext();
 
-	createEffect(() => {
-		setIsOpened(
-			props.link.href === pageContext.urlPathname ||
-				props.link.subitems?.some(
-					(subitem) => subitem.href === pageContext.urlPathname,
-				),
+	const checkIsLinkActive = (link: NavigationLink) => {
+		return (
+			link.href === pageContext.urlPathname ||
+			link.subitems?.some((subitem) => subitem.href === pageContext.urlPathname)
 		);
+	};
+
+	createEffect(() => {
+		setIsOpened(checkIsLinkActive(props.link) || props.isOpened);
 	}, [pageContext.urlPathname, props.link]);
 
 	return (
@@ -136,7 +145,7 @@ function NavigationSubItem(props: NavigationSubItemProps) {
 								props.link.subitems,
 						},
 						props.link.href !== pageContext.urlPathname && "before:hidden",
-						isOpened()
+						checkIsLinkActive(props.link)
 							? "text-violet-500 before:bg-violet-500"
 							: "text-slate-500 before:bg-slate-300 hover:text-slate-600 hover:before:block",
 					)}

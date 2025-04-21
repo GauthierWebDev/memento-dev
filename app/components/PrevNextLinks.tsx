@@ -68,6 +68,25 @@ export function PrevNextLinks() {
 	const pageContext = usePageContext();
 
 	const allLinks = navigation
+		.sort((a, b) => {
+			// positions order (for sorting):
+			// 1. start
+			// 2. auto | undefined
+			// 3. end
+
+			if (a.position === "start" && b.position !== "start") return -1;
+			if (a.position !== "start" && b.position === "start") return 1;
+
+			if (a.position === "end" && b.position !== "end") return 1;
+			if (a.position !== "end" && b.position === "end") return -1;
+
+			if (a.position === "auto" && b.position !== "auto") return -1;
+			if (a.position !== "auto" && b.position === "auto") return 1;
+
+			if (a.position === undefined && b.position !== undefined) return -1;
+			if (a.position !== undefined && b.position === undefined) return 1;
+			return 0;
+		})
 		.flatMap((section) => section.links)
 		.flatMap((link) => {
 			return link.subitems ? [link, ...link.subitems] : link;
