@@ -11,6 +11,7 @@ const snippets = [
 	{
 		name: "memento-dev.config.js",
 		codeLanguage: "javascript",
+		withLineNumbers: true,
 		code: `export default {
 	role: "developer",
 	qualifications: [
@@ -23,6 +24,7 @@ const snippets = [
 	{
 		name: "package.json",
 		codeLanguage: "json",
+		withLineNumbers: true,
 		code: `{
 	"name": "memento-dev",
 	"version": "2.0.0",

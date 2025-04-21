@@ -4,6 +4,7 @@ const reactTodoListSnippets = [
 	{
 		name: "App.tsx",
 		codeLanguage: "tsx",
+		withLineNumbers: true,
 		code: `import TodoList from "./TodoList";
 import React from "react";
 
@@ -19,6 +20,7 @@ const App = () => {
 	{
 		name: "TodoList.tsx",
 		codeLanguage: "tsx",
+		withLineNumbers: true,
 		code: `import TodoListItem from "./TodoListItem";
 import React from "react";
 
@@ -65,6 +67,7 @@ export default TodoList;`,
 	{
 		name: "TodoListItem.tsx",
 		codeLanguage: "tsx",
+		withLineNumbers: true,
 		code: `import React from "react";
 
 interface TodoListItemProps {
