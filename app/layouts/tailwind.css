@@ -2,6 +2,8 @@
 @import "./style.css";
 @import "tailwindcss";
 
+@source not inline("{hover:,focus:}bg-{zinc,red,orange,yellow,lime,green,emerald,teal}-{50..950}");
+
 @plugin '@tailwindcss/typography';
 
 @theme {
