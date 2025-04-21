@@ -21,7 +21,6 @@ export function TableOfContents() {
 				if (!section.hash) return null;
 
 				const el = document.getElementById(section.hash);
-				console.log(section.hash, el);
 				if (!el) return null;
 
 				const style = window.getComputedStyle(el);
