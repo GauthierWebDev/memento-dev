@@ -12,4 +12,4 @@ RUN bun run build
 
 EXPOSE 3000
 
-CMD [ "pnpm", "preview" ]
+CMD [ "bun", "run", "preview" ]

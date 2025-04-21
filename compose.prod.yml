@@ -7,9 +7,6 @@ services:
     env_file:
       - .env
     environment:
-      - NODE_ENV=development
+      - NODE_ENV=production
     ports:
       - "${PORT}:${PORT}"
-      - "${HMR_PORT}:${HMR_PORT}"
-    working_dir: /app
-    command: bun run preview
