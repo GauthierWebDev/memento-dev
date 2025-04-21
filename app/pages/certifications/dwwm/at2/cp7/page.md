@@ -1,0 +1,193 @@
+---
+title: CP 7 - Développer des composants métier coté serveur
+description: Synthèse et explications des attentes relatives à la compétence professionnelle 7 du titre professionnel Développeur Web et Web Mobile (DWWM-01280m04).
+tags: [DWWM]
+---
+
+## 📚 Références
+
+- REAC _(mise à jour du 02/07/2024)_, pages 27 et 28
+- RE _(mise à jour du 02/07/2024)_, page 12
+
+## 📋 En résumé
+
+Maintenant que l'on sait modéliser et dialoguer avec notre base de données, on va pouvoir s'attaquer à la logique métier de notre application.  
+Dans le cadre d'un projet web, ça représentera principalement nos contrôleurs, middlewares et services.
+
+Si tu as déjà travaillé sur un projet web, tu as probablement déjà entendu parler du design pattern MVC.  
+Et si ce n'est pas le cas, pas de panique, on va voir ensemble ce que c'est !
+
+## 💡 Le design pattern MVC
+
+Le design pattern MVC est un modèle d'architecture logicielle qui sépare les données, la logique métier et l'interface utilisateur.
+
+- **Modèle** : représente les données de l'application. Il contient les classes qui permettent de manipuler les données.
+- **Vue** : représente l'interface utilisateur. C'est ce que l'utilisateur voit et avec quoi il interagit.
+- **Contrôleur** : fait le lien entre le modèle et la vue. Il contient la logique métier de l'application.
+
+{% callout type="warning" title="Les schémas disponibles en ligne" %}
+Il existe de nombreux schémas qui expliquent le design pattern MVC mais ils ne sont pas tous corrects.  
+Enfin, si, ils sont corrects... mais certains ne s'appliquent pas à tous les frameworks et architectures.
+{% /callout %}
+
+Pour t'aider à mieux te représenter un schéma MVC avec les ordres de flux de données et de contrôle :
+
+{% img alt="Schéma MVC pour une application web basique" src="/patterns/mvc.webp" className="max-h-96 mx-auto" /%}
+
+{% callout type="question" title="Pourquoi la Vue ne retourne pas directement au client ?" %}
+La vue ne retourne pas directement au client car elle doit passer par le contrôleur.  
+On ne s'en rend pas forcément compte, mais la vue est généralement générée par le contrôleur via un moteur de template _(EJS, Twig, etc.)_.
+
+Une fois le HTML généré, le contrôleur s'occupe de l'envoyer dans la réponse HTTP au client.  
+C'est ce qui permet de garder une séparation entre la logique métier et l'interface utilisateur.
+{% /callout %}
+
+Le concept est simple : chaque partie de l'application a un **rôle bien défini** et ne doit pas empiéter sur le rôle des autres.
+
+{% callout type="question" title="Et si j'ai des middlewares ?" %}
+Dans la majorité des cas, les middlewares s'exécutent avant le contrôleur même si on peut en avoir à différents moments de la circulation de la donnée.  
+Si tu as déjà utilisé Express, tu as probablement déjà utilisé un middleware pour vérifier si l'utilisateur est connecté avant de lui afficher une page qui est réservée aux utilisateurs connectés.
+{% /callout %}
+
+{% callout type="note" title="Le cas de React (ou Vue, Angular, Solid, etc.)" %}
+D'après toi, est-ce que React doit être considéré comme la vue dans le design pattern MVC ?  
+La réponse est **non** !
+
+React est une bibliothèque _(pas une "librarie" et encore moins un framework ⚠️)_ JavaScript qui permet de créer des interfaces utilisateur, mais elle n'est pas liée de manière directe à un serveur.  
+Certes, on va consommer une API pour récupérer des données, mais React n'est que le réceptacle de ces données côté client _(navigateur)_.
+
+On va donc faire simple : on parlera plutôt d'une architecture "client-serveur" avec React côté client et notre API côté serveur.  
+Mais ça n'empêche pas que ton API puisse être une API REST _(ou GraphQL)_ qui respecte le design pattern MVC !  
+Tout dépendra de si tu demandes dans ton serveur back-end de retourner une vue _(HTML)_ au navigateur.
+{% /callout %}
+
+## 🧑‍⚖️ Règles et conventions de nommage
+
+Peu importe le contexte dans lequel tu réalises le projet que tu vas soutenir face à ton jury, tu dois respecter les règles et conventions de nommage de l'entreprise.  
+Si tu fais un projet personnel, tu peux définir les tiennes, du moment que tu es en mesure de les expliquer à ton jury et que tu les respectes du début à la fin.
+
+{% callout type="note" title="La cohérence, c'est la clé" %}
+Pense à être cohérent en ce qui concerne la langue utilisée.
+
+{% callout type="warning" title="Pas de franglais !" %}
+Évite de mélanger plusieurs langues dans tes nommages.  
+Si tu choisis de travailler en français, reste en français.  
+Si tu choisis de travailler en anglais, reste en anglais.
+{% /callout %}
+
+D'ailleurs, je te recommande chaudement de travailler en anglais ne serait-ce que pour te familiariser avec la langue de Shakespeare qui est, on le rappelle, la langue la plus répandue dans le monde de l'informatique.
+
+Tu as évidemment le droit d'utiliser des traducteurs en ligne pour t'aider à trouver le bon mot _(ou la bonne expression)_, on ne te demande pas d'être bilingue !
+{% /callout %}
+
+Au delà de la langue utilisée, on va également parler de la syntaxe des noms de fichiers, dossiers, classes, méthodes, variables, etc.  
+Pour t'aider à te lancer, tu peux t'inspirer des conventions de nommage les plus répandues que tu trouveras facilement en ligne.
+
+Au passage, tu as la possibilité de configurer ton éditeur de texte pour qu'il respecte ces conventions de nommage.  
+Sur VSCode, l'extension [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) te permettra de vérifier que ton code respecte bien les conventions de nommage que tu auras définies et [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) te permettra de formater ton code automatiquement selon ces mêmes conventions.
+
+Ça me permet également de te rappeler que tu dois **documenter ton code** et ce, **dans la langue définie pour le projet**.  
+Le premier réflexe à avoir est de documenter l'installation et l'utilisation de ton projet dans le fichier `README.md` à la racine de ton projet.
+
+Ensuite, n'ai pas peur d'abuser de la JSDoc _(ou PHPDoc si tu travailles en PHP)_ pour documenter tes fonctions et méthodes.  
+Par contre, n'abuse pas des commentaires potentiellement "inutiles" qui alourdissent la lecture de ton code, ça peut être contre-productif.
+
+## 🔄 Le jeu d'essai et les tests unitaires
+
+Histoire de faire simple : commençons par le jeu d'essai !
+
+### 🎮 Le jeu d'essai
+
+Le jeu d'essai est un ensemble de données qui permet de tester le bon fonctionnement de l'application.  
+Ce type de test se compose de trois parties :
+
+- **Les données d'entrée** : ce sont les données que tu vas envoyer à ton application pour tester son comportement.
+- **Les données de sortie attendues** : ce sont les données que tu attends en retour de ton application.
+- **Les données de sortie obtenues** : ce sont les données que ton application te renvoie.
+
+Si on prend l'exemple d'un formulaire d'inscription où nous vérifions que l'utilisateur utilise une adresse e-mail valide et unique, ainsi qu'un mot de passe fort _(12 caractères minimum, au moins une majuscule, une minuscule, un chiffre et un caractère spécial)_, voici ce que pourrait donner notre jeu d'essai :
+
+{% tabs defaultSelectedTab="invalid" %}
+{% tab value="invalid" label="Données invalides" %}
+
+- **Les données d'entrée** :
+  - Adresse e-mail : `mauvaise-adresse@email`
+  - Mot de passe : `password`
+- **Les données de sortie attendues** :
+  - Erreur : `Adresse e-mail invalide`
+  - Erreur : `Le mot de passe ne respecte pas les critères de sécurité requis`
+- **Les données de sortie obtenues** :
+  - Erreur : `Adresse e-mail invalide`
+  - Erreur : `Le mot de passe ne respecte pas les critères de sécurité requis`
+
+{% /tab %}
+
+{% tab value="valid" label="Données valides" %}
+
+- **Les données d'entrée** :
+  - Adresse e-mail : `bonne-adresse@email.fr`
+  - Mot de passe : `Password123&` _(bon, le mot de passe n'est absolument pas "fort", mais il respecte les critères imposés)_
+- **Les données de sortie attendues** :
+  - Succès : `Utilisateur inscrit avec succès`
+- **Les données de sortie obtenues** :
+  - Succès : `Utilisateur inscrit avec succès`
+
+{% /tab %}
+
+{% tab value="email-already-used" label="Adresse email déjà utilisée" %}
+
+- **Les données d'entrée** :
+  - Adresse e-mail : `adresse-email@utilisee.fr`
+  - Mot de passe : `Password123&`
+- **Les données de sortie attendues** :
+  - Erreur : `Adresse e-mail déjà utilisée`
+- **Les données de sortie obtenues** :
+  - Erreur : `Adresse e-mail déjà utilisée`
+
+{% /tab %}
+{% /tabs %}
+
+{% callout type="note" title="Faire ces tests facilement" %}
+Si je te parle de client HTTP, tu me réponds... ?  
+[Bruno](https://www.usebruno.com/) ? [Postman](https://www.postman.com/) ? [Insomnia](https://insomnia.rest/) ?
+
+Bingo ! 🎉
+
+Utiliser un client HTTP comme Bruno, Postman ou Insomnia te permettra de tester facilement les routes de ton API, et de vérifier que les données que tu envoies sont bien traitées par ton serveur.
+{% /callout %}
+
+### 🧪 Les tests unitaires
+
+Les tests unitaires, c'est un peu comme le jeu d'essai, mais en plus automatisé et surtout axé sur les fonctions et méthodes de ton application.
+
+Le gros avantage que ça va te permettre, c'est de t'assurer que toutes les fonctionnalités développées fonctionnent comme prévu et ce, à chaque fois que tu modifies ton code.  
+Oui oui, tu as bien lu : **à chaque fois que tu modifies ton code**, pas forcément à chaque fois que tu modifies une fonction ou une méthode qui avait déjà des tests unitaires.
+
+Alors pas forcément à la moindre modification, je veux plutôt dire que le but est de vérifier avant de livrer !  
+Tu peux d'ailleurs faire en sorte que **tous les tests unitaires** doivente passer avant de pouvoir pusher ton code sur la branche principale de ton dépôt Git. Au début c'est casse pied, mais tu verras que ça te permettra de gagner du temps sur le long terme.
+
+L'objectif c'est de t'assurer que tu ne casses pas une fonctionnalité existante en ajoutant une nouvelle fonctionnalité ou en modifiant une fonctionnalité existante pour garantir que ton projet reste fonctionnel et ne casse pas sous les mains des utilisateurs.
+
+## 🎯 Critères d'évaluation
+
+- Les traitements répondent aux fonctionnalités décrites dans le dossier de conception
+- Les composants métier sont sécurisés
+- Les bonnes pratiques de la programmation orientée objet _(POO)_ sont respectées
+- Les règles de nommage sont conformes aux normes de qualité de l'entreprise
+- Le code source est documenté, y compris en anglais
+- Un jeu d'essai fonctionnel et les tests unitaires ont été réalisés pour les composants concernés
+- Les tests de sécurité sont réalisés
+- La démarche structurée de résolution de problème est adaptée en cas de dysfonctionnement
+
+## 🧠 Documentations
+
+- [Wikipédia - Design pattern MVC](https://fr.wikipedia.org/wiki/Mod%C3%A8le-vue-contr%C3%B4leur) _(Attention, le schéma présenté n'est pas forcément le plus adapté à tous les frameworks et architectures)_
+- [Wikipédia - Conventions de nommage](https://fr.wikipedia.org/wiki/Convention_de_nommage)
+- [JSDoc - Documentation](https://jsdoc.app/)
+- [PHPDoc - Documentation](https://www.phpdoc.org/)
+
+## 🛠️ Outils
+
+- [Bruno](https://www.usebruno.com/)
+- [Postman](https://www.postman.com/)
+- [Insomnia](https://insomnia.rest/)

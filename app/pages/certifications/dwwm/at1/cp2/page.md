@@ -1,0 +1,106 @@
+---
+title: CP 2 - Maquetter des interfaces utilisateur web ou web mobile
+description: Synthèse et explications des attentes relatives à la compétence professionnelle 2 du titre professionnel Développeur Web et Web Mobile (DWWM-01280m04).
+tags: [DWWM, Éco-conception, Accessibilité, SEO, Maquettage, UX, UI, Zoning, Wireframe, Prototypage, Design, Frontend]
+---
+
+## 📚 Références
+
+- REAC _(mise à jour du 02/07/2024)_, pages 17 et 18
+- RE _(mise à jour du 02/07/2024)_, page 9
+
+## 📋 En résumé
+
+Pour cette compétence, tu vas devoir réaliser des maquettes d'interfaces utilisateur.  
+Mais par maquettage, on ne parle pas de maquette en papier ou en carton, mais bien de maquettes numériques.
+
+{% iframe src="https://giphy.com/embed/28n0C19zo9OOvHnYww" width="480" height="269" className="mx-auto" /%}
+
+... Blague à part, on entend par cette compétence professionnelle la réalisation de maquettes au travers des différentes étapes de maquettage :
+
+1. **Analyse des besoins** : comprendre les besoins du client et de l'utilisateur final
+2. **Création d'une arborescence** : définir la structure de l'application et les différentes pages
+3. **Conception des zonings** : créer des schémas sans détails pour définir la disposition des éléments sur chaque page
+4. **Réalisation des wireframes** : créer des maquettes plus détaillées avec des légendes et commentaires pour les interactions
+5. **Récupération ou création de la charte graphique** : définir les couleurs, polices et styles à utiliser dans l'application
+6. **Création de maquettes graphiques** : réaliser des maquettes graphiques en respectant la charte graphique et les wireframes
+7. **Mise en place du prototypage** : créer un prototype interactif pour tester l'application avant le développement
+
+{% callout type="question" title="Mais je ne suis pas webdesigner ! 😱" %}
+
+Pas de panique !
+
+Tu n'as pas besoin d'être un webdesigner pour réaliser des maquettes.  
+Évidemment, si tu as des compétences en design, c'est un plus car en général les développeurs ne sont pas tous réputés pour être de bons designers... 😅
+
+Ce qu'on attend de toi, c'est de respecter les consignes du cahier des charges tout en répondant au besoin du client et en faisant attention à l'**expérience utilisateur** et l'**accessibilité**.
+
+Si par ailleurs tu cherches un outil gratuit pour réaliser des maquettes, tu peux te tourner vers [Figma](https://www.figma.com/fr-fr/) qui permet non seulement de créer des **maquettes** et **prototypes**, mais aussi de **collaborer** avec d'autres personnes sur un même projet.
+
+{% /callout %}
+
+## ➕ Informations complémentaires
+
+Il est probable que ton client t'impose une charte graphique à respecter et que cette dernière ne soit pas forcément accessible, ergonomique ou éco-conçue.  
+C'est à toi en tant que développeur d'expliquer à ton client les enjeux que ça représente pour son site web.
+
+Il aura dans tous les cas le dernier mot, mais il est important de l'informer des conséquences de ses choix pour son site.  
+S'il ne veut pas améliorer prendre en compte ces informations, tu pourras toujours lui proposer de le faire évoluer par la suite, une fois le site en ligne _(mais attention, cela peut coûter cher pour rattraper les différents défauts)_.
+
+### 🔍 Accessibilité
+
+D'après toi, qu'est-ce que l'accessibilité en matière de développement web ?
+
+Si tu as répondu que c'est le fait de rendre un site accessible à tous, tu as tout bon !
+L'accessibilité est un point essentiel à prendre en compte lors de la réalisation de maquettes, car tout le monde doit pouvoir accéder à un site web, y compris les personnes en situation de handicap.
+
+Pour améliorer l'accessibilité de ton site, il est recommandé de suivre les recommandations du W3C à propos du WCAG et du RGAA, mais je ne te cache pas c'est un gros morceau et qu'on se perdre en voulant tout respecter à la lettre. Alors voici un condensé des points les plus importants à respecter dans un premier temps :
+
+- **Contraste** : Assure-toi que le texte est lisible sur n'importe quel fond. Il faut viser un score **AA** _(ratio 4.5:1)_ au minimum et idéalement **AAA** _(ratio 7:1)_ sur nos éléments textuels et pour l'iconographie.
+- **Taille de police** : La taille de police doit être suffisamment grande pour être lisible par tout le monde. En général, on recommande une taille de 16px minimum.
+- **Choix de la police** : Utilise des polices lisibles et évite les polices fantaisistes. Si tu cherches une police légère, gratuite et réputée pour être lisible, tu peux te tourner vers la police Luciole !
+- **Intitulés des liens et boutons** : Les liens et boutons doivent être clairs et explicites. Évite les "Cliquez ici" et préfère des phrases plus descriptives. Évite également d'uniquer mettre un pictogramme pour un lien, car cela peut ne pas être compris par tout le monde.
+
+Bien entendu, l'accessibilité ne se limite pas à ces points, mais c'est un bon début pour rendre ton site accessible à tous. J'y reviendrai plus en détail dans la compétence suivante, puisqu'on parlera de l'intégration de ces maquettes 😉
+
+Et pour terminer ! _(oui, je sais, je parle beaucoup 😅)_  
+L'**éco-conception** !
+
+### 🌍 L'éco-conception
+
+L'éco-conception, c'est l'art de concevoir un produit ou un service en prenant en compte son impact environnemental tout au long de son cycle de vie.  
+Dans le cas d'un site web, cela signifie qu'on va réfléchir à la manière de réduire l'impact environnemental de notre site tout en respectant les besoins du client et de l'utilisateur final.
+
+On évitera par exemple d'intégrer beaucoup d'images et autres médias.  
+De manière générale : moins il y a de requêtes, moins il y a de données à charger, et donc moins d'énergie consommée.
+
+Même si dans l'ensemble on serait en droit de crier "greenwashing" _(et on aurait pas tort)_, il est important de prendre en compte l'impact environnemental de nos sites web.  
+Au delà de l'impact environnemental, un site éco-conçu est souvent plus rapide et plus léger, ce qui permet aux sites et applications d'être plus performants tant en termes de vitesse que de consommation de données.
+
+Tu l'auras compris, que tu sois éco-convaincu ou non, c'est un point qui est en faveur de l'expérience utilisateur ! 🚀
+
+## 🛠️ Ressources conseillées
+
+_En cours de rédaction..._
+
+## 🎯 Critères d'évaluation
+
+- Les maquettes sont réalisées conformément au dossier de conception, en langue française ou anglaise _(niveau B1 du CECRL pour l'anglais)_
+- La charte graphique de l'entreprise est respectée
+- Les exigences de sécurisation sont respectées
+- Les maquettes tiennent compte de l'expérience utilisateur, y compris pour les personnes en situation de handicap et du type d'utilisation, y compris pour les équipements mobiles
+- L'enchainement des maquettes est formalisé par un schéma
+- La législation en vigueur est respectée, y compris celle relative à l'accessibilité
+
+## 🤯 Aller plus loin _(hors référentiel)_
+
+Tu trouves que je n'ai pas assez parlé dans cette compétence ? Alors je vais te donner quelques pistes pour aller plus loin !
+
+Je vais parler un peu plus en détail de l'éco-conception, tant il s'agit d'un sujet important, relativement récent et souvent négligé _(ou incompris)_.  
+Le premier réflexe que l'on pourrait avoir en entendu ce terme, c'est crier au greenwashing et penser qu'on attend de nous de revenir dans les années 90 avec des sites tout moches et tout plats.
+
+Alors... Greenwashing ? Tout dépend de qui en parle et avec quels arguments, mais la cause elle-même est noble et mérite d'être prise en compte.  
+Pour le côté "site tout moche", c'est effectivement une possibilité, mais uniquement si c'est un développeur PHP ou Java qui s'en occupe 😘.
+
+Faire une galerie photo avec des images en pleine résolution, c'est bien, mais c'est lourd à charger. Et pourtant, on peut quand même rendre le site d'un photographe beau et éco-conçu, tout en préservant la qualité de son travail !  
+Ça peut sembler contre-intuitif, mais tout va se jouer dans le code où l'on pourra charger **uniquement au besoin** et à la **demande de l'utilisateur** les images dans notre page.
