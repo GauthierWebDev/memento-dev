@@ -19,24 +19,40 @@ type SnippetTab = {
 	codeLanguage: string;
 	code: string;
 	withLineNumbers?: boolean;
+	children?: never;
+};
+
+type CommonTab = {
+	name: string;
+	children: JSX.Element;
+	codeLanguage?: never;
+	code?: never;
+	withLineNumbers?: never;
 };
 
 type SnippetProps = {
 	children?: JSX.Element;
 	class?: string;
-	snippets: SnippetTab[];
+	snippets: (SnippetTab | CommonTab)[];
 	dark?: boolean;
 };
 
 export function Snippet(props: SnippetProps) {
-	const [selectedTab, setSelectedTab] = createSignal<SnippetTab>(
+	const [selectedTab, setSelectedTab] = createSignal<SnippetTab | CommonTab>(
 		props.snippets[0],
 	);
 
-	const isActive = (tab: SnippetTab) => selectedTab()?.name === tab.name;
+	const isActive = (tab: SnippetTab | CommonTab) => {
+		return selectedTab()?.name === tab.name;
+	};
+
 	const selectTab = (name: string) => {
 		const tab = props.snippets.find((tab) => tab.name === name);
 		if (tab) setSelectedTab(tab);
+	};
+
+	const canBeSelected = (tab: SnippetTab | CommonTab) => {
+		return (tab.code || tab.children) !== undefined;
 	};
 
 	return (
@@ -58,7 +74,7 @@ export function Snippet(props: SnippetProps) {
 							<div
 								class={clsx(
 									"flex h-6 rounded-full",
-									{ "cursor-pointer": tab.codeLanguage && !isActive(tab) },
+									{ "cursor-pointer": canBeSelected(tab) && !isActive(tab) },
 									isActive(tab)
 										? clsx(
 												"bg-linear-to-r from-violet-400/30 via-violet-400 to-violet-400/30 p-px font-medium",
@@ -78,7 +94,7 @@ export function Snippet(props: SnippetProps) {
 											"bg-violet-100": !props.dark,
 										},
 									)}
-									disabled={!tab.codeLanguage}
+									disabled={!canBeSelected(tab)}
 									onClick={() => selectTab(tab.name)}
 								>
 									{tab.name}
@@ -90,16 +106,21 @@ export function Snippet(props: SnippetProps) {
 
 				{selectedTab() && (
 					<div class="mt-6">
-						<Highlight
-							class={clsx(
-								"!pt-0 !px-1 max-h-96 overflow-auto",
-								props.dark && "dark text-white",
-							)}
-							language={selectedTab().codeLanguage}
-							withLineNumbers={selectedTab().withLineNumbers}
-						>
-							{selectedTab().code}
-						</Highlight>
+						{selectedTab().code && (
+							<Highlight
+								class={clsx(
+									"!pt-0 !px-1 max-h-96 overflow-auto",
+									props.dark && "dark text-white",
+								)}
+								language={(selectedTab() as SnippetTab).codeLanguage}
+								withLineNumbers={(selectedTab() as SnippetTab).withLineNumbers}
+							>
+								{(selectedTab() as SnippetTab).code}
+							</Highlight>
+						)}
+						{!selectedTab().code && (
+							<div class="pb-1">{(selectedTab() as CommonTab).children}</div>
+						)}
 					</div>
 				)}
 			</div>

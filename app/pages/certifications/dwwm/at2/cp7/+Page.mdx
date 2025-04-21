@@ -4,6 +4,10 @@ description: Synthèse et explications des attentes relatives à la compétence 
 tags: [DWWM]
 ---
 
+import Callout from "@/components/Callout";
+import Image from "@/components/Image";
+import tabs from "./tabs";
+
 ## 📚 Références
 
 - REAC _(mise à jour du 02/07/2024)_, pages 27 et 28
@@ -25,60 +29,60 @@ Le design pattern MVC est un modèle d'architecture logicielle qui sépare les d
 - **Vue** : représente l'interface utilisateur. C'est ce que l'utilisateur voit et avec quoi il interagit.
 - **Contrôleur** : fait le lien entre le modèle et la vue. Il contient la logique métier de l'application.
 
-{% callout type="warning" title="Les schémas disponibles en ligne" %}
-Il existe de nombreux schémas qui expliquent le design pattern MVC mais ils ne sont pas tous corrects.  
-Enfin, si, ils sont corrects... mais certains ne s'appliquent pas à tous les frameworks et architectures.
-{% /callout %}
+<Callout type="warning" title="Les schémas disponibles en ligne">
+  Il existe de nombreux schémas qui expliquent le design pattern MVC mais ils ne sont pas tous corrects.  
+  Enfin, si, ils sont corrects... mais certains ne s'appliquent pas à tous les frameworks et architectures.
+</Callout>
 
 Pour t'aider à mieux te représenter un schéma MVC avec les ordres de flux de données et de contrôle :
 
-{% img alt="Schéma MVC pour une application web basique" src="/patterns/mvc.webp" className="max-h-96 mx-auto" /%}
+<Image alt="Schéma MVC pour une application web basique" src="/patterns/mvc.webp" class="max-h-96 mx-auto" />
 
-{% callout type="question" title="Pourquoi la Vue ne retourne pas directement au client ?" %}
-La vue ne retourne pas directement au client car elle doit passer par le contrôleur.  
-On ne s'en rend pas forcément compte, mais la vue est généralement générée par le contrôleur via un moteur de template _(EJS, Twig, etc.)_.
+<Callout type="question" title="Pourquoi la Vue ne retourne pas directement au client ?">
+  La vue ne retourne pas directement au client car elle doit passer par le contrôleur.  
+  On ne s'en rend pas forcément compte, mais la vue est généralement générée par le contrôleur via un moteur de template _(EJS, Twig, etc.)_.
 
-Une fois le HTML généré, le contrôleur s'occupe de l'envoyer dans la réponse HTTP au client.  
-C'est ce qui permet de garder une séparation entre la logique métier et l'interface utilisateur.
-{% /callout %}
+  Une fois le HTML généré, le contrôleur s'occupe de l'envoyer dans la réponse HTTP au client.  
+  C'est ce qui permet de garder une séparation entre la logique métier et l'interface utilisateur.
+</Callout>
 
 Le concept est simple : chaque partie de l'application a un **rôle bien défini** et ne doit pas empiéter sur le rôle des autres.
 
-{% callout type="question" title="Et si j'ai des middlewares ?" %}
-Dans la majorité des cas, les middlewares s'exécutent avant le contrôleur même si on peut en avoir à différents moments de la circulation de la donnée.  
-Si tu as déjà utilisé Express, tu as probablement déjà utilisé un middleware pour vérifier si l'utilisateur est connecté avant de lui afficher une page qui est réservée aux utilisateurs connectés.
-{% /callout %}
+<Callout type="question" title="Et si j'ai des middlewares ?">
+  Dans la majorité des cas, les middlewares s'exécutent avant le contrôleur même si on peut en avoir à différents moments de la circulation de la donnée.  
+  Si tu as déjà utilisé Express, tu as probablement déjà utilisé un middleware pour vérifier si l'utilisateur est connecté avant de lui afficher une page qui est réservée aux utilisateurs connectés.
+</Callout>
 
-{% callout type="note" title="Le cas de React (ou Vue, Angular, Solid, etc.)" %}
-D'après toi, est-ce que React doit être considéré comme la vue dans le design pattern MVC ?  
-La réponse est **non** !
+<Callout type="note" title="Le cas de React (ou Vue, Angular, Solid, etc.)">
+  D'après toi, est-ce que React doit être considéré comme la vue dans le design pattern MVC ?  
+  La réponse est **non** !
 
-React est une bibliothèque _(pas une "librarie" et encore moins un framework ⚠️)_ JavaScript qui permet de créer des interfaces utilisateur, mais elle n'est pas liée de manière directe à un serveur.  
-Certes, on va consommer une API pour récupérer des données, mais React n'est que le réceptacle de ces données côté client _(navigateur)_.
+  React est une bibliothèque _(pas une "librarie" et encore moins un framework ⚠️)_ JavaScript qui permet de créer des interfaces utilisateur, mais elle n'est pas liée de manière directe à un serveur.  
+  Certes, on va consommer une API pour récupérer des données, mais React n'est que le réceptacle de ces données côté client _(navigateur)_.
 
-On va donc faire simple : on parlera plutôt d'une architecture "client-serveur" avec React côté client et notre API côté serveur.  
-Mais ça n'empêche pas que ton API puisse être une API REST _(ou GraphQL)_ qui respecte le design pattern MVC !  
-Tout dépendra de si tu demandes dans ton serveur back-end de retourner une vue _(HTML)_ au navigateur.
-{% /callout %}
+  On va donc faire simple : on parlera plutôt d'une architecture "client-serveur" avec React côté client et notre API côté serveur.  
+  Mais ça n'empêche pas que ton API puisse être une API REST _(ou GraphQL)_ qui respecte le design pattern MVC !  
+  Tout dépendra de si tu demandes dans ton serveur back-end de retourner une vue _(HTML)_ au navigateur.
+</Callout>
 
 ## 🧑‍⚖️ Règles et conventions de nommage
 
 Peu importe le contexte dans lequel tu réalises le projet que tu vas soutenir face à ton jury, tu dois respecter les règles et conventions de nommage de l'entreprise.  
 Si tu fais un projet personnel, tu peux définir les tiennes, du moment que tu es en mesure de les expliquer à ton jury et que tu les respectes du début à la fin.
 
-{% callout type="note" title="La cohérence, c'est la clé" %}
-Pense à être cohérent en ce qui concerne la langue utilisée.
+<Callout type="note" title="La cohérence, c'est la clé">
+  Pense à être cohérent en ce qui concerne la langue utilisée.
 
-{% callout type="warning" title="Pas de franglais !" %}
-Évite de mélanger plusieurs langues dans tes nommages.  
-Si tu choisis de travailler en français, reste en français.  
-Si tu choisis de travailler en anglais, reste en anglais.
-{% /callout %}
+  <Callout type="warning" title="Pas de franglais !">
+    Évite de mélanger plusieurs langues dans tes nommages.  
+    Si tu choisis de travailler en français, reste en français.  
+    Si tu choisis de travailler en anglais, reste en anglais.
+  </Callout>
 
-D'ailleurs, je te recommande chaudement de travailler en anglais ne serait-ce que pour te familiariser avec la langue de Shakespeare qui est, on le rappelle, la langue la plus répandue dans le monde de l'informatique.
+  D'ailleurs, je te recommande chaudement de travailler en anglais ne serait-ce que pour te familiariser avec la langue de Shakespeare qui est, on le rappelle, la langue la plus répandue dans le monde de l'informatique.
 
-Tu as évidemment le droit d'utiliser des traducteurs en ligne pour t'aider à trouver le bon mot _(ou la bonne expression)_, on ne te demande pas d'être bilingue !
-{% /callout %}
+  Tu as évidemment le droit d'utiliser des traducteurs en ligne pour t'aider à trouver le bon mot _(ou la bonne expression)_, on ne te demande pas d'être bilingue !
+</Callout>
 
 Au delà de la langue utilisée, on va également parler de la syntaxe des noms de fichiers, dossiers, classes, méthodes, variables, etc.  
 Pour t'aider à te lancer, tu peux t'inspirer des conventions de nommage les plus répandues que tu trouveras facilement en ligne.
@@ -107,54 +111,16 @@ Ce type de test se compose de trois parties :
 
 Si on prend l'exemple d'un formulaire d'inscription où nous vérifions que l'utilisateur utilise une adresse e-mail valide et unique, ainsi qu'un mot de passe fort _(12 caractères minimum, au moins une majuscule, une minuscule, un chiffre et un caractère spécial)_, voici ce que pourrait donner notre jeu d'essai :
 
-{% tabs defaultSelectedTab="invalid" %}
-{% tab value="invalid" label="Données invalides" %}
+<tabs.testSuite />
 
-- **Les données d'entrée** :
-  - Adresse e-mail : `mauvaise-adresse@email`
-  - Mot de passe : `password`
-- **Les données de sortie attendues** :
-  - Erreur : `Adresse e-mail invalide`
-  - Erreur : `Le mot de passe ne respecte pas les critères de sécurité requis`
-- **Les données de sortie obtenues** :
-  - Erreur : `Adresse e-mail invalide`
-  - Erreur : `Le mot de passe ne respecte pas les critères de sécurité requis`
+<Callout type="note" title="Faire ces tests facilement">
+  Si je te parle de client HTTP, tu me réponds... ?  
+  [Bruno](https://www.usebruno.com/) ? [Postman](https://www.postman.com/) ? [Insomnia](https://insomnia.rest/) ?
 
-{% /tab %}
+  Bingo ! 🎉
 
-{% tab value="valid" label="Données valides" %}
-
-- **Les données d'entrée** :
-  - Adresse e-mail : `bonne-adresse@email.fr`
-  - Mot de passe : `Password123&` _(bon, le mot de passe n'est absolument pas "fort", mais il respecte les critères imposés)_
-- **Les données de sortie attendues** :
-  - Succès : `Utilisateur inscrit avec succès`
-- **Les données de sortie obtenues** :
-  - Succès : `Utilisateur inscrit avec succès`
-
-{% /tab %}
-
-{% tab value="email-already-used" label="Adresse email déjà utilisée" %}
-
-- **Les données d'entrée** :
-  - Adresse e-mail : `adresse-email@utilisee.fr`
-  - Mot de passe : `Password123&`
-- **Les données de sortie attendues** :
-  - Erreur : `Adresse e-mail déjà utilisée`
-- **Les données de sortie obtenues** :
-  - Erreur : `Adresse e-mail déjà utilisée`
-
-{% /tab %}
-{% /tabs %}
-
-{% callout type="note" title="Faire ces tests facilement" %}
-Si je te parle de client HTTP, tu me réponds... ?  
-[Bruno](https://www.usebruno.com/) ? [Postman](https://www.postman.com/) ? [Insomnia](https://insomnia.rest/) ?
-
-Bingo ! 🎉
-
-Utiliser un client HTTP comme Bruno, Postman ou Insomnia te permettra de tester facilement les routes de ton API, et de vérifier que les données que tu envoies sont bien traitées par ton serveur.
-{% /callout %}
+  Utiliser un client HTTP comme Bruno, Postman ou Insomnia te permettra de tester facilement les routes de ton API, et de vérifier que les données que tu envoies sont bien traitées par ton serveur.
+</Callout>
 
 ### 🧪 Les tests unitaires
 
