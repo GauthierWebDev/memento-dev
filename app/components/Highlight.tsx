@@ -102,10 +102,7 @@ export const Highlight: ParentComponent<Props> = (_props) => {
 			)}
 
 			<pre
-				class={clsx(
-					"not-prose w-full prism-code flex overflow-x-auto",
-					languageClass(),
-				)}
+				class={clsx("not-prose h-full w-full prism-code flex", languageClass())}
 			>
 				<code
 					class={clsx("leading-6", props.withLineNumbers ? "px-4" : "pr-4")}

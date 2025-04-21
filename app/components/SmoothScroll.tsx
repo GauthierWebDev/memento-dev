@@ -48,10 +48,40 @@ export function SmoothScroll(props: SmoothScrollProps) {
 		return regex.test(navigator.userAgent);
 	};
 
+	const isElementScrollable = (element: HTMLElement) => {
+		if (!element) return false;
+		return element.scrollHeight > element.clientHeight;
+	};
+
+	const findScrollableParent = (element: HTMLElement) => {
+		let currentElement: HTMLElement | null = element;
+
+		while (currentElement) {
+			if (isElementScrollable(currentElement)) {
+				return currentElement;
+			}
+
+			currentElement = currentElement.parentElement;
+		}
+
+		return null;
+	};
+
 	const handleWheel = (event: WheelEvent) => {
 		if (isMobile()) return;
 
+		const hoveredElement = document.elementFromPoint(
+			event.clientX,
+			event.clientY,
+		) as HTMLElement;
+		if (findScrollableParent(hoveredElement)) {
+			if (animationFrameId !== null) cancelAnimationFrame(animationFrameId);
+			return;
+		}
+
 		event.preventDefault();
+		event.stopPropagation();
+
 		if (isScrolling()) {
 			if (animationFrameId !== null) {
 				cancelAnimationFrame(animationFrameId);

@@ -38,6 +38,9 @@ type SnippetProps = {
 };
 
 export function Snippet(props: SnippetProps) {
+	let tabs: HTMLDivElement | undefined;
+	let nav: HTMLDivElement | undefined;
+
 	const [selectedTab, setSelectedTab] = createSignal<SnippetTab | CommonTab>(
 		props.snippets[0],
 	);
@@ -49,6 +52,27 @@ export function Snippet(props: SnippetProps) {
 	const selectTab = (name: string) => {
 		const tab = props.snippets.find((tab) => tab.name === name);
 		if (tab) setSelectedTab(tab);
+
+		if (!tabs || !nav) return;
+
+		const navWidth = nav.offsetWidth || 0;
+		const tabsWidth = tabs.scrollWidth;
+
+		if (tabsWidth > navWidth) {
+			const tabElement: HTMLDivElement | null = tabs.querySelector(
+				`div[data-tab="${name}"]`,
+			);
+			if (!tabElement) return;
+
+			const tabOffsetLeft = tabElement.offsetLeft;
+			const tabWidth = tabElement.offsetWidth;
+			const scrollLeft = Math.max(
+				0,
+				tabOffsetLeft - navWidth / 2 + tabWidth / 2,
+			);
+
+			nav.scrollTo({ left: scrollLeft, behavior: "smooth" });
+		}
 	};
 
 	const canBeSelected = (tab: SnippetTab | CommonTab) => {
@@ -68,48 +92,51 @@ export function Snippet(props: SnippetProps) {
 			<div class="pt-4 pl-4">
 				<TrafficLightsIcon class="h-2.5 w-auto stroke-slate-500/30" />
 
-				<div class="mt-4 flex space-x-2 text-xs overflow-x-auto">
-					<For each={props.snippets}>
-						{(tab) => (
-							<div
-								class={clsx(
-									"flex h-6 rounded-full",
-									{ "cursor-pointer": canBeSelected(tab) && !isActive(tab) },
-									isActive(tab)
-										? clsx(
-												"bg-linear-to-r from-violet-400/30 via-violet-400 to-violet-400/30 p-px font-medium",
-												props.dark ? "text-violet-300" : "text-violet-600",
-											)
-										: props.dark
-											? "text-slate-400"
-											: "text-slate-500",
-								)}
-							>
-								<button
-									type="button"
+				<nav ref={nav} class="overflow-x-auto">
+					<div ref={tabs} class="mt-4 flex space-x-2 text-xs w-max mb-2">
+						<For each={props.snippets}>
+							{(tab) => (
+								<div
+									data-tab={tab.name}
 									class={clsx(
-										"flex items-center rounded-full px-2.5",
-										isActive(tab) && {
-											"bg-slate-800": props.dark,
-											"bg-violet-100": !props.dark,
-										},
+										"flex h-6 rounded-full",
+										{ "cursor-pointer": canBeSelected(tab) && !isActive(tab) },
+										isActive(tab)
+											? clsx(
+													"bg-linear-to-r from-violet-400/30 via-violet-400 to-violet-400/30 p-px font-medium",
+													props.dark ? "text-violet-300" : "text-violet-600",
+												)
+											: props.dark
+												? "text-slate-400"
+												: "text-slate-500",
 									)}
-									disabled={!canBeSelected(tab)}
-									onClick={() => selectTab(tab.name)}
 								>
-									{tab.name}
-								</button>
-							</div>
-						)}
-					</For>
-				</div>
+									<button
+										type="button"
+										class={clsx(
+											"flex items-center rounded-full px-2.5",
+											isActive(tab) && {
+												"bg-slate-800": props.dark,
+												"bg-violet-100": !props.dark,
+											},
+										)}
+										disabled={!canBeSelected(tab)}
+										onClick={() => selectTab(tab.name)}
+									>
+										{tab.name}
+									</button>
+								</div>
+							)}
+						</For>
+					</div>
+				</nav>
 
 				{selectedTab() && (
 					<div class="mt-6">
 						{selectedTab().code && (
 							<Highlight
 								class={clsx(
-									"!pt-0 !px-1 max-h-96 overflow-auto",
+									"!pt-0 !px-1 max-h-96 overflow-auto mb-2",
 									props.dark && "dark text-white",
 								)}
 								language={(selectedTab() as SnippetTab).codeLanguage}
