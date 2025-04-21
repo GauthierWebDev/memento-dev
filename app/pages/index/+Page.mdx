@@ -4,6 +4,8 @@ description: Plonge toi dans une documentation synthétique et concise, conçue 
 tags: []
 ---
 
+import QuickLinks from "@/components/QuickLinks";
+
 Toi qui vient d'arriver sur cette plateforme, sache que si tu cherches un coup de main pour mieux comprendre certaines notions dans le développement, tu es tombé au bon endroit !
 
 En prime, tu trouveras également des synthèses de certains référentiels de titres professionnels ! 🎉
@@ -16,8 +18,21 @@ En prime, tu trouveras également des synthèses de certains référentiels de t
 
 Le contenu de cette plateforme est divisé en plusieurs sections :
 
-- [**Certifications**](/certifications) : Des synthèses de référentiels des certifications de titres professionnels pour t'aider à te préparer aux examens.
-- [**Documentations**](/docs) : Une documentation synthétique _(mais complète et détaillée)_ sur les différentes technologies du développement web.
+<QuickLinks>
+  <QuickLinks.QuickLink
+    href="/certifications"
+    title="Certifications"
+    description="Des synthèses de référentiels des certifications de titres professionnels pour t'aider à te préparer aux examens."
+    icon="presets"
+  />
+
+  <QuickLinks.QuickLink
+    href="/docs"
+    title="Documentations"
+    description="Des documentations synthétiques (mais complètes et détaillées) sur les différentes technologies du développement web."
+    icon="presets"
+  />
+</QuickLinks>
 
 Les différents contenus ne sont pas uniquement destinées aux développeurs, mais également aux passionnés de l'information en quête de savoir !  
 Il est donc possible que tu trouves des articles qui ne te concernent pas directement, mais qui pourraient t'intéresser tout de même ! 😊
