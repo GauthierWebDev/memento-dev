@@ -4,6 +4,9 @@ description: Synthèse et explications des attentes relatives à la compétence 
 tags: [DWWM, Déploiement, Backend, Reverse Proxy, Serveur Web]
 ---
 
+import Callout from "@/components/Callout";
+import tabs from "./tabs";
+
 ## 📚 Références
 
 - REAC _(mise à jour du 02/07/2024)_, page 29
@@ -30,11 +33,11 @@ Beaucoup d'hébergeurs proposent des serveurs mutualisés, c'est-à-dire que plu
 Il s'agit d'une solution moins coûteuse que les serveurs dédiés ou les VPS, mais qui peut être moins performante en fonction de la qualité de l'hébergeur.  
 Cependant, pour un site web de petite ou moyenne envergure, un serveur mutualisé peut suffire et surtout : il est souvent plus simple à gérer.
 
-{% callout type="note" title="Parenthèse éco-conception" %}
-On peut également considérer que l'utilisation de serveurs mutualisés est plus écologique, car elle permet de mutualiser les ressources et de limiter le nombre de serveurs physiques nécessaires pour héberger des sites web.
+<Callout type="note" title="Parenthèse éco-conception">
+    On peut également considérer que l'utilisation de serveurs mutualisés est plus écologique, car elle permet de mutualiser les ressources et de limiter le nombre de serveurs physiques nécessaires pour héberger des sites web.
 
-Moins de matériel physique = moins de consommation d'énergie = moins d'émissions de CO2.
-{% /callout %}
+    Moins de matériel physique = moins de consommation d'énergie = moins d'émissions de CO2.
+</Callout>
 
 Mais attention, les serveurs mutualisés ne permettent pas de configurer entièrement le serveur _(par exemple, tu ne pourras pas installer un serveur Node.js sur un serveur mutualisé qui n'est pas prévu pour)_.  
 Il est donc important de bien se renseigner sur les fonctionnalités proposées par l'hébergeur avant de choisir un serveur mutualisé.
@@ -54,22 +57,20 @@ La configuration la plus classique que l'on retrouvera sur un serveur dédié ou
 - Un gestionnaire de paquets comme APT, YUM, etc.
 - Un pare-feu comme UFW, iptables, etc.
 
-{% callout type="note" title="Dernière parenthèse éco-conception" %}
+<Callout type="note" title="Dernière parenthèse éco-conception">
+    Les serveurs dédiés et les VPS sont souvent plus énergivores que les serveurs mutualisés, car ils sont allumés en permanence _(sauf configuration spécifique)_ et consomment plus d'énergie pour fonctionner.
 
-Les serveurs dédiés et les VPS sont souvent plus énergivores que les serveurs mutualisés, car ils sont allumés en permanence _(sauf configuration spécifique)_ et consomment plus d'énergie pour fonctionner.
+    Sur le papier, ça sonne moins bien, mais dans le concret : un serveur dédié ou un VPS bien configuré peut être plus écologique qu'un serveur mutualisé mal configuré _(qui consomme plus d'énergie pour moins de performance)_.
+    Comme on dit souvent :
 
-Sur le papier, ça sonne moins bien, mais dans le concret : un serveur dédié ou un VPS bien configuré peut être plus écologique qu'un serveur mutualisé mal configuré _(qui consomme plus d'énergie pour moins de performance)_.
-Comme on dit souvent :
+    > Le problème se situe souvent entre la chaise et le clavier.
 
-> Le problème se situe souvent entre la chaise et le clavier.
+    Si tu recherches un hébergeur qui se veut éco-responsable _(bien plus que la moyenne)_ : Infomaniak est un excellent choix.  
+    _(Non, je ne détiens aucune part chez eux, mais j'apprécie leur démarche et leur qualité de service donc un peu de pub gratuite ne fait pas de mal !)_
 
-Si tu recherches un hébergeur qui se veut éco-responsable _(bien plus que la moyenne)_ : Infomaniak est un excellent choix.  
-_(Non, je ne détiens aucune part chez eux, mais j'apprécie leur démarche et leur qualité de service donc un peu de pub gratuite ne fait pas de mal !)_
-
-D'ailleurs, sur toute la partie RGPD : Infomaniak a une politique de confidentialité et de sécurité très sérieuse que tu peux retrouver [juste ici](https://www.infomaniak.com/fr/cgv/reglement-general-protection-donnees).  
-Et promis : elle est lisible et compréhensible, pas comme certaines politiques de confidentialité qui sont plus longues que l'intégrale de la saga Harry Potter.
-
-{% /callout %}
+    D'ailleurs, sur toute la partie RGPD : Infomaniak a une politique de confidentialité et de sécurité très sérieuse que tu peux retrouver [juste ici](https://www.infomaniak.com/fr/cgv/reglement-general-protection-donnees).  
+    Et promis : elle est lisible et compréhensible, pas comme certaines politiques de confidentialité qui sont plus longues que l'intégrale de la saga Harry Potter.
+</Callout>
 
 Avant d'arrêter de parler de serveurs à configurer soi-même, je me permets d'ouvrir une toute petite rubrique sur la mise en ligne d'applications tournant sur des ports autres que le 80 (ou 443 pour le HTTPS), comme on peut le faire avec un serveur Node.js.
 
@@ -87,26 +88,11 @@ Nginx est un serveur web qui est souvent utilisé comme reverse proxy, notamment
 
 Prenons l'exemple d'un serveur Node.js qui tourne sur le port 5000.
 
-{% callout type="note" title="Configuration Nginx pour un reverse proxy" %}
+<Callout type="note" title="Configuration Nginx pour un reverse proxy">
+    <tabs.nginxReverseProxy />
 
-```nginx
-# Ensemble de configurations pour un serveur Nginx
-server {
-    listen 80; # Port 80 pour les requêtes HTTP
-    listen [::]:80; # Port 80 pour les requêtes HTTP en IPv6
-    server_name mon-domaine.com; # Ton domaine qui pointe vers ton serveur web qui fait tourner ton application Node.js
-
-    # Configuration pour le reverse proxy, qui va rediriger les requêtes vers le port 5000
-    location / {
-        proxy_pass          http://0.0.0.0:5000; # Redirige les requêtes vers le port 5000 (interne au serveur)
-        proxy_set_header    X-Forwarded-For $remote_addr; # Envoie l'adresse IP du client à l'application Node.js dans le header
-        proxy_set_header    Host $http_host; # Envoie le nom de domaine à l'application Node.js dans le header
-    }
-}
-```
-
-Oui, c'est aussi simple que ça ! Alors effectivement, il y a d'autres configurations possibles, mais pour un usage basique : c'est tout ce dont tu as besoin.
-{% /callout %}
+    Oui, c'est aussi simple que ça ! Alors effectivement, il y a d'autres configurations possibles, mais pour un usage basique : c'est tout ce dont tu as besoin.
+</Callout>
 
 ### 📦 Caddy
 
