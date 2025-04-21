@@ -39,11 +39,11 @@ export function ReadProgressBar() {
 
 	return (
 		<div
-			aria-hidden
-			class="sticky inset-x-0 top-20 z-50 h-1 w-full bg-violet-50"
+			aria-hidden="true"
+			class="fixed inset-x-0 bottom-0 lg:top-0 z-50 h-1 w-full bg-violet-50 pointer-events-none"
 		>
 			<div
-				class="bg-violet-300 h-full transition-all duration-300 ease-in-out"
+				class="bg-violet-300 h-full transition-all duration-300 ease-out"
 				style={{ width: width() }}
 			/>
 		</div>

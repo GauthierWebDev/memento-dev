@@ -1,7 +1,6 @@
 import type { JSX } from "solid-js";
 
 import { MobileNavigation } from "@/partials/MobileNavigation";
-import { createEffect, createSignal } from "solid-js";
 import { Search } from "@/components/Search";
 import { Link } from "@/components/Link";
 import { Logo } from "@/components/Logo";
@@ -16,19 +15,6 @@ function GitHubIcon(props: JSX.IntrinsicElements["svg"]) {
 }
 
 export function Header() {
-	const [isScrolled, setIsScrolled] = createSignal(false);
-
-	createEffect(() => {
-		function onScroll() {
-			setIsScrolled(window.scrollY > 0);
-		}
-		onScroll();
-		window.addEventListener("scroll", onScroll, { passive: true });
-		return () => {
-			window.removeEventListener("scroll", onScroll);
-		};
-	}, []);
-
 	return (
 		<header
 			class={clsx(
@@ -49,11 +35,7 @@ export function Header() {
 			</div>
 
 			<div class="-my-5 mr-6 sm:mr-8 md:mr-0">
-				<Search
-				// fallback={
-				// 	<div class="h-6 w-6 animate-pulse rounded-full bg-slate-200" />
-				// }
-				/>
+				<Search />
 			</div>
 
 			<div class="relative flex basis-0 justify-end gap-6 sm:gap-8 md:grow">
