@@ -4,6 +4,8 @@ description: Synthèse et explications des attentes relatives à la compétence 
 tags: [DWWM]
 ---
 
+import Callout from "@/components/Callout";
+
 ## 📚 Références
 
 - REAC _(mise à jour du 02/07/2024)_, pages 25 et 26
@@ -16,25 +18,25 @@ On va pouvoir souffler un coup en parlant maintenant de l'accès à ces bases de
 
 Et tu sais quoi, comme tout ce qu'on a vu jusqu'à maintenant, on va alléger un peu les choses en parlant de merveilleux outils comme les **ORM** et les **ODM** !
 
-{% callout type="question" title="C'est quoi un ORM et ODM ? Quelles sont les différences ?" %}
-Les ORM _(Object-Relational Mapping)_ et les ODM _(Object-Document Mapper)_ sont des outils qui permettent de faire le lien entre les bases de données et les langages de programmation.
+<Callout type="question" title="C'est quoi un ORM et ODM ? Quelles sont les différences ?">
+  Les ORM _(Object-Relational Mapping)_ et les ODM _(Object-Document Mapper)_ sont des outils qui permettent de faire le lien entre les bases de données et les langages de programmation.
 
-- Les ORM sont utilisés pour les bases de données relationnelles, comme MySQL, PostgreSQL ou SQLite. Ils permettent de manipuler les données de la base de données sous forme d'objets, ce qui facilite leur utilisation dans le code.
-- Les ODM sont utilisés pour les bases de données NoSQL, comme MongoDB. Ils fonctionnent de la même manière que les ORM, mais pour les bases de données NoSQL.
+  - Les ORM sont utilisés pour les bases de données relationnelles, comme MySQL, PostgreSQL ou SQLite. Ils permettent de manipuler les données de la base de données sous forme d'objets, ce qui facilite leur utilisation dans le code.
+  - Les ODM sont utilisés pour les bases de données NoSQL, comme MongoDB. Ils fonctionnent de la même manière que les ORM, mais pour les bases de données NoSQL.
 
-En gros, les ORM et les ODM permettent de simplifier la manipulation des données dans le code, en évitant d'avoir à écrire des requêtes à la main.
-{% /callout %}
+  En gros, les ORM et les ODM permettent de simplifier la manipulation des données dans le code, en évitant d'avoir à écrire des requêtes à la main.
+</Callout>
 
 Alleeeez, on va voir ça de plus près ! 😎
 
 ## ⚙️ Utilisation d'un ORM ou d'un ODM
 
-{% callout type="question" title="Je fais mes requêtes SQL à la main, il faut que j'apprenne à utiliser un ORM/ODM ?" %}
-**Non** ! _(enfin, pas pour passer la certification en tout cas)_  
-D'un certain côté, c'est nettement plus intéressant de savoir réaliser les requêtes par toi-même, sans utiliser d'outils qui génèrent du SQL à ta place.
+<Callout type="question" title="Je fais mes requêtes SQL à la main, il faut que j'apprenne à utiliser un ORM/ODM ?">
+  **Non** ! _(enfin, pas pour passer la certification en tout cas)_  
+  D'un certain côté, c'est nettement plus intéressant de savoir réaliser les requêtes par toi-même, sans utiliser d'outils qui génèrent du SQL à ta place.
 
-En entreprise, tu vas certainement utiliser ces fameux outils, mais dès que l'on va chercher à avoir les requêtes les plus optimisées possibles, il va falloir mettre les mains dans le cambouis !
-{% /callout %}
+  En entreprise, tu vas certainement utiliser ces fameux outils, mais dès que l'on va chercher à avoir les requêtes les plus optimisées possibles, il va falloir mettre les mains dans le cambouis !
+</Callout>
 
 Mais alors, pourquoi faire des requêtes à la main quand on peut utiliser un ORM ou un ODM ?  
 Eh bien, c'est simple : les ORM et les ODM te permettent de manipuler les données de la base de données sous forme d'objets, ce qui est beaucoup plus pratique et lisible dans le code.
@@ -48,15 +50,15 @@ D'autre part, ces outils peuvent aussi avoir un impact sur les performances de t
 
 Imagines un peu si tu réalises une application qui doit gérer des tonnes de données en temps réel, comme une application de spéculation boursière 😅
 
-{% callout type="warning" title="Les ORM et ODM, c'est cool, mais pas magique" %}
-Si tu comptes présenter un projet avec un ORM ou un ODM, il va falloir que tu sois capable de justifier tes choix techniques et de montrer que tu sais ce que tu fais... et ce que fait l'outil que tu utilises !
+<Callout type="warning" title="Les ORM et ODM, c'est cool, mais pas magique">
+  Si tu comptes présenter un projet avec un ORM ou un ODM, il va falloir que tu sois capable de justifier tes choix techniques et de montrer que tu sais ce que tu fais... et ce que fait l'outil que tu utilises !
 
-Tu dois être capable de répondre à des questions comme celle-ci :
+  Tu dois être capable de répondre à des questions comme celle-ci :
 
-> Quelle est la requête SQL générée par l'ORM/ODM pour cette opération ?
+  > Quelle est la requête SQL générée par l'ORM/ODM pour cette opération ?
 
-Ton jury ne cherchera pas à te piéger, mais il attend de toi que tu sois capable de comprendre ce que tu fais et pourquoi tu le fais.
-{% /callout %}
+  Ton jury ne cherchera pas à te piéger, mais il attend de toi que tu sois capable de comprendre ce que tu fais et pourquoi tu le fais.
+</Callout>
 
 ## 🔎 Intégrité des données
 
@@ -82,35 +84,35 @@ Bien que notre bases de données se doit d'être sécurisée dans son accès et 
 
 Pour les mots de passe, on va les hacher avant de les stocker dans la base de données.
 
-{% callout type="question" title="C'est quoi le hachage ?" %}
-Le hachage est une manière de sécuriser un contenu textuel en le transformant en une chaîne de caractères "aléatoire", appelée **hash**.
+<Callout type="question" title="C'est quoi le hachage ?">
+  Le hachage est une manière de sécuriser un contenu textuel en le transformant en une chaîne de caractères "aléatoire", appelée **hash**.
 
-Il est important de noter que le hachage est **unidirectionnel**, c'est-à-dire qu'il est impossible de retrouver la valeur d'origine à partir de son hash contrairement au **chiffrement**.
-{% /callout %}
+  Il est important de noter que le hachage est **unidirectionnel**, c'est-à-dire qu'il est impossible de retrouver la valeur d'origine à partir de son hash contrairement au **chiffrement**.
+</Callout>
 
-{% callout type="question" title="Et le chiffrement, ça sert à quoi ?" %}
-Comme le hachage, le chiffrement permet de sécuriser des données. Cependant : le chiffrement est **bidirectionnel**.  
- C'est à dire que l'on peut retrouver les données d'origine à partir des données chiffrées.
+<Callout type="question" title="Et le chiffrement, ça sert à quoi ?">
+  Comme le hachage, le chiffrement permet de sécuriser des données. Cependant : le chiffrement est **bidirectionnel**.  
+  C'est à dire que l'on peut retrouver les données d'origine à partir des données chiffrées.
 
-Si tu as déjà eu l'occasion d'envoyer des "messages codés", c'est que tu as déjà utilisé le chiffrement sans pour autant le savoir !
-L'un des chiffrements les plus connus est le **chiffre de César**, qui consiste à décaler les lettres de l'alphabet d'un certain nombre de positions.
+  Si tu as déjà eu l'occasion d'envoyer des "messages codés", c'est que tu as déjà utilisé le chiffrement sans pour autant le savoir !
+  L'un des chiffrements les plus connus est le **chiffre de César**, qui consiste à décaler les lettres de l'alphabet d'un certain nombre de positions.
 
-Par exemple :
+  Par exemple :
 
-> Message : "Bonjour"
-> Décalage : 3
->
-> Message chiffré : "Erqmruxu"
+  > Message : "Bonjour"
+  > Décalage : 3
+  >
+  > Message chiffré : "Erqmruxu"
 
-{% callout type="warning" title="Attention !" %}
-Le chiffrement n'est pas une solution de sécurité absolue, il est possible de retrouver les données d'origine à partir des données chiffrées.  
-D'ailleurs le chiffre de César est un chiffrement très simple à casser, on ne va donc pas l'utiliser pour protéger les données sensibles !
-{% /callout %}
+  <Callout type="warning" title="Attention !">
+    Le chiffrement n'est pas une solution de sécurité absolue, il est possible de retrouver les données d'origine à partir des données chiffrées.  
+    D'ailleurs le chiffre de César est un chiffrement très simple à casser, on ne va donc pas l'utiliser pour protéger les données sensibles !
+  </Callout>
 
-On va privilégier un algorithme de chiffrement qui se base sur une **clé secrète**, qui sera la clé pour chiffrer et déchiffrer les données.  
-C'est d'ailleurs plus ou moins ce qui est fait avec la célèbre [machine Enigma](<https://fr.wikipedia.org/wiki/Enigma_(machine)>) utilisée par les allemands pendant la Seconde Guerre Mondiale pour chiffrer leurs messages et éviter qu'ils soient interceptés et compris par les alliés.
+  On va privilégier un algorithme de chiffrement qui se base sur une **clé secrète**, qui sera la clé pour chiffrer et déchiffrer les données.  
+  C'est d'ailleurs plus ou moins ce qui est fait avec la célèbre [machine Enigma](<https://fr.wikipedia.org/wiki/Enigma_(machine)>) utilisée par les allemands pendant la Seconde Guerre Mondiale pour chiffrer leurs messages et éviter qu'ils soient interceptés et compris par les alliés.
 
-{% /callout %}
+</Callout>
 
 Mais alors, comment on peut s'y prendre ?
 
@@ -148,12 +150,12 @@ Je ne m'étalerai pas sur ce sujet, mais désolé MySQL/MariaDB de ne pas être 
 Les ressources que je m'apprête à te recommander sont un peu plus avancées, mais ce sont d'excellentes portes d'entrées vers des métiers comme DBA par exemple.
 Tu retrouveras des notions très bien expliquées et pertinentes pour t'améliorer sur le sujet dans les ressources de [Dalibo](https://www.dalibo.com/formations).
 
-{% callout type="note" title="Gratuité des formations Dalibo" %}
-Dalibo propose des formations, mais qui ne sont pas gratuites pour autant.  
-Seuls les supports de cours sont disponibles gratuitement, aux formats EPUB et PDF.
+<Callout type="note" title="Gratuité des formations Dalibo">
+  Dalibo propose des formations, mais qui ne sont pas gratuites pour autant.  
+  Seuls les supports de cours sont disponibles gratuitement, aux formats EPUB et PDF.
 
-Tu peux retrouver ces supports sur la page [Formations](https://www.dalibo.com/formations) du site de Dalibo.
-{% /callout %}
+  Tu peux retrouver ces supports sur la page [Formations](https://www.dalibo.com/formations) du site de Dalibo.
+</Callout>
 
 ## 🧠 Documentations
 
