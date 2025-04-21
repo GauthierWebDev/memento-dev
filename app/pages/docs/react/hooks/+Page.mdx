@@ -4,6 +4,9 @@ description: Découvre les hooks de React, une fonctionnalité qui te permet de 
 tags: [Frontend, React, JavaScript, TypeScript, Bibliothèque, Interface utilisateur (UI)]
 ---
 
+import Callout from "@/components/Callout";
+import tabs from "./tabs";
+
 Ça y est, on rentre dans le vif du sujet avec les **hooks** de React !
 
 On en a déjà parlé un peu dans l'article précédent _(notamment avec le hook `useState` pour déclarer un state)_, mais on va maintenant les aborder en détail.
@@ -21,75 +24,7 @@ C'était pas mal, mais ça devenait vite compliqué à gérer, notamment pour pa
 
 Pour te donner un aperçu, voici à quoi ressemblait un composant de classe avec les trois étapes du cycle de vie :
 
-{% tabs defaultSelectedTab="jsx" %}
-
-{% tab value="jsx" label="JSX" %}
-
-```jsx
-import React from "react";
-
-class MyComponent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { count: 0 };
-  }
-
-  componentDidMount() {
-    console.log("Component mounted");
-  }
-
-  componentDidUpdate() {
-    console.log("Component updated");
-  }
-
-  componentWillUnmount() {
-    console.log("Component unmounted");
-  }
-
-  render() {
-    return <div>{this.state.count}</div>;
-  }
-}
-```
-
-{% /tab %}
-
-{% tab value="tsx" label="TSX" %}
-
-```tsx
-import React from 'react';
-
-type MyComponentState = {
-  count: number;
-};
-
-class MyComponent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state: MyComponentState = { count: 0 };
-  }
-
-  componentDidMount() {
-    console.log('Component mounted');
-  }
-
-  componentDidUpdate() {
-    console.log('Component updated');
-  }
-
-  componentWillUnmount() {
-    console.log('Component unmounted');
-  }
-
-  render() {
-    return <div>{this.state.count}</div>;
-  }
-}
-```
-
-{% /tab %}
-
-{% /tabs %}
+<tabs.reactClassComponent />
 
 Comme dirait l'un de mes chers confrères jury :
 
@@ -126,39 +61,7 @@ Tu comprends pourquoi je dis "couteau suisse" ? 😏
 
 Alors sur le papier c'est top, mais maintenant je te laisse t'amuser à comprendre comment ça fonctionne 😇
 
-{% tabs defaultSelectedTab="1" %}
-
-{% tab value="1" label="Écriture #1" %}
-
-```jsx
-React.useEffect(() => {
-  // ...
-}, []);
-```
-
-{% /tab %}
-
-{% tab value="2" label="Écriture #2" %}
-
-```jsx
-React.useEffect(() => {
-  // ...
-}, [props.uneProp]);
-```
-
-{% /tab %}
-
-{% tab value="3" label="Écriture #3" %}
-
-```jsx
-React.useEffect(() => {
-  // ...
-});
-```
-
-{% /tab %}
-
-{% /tabs %}
+<tabs.reactUseEffectSyntaxes />
 
 Pas cool, hein ? 😂  
 Et bien dans ces exemples, on a trois manières d'écrire un useEffect :
@@ -167,11 +70,9 @@ Et bien dans ces exemples, on a trois manières d'écrire un useEffect :
 2. Le hook est exécuté à chaque mise à jour du composant
 3. Le hook est exécuté à chaque mise à jour du composant, mais seulement si la propriété `uneProp` de `props` a changé
 
-{% callout type="note" title="`useEffect` et les mises à jour du composant" %}
-
-Alors quand je dis "le hook est exécuté à chaque mise à jour du composant", il faut également prendre en compte qu'il est également exécuté après le premier rendu du composant.
-
-{% /callout %}
+<Callout type="note" title="`useEffect` et les mises à jour du composant">
+  Alors quand je dis "le hook est exécuté à chaque mise à jour du composant", il faut également prendre en compte qu'il est également exécuté après le premier rendu du composant.
+</Callout>
 
 Mais alors, comment on fait pour gérer ces étapes avec des composants fonctionnels ?  
 Si tu n'as pas vu la différence entre les trois écritures, tu remarqueras que c'est le deuxième argument de useEffect qui fait la différence.
@@ -183,31 +84,19 @@ Selon ce tableau, le hook sera exécuté à des moments différents du cycle de 
 
 ### ⚙️ ComponentDidMount
 
-```jsx
-React.useEffect(() => {
-  // ...
-}, []);
-```
+<tabs.reactUseEffectMount />
 
 Le tableau de dépendances est vide, on sous-entend que le hook ne dépend d'aucune variable et sera exécuté une seule fois.  
 On peut donc dire que c'est l'équivalent de `componentDidMount` pour les composants de classe.
 
 ### 🔧 ComponentDidUpdate
 
-```jsx
-React.useEffect(() => {
-  // ...
-});
-```
+<tabs.reactUseEffectUpdate />
 
 Ici, le tableau de dépendances est absent _(et tout va bien, il est optionnel !)_.  
 Le hook sera exécuté à chaque mise à jour du composant, ainsi que lors du premier rendu.
 
-```jsx
-React.useEffect(() => {
-  // ...
-}, [props.uneProp]);
-```
+<tabs.reactUseEffectUpdateDependency />
 
 Dans ce cas, le tableau de dépendances contient la propriété `uneProp` de `props`.
 Le hook sera exécuté à chaque mise à jour du composant _(ainsi qu'au montage)_, mais seulement si la propriété `uneProp` a changé.
@@ -217,14 +106,7 @@ Le hook sera exécuté à chaque mise à jour du composant _(ainsi qu'au montage
 Et là, tu te dis : "Mais comment je fais pour gérer le démontage du composant ?".  
 Hehehe, c'est là que ça devient intéressant 😏
 
-```jsx
-React.useEffect(() => {
-  // ...
-  return () => {
-    // ...
-  };
-}, []);
-```
+<tabs.reactUseEffectUnmount />
 
 Tu as vu ce petit `return` ? Et bien, c'est notre équivalent de `componentWillUnmount` pour les composants de classe !
 
@@ -242,65 +124,9 @@ Pour éviter que React se dise "Tiens, il y a eu un changement, je vais re-rendr
 
 Allez, mettons un peu ce qu'on voit de voir en pratique !
 
-{% tabs defaultSelectedTab="jsx" %}
+Voici un exemple de code qui utilise `useEffect` pour gérer le cycle de vie d'un composant :
 
-{% tab value="jsx" label="JSX" %}
-
-```jsx
-import React from "react";
-
-export const Counter = () => {
-  const [count, setCount] = React.useState(0);
-
-  React.useEffect(() => {
-    console.log("Component mounted");
-
-    return () => {
-      console.log("Component unmounted");
-    };
-  }, []);
-
-  React.useEffect(() => {
-    console.log("Component updated");
-  });
-
-  const increment = () => setCount(count + 1);
-
-  return <button onClick={increment}>{count}</button>;
-};
-```
-
-{% /tab %}
-
-{% tab value="tsx" label="TSX" %}
-
-```tsx
-import React from "react";
-
-export const Counter = () => {
-  const [count, setCount] = React.useState<number>(0);
-
-  React.useEffect(() => {
-    console.log("Component mounted");
-
-    return () => {
-      console.log("Component unmounted");
-    };
-  }, []);
-
-  React.useEffect(() => {
-    console.log("Component updated");
-  });
-
-  const increment = () => setCount(count + 1);
-
-  return <button onClick={increment}>{count}</button>;
-};
-```
-
-{% /tab %}
-
-{% /tabs %}
+<tabs.reactUseEffectExample />
 
 ### 🔢 On revient sur le cycle de vie !
 
@@ -309,39 +135,16 @@ On revient sur le cycle de vie d'un composant maintenant qu'on a vu `useEffect` 
 
 Je vais te donner un exemple de code supplémentaire et tu vas devoir deviner l'ordre d'apparition des messages dans la console.
 
-```jsx
-import React from "react";
-
-export const MyComponent = () => {
-  React.useEffect(() => {
-    console.log("1");
-  });
-
-  console.log("2");
-
-  React.useEffect(() => {
-    console.log("3");
-  }, []);
-
-  const logInRender = () => {
-    console.log("4");
-    return null;
-  };
-
-  return <div>{logInRender()}</div>;
-};
-```
+<tabs.reactUseEffectChallenge />
 
 Voici les possibilités :
 
-{% callout type="question" title="Quel est l'ordre d'apparition des messages dans la console ?" %}
-
-- **A** - 4, 2, 1, 3
-- **B** - 2, 4, 1, 3
-- **C** - 1, 2, 3, 4
-- **D** - La réponse D
-
-{% /callout %}
+<Callout type="question" title="Quel est l'ordre d'apparition des messages dans la console ?">
+  - **A** - 4, 2, 1, 3
+  - **B** - 2, 4, 1, 3
+  - **C** - 1, 2, 3, 4
+  - **D** - La réponse D
+</Callout>
 
 ## 🧩 Les autres hooks
 
