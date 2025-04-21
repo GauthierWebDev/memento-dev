@@ -9,24 +9,17 @@ export function ReadProgressBar() {
 
 	const handleScroll = () => {
 		const articleHeight = articleContentElement.scrollHeight;
-		const articleTopPosition =
-			articleContentElement.getBoundingClientRect().top;
+		const topPosition = articleContentElement.getBoundingClientRect().top;
 		const windowHeight = window.innerHeight;
 
-		// Calculer la hauteur visible de l'élément dans la fenêtre
-		const visibleHeight = Math.min(
-			articleHeight,
-			windowHeight + articleTopPosition,
-		);
+		if (articleHeight <= windowHeight) {
+			setWidth("100%");
+			return;
+		}
 
-		// Calculer la position de défilement relative à l'élément
-		const elementScrollTop = -articleTopPosition;
-
-		// Calculer le pourcentage de défilement relatif à l'élément
-		const percentage =
-			(elementScrollTop / (articleHeight - windowHeight)) * 100;
-
-		// Limiter le pourcentage entre 0 et 100
+		const elementScrollTop = -topPosition;
+		const scrollableHeight = articleHeight - windowHeight;
+		const percentage = (elementScrollTop / scrollableHeight) * 100;
 		const clampedPercentage = Math.max(0, Math.min(100, percentage));
 
 		setWidth(`${clampedPercentage}%`);
@@ -34,11 +27,13 @@ export function ReadProgressBar() {
 
 	createEffect(() => {
 		window.addEventListener("scroll", handleScroll);
+		window.addEventListener("resize", handleScroll);
 
 		handleScroll();
 
 		return () => {
 			window.removeEventListener("scroll", handleScroll);
+			window.removeEventListener("resize", handleScroll);
 		};
 	});
 
