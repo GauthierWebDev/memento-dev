@@ -45,6 +45,7 @@ export function HeroSection() {
 							alt=""
 							width={530}
 							height={530}
+							loading="eager"
 						/>
 
 						<div class="relative">
