@@ -65,10 +65,8 @@ export function TableOfContents() {
 		if (!section.children) return false;
 
 		return (
-			section.children.findIndex((child) => {
-				console.log(child.hash, currentSection());
-				return child.hash === currentSection();
-			}) !== -1
+			section.children.findIndex((child) => child.hash === currentSection()) !==
+			-1
 		);
 	}
 
