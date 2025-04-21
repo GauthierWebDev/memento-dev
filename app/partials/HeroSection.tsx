@@ -1,5 +1,3 @@
-import type { JSX } from "solid-js";
-
 import blurIndigoImage from "@/images/blur-indigo.webp";
 import blurCyanImage from "@/images/blur-cyan.webp";
 import { HeroBackground } from "./HeroBackground";
@@ -35,16 +33,6 @@ const snippets = [
 	},
 ];
 
-function TrafficLightsIcon(props: JSX.IntrinsicElements["svg"]) {
-	return (
-		<svg aria-hidden="true" viewBox="0 0 42 10" fill="none" {...props}>
-			<circle cx="5" cy="5" r="4.5" />
-			<circle cx="21" cy="5" r="4.5" />
-			<circle cx="37" cy="5" r="4.5" />
-		</svg>
-	);
-}
-
 export function HeroSection() {
 	return (
 		<div class="overflow-hidden bg-slate-900">
@@ -58,14 +46,17 @@ export function HeroSection() {
 							width={530}
 							height={530}
 						/>
+
 						<div class="relative">
 							<p class="inline bg-linear-to-r from-indigo-200 via-violet-400 to-indigo-200 bg-clip-text font-display text-5xl tracking-tight text-transparent">
 								Souviens-toi que tu développeras.
 							</p>
+
 							<p class="mt-3 text-2xl tracking-tight text-slate-400">
 								Découvrez des ressources essentielles pour améliorer tes
 								compétences en développement.
 							</p>
+
 							<div class="mt-8 flex gap-4 md:justify-center lg:justify-start">
 								<Button href="/docs">Accédez aux ressources</Button>
 								<Button
@@ -81,6 +72,7 @@ export function HeroSection() {
 						<div class="absolute inset-x-[-50vw] -top-32 -bottom-48 [mask-image:linear-gradient(transparent,white,white)] lg:-top-32 lg:right-0 lg:-bottom-32 lg:left-[calc(50%+14rem)] lg:[mask-image:none]">
 							<HeroBackground class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 lg:left-0 lg:translate-x-0 lg:translate-y-[-60%]" />
 						</div>
+
 						<div class="relative">
 							<Image
 								class="absolute -top-64 -right-64"
@@ -88,14 +80,18 @@ export function HeroSection() {
 								alt=""
 								width={530}
 								height={530}
+								loading="eager"
 							/>
+
 							<Image
 								class="absolute -right-44 -bottom-40"
 								src={blurIndigoImage}
 								alt=""
 								width={567}
 								height={567}
+								loading="eager"
 							/>
+
 							<div class="absolute inset-0 rounded-2xl bg-linear-to-tr from-violet-300 via-violet-300/70 to-purple-300 opacity-10 blur-lg" />
 							<div class="absolute inset-0 rounded-2xl bg-linear-to-tr from-violet-300 via-violet-300/70 to-purple-300 opacity-10" />
 

@@ -1,7 +1,7 @@
 Generated with [vike.dev/new](https://vike.dev/new) ([version 429](https://www.npmjs.com/package/create-vike/v/0.0.429)) using this command:
 
 ```sh
-bun create vike@latest --solid --tailwindcss --authjs --telefunc --fastify --google-analytics --eslint --prettier --biome
+bun create vike@latest --solid --tailwindcss --authjs --telefunc --fastify --eslint --prettier --biome
 ```
 
 ## Contents

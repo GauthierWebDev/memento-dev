@@ -1,5 +1,6 @@
 /.env
 **/*~lock*
+.DS_Store
 
 app-old/.pnpm-store
 app-old/node_modules

@@ -19,7 +19,7 @@ export default {
 		"Découvrez des synthèses et ressources open-source dans le développement informatique.",
 
 	htmlAttributes: {
-		class: "h-full antialiased",
+		class: "antialiased",
 	},
 	bodyAttributes: {
 		class: "flex min-h-full bg-white",

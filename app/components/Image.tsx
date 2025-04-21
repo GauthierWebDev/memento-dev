@@ -7,11 +7,11 @@ export default function Image(props: ImageProps) {
 
 	return (
 		<img
+			loading="lazy"
 			{...props}
 			src={props.src}
 			aria-hidden={isDecorationImage ? "true" : undefined}
 			alt={isDecorationImage ? undefined : props.alt}
-			loading="lazy"
 		/>
 	);
 }
