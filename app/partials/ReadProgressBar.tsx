@@ -43,7 +43,7 @@ export function ReadProgressBar() {
 			class="sticky inset-x-0 top-20 z-50 h-1 w-full bg-violet-50"
 		>
 			<div
-				class="bg-violet-300 h-full transition-all duration-75"
+				class="bg-violet-300 h-full transition-all duration-300 ease-in-out"
 				style={{ width: width() }}
 			/>
 		</div>

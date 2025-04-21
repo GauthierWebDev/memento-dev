@@ -68,7 +68,7 @@ export function Snippet(props: SnippetProps) {
 			<div class="pt-4 pl-4">
 				<TrafficLightsIcon class="h-2.5 w-auto stroke-slate-500/30" />
 
-				<div class="mt-4 flex space-x-2 text-xs">
+				<div class="mt-4 flex space-x-2 text-xs overflow-x-auto">
 					<For each={props.snippets}>
 						{(tab) => (
 							<div

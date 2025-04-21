@@ -1,6 +1,5 @@
 import type { JSXElement } from "solid-js";
 
-// import { TableOfContents } from "@/partials/TableOfContents";
 import { PrevNextLinks } from "@/components/PrevNextLinks";
 import { usePageContext } from "vike-solid/usePageContext";
 import { clientOnly } from "vike-solid/clientOnly";

@@ -1,6 +1,7 @@
 import type { JSXElement } from "solid-js";
 
 import { usePageContext } from "vike-solid/usePageContext";
+import { SmoothScroll } from "@/components/SmoothScroll";
 import { HeroSection } from "@/partials/HeroSection";
 import { Navigation } from "@/partials/Navigation";
 import { clientOnly } from "vike-solid/clientOnly";
@@ -24,7 +25,7 @@ export default function DefaultLayout(props: DefaultLayoutProps) {
 
 	return (
 		<>
-			<div class="flex w-full flex-col font-sans">
+			<SmoothScroll class="flex w-full flex-col font-sans">
 				<Header />
 				<ReadProgressBar />
 
@@ -43,7 +44,7 @@ export default function DefaultLayout(props: DefaultLayoutProps) {
 				</div>
 
 				<Footer />
-			</div>
+			</SmoothScroll>
 
 			<Toaster />
 		</>
