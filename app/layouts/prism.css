@@ -52,7 +52,6 @@
 }
 
 .token.module,
-.token.attr-name,
 .token.keyword,
 .token.rule,
 .token.pseudo-class,
@@ -67,6 +66,9 @@
 }
 
 .token.generic,
+.token.attr-name,
+.token.boolean,
+.token.number,
 .token.class-name {
   color: #C18401;
 }

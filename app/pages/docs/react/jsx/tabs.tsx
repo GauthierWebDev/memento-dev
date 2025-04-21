@@ -8,12 +8,12 @@ const reactCreateElementSnippets = [
 	},
 	{
 		name: "React sans JSX",
-		codeLanguage: "js",
+		codeLanguage: "jsx",
 		code: `React.createElement("button", { className: "button" }, "Clique moi !");`,
 	},
 	{
 		name: "React avec JSX",
-		codeLanguage: "tsx",
+		codeLanguage: "jsx",
 		code: `<button className="button">Clique moi !</button>`,
 	},
 ];

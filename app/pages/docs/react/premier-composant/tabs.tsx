@@ -18,9 +18,8 @@ const reactUseButtonComponentSnippets = [
 		name: "Utilisation du composant Button",
 		codeLanguage: "jsx",
 		withLineNumbers: true,
-		code: `import React from "react";
-
-import { Button } from "./Button";
+		code: `import { Button } from "./Button";
+import React from "react";
 
 export function App() {
   return (
@@ -66,9 +65,8 @@ const reactUseButtonComponentPropsSnippets = [
 		name: "Ajout de la prop `onClick`",
 		codeLanguage: "jsx",
 		withLineNumbers: true,
-		code: `import React from "react";
-
-import { Button } from "./Button";
+		code: `import { Button } from "./Button";
+import React from "react";
 
 export function App() {
   function handleClick() {
