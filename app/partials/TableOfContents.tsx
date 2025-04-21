@@ -16,19 +16,23 @@ export function TableOfContents() {
 
 	const getHeadings = () => {
 		return data.sections
+			.flatMap((section) => [section, ...section.children])
 			.map((section) => {
 				if (!section.hash) return null;
 
 				const el = document.getElementById(section.hash);
+				console.log(section.hash, el);
 				if (!el) return null;
 
 				const style = window.getComputedStyle(el);
 				const scrollMt = Number.parseFloat(style.scrollMarginTop);
 
 				const top = window.scrollY + el.getBoundingClientRect().top - scrollMt;
-				return { id: section.hash, top };
+				return { id: section.hash, top, level: section.level };
 			})
-			.filter((x): x is { id: string; top: number } => x !== null);
+			.filter(
+				(x): x is { id: string; top: number; level: number } => x !== null,
+			);
 	};
 
 	createEffect(() => {
@@ -46,8 +50,11 @@ export function TableOfContents() {
 			}
 			setCurrentSection(current);
 		}
+
 		window.addEventListener("scroll", onScroll, { passive: true });
+
 		onScroll();
+
 		return () => {
 			window.removeEventListener("scroll", onScroll);
 		};
@@ -55,10 +62,14 @@ export function TableOfContents() {
 
 	function isActive(section: DocSection) {
 		if (section.hash === currentSection()) return true;
-		return false;
-		// if (!section.children) return false;
+		if (!section.children) return false;
 
-		// return section.children.findIndex(isActive) > -1;
+		return (
+			section.children.findIndex((child) => {
+				console.log(child.hash, currentSection());
+				return child.hash === currentSection();
+			}) !== -1
+		);
 	}
 
 	return (
@@ -87,6 +98,26 @@ export function TableOfContents() {
 										{section.content}
 									</Link>
 								</h3>
+								{section.children.length > 0 && (
+									<ol class="mt-2 space-y-2 pl-4">
+										<For each={section.children}>
+											{(subsection) => (
+												<li>
+													<Link
+														href={`#${subsection.hash}`}
+														class={clsx(
+															isActive(subsection)
+																? "text-violet-500"
+																: "font-normal text-slate-500 hover:text-slate-700",
+														)}
+													>
+														{subsection.content}
+													</Link>
+												</li>
+											)}
+										</For>
+									</ol>
+								)}
 							</li>
 						)}
 					</For>

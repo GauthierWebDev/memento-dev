@@ -22,6 +22,7 @@ export type DocSection = {
 	content: string;
 	hash?: string;
 	subsections: string[];
+	children: DocSection[];
 	level?: number;
 };
 
@@ -98,15 +99,32 @@ class DocCache {
 		if (["heading", "paragraph"].includes(node.type)) {
 			const content = this.nodeToString(node).trim();
 
-			if (node.type === "heading" && node.attributes?.level <= 2) {
+			if (node.type === "heading" && node.attributes?.level <= 3) {
 				const hash = (node.attributes?.id as string) ?? this.slugify(content);
 				const subsections: string[] = [];
-				sections.push({
-					content,
-					hash,
-					subsections,
-					level: node.attributes?.level,
-				});
+
+				if (node.attributes?.level === 2) {
+					sections.push({
+						content,
+						hash,
+						subsections,
+						children: [],
+						level: node.attributes?.level,
+					});
+				} else if (node.attributes?.level === 3) {
+					const lastSection = sections.at(-1);
+
+					if (lastSection) {
+						lastSection.subsections.push(hash);
+						lastSection.children.push({
+							content,
+							hash,
+							subsections,
+							children: [],
+							level: node.attributes?.level,
+						});
+					}
+				}
 			} else {
 				sections.at(-1)?.subsections.push(content);
 			}
