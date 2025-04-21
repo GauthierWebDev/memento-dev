@@ -1,4 +1,7 @@
+import type { Root } from "postcss";
+
 import remarkExtractFrontmatter from "./remarkExtractFrontmatter";
+import { purgeCSSPlugin } from "@fullhuman/postcss-purgecss";
 import prismjsVitePlugin from "vite-plugin-prismjs";
 import remarkFrontmatter from "remark-frontmatter";
 import remarkHeadingId from "./remarkHeadingId";
@@ -9,6 +12,14 @@ import { defineConfig } from "vite";
 import mdx from "@mdx-js/rollup";
 import vike from "vike/plugin";
 import path from "node:path";
+
+type RemoveCommentRules = (root: Root) => void;
+
+const removeCommentRules: RemoveCommentRules = (root) => {
+	root.walkComments((comment) => {
+		comment.remove();
+	});
+};
 
 const __dirname = path.resolve();
 
@@ -40,6 +51,30 @@ export default defineConfig({
 		tailwindcss(),
 		telefunc(),
 	],
+	css: {
+		postcss: {
+			plugins: [
+				purgeCSSPlugin({
+					content: [
+						"./**/*.html",
+						"./**/*.js",
+						"./**/*.jsx",
+						"./**/*.ts",
+						"./**/*.tsx",
+						"./**/*.mdx",
+						"./**/*.md",
+					],
+					defaultExtractor: (content) => {
+						return content.match(/[\w-/:.\[\]\(\)_\[\]]+(?<!:)/g) || [];
+					},
+					variables: true,
+					keyframes: true,
+					fontFace: true,
+				}),
+				removeCommentRules,
+			],
+		},
+	},
 	build: {
 		target: "es2022",
 	},

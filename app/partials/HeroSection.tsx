@@ -81,7 +81,6 @@ export function HeroSection() {
 								alt=""
 								width={530}
 								height={530}
-								loading="eager"
 							/>
 
 							<Image
@@ -90,7 +89,6 @@ export function HeroSection() {
 								alt=""
 								width={567}
 								height={567}
-								loading="eager"
 							/>
 
 							<div class="absolute inset-0 rounded-2xl bg-linear-to-tr from-violet-300 via-violet-300/70 to-purple-300 opacity-10 blur-lg" />
