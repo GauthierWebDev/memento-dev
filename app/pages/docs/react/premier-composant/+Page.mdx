@@ -1,0 +1,169 @@
+---
+title: Premier composant React
+description: Voyons ensemble comment notre premier composant React !
+tags: [Frontend, React, JavaScript, TypeScript, Bibliothèque, Interface utilisateur (UI)]
+---
+
+import Callout from "@/components/Callout";
+import tabs from "./tabs";
+
+Rentrons maintenant dans le vif du sujet en créant notre premier composant React !  
+Dans cet article, on va faire un composant très simple : un **dumb component** qui sera tout simplement un bouton.
+
+<Callout type="question" title="Un... Dumb component ?">
+  Un **dumb component** est un composant React qui ne contient pas de logique.  
+  Enfin si, il peut en contenir _(mais rien de foufou)_, son rôle est de simplement afficher des données.
+
+  En gros :
+
+  - Il ne fait que de l'affichage
+  - Il ne fait pas de calculs
+  - Il ne fait pas de requêtes HTTP
+</Callout>
+
+## ⚙️ Syntaxes pour créer un composant
+
+Il existe plusieurs façons de créer un composant React.
+
+La plus simple est de créer une fonction qui retourne du JSX, mais il est aussi possible de créer une classe qui hérite `React.Component`.
+
+Cependant, on ne va pas s'attarder sur la déclaration de composants dans des classes.
+
+Pourquoi ? Déjà parce que la documentation officielle recommande désormais de définir des composants en tant que fonctions, mais surtout parce que c'est plus simple et plus lisible ! 🚀
+
+## 👷 Création du composant
+
+Allez c'est parti, occupons-nous de notre premier composant React !
+
+<tabs.reactButtonComponent />
+
+... et c'est tout ! 🎉  
+On a créé notre premier composant React, c'est pas beau ça ?
+
+Bon évidemment, il reste extrêmement sommaire et n'a pas d'intérêt à l'heure actuelle, mais c'est un bon début !
+
+Avant d'aller plus loin, décortiquons un peu ce code :
+
+- On importe `React` depuis la bibliothèque `React` _(ligne 1)_
+- On crée une fonction `Button` _(lignes 3 à 5)_
+  - Cette fonction retourne un élément JSX `<button>Click me</button>`
+
+## 🧩 Utilisation du composant
+
+C'est bien beau d'avoir un composant, mais maintenant il faut l'utiliser !
+
+<tabs.reactUseButtonComponent />
+
+On importe notre composant `Button` _(ligne 3)_ et on l'utilise dans notre composant `App` _(ligne 9)_.
+
+Rien de bien sorcier, n'est-ce pas ? 😊
+
+Mais maintenant, on va vouloir donner un peu plus de vie à notre bouton...  
+Parce que là pour le coup, il est inutile. 😅
+
+## 📦 Props
+
+Les **props** _(pour properties)_ sont des arguments que l'on peut passer à un composant React.  
+Il s'agit en quelque sorte des paramètres d'une fonction.
+
+Imaginons ici que l'on veut rajouter :
+
+- Un texte au bouton
+- Une action à effectuer lorsqu'on clique dessus
+
+Avant de t'expliquer comment faire, je vais te montrer ce que ça donne pour son utilisation :
+
+<tabs.reactUseButtonComponentProps />
+
+Voyons un peu ce qui change !
+
+- Fonction `handleClick` qui affiche un message dans la console _(ligne 6)_
+- On passe la fonction `handleClick` en tant que prop onClick à notre composant `Button` _(ligne 11)_
+- On passe le texte `Clique-moi !` entre la balise ouvrante et fermante de notre composant `Button` _(ligne 12)_
+
+Mais alors, comment on fait pour récupérer ces props dans notre composant Button ?
+
+<tabs.reactButtonComponentProps />
+
+Comme tu peux voir, on récupère les props passées à notre composant `Button` en tant que paramètre de la fonction.
+
+Mais tu peux également remarquer qu'il y a une propriété `children` qui n'est pas passée de la même manière que `onClick`.
+
+C'est totalement normal ! `children` est une prop spéciale qui contient tout ce qui se trouve entre les balises ouvrante et fermante du composant.
+
+<Callout type="note" title="Le JavaScript inline, c'est pas bien !">
+  Tu as totalement raison ! On recommande effectivement de ne pas faire du JS inline dans notre HTML et de privilégier un fichier distinct pour notre JavaScript.  
+  Et donc tu sais déjà qu'on va préférer l'utilisation des `addEventListener` 😏
+
+  ... cependant ici, **on ne fait pas du HTML** mais du JSX, et c'est une autre histoire !
+</Callout>
+
+## 🖇️ Les différentes props
+
+Il existe plusieurs props que l'on peut passer à un composant React :
+
+- `children` : Contient tout ce qui se trouve entre les balises ouvrante et fermante du composant
+- Les autres props : Tout ce qui est passé en dehors des balises ouvrante et fermante du composant
+
+Alors évidemment, cette explication est très réductrice, mais on va s'en contenter pour le moment.
+
+Mais tu te doutes bien qu'il existe des props spécifiques à certains éléments HTML qui peuvent être passées à un composant React.
+
+## 🔒 Mots clés protégés
+
+En HTML, il existe des attributs qui sont utilisés dans certains éléments HTML. Cependant, comme ici on ne fait pas du HTML mais du JSX, on ne va pas pouvoir les utiliser tels quels.
+
+Pour te donner un exemple concret, si tu veux ajouter une classe CSS à un élément, tu ne pourras pas utiliser l'attribut `class` mais `className`.
+
+Mais alors, pourquoi ?
+
+Comme le JSX reste avant tout du JavaScript, on ne peut pas utiliser des mots-clés réservés comme `class`, `for`, `default`, etc.
+
+<Callout type="note" collapsible title="Plus d'informations sur les mots-clés protégés">
+  React comprendra ces mots clés au sein des composants, cependant il va générer un avertissement dans la console du navigateur pour te prévenir que tu utilises un mot-clé protégé qui est "ambigu".
+
+  Cependant, certaines bibliothèques qui utilisent le JSX, comme SolidJS par exemple, utilisent ces mots-clés protégés au sein des composants. Ca ne veut pas dire que c'est "bien" ou "pas bien", mais qu'il faut être conscient de ce que l'on fait et de comment est interprété notre code par la bibliothèque 😉
+</Callout>
+
+On va donc utiliser des noms d'attributs qui sont similaires à ceux du HTML, mais qui sont adaptés pour le JSX.
+
+- `class` devient `className` _(pour les classes CSS)_
+- `for` devient `htmlFor` _(pour les labels)_
+- `default` devient `defaultValue` _(pour les champs de formulaire)_
+
+Et il en existe bien d'autres, mais on va s'arrêter là pour le moment ! 😊
+
+## 👂 Écouteurs d'événements
+
+Il existe également des attributs spécifiques pour les écouteurs d'événements.  
+Tu as notamment pu déjà faire la rencontre de `onClick`, mais il en existe bien d'autres !
+
+Il s'agit de la syntaxe à adopter avec React pour ajouter des écouteurs d'événements à des composants JSX, et non pas d'utiliser `addEventListener` directement dans le JavaScript 😉
+
+J'aimerai beaucoup pouvoir te donner une liste d'exemples d'écouteurs d'événements, mais il y en a tellement que je ne pourrais pas tous les citer ici.  
+La forme étant toujours la même, tu peux facilement savoir comment les écrire !
+
+La forme est simple :
+
+- Préfixe : `on`
+- Événement : nom de l'événement en camelCase
+
+Par exemple :
+
+- `click` => `onClick`
+- `change` => `onChange`
+- `submit` => `onSubmit`
+- `mouseenter` => `onMouseEnter`
+- `mouseleave` => `onMouseLeave`
+
+Et si tu cherches une liste complète des écouteurs d'événements, je t'invite à tout simplement consulter le [MDN Web Docs](https://developer.mozilla.org/fr/docs/Web/Events) qui est une mine d'or pour tout ce qui est lié au développement web !
+
+Au début, on peut trouver ça un peu déroutant puisqu'on va naturellement les associer à du HTML, mais il faut se rappeler qu'on est dans du JSX _(oui, j'insiste beaucoup là-dessus !)_.
+
+## Conclusion
+
+Et voilà, on a créé notre premier composant React !  
+On a même rapidement vu comment passer des props à un composant et comment les récupérer.
+
+Et si pour le prochain article, on parle un peu des states pour rajouter un peu d'intéractivité à nos composants ?  
+Parce que c'est déjà cool ce qu'on a pu faire, mais on peut faire tellement plus avec React ! 🚀
