@@ -8,7 +8,7 @@ type IframeProps = {
 	class?: string;
 };
 
-export function Iframe(props: IframeProps) {
+export default function Iframe(props: IframeProps) {
 	return (
 		<iframe
 			src={props.src}
