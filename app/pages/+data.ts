@@ -1,4 +1,3 @@
-import type { SectionCache } from "@/services/DocCache";
 import type { PageContext } from "vike/types";
 
 import { useConfig } from "vike-solid/useConfig";
@@ -9,6 +8,7 @@ export type Data = Awaited<ReturnType<typeof data>>;
 
 export async function data(pageContext: PageContext) {
 	const config = useConfig();
+	await docCache.waitingForCache(20000);
 
 	const {
 		exports: { frontmatter },
@@ -27,6 +27,13 @@ export async function data(pageContext: PageContext) {
 	}
 
 	const doc = docCache.get(cachePathname);
+
+	if (!doc) {
+		console.error(
+			`DocCache: No doc found for ${cachePathname}. This is a bug!`,
+			"Please report it to the maintainers.",
+		);
+	}
 
 	return {
 		sections: doc?.sections || [],

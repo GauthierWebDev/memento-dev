@@ -1,3 +1,4 @@
+import type { NavigationSubItem } from "@/libs/navigation";
 import type { JSX } from "solid-js";
 
 import { usePageContext } from "vike-solid/usePageContext";
@@ -21,13 +22,14 @@ type PageLinkProps = Omit<JSX.IntrinsicElements["div"], "dir" | "title"> & {
 };
 
 function PageLink(props: PageLinkProps) {
-	const pageCategory = navigation.find((section) => {
-		return section.links.some(
-			(link) =>
-				link.href === props.href ||
-				link.subitems.some((subitem) => subitem.href === props.href),
-		);
-	});
+	const getPageCategory = () =>
+		navigation.find((section) => {
+			return section.links.some(
+				(link) =>
+					link.href === props.href ||
+					link.subitems.some((subitem) => subitem.href === props.href),
+			);
+		});
 
 	return (
 		<div {...cleanProps(props, "dir", "title", "href", "subitems")}>
@@ -43,9 +45,9 @@ function PageLink(props: PageLinkProps) {
 					)}
 				>
 					<p class="flex flex-col gap-0">
-						{pageCategory && (
+						{getPageCategory() && (
 							<span class="text-violet-600 text-sm mb-1 leading-3">
-								{pageCategory.title}
+								{getPageCategory()?.title}
 							</span>
 						)}
 						<span class="leading-4">{props.title}</span>
@@ -87,13 +89,23 @@ export function PrevNextLinks() {
 		return [previousPage, nextPage];
 	};
 
-	const [previousPage, nextPage] = getNeighboringLinks();
-	if (!nextPage && !previousPage) return null;
+	if (getNeighboringLinks().length === 0) return null;
 
 	return (
 		<dl class="mt-12 flex gap-4 border-t border-slate-200 pt-6">
-			{previousPage && <PageLink dir="previous" {...previousPage} />}
-			{nextPage && <PageLink class="ml-auto text-right" {...nextPage} />}
+			{getNeighboringLinks()[0] && (
+				<PageLink
+					dir="previous"
+					{...(getNeighboringLinks()[0] as NavigationSubItem)}
+				/>
+			)}
+
+			{getNeighboringLinks()[1] && (
+				<PageLink
+					class="ml-auto text-right"
+					{...(getNeighboringLinks()[1] as NavigationSubItem)}
+				/>
+			)}
 		</dl>
 	);
 }
