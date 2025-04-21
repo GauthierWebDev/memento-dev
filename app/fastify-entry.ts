@@ -1,95 +1,94 @@
-import type { Theme } from "@/contexts/ThemeContext";
+import type { readingTime } from "reading-time-estimator";
+import type { TableOfContents } from "./remarkHeadingId";
 
 import { createHandler } from "@universal-middleware/fastify";
-import { telefuncHandler } from "./server/telefunc-handler";
 import { vikeHandler } from "./server/vike-handler";
-import { sitemap } from "./services/Sitemap";
-import fastifyCookie from "@fastify/cookie";
+import { createDevMiddleware } from "vike/server";
+import { docCache } from "./services/DocCache";
 import { fileURLToPath } from "node:url";
+import { search } from "./libs/search";
 import { dirname } from "node:path";
+import { config } from "./config";
 import Fastify from "fastify";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-
-const hmrPort = process.env.HMR_PORT ? parseInt(process.env.HMR_PORT, 10) : 24678;
-const port = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 const root = __dirname;
 
 declare global {
-  namespace Vike {
-    interface PageContext {
-      cookies: {
-        consent: {
-          analytics: boolean;
-          customization: boolean;
-        };
-        settings: {
-          theme: Theme;
-        };
-      };
-    }
-  }
+	namespace Vike {
+		interface PageContext {
+			baseUrl: string;
+			exports: {
+				frontmatter?: Partial<{
+					title: string;
+					description: string;
+					tags: string[];
+				}>;
+				readingTime?: ReturnType<typeof readingTime>;
+				tableOfContents?: TableOfContents;
+				[key: string]: unknown;
+			};
+		}
+	}
 }
 
 async function startServer() {
-  const app = Fastify();
+	await docCache.waitingForCache(20000);
 
-  sitemap.generateSitemap();
+	const app = Fastify();
 
-  app.register(fastifyCookie, {
-    secret: "todo",
-    hook: "onRequest",
-    parseOptions: {},
-  });
+	// Avoid pre-parsing body, otherwise it will cause issue with universal handlers
+	// This will probably change in the future though, you can follow https://github.com/magne4000/universal-middleware for updates
+	app.removeAllContentTypeParsers();
+	app.addContentTypeParser("*", (_request, _payload, done) => done(null, ""));
 
-  // Avoid pre-parsing body, otherwise it will cause issue with universal handlers
-  // This will probably change in the future though, you can follow https://github.com/magne4000/universal-middleware for updates
-  app.removeAllContentTypeParsers();
-  app.addContentTypeParser("*", function (_request, _payload, done) {
-    done(null, "");
-  });
+	await app.register(await import("@fastify/middie"));
 
-  await app.register(await import("@fastify/middie"));
+	if (process.env.NODE_ENV === "production") {
+		await app.register(await import("@fastify/static"), {
+			root: `${root}/dist/client`,
+			wildcard: false,
+		});
+	} else {
+		const { devMiddleware } = await createDevMiddleware({
+			root,
+			viteConfig: {
+				server: { hmr: { port: config.HMR_PORT } },
+			},
+		});
+		app.use(devMiddleware);
+	}
 
-  if (process.env.NODE_ENV === "production") {
-    await app.register(await import("@fastify/static"), {
-      root: `${root}/dist/client`,
-      wildcard: false,
-    });
-  } else {
-    // Instantiate Vite's development server and integrate its middleware to our server.
-    // ⚠️ We should instantiate it *only* in development. (It isn't needed in production
-    // and would unnecessarily bloat our server in production.)
-    const vite = await import("vite");
-    const viteDevMiddleware = (
-      await vite.createServer({
-        root,
-        server: { middlewareMode: true, hmr: { port: hmrPort } },
-      })
-    ).middlewares;
-    app.use(viteDevMiddleware);
-  }
+	app.get("/search", async (request, reply) => {
+		const { query } = request.query as { query: string };
+		if (!query) {
+			reply.status(400).send("Query parameter is required");
+			return;
+		}
 
-  app.post<{ Body: string }>("/_telefunc", createHandler(telefuncHandler)());
+		const results = search(query);
 
-  app.get("/sitemap.xml", async (_request, reply) => {
-    reply.type("application/xml");
-    reply.send(sitemap.getSitemap());
-  });
+		reply.status(200).send(results);
+	});
 
-  /**
-   * Vike route
-   *
-   * @link {@see https://vike.dev}
-   **/
-  app.all("/*", createHandler(vikeHandler)());
+	/**
+	 * Vike route
+	 *
+	 * @link {@see https://vike.dev}
+	 **/
+	app.all("/*", createHandler(vikeHandler)());
 
-  return app;
+	return app;
 }
 
 const app = await startServer();
 
-app.listen({ port, host: "0.0.0.0" }, () => {
-  console.log(`Server listening on http://localhost:${port}`);
+app.listen({ port: config.PORT, host: "0.0.0.0" }, (error, address) => {
+	if (error) {
+		app.log.error(error);
+		process.exit(1);
+	}
+
+	console.log(`Server listening on ${address}`);
 });

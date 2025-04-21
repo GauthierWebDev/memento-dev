@@ -1,32 +1,32 @@
 import type { Config } from "vike/types";
 
 import Layout from "@/layouts/LayoutDefault";
-import vikeReact from "vike-react/config";
+import vikeSolid from "vike-solid/config";
 
 // Default config (can be overridden by pages)
 // https://vike.dev/config
 
 export default {
-  // https://vike.dev/Layout
-  Layout,
+	// https://vike.dev/Layout
+	// @ts-ignore
+	Layout,
 
-  lang: "fr",
+	lang: "fr",
 
-  // https://vike.dev/head-tags
-  title: "Memento Dev",
-  description: "Découvrez des synthèses et ressources open-source dans le développement informatique.",
+	// https://vike.dev/head-tags
+	title: "Memento Dev",
+	description:
+		"Découvrez des synthèses et ressources open-source dans le développement informatique.",
 
-  htmlAttributes: {
-    class: "h-full antialiased",
-  },
-  bodyAttributes: {
-    class: "flex min-h-full bg-white dark:bg-slate-900",
-  },
+	htmlAttributes: {
+		class: "h-full antialiased",
+	},
+	bodyAttributes: {
+		class: "flex min-h-full bg-white",
+	},
 
-  image: "/og.webp",
+	prerender: true,
+	prefetchStaticAssets: "hover",
 
-  passToClient: ["cookies"],
-  prefetchStaticAssets: "hover",
-
-  extends: vikeReact,
+	extends: [vikeSolid],
 } satisfies Config;

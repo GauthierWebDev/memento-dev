@@ -1,9 +1,8 @@
-@import "tailwindcss";
 @import "./prism.css";
+@import "./style.css";
+@import "tailwindcss";
 
 @plugin '@tailwindcss/typography';
-
-@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --text-*: initial;
@@ -34,8 +33,8 @@
   --text-9xl: 8rem;
   --text-9xl--line-height: 1;
 
-  --font-sans: "Inter Variable";
-  --font-display: "Lexend Variable";
+  --font-sans: "Inter";
+  --font-display: "Lexend";
   --font-display--font-feature-settings: "ss01";
 
   --container-8xl: 88rem;

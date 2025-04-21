@@ -1,23 +1,19 @@
-Generated with [vike.dev/new](https://vike.dev/new) ([version 410](https://www.npmjs.com/package/create-vike/v/0.0.410)) using this command:
+Generated with [vike.dev/new](https://vike.dev/new) ([version 429](https://www.npmjs.com/package/create-vike/v/0.0.429)) using this command:
 
 ```sh
-pnpm create vike@latest --react --tailwindcss --telefunc --fastify --eslint --prettier
+bun create vike@latest --solid --tailwindcss --telefunc --fastify --google-analytics --eslint --prettier --biome
 ```
 
 ## Contents
 
-* [React](#react)
+* [`/pages/+config.ts`](#pagesconfigts)
+* [Routing](#routing)
+* [`/pages/_error/+Page.jsx`](#pages_errorpagejsx)
+* [`/pages/+onPageTransitionStart.ts` and `/pages/+onPageTransitionEnd.ts`](#pagesonpagetransitionstartts-and-pagesonpagetransitionendts)
+* [SSR](#ssr)
+* [HTML Streaming](#html-streaming)
 
-  * [`/pages/+config.ts`](#pagesconfigts)
-  * [Routing](#routing)
-  * [`/pages/_error/+Page.jsx`](#pages_errorpagejsx)
-  * [`/pages/+onPageTransitionStart.ts` and `/pages/+onPageTransitionEnd.ts`](#pagesonpagetransitionstartts-and-pagesonpagetransitionendts)
-  * [SSR](#ssr)
-  * [HTML Streaming](#html-streaming)
-
-## React
-
-This app is ready to start. It's powered by [Vike](https://vike.dev) and [React](https://react.dev/learn).
+This app is ready to start. It's powered by [Vike](https://vike.dev) and [SolidJS](https://www.solidjs.com/guides/getting-started).
 
 ### `/pages/+config.ts`
 

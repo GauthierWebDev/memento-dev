@@ -1,14 +1,15 @@
 services:
-  memento-dev:
+  memento:
     container_name: memento-dev
-    build:
-      context: .
-      dockerfile: pnpm.Dockerfile
+    image: oven/bun:alpine
     env_file:
       - .env
+    environment:
+      - NODE_ENV=development
     ports:
       - "${PORT}:${PORT}"
       - "${HMR_PORT}:${HMR_PORT}"
     volumes:
       - ./app:/app
-    restart: unless-stopped
+    working_dir: /app
+    command: bun run dev

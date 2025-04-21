@@ -1,5 +1,7 @@
 import type { OnPageTransitionStartAsync } from "vike/types";
 
+import NProgress from "nprogress";
+
 export const onPageTransitionStart: OnPageTransitionStartAsync = async () => {
-  document.querySelector("body")?.classList.add("page-is-transitioning");
+	NProgress.start();
 };

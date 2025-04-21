@@ -1,62 +1,75 @@
-import type { FlexSearchData } from "./DocsService";
+import type { DocSection } from "./DocCache";
+
+export type FlexSearchData = { key: string; sections: DocSection[] }[];
 
 import FlexSearch from "flexsearch";
 
 interface NativeSearchResult {
-  id: string;
-  doc: {
-    title: string;
-    pageTitle?: string;
-  };
+	id: string;
+	doc: {
+		title: string;
+		pageTitle?: string;
+	};
 }
 
 export type SearchResult = {
-  url: string;
-  title: string;
-  pageTitle?: string;
+	url: string;
+	title: string;
+	pageTitle?: string;
 };
 
 export function buildFlexSearch(data: FlexSearchData) {
-  const sectionIndex = new FlexSearch.Document({
-    tokenize: "full",
-    document: {
-      id: "url",
-      index: "content",
-      store: ["title", "pageTitle"],
-    },
-    context: {
-      resolution: 9,
-      depth: 2,
-      bidirectional: true,
-    },
-  });
+	const sectionIndex = new FlexSearch.Document({
+		tokenize: "full",
+		document: {
+			id: "url",
+			index: "content",
+			store: ["title", "pageTitle"],
+		},
+		context: {
+			resolution: 9,
+			depth: 2,
+			bidirectional: true,
+		},
+	});
 
-  for (const { key, sections } of data) {
-    for (const [title, hash, content] of sections) {
-      sectionIndex.add({
-        url: key + (hash ? `#${hash}` : ""),
-        title,
-        content: [title, ...content].join("\n"),
-        pageTitle: hash ? sections[0][0] : undefined,
-      });
-    }
-  }
+	for (const { key, sections } of data) {
+		for (const section of sections) {
+			const { content, hash, subsections } = section;
 
-  return function search(query: string): SearchResult[] {
-    const result = sectionIndex.search<true>(query, 5, {
-      enrich: true,
-    });
+			const url = key.replace("index", "").replace(/(\+Page)?.md(x)?$/, "");
 
-    if (result.length === 0) return [];
+			sectionIndex.add({
+				url: url + (hash ? `#${hash}` : ""),
+				title: content,
+				content: [content, ...subsections].join("\n"),
+				// @ts-ignore
+				pageTitle: hash ? sections[0]?.content : undefined,
+			});
+		}
+	}
 
-    return result[0].result.map((rawItem) => {
-      const item = rawItem as unknown as NativeSearchResult;
+	return function search(
+		query: string,
+		limit?: number,
+	): Promise<SearchResult[]> {
+		const result = sectionIndex.search(query, 5, {
+			enrich: true,
+			limit,
+		});
 
-      return {
-        url: item.id,
-        title: item.doc.title,
-        pageTitle: item.doc.pageTitle,
-      };
-    });
-  };
+		// @ts-ignore
+		if (result.length === 0) return [];
+
+		// @ts-ignore
+		return result[0].result.map((rawItem) => {
+			const item = rawItem as unknown as NativeSearchResult;
+
+			return {
+				url: item.id,
+				title: item.doc.title,
+				pageTitle: item.doc.pageTitle,
+			};
+		});
+	};
 }

@@ -1,5 +1,8 @@
 import type { OnPageTransitionEndAsync } from "vike/types";
 
+import NProgress from "nprogress";
+
 export const onPageTransitionEnd: OnPageTransitionEndAsync = async () => {
-  document.querySelector("body")?.classList.remove("page-is-transitioning");
+	NProgress.done();
+	NProgress.remove();
 };

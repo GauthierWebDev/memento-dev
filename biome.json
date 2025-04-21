@@ -1,0 +1,15 @@
+{
+	"$schema": "./app/node_modules/@biomejs/biome/configuration_schema.json",
+	"organizeImports": {
+		"enabled": true
+	},
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": true
+		}
+	},
+	"files": {
+		"ignore": ["dist/**", "*.js", "*.cjs", "*.mjs", "*.spec.ts", "*.css"]
+	}
+}

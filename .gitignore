@@ -1,6 +1,12 @@
 /.env
+**/*~lock*
+
+app-old/.pnpm-store
+app-old/node_modules
+app-old/dist
+app-old/public/sitemap.xml
+
 app/.pnpm-store
 app/node_modules
 app/dist
 app/public/sitemap.xml
-**/*~lock*

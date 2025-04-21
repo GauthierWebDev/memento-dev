@@ -1,0 +1,150 @@
+---
+title: Introduction à React
+description: Parlons un peu de React, ce qu'il est, ce qu'il fait et pourquoi il est si populaire.
+tags: [Frontend, React, JavaScript, TypeScript, Bibliothèque, Interface utilisateur (UI)]
+---
+
+import Callout from "@/components/Callout";
+import tabs from "./tabs";
+
+Parlons peu, parlons bien ! 😄
+
+React est une **bibliothèque** _(non, pas un **framework** !)_ JavaScript open-source développée par Facebook.  
+Elle est utilisée pour construire des interfaces utilisateur _(UI)_ interactives et dynamiques.
+
+<Callout type="note" title="Pourquoi React est si populaire ?">
+  - **Facilité d'utilisation** : React est facile à apprendre et à utiliser. Il est basé sur JavaScript, qui est l'un des langages de programmation les plus populaires.
+  - **Réutilisabilité des composants** : React permet de créer des composants réutilisables. Cela signifie que tu peux créer un composant une fois et l'utiliser partout où tu en as besoin.
+  - **Performances** : React utilise un DOM virtuel _(Virtual DOM)_ pour améliorer les performances de l'application.
+  - **Communauté active** : React a une communauté active de développeurs qui contribuent à son développement et partagent des ressources utiles.
+</Callout>
+
+Mais on peut aussi y noter des points faibles bien entendu, car tout n'est pas rose :
+
+- **Courbe d'apprentissage** : Bien que React soit "facile" à apprendre, les concepts avancés demandent un peu de temps pour être maîtrisés.
+- **Taille du bundle** : React est relativement lourd en termes de taille de bundle, ce qui peut affecter les performances de l'application en terme de chargement initial.
+- **GAFAM** : Comme d'autres bibliothèques/frameworks, React n'échappe pas à la critique de la part de certains développeurs qui ne souhaitent pas utiliser des technologies développées par des géants du web.
+
+## 🤔 Pourquoi une bibliothèque et pas un framework ?
+
+Très grand débat que voilà ! Vraiment.. il y a des guerres qui se sont déclarées pour moins que ça 😅
+
+Blague à part, pour pouvoir dire que React n'est pas un framework, il faut comprendre la différence entre les deux :
+
+- **Framework** : Un framework est un ensemble de bibliothèques et de composants qui sont prédéfinis et structurés pour te permettre de construire une application.  
+  En gros, le framework te dit comment faire les choses.
+- **Bibliothèque** : Une bibliothèque est un ensemble de fonctions et de composants que tu peux utiliser pour construire une application.  
+  En gros, c'est toi qui décides comment faire les choses.
+
+Et si tu connais déjà React, je te vois venir avec tes grands sabots... !
+
+<Callout type="note" title="React a ses propres règles, on ne peut pas faire n'importe quoi !">
+  C'est vrai ! React a ses propres règles et conventions, mais il te laisse quand même une grande liberté pour organiser ton code comme tu le souhaites.
+
+  Si on se concentre sur la **préoccupation principale** de React, c'est de gérer l'**interface utilisateur** _(UI)_ de ton application.  
+  En aucun cas, React _(tel quel et "pour le moment")_ va te dire comment gérer ton état global, comment gérer tes requêtes HTTP, etc.
+
+  Mais tu peux totalement utiliser React **au sein** d'un framework !  
+  Tu as notamment des frameworks comme [**Next.js**](https://nextjs.org/) ou [**Gatsby**](https://www.gatsbyjs.com/) qui utilisent React
+  avec des fonctionnalités supplémentaires pour gérer le routage, le rendu côté serveur, etc.
+
+  _(Le meilleur, selon moi, c'est [**Vike**](https://vike.dev/) qui te permet d'utiliser presque n'importe quelle bibliothèque avec une même architecture 😏)_
+
+  Mais concentrons-nous sur React en tant que bibliothèque, et non en tant que framework 😉
+</Callout>
+
+## 📝 JSX
+
+Ce qui peut être déroutant au premier abord avec React, c'est le **JSX**.  
+On serait tenté de dire que c'est du HTML, mais en fait : **pas du tout** !
+
+Le JSX est un sucre syntaxique _(syntactic sugar)_ qui permet d'écrire du code JavaScript en se basant sur le système de balisage HTML.
+
+L'avantage de JSX c'est que le code devient beaucoup plus lisible et plus proche de ce que tu connais déjà avec HTML.  
+Mais il s'agit bien de JavaScript, et non de HTML !
+
+## 🧩 Composants
+
+React est basé sur le concept de **composants**. Un composant est une partie réutilisable de l'interface utilisateur _(UI)_ qui peut être affichée à l'écran.
+
+Dans la majorité des cas, on va chercher à **mutualiser** les composants pour éviter de répéter du code inutilement.  
+L'exemple le plus flagrant sera par exemple tous les boutons de ton application, qui auront probablement tous la même apparence et le même comportement.
+
+Il est aussi possible de les **imbriquer** les uns dans les autres !  
+En fait, on joue avec des Lego, mais en version code 👷
+
+Mais si on veut vraiment montrer le potentiel de React, parlons maintenant... 🥁  
+Des **states**, **cycles de vie** et des **props** !
+
+## 🛠️ States, Cycles de vie et Props
+
+T'assomer aussi vite avec ces termes qui ne te parlent peut-être pas, c'est pas cool de ma part...
+Pardon pour les gros mots, je me calme tout de suite ! 🙈
+
+Si ça te rassure, je vais très rapidement évoquer ce qu'il se cache derrière ces termes barbares,
+je réserve les détails pour des articles dédiés 😉
+
+### 🗄️ States
+
+... ou également appelés **états** en français.
+
+Le but du state, c'est de stocker des données qui vont être **observées** par React.  
+À chaque fois que le state va être modifié, React va **réagir** et mettre à jour l'interface utilisateur _(UI)_ en conséquence afin d'afficher les nouvelles données.
+
+### 🔄 Cycles de vie
+
+Les **cycles de vie** _(lifecycle)_ sont des méthodes qui sont appelées à des moments précis dans le cycle de vie d'un composant React.
+
+Si tu as lu la section qui parle brièvement des states, tu auras peut-être remarqué cette phrase :
+
+> À chaque fois que le state va être modifié, React va **réagir** et mettre à jour l'interface utilisateur [...]
+
+Et bien c'est là que les cycles de vie entrent en jeu !  
+Un composant sur React va avoir un cycle de vie, caractérisé par trois phases :
+
+1. **Montage du composant** _(Mounting)_ : le composant est créé et inséré dans le DOM.
+2. **Mise à jour du composant** _(Updating)_ : le composant est mis à jour en fonction des changements de state ou de props.
+3. **Démontage du composant** _(Unmounting)_ : le composant est retiré du DOM.
+
+Ces différentes phases vont nous permettre d'interagir avec le composant à des moments précis, et d'effectuer des actions en conséquence.
+
+### 📦 Props
+
+Et pour finir, les **props** _(properties ou tout simplement "propriétés" en français)_ !
+
+Il s'agit ni plus ni moins que des **arguments** que tu vas passer à un composant, comme tu le ferais avec une fonction.
+
+Cependant il faut noter une chose :
+
+On transmet les props à un composant précis, qui sera donc un composant **enfant**.  
+Un composant enfant ne pourra pas transmettre des props à un composant parent, c'est unidirectionnel _(mais on verra comment on peut faire autrement 😉)_.
+
+## 🖥️ Une petite démo ?
+
+OK, mais vraiment petite !
+
+Prenons l'exemple d'une application qui servira **uniquement** à afficher une liste de tâches _(une todolist donc !)_.  
+_(Bon... utiliser React uniquement pour ça c'est abusé, mais c'est pour l'exemple 😅)_
+
+<tabs.reactTodolist />
+
+On peut très bien imaginer des améliorations à cette application, comme par exemple :
+
+- Supprimer une tâche
+- Réinitialiser la liste des tâches
+- Marquer une tâche comme terminée _(et inversement)_
+- Ordonner les tâches pour afficher en priorité les tâches non terminées
+- Enregistrer les tâches dans le navigateur pour les retrouver après un rafraîchissement de la page
+
+Et si on se gardait ça pour la suite ? 😉
+
+## Conclusion
+
+Tu l'auras compris, React permet de résoudre un certain nombre de problématiques que l'on peut rencontrer lors du développement d'une application web.
+
+Pas des problématiques majeures, mais ça nous permet tout de même en tant que développeur de gagner du temps et de l'efficacité !
+
+Dans le cas où le fait que ce soit créé et maintenu par Facebook _(ou GAFAM de manière générale)_ est contre tes valeurs,
+tu as des solutions très semblables qui existent, comme [**SolidJS**](https://www.solidjs.com/) par exemple.
+
+Et si tu veux en savoir plus, je t'invite à lire les articles suivants qui vont te permettre de rentrer un peu plus dans le détail de React ! 🚀

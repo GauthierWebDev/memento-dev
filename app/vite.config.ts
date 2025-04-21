@@ -1,46 +1,51 @@
+import remarkExtractFrontmatter from "./remarkExtractFrontmatter";
 import prismjsVitePlugin from "vite-plugin-prismjs";
+import remarkFrontmatter from "remark-frontmatter";
+import remarkHeadingId from "./remarkHeadingId";
 import tailwindcss from "@tailwindcss/vite";
-import Unfonts from "unplugin-fonts/vite";
 import { telefunc } from "telefunc/vite";
-import react from "@vitejs/plugin-react";
+import vikeSolid from "vike-solid/vite";
 import { defineConfig } from "vite";
+import mdx from "@mdx-js/rollup";
 import vike from "vike/plugin";
+import path from "node:path";
+
+const __dirname = path.resolve();
 
 export default defineConfig({
-  plugins: [
-    prismjsVitePlugin({
-      languages: ["javascript", "typescript", "tsx", "jsx", "css", "html", "bash", "nginx"],
-    }),
-    Unfonts({
-      fontsource: {
-        families: [
-          {
-            name: "Lexend Variable",
-            weights: [400],
-            styles: ["normal"],
-            subset: "latin",
-          },
-          {
-            name: "Inter Variable",
-            weights: [400, 500, 600, 700],
-            styles: ["normal"],
-            subset: "latin",
-          },
-        ],
-      },
-    }),
-    vike({}),
-    react({}),
-    tailwindcss(),
-    telefunc(),
-  ],
-  build: {
-    target: "es2022",
-  },
-  resolve: {
-    alias: {
-      "@syntax": __dirname + "/components/syntax",
-      "@": __dirname,
-    },
-  },
+	plugins: [
+		prismjsVitePlugin({
+			languages: [
+				"javascript",
+				"typescript",
+				"tsx",
+				"jsx",
+				"css",
+				"html",
+				"bash",
+				"nginx",
+			],
+		}),
+		vike(),
+		vikeSolid(),
+		mdx({
+			jsxImportSource: "solid-jsx",
+			// providerImportSource: "solid-mdx",
+			remarkPlugins: [
+				remarkFrontmatter,
+				remarkHeadingId,
+				remarkExtractFrontmatter,
+			],
+		}),
+		tailwindcss(),
+		telefunc(),
+	],
+	build: {
+		target: "es2022",
+	},
+	resolve: {
+		alias: {
+			"@": __dirname,
+		},
+	},
 });
