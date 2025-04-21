@@ -4,15 +4,16 @@ description: Découvre les hooks de React, une fonctionnalité qui te permet de 
 tags: [Frontend, React, JavaScript, TypeScript, Bibliothèque, Interface utilisateur (UI)]
 ---
 
+import Callout from "@/components/Callout";
+import tabs from "./tabs";
+
 Si tu as lu les précédentes pages concernant les hooks de React _(useState, useEffect et useContext)_, tu as déjà une bonne vision de la manière dont tu peux concevoir une application React.
 
 Mais si je te dis que tu peux aller encore plus loin avec useReducer pour la gestion des états, est-ce que tu serais intéressé·e ? 🤔
 
-{% callout type="question" title="Pourquoi ? useState ne suffit pas ?" %}
-
-Le hook `useState` est génial et essentiel pour gérer l'état local d'un composant, mais il n'est pas adapté pour des états dits "complexes" ou pour des états qui dépendent les uns des autres.
-
-{% /callout %}
+<Callout type="question" title="Pourquoi ? useState ne suffit pas ?">
+  Le hook `useState` est génial et essentiel pour gérer l'état local d'un composant, mais il n'est pas adapté pour des états dits "complexes" ou pour des états qui dépendent les uns des autres.
+</Callout>
 
 ## Qu'est-ce que le hook useReducer ?
 
@@ -46,17 +47,7 @@ Comme expliqué plus tôt, un reducer est une fonction qui prend en paramètre u
 
 Parlons dans un premier temps de la signature d'un reducer :
 
-{% tabs defaultSelectedTab="jsx" %}
-
-{% tab value="jsx" label="JSX" %}
-{% snippet path="react/reducer/reducer-example.jsx" language="jsx" showLineNumbers=true /%}
-{% /tab %}
-
-{% tab value="tsx" label="TSX" %}
-{% snippet path="react/reducer/reducer-example.tsx" language="tsx" showLineNumbers=true /%}
-{% /tab %}
-
-{% /tabs %}
+<tabs.reactReducerExample />
 
 Comme tu peux le voir, on récupère bien deux paramètres : `state` et `action`.
 
@@ -70,19 +61,17 @@ L'état est contraint au principe d'**immutabilité**.
 
 On fera donc des `return` de l'état actuel avec les modifications nécessaires.
 
-{% callout type="note" title="Pourquoi déverser le contenu de l'état actuel ?" %}
+<Callout type="note" title="Pourquoi déverser le contenu de l'état actuel ?">
+  Si on ne déverse pas le contenu de l'état actuel, on perdrait les propriétés qui ne sont pas modifiées par l'action.
 
-Si on ne déverse pas le contenu de l'état actuel, on perdrait les propriétés qui ne sont pas modifiées par l'action.
+  En déversant le contenu de l'état actuel, on s'assure de ne pas perdre ces propriétés.
 
-En déversant le contenu de l'état actuel, on s'assure de ne pas perdre ces propriétés.
+  Par exemple :
 
-Par exemple :
+  <tabs.reactReducerWhySpreadOperator />
 
-{% snippet path="react/reducer/reducer-why-spread-operator.jsx" language="jsx" showLineNumbers=true /%}
-
-On perdrait ici la propriété `message` si on ne la déversait pas dans le nouvel état.
-
-{% /callout %}
+  On perdrait ici la propriété `message` si on ne la déversait pas dans le nouvel état.
+</Callout>
 
 ## Comment utiliser useReducer ?
 
@@ -90,68 +79,34 @@ Maintenant que tu as une idée de ce qu'est un reducer, voyons comment l'utilise
 
 Naturellement, on va commencer par importer le hook `useReducer` :
 
-```js
-import { useReducer } from "react";
-```
+<tabs.reactUseReducerImport />
 
 Ensuite, on va définir notre état initial :
 
-{% tabs defaultSelectedTab="js" %}
-
-{% tab value="js" label="JavaScript" %}
-{% snippet path="react/reducer/reducer-initial-state.js" language="js" /%}
-{% /tab %}
-
-{% tab value="ts" label="TypeScript" %}
-{% snippet path="react/reducer/reducer-initial-state.ts" language="ts" /%}
-{% /tab %}
-
-{% /tabs %}
+<tabs.reactReducerInitialState />
 
 On peut maintenant définir notre reducer :
 
-{% tabs defaultSelectedTab="js" %}
+<tabs.reactCounterReducer />
 
-{% tab value="js" label="JavaScript" %}
-{% snippet path="react/reducer/reducer.js" language="js" showLineNumbers=true /%}
-{% /tab %}
+<Callout type="question" title="C'est quoi `action.payload` ?">
+  La propriété `payload` de l'action est optionnelle. Il s'agit d'une convention pour passer des données à l'action.
 
-{% tab value="ts" label="TypeScript" %}
-{% snippet path="react/reducer/reducer.ts" language="ts" showLineNumbers=true /%}
-{% /tab %}
+  Le `!` après `action.payload` signifie que l'on est sûr que `payload` est défini.  
+  Cela permet d'éviter une erreur de type avec TypeScript.
 
-{% /tabs %}
-
-{% callout type="question" title="C'est quoi `action.payload` ?" %}
-
-La propriété `payload` de l'action est optionnelle. Il s'agit d'une convention pour passer des données à l'action.
-
-Le `!` après `action.payload` signifie que l'on est sûr que `payload` est défini.  
-Cela permet d'éviter une erreur de type avec TypeScript.
-
-Dans le cas du type `SET`, le payload sera défini obligatoirement avec un nombre qui sera la nouvelle valeur de la propriété `count` de l'état.
-
-{% /callout %}
+  Dans le cas du type `SET`, le payload sera défini obligatoirement avec un nombre qui sera la nouvelle valeur de la propriété `count` de l'état.
+</Callout>
 
 Enfin, on peut utiliser le hook useReducer dans notre composant :
 
-{% tabs defaultSelectedTab="js" %}
-
-{% tab value="js" label="JavaScript" %}
-{% snippet path="react/reducer/reducer-hook.js" language="js" /%}
-{% /tab %}
-
-{% tab value="ts" label="TypeScript" %}
-{% snippet path="react/reducer/reducer-hook.ts" language="ts" /%}
-{% /tab %}
-
-{% /tabs %}
+<tabs.reactUseReducerUsage />
 
 `state` contient l'état actuel, et `dispatch` est une fonction qui permet d'envoyer une action au reducer.
 
 Pour modifier l'état, on va donc appeler `dispatch` avec une action :
 
-{% snippet path="react/reducer/reducer-dispatch-increment.js" language="js" /%}
+<tabs.reactDispatchIncrement />
 
 Et voilà, tu sais maintenant comment utiliser `useReducer` dans une application React ! 🎉
 
@@ -175,27 +130,15 @@ Pour contrer ces problèmes, on va créer des actions et des types d'actions pou
 
 Nos types d'actions seront tous des chaînes de caractères. On va donc pouvoir les définir sous forme de constantes.
 
-{% snippet path="react/reducer/reducer-actions-constants.js" language="js" /%}
+<tabs.reactActionsConstants />
 
-{% callout type="note" title="Regrouper les exports" %}
+<Callout type="note" title="Regrouper les exports">
+  Et là, tu te dis : "Pourquoi ne pas regrouper les exports dans un seul objet ?"
 
-Et là, tu te dis : "Pourquoi ne pas regrouper les exports dans un seul objet ?"
+  Bien vu ! Et pour TypeScript, on peut aller encore plus loin en créant un `enum` pour les types d'actions 😉
 
-Bien vu ! Et pour TypeScript, on peut aller encore plus loin en créant un `enum` pour les types d'actions 😉
-
-{% tabs defaultSelectedTab="js" %}
-
-{% tab value="js" label="JavaScript" %}
-{% snippet path="react/reducer/reducer-actions-enum.js" language="js" /%}
-{% /tab %}
-
-{% tab value="ts" label="TypeScript" %}
-{% snippet path="react/reducer/reducer-actions-enum.ts" language="ts" /%}
-{% /tab %}
-
-{% /tabs %}
-
-{% /callout %}
+  <tabs.reactActionsEnum />
+</Callout>
 
 ### Typage des actions
 
@@ -203,31 +146,21 @@ Si tu utilises JavaScript, je suis désolé de te dire que tu ne peux pas **fort
 
 En revanche, si tu utilises TypeScript, tu peux définir les actions de la manière suivante :
 
-{% snippet path="react/reducer/reducer-actions-union.ts" language="ts" /%}
+<tabs.reactActionsUnion />
 
 Tu pourras alors utiliser `CounterAction` pour typer les actions de ton reducer :
 
-{% snippet path="react/reducer/reducer-actions-union-use.ts" language="ts" /%}
+<tabs.reactActionsUnionUsage />
 
 ### Action creators
 
 Pour éviter de se tromper dans le type de l'action, on peut se créer des fonctions qui vont nous permettre de créer des actions.
 
-{% tabs defaultSelectedTab="js" %}
-
-{% tab value="js" label="JavaScript" %}
-{% snippet path="react/reducer/reducer-action-creator.js" language="js" /%}
-{% /tab %}
-
-{% tab value="ts" label="TypeScript" %}
-{% snippet path="react/reducer/reducer-action-creator.ts" language="ts" /%}
-{% /tab %}
-
-{% /tabs %}
+<tabs.reactActionCreator />
 
 Maintenant le dispatch de nos actions sera beaucoup plus simple et éviter davantage les erreurs lors du développement !
 
-{% snippet path="react/reducer/reducer-dispatch-action-creator.js" language="js" /%}
+<tabs.reactDispatchActionCreator />
 
 ## Les fichiers complets
 
@@ -236,64 +169,36 @@ Pour t'aider à mieux comprendre le fonctionnement du hook `useReducer` et comme
 
 ### Fichier counterReducer.js ou counterReducer.ts
 
-{% tabs defaultSelectedTab="js" %}
-
-{% tab value="js" label="JavaScript" %}
-{% snippet path="react/reducer/file-counterReducer.js" language="js" showLineNumbers=true label="src/reducers/counterReducer.js" /%}
-{% /tab %}
-
-{% tab value="ts" label="TypeScript" %}
-{% snippet path="react/reducer/file-counterReducer.ts" language="ts" showLineNumbers=true label="src/reducers/counterReducer.ts" /%}
-{% /tab %}
-
-{% /tabs %}
+<tabs.reactFileCounterReducer />
 
 ### Fichier Counter.jsx ou Counter.tsx
 
-{% tabs defaultSelectedTab="jsx" %}
-
-{% tab value="jsx" label="JSX" %}
-{% snippet path="react/reducer/file-counter.jsx" language="jsx" showLineNumbers=true label="src/components/Counter.jsx" /%}
-{% /tab %}
-
-{% tab value="tsx" label="TSX" %}
-{% snippet path="react/reducer/file-counter.tsx" language="tsx" showLineNumbers=true label="src/components/Counter.tsx" /%}
-{% /tab %}
-
-{% /tabs %}
+<tabs.reactFileCounterComponent />
 
 ## C'est l'heure des questions !
 
-{% callout type="question" title="Quand utiliser `useReducer` ?" %}
+<Callout type="question" title="Quand utiliser `useReducer` ?">
+  - **A** - Pour des états simples
+  - **B** - Pour des états complexes ou des états qui dépendent les uns des autres
+</Callout>
 
-- **A** - Pour des états simples
-- **B** - Pour des états complexes ou des états qui dépendent les uns des autres
+<Callout type="question" title="Quelle est la signature d'un reducer ?">
+  - **A** - `(state, action) => { /* ... */ }`
+  - **B** - `(action, state) => { /* ... */ }`
+  - **C** - `(state) => { /* ... */ }`
+  - **D** - `(action) => { /* ... */ }`
+</Callout>
 
-{% /callout %}
+<Callout type="question" title="Pourquoi déverser le contenu de l'état actuel dans le nouvel état ?">
+  - **A** - Pour rendre le code plus lisible
+  - **B** - Pour ne pas perdre les propriétés qui ne sont pas modifiées par l'action
+</Callout>
 
-{% callout type="question" title="Quelle est la signature d'un reducer ?" %}
-
-- **A** - `(state, action) => { /* ... */ }`
-- **B** - `(action, state) => { /* ... */ }`
-- **C** - `(state) => { /* ... */ }`
-- **D** - `(action) => { /* ... */ }`
-
-{% /callout %}
-
-{% callout type="question" title="Pourquoi déverser le contenu de l'état actuel dans le nouvel état ?" %}
-
-- **A** - Pour rendre le code plus lisible
-- **B** - Pour ne pas perdre les propriétés qui ne sont pas modifiées par l'action
-
-{% /callout %}
-
-{% callout type="question" title="Pourquoi utiliser des constantes pour les types d'actions ?" %}
-
-- **A** - Pour rendre le code plus lisible
-- **B** - Pour alourdir inutillement le code
-- **C** - Pour éviter de se tromper dans le type de l'action
-
-{% /callout %}
+<Callout type="question" title="Pourquoi utiliser des constantes pour les types d'actions ?">
+  - **A** - Pour rendre le code plus lisible
+  - **B** - Pour alourdir inutillement le code
+  - **C** - Pour éviter de se tromper dans le type de l'action
+</Callout>
 
 ## Conclusion
 

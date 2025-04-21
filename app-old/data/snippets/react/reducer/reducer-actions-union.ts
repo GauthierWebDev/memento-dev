@@ -1,4 +1,3 @@
-
 export type CounterAction =
   | { type: CounterActionTypes.INCREMENT }
   | { type: CounterActionTypes.DECREMENT }

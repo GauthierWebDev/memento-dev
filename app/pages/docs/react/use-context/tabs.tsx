@@ -1,5 +1,4 @@
 import { Snippet } from "@/components/Snippet";
-import { name } from "eslint-plugin-prettier/recommended";
 
 const reactNestedPropsSnippets = [
 	{
