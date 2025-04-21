@@ -1,1 +1,0 @@
-dispatch({ type: "INCREMENT" });
