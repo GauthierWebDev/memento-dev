@@ -64,14 +64,9 @@ export const Highlight: ParentComponent<Props> = (_props) => {
 	};
 
 	return (
-		<div
-			class={clsx(
-				"group relative flex items-start px-4 py-2 w-full",
-				props.class,
-			)}
-		>
+		<div class={clsx("group flex items-start px-4 py-2 w-full", props.class)}>
 			<button
-				class="absolute cursor-pointer top-0 right-2 text-slate-500 bg-slate-200/10 rounded-md hover:bg-linear-to-r hover:from-violet-400/30 hover:via-violet-400 hover:to-violet-400/30 p-px hover:text-violet-300"
+				class="absolute cursor-pointer z-10 top-2 right-2 text-slate-500 bg-slate-200/10 rounded-md hover:bg-linear-to-r hover:from-violet-400/30 hover:via-violet-400 hover:to-violet-400/30 p-px hover:text-violet-300"
 				type="button"
 				onClick={handleCopyToClipboard}
 			>
@@ -113,7 +108,7 @@ export const Highlight: ParentComponent<Props> = (_props) => {
 				)}
 			>
 				<code
-					class={clsx("px-4", "leading-6")}
+					class={clsx("leading-6", props.withLineNumbers ? "px-4" : "pr-4")}
 					innerHTML={highlightedCode()}
 					{...rest}
 				>

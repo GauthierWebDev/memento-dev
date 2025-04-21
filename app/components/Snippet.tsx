@@ -18,6 +18,7 @@ type SnippetTab = {
 	name: string;
 	codeLanguage: string;
 	code: string;
+	withLineNumbers?: boolean;
 };
 
 type SnippetProps = {
@@ -95,7 +96,7 @@ export function Snippet(props: SnippetProps) {
 								props.dark && "dark text-white",
 							)}
 							language={selectedTab().codeLanguage}
-							withLineNumbers
+							withLineNumbers={selectedTab().withLineNumbers}
 						>
 							{selectedTab().code}
 						</Highlight>
