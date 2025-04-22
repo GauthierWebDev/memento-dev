@@ -50,9 +50,9 @@ On a ici un MCD qui représente trois **entités** :
 
 Chacune de ces entités a plusieurs **attributs** qui lui sont propres :
 
-- **Entité 1** : code identité 1, attribut 2, attribut 3
-- **Entité 2** : code identité 2, attribut 2, attribut 3
-- **Entité 3** : code identité 3, attribut 2, attribut 3
+- **Entité 1** : code entité 1, attribut 2, attribut 3
+- **Entité 2** : code entité 2, attribut 2, attribut 3
+- **Entité 3** : code entité 3, attribut 2, attribut 3
 
 <Callout type="question" title="Pourquoi le premier attribut est en gras et souligné ?">
   Dans le MCD, un attribut en gras est un attribut **unique**.  
@@ -72,6 +72,7 @@ Ici, on a :
 
 - **Entité 1** 0,N - Contenir - 0,N **Entité 2**
 - **Entité 1** 1,1 - Posséder - 0,N **Entité 3**
+- **Entité 3** 0,N - Diriger - 0,1 **Entité 3**
 
 Mais qu'est-ce que ça veut dire tout ça ?
 
@@ -93,6 +94,8 @@ Toujours dans l'exemple précédent, on comprend donc que :
 - **Entité 2** peut être contenue entre 0 et N **Entité 1**
 - **Entité 1** doit posséder 1 et 1 seule **Entité 3**
 - **Entité 3** peut être possédée entre 0 et N **Entité 1**
+- **Entité 3** peut diriger entre 0 et N **Entité 3**
+- **Entité 3** peut être dirigée par 0 ou 1 **Entité 3**
 
 <Callout type="note" title="Les différentes valeurs">
   La plupart du temps, nous allons retrouver les valeurs suivantes :
@@ -108,6 +111,22 @@ Toujours dans l'exemple précédent, on comprend donc que :
 
   Si la valeur n'est pas connue à l'avance ou qu'aucune limite n'est nécessaire, on utilisera alors **N**.
 </Callout>
+
+## Les relations réflexives
+
+En regardant notre exemple, on se rend compte que l'entité **Entité 3** est reliée à elle-même par une relation.  
+C'est ce qu'on appelle une **relation réflexive**.
+
+C'est un cas particulier qui va nous permettre de créer une relation entre une entité et elle-même,
+sans avoir à créer une nouvelle entité.
+
+### Situation concrète
+
+Prenons un exemple concret avec une entité **Catégorie**.  
+Si l'on souhaite qu'une catégorie puisse regrouper plusieurs sous-catégories _(et que ces sous-catégories puissent elles-mêmes regrouper d'autres sous-catégories)_,
+on va créer une relation réflexive entre la catégorie et elle-même.
+
+De cette manière, on va pouvoir créer une hiérarchie entre les catégories.
 
 ## Retour sur notre dictionnaire de données
 

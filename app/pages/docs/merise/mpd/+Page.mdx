@@ -4,4 +4,139 @@ description: Apprenez à créer le MPD dans Merise, la dernière étape pour con
 tags: [Backend, Merise, BDD, MCD, MLD, MPD, SQL]
 ---
 
-En cours de rédaction...
+import DictionnaryTable from "../dictionnaire-de-donnees/DictionnaryTable";
+import Callout from "@/components/Callout";
+import tabs from "./tabs";
+
+Prêt·e pour la dernière étape de la méthodologie Merise ? 🎉  
+Alors sans plus tarder, accueillons comme il se doit le **MPD** _(Modèle Physique de Données)_ !
+
+## 🤔 Qu'est-ce que le MPD ?
+
+Le **MPD** est la dernière étape de la méthodologie Merise.  
+Il reprend les éléments du MLD en ajoutant les derniers **détails techniques** nécessaires
+pour implémenter le modèle dans un **SGBD** _(Système de Gestion de Base de Données)_.
+
+**Ces détails techniques sont** :
+
+- Le type de données de chaque colonne _(ex: `VARCHAR`, `INT`, `DATE`, etc.)_
+- La taille de chaque colonne _(ex: `VARCHAR(255)`, `INT(11)`, etc.)_
+- Les contraintes d'intégrité _(ex: `NOT NULL`, `UNIQUE`, etc.)_
+- Les clés étrangères _(ex: `FOREIGN KEY`, `REFERENCES`, etc.)_
+
+## 🔍 Exemple de MPD
+
+À partir du **MLD** _(et **MRD** si existant)_ et du **dictionnaire de données**, on va pouvoir créer le MPD.
+
+Faisons la transition de l'exemple de MLD basique que l'on a vu précédemment :
+
+![Exemple de MLD](/images/merise/mld-basic.webp)
+
+En prenant en considération que l'application va être développée avec **PostgreSQL**, on prendra soin d'utiliser
+les **types de données** et les **contraintes d'intégrité** qui lui sont propres.
+
+Voici à quoi il ressemble :
+
+![Exemple de MPD](/images/merise/mpd-basic.webp)
+
+Avec ce schéma, il est facile d'identifier les différentes tables, leurs colonnes, les types de données,
+les contraintes d'intégrité, ainsi que les clés primaires et étrangères qui relient les tables entre elles.
+
+Une fois le MPD créé, il est possible de le traduire en **SQL** pour créer les tables dans le SGBD.
+Voici un exemple de code SQL pour créer les tables correspondantes au MPD ci-dessus :
+
+<tabs.sqlExample />
+
+## 📊 Dictionnaire de données
+
+Tu te souviens du **dictionnaire de données** que l'on a créé lors du brief avec le client ? Juste avant de passer au MCD ?  
+Il est maintenant possible de le mettre jour avec les informations du SGBD utilisé !
+
+Bien entendu ce n'est pas obligatoire, mais c'est une bonne source d'informations pour
+les développeurs et les administrateurs de la base de données 😉
+
+Pour rappel, voici le dictionnaire de données **non technique** que nous avions fait :
+
+<DictionnaryTable />
+
+En ajoutant les informations techniques, il devient :
+
+<DictionnaryTable isTechnical />
+
+Ça en fait du beau monde ! 😅
+
+Il est important de noter que le dictionnaire de données doit être mis à jour à chaque fois qu'une modification
+est apportée au modèle de données ainsi qu'à la base de données.
+
+Maintenant, il est temps de réaliser le **MPD** à partir du **MLD** et du **dictionnaire de données** !
+
+## 🛠️ Outils pour créer le MPD
+
+Bien que j'ai recommandé d'utiliser [Looping](https://looping.fr/) pour créer les schémas de données,
+il ne permet pas de créer le MPD.
+
+Il n'est pas pour autant à mettre à la poubelle, car il permet de créer le MCD et le MLD très facilement, ainsi que
+le LDD _(Langage de Définition de Données)_ dont on va parler un peu plus tard !
+
+Divers outils en ligne permettent de générer des schémas graphiques de bases de données.
+Cependant, ils ne sont pas tous adaptés à la création de MPD.
+
+La plupart du temps, on retrouvera des outils qui permettent de réaliser des ERD _(Entity Relationship Diagram)_.  
+La différence dans ces outils est qu'ils se basent davantage sur une syntaxe de type **UML** _(Unified Modeling Language)_.
+
+<Callout type="question" title="Comment reconnaître si mon outil utilise une syntaxe de type UML ?">
+  En général, les outils qui utilisent une syntaxe de type UML utilisent des **losanges** pour représenter les relations entre les entités.  
+  Dans le cas de Merise, on utilise des **lignes** et **flèches basiques** pour représenter les relations entre les entités/tables.
+
+  Il est aussi possible que tu tombes sur des "pattes de poulet" _(comme dirait une consœur jurée)_ ou **crow's foot notation**
+  qui est une autre façon de représenter les relations entre les entités/tables.
+
+  C'est joli, **mais c'est pas Merise** ! 😅
+</Callout>
+
+De mon côté, j'utilise [DrawDB](https://drawdb.app/) qui est un outil en ligne gratuit et open-source.  
+Il permet de créer des schémas de bases de données avec la possibilité de configurer l'apparence des lignes de relation,
+ainsi que de générer un diagramme à partir d'un fichier SQL.
+
+## 🔨 Création du MPD
+
+Pour créer le MPD, il va juste falloir t'armer de patience selon la taille de ton MLD et de ton outil.
+
+Dans ton outil, tu devras indiquer les types de données et les contraintes d'intégrité pour chaque colonne de chaque table.  
+Mais ça tombe bien, on a déjà fait le plus gros du travail avec le MLD et le dictionnaire de données !
+
+À la fin, on se retrouve avec un schéma qui ressemble à ça :
+
+![Exemple de MPD](/images/merise/mpd-1.webp)
+
+## 📜 Préparation du LDD
+
+Dernière ligne droite : le **LDD** _(Langage de Définition de Données)_ !
+
+Le **LDD** correspond tout simplement à la création des tables dans le SGBD, par l'utilisation des commandes SQL
+comme `CREATE TABLE`, `ALTER TABLE`, `DROP TABLE`, etc.
+
+Il est possible de le créer à partir de [DrawDB](https://drawdb.app/) en exportant le schéma au format SQL, mais également
+depuis [Looping](https://looping.fr/) !
+
+De notre côté, voici à quoi ressemble le LDD pour le MPD ci-dessus :
+
+<tabs.sqlBandManager />
+
+Et voilà, on en a fini avec le MPD ! 🎉
+
+## Conclusion
+
+Ça y est, on peut souffler un bon coup ! 🍹☀️
+
+Non seulement on a créé le **MPD**, mais on a également mis à jour le **dictionnaire de données** avec les informations techniques
+tout en préparant le **LDD** pour créer les tables dans le SGBD.  
+On peut le dire : on est des pros de la méthodologie Merise ! 😎
+
+... ou presque ! Merise va plus loin que la simple modélisation de bases de données.  
+Mais ça, je t'invite à le découvrir par toi-même 😉
+
+Si tu souhaites aller plus loin dans la méthodologie Merise, je te recommande de lire la
+[quatrième édition du guide pratique Merise](https://www.editions-eni.fr/livre/merise-guide-pratique-4e-edition-modelisation-des-donnees-et-des-traitements-manipulations-avec-le-langage-sql-conception-d-une-application-mobile-android-ou-ios-9782409046667)
+aux Éditions ENI.  
+Il a été écrit par [Jean-Luc Baptiste](https://www.editions-eni.fr/jean-luc-baptiste) qui maîtrise le sujet sur le bout des doigts.

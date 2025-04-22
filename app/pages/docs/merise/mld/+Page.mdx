@@ -4,4 +4,215 @@ description: Plongez dans le MLD et MRD de Merise pour transformer votre modèle
 tags: [Backend, Merise, BDD, MCD, MLD, MPD, SQL]
 ---
 
-En cours de rédaction...
+import Callout from "@/components/Callout";
+
+Dans cet article, on va parler du **MLD** _(Modèle Logique de Données)_ et du **MRD** _(Modèle Relationnel de Données)_.
+
+Le MLD est la suite normale et directe du MCD dans le processus Merise. Son but est de transformer le MCD en un modèle qui pourra être implémenté dans une base de données relationnelle.
+
+On parlera plus tard du MRD, mais globalement : c'est la même chose que le MLD !
+
+## 🤔 Qu'est-ce que le MLD ?
+
+Le **MLD** est un schéma qui va nous permettre de représenter les données que l'on a récupérées dans le MCD, mais en ajoutant des détails techniques.
+
+Il va nous permettre de représenter les différentes données que l'on a, regroupée dans une **table**, ainsi que les relations entre elles au travers de **clés étrangères**, de **clés primaires** et de **tables de jointure**.
+
+Contrairement au MCD, le MLD n'est pas destiné à être compris par le client.
+
+## 🔍 Exemple de MLD
+
+Reprenons le premier exemple de MCD, dans l'article précédent :
+
+![Exemple de MCD](/images/merise/mcd-basic.webp)
+
+On a ici un MCD qui représente trois **entités** :
+
+- **Entité 1**
+- **Entité 2**
+- **Entité 3**
+
+À partir de ce MCD, on va pouvoir créer un MLD.  
+Voici à quoi il ressemble :
+
+![Exemple de MLD](/images/merise/mld-basic.webp)
+
+On a ici un MLD qui représente trois **tables** :
+- **table_1**
+- **table_2**
+- **table_3**
+
+Mais surtout : on a ajouté des **clés primaires**, des **clés étrangères** et une **table de jointure** !
+
+Pour le moment ça semble bizarre voire magique, on va prendre le temps de décortiquer tout ça.
+
+## Transformation du MCD en MLD
+
+Comme dit plus tôt, le MLD découle directement du MCD.  
+Il va donc reprendre les mêmes **entités** et **attributs** que le MCD, mais en ajoutant des détails techniques.
+
+<Callout type="note" title="Termes">
+  À partir du MLD, on va commencer à parler de **table** et de **colonne**.  
+  On parlera aussi de **clé primaire** et de **clé étrangère** !
+</Callout>
+
+Pour pouvoir le transformer en MLD, il y a plusieurs éléments à prendre en compte :
+
+- Attributs :
+  - Les **attributs** qui sont en gras et soulignés _(discriminants)_ dans le MCD, deviennent des **clés primaires** dans le MLD.
+  - Les **attributs** qui sont en gras _(attributs uniques)_ deviennent des **colonnes uniques** dans le MLD.
+  - Les **attributs** qui ne sont pas en gras deviennent des **colonnes** dans le MLD.
+- Relations :
+  - On supprime les **relations** du MCD pour laisser place à des **clés étrangères** dans le MLD.
+  - Est-ce que la cardinalité maximale est de **1** ou de **N** ?
+  - Est-ce que la relation est dite **réflexive** ?
+
+Commençons par les **entités** et leurs **attributs**, on verra les cardinalités après 😉
+
+## Convertir les entités et attributs
+
+Pour cette étape, ça va être très simple !  
+On vient reprendre notre MCD correspondant à la gestion d'un groupe de musique :
+
+![MCD final](/images/merise/mcd-4.webp)
+
+Les seules choses que nous avons à faire sont :
+
+- Remplacer les **entités** par des **tables**
+- Remplacer les **attributs** par des **colonnes**
+
+<Callout type="warning" title="Types de données">
+  Dans le MLD, on ne précise pas encore les types de données des colonnes.  
+  On serait tenté de le faire dès maintenant, mais ce serait ne pas respecter la méthode Merise et l'intérêt du MLD.
+
+  On le fera plus tard, dans le **MPD** _(Modèle Physique de Données)_ !
+</Callout>
+
+Voici donc les tables et colonnes que l'on obtient :
+
+![Exemple de MLD sans relations](/images/merise/mld-1.webp)
+
+Pour l'instant, on a juste remplacé les **entités** par des **tables** et les **attributs** par des **colonnes**. Il nous reste plus qu'à ajouter les **clés primaires** et les **clés étrangères** !
+
+## Convertir les relations
+
+Pour convertir les relations, il faut d'abord se poser la question de la cardinalité maximale de chaque relation.
+
+Il y a deux possibilités :
+
+- **One to Many** _(1,N)_
+- **Many to Many** _(N,N)_
+
+Un troisième cas existe, dans le cas où la relation est réflexive _(une entité se relie à elle-même)_.
+
+### ➡️ One to Many
+
+Dans le cas d'une relation **One to Many**, on va ajouter une **clé étrangère** dans la table qui est du côté de la relation **One** _(1)_.
+
+Dans notre cas, on a une relation **One to Many** entre **Événement** et l'héritage _(**Concert** et **Répétition**)_.  
+
+<Callout type="question" title="Mais il n'y a pas de cardinalité ici !">
+  Effectivement, aucune cardinalité n'est présente entre l'héritage et l'entité générique !  
+  Dans ce cas précis, on considère que l'héritage est une relation **One to Many**.
+
+  C'est-à-dire :
+
+  - **Événement** peut être spécialisé par **Concert** ou **Répétition** _(**0,2** de manière implicite)_
+  - **Concert** doit spécialiser un et un seul **Événement** _(**1,1** de manière implicite)_
+  - **Répétition** doit spécialiser un et un seul **Événement** _(**1,1** de manière implicite)_
+</Callout>
+
+On va donc ajouter une **clé étrangère** dans les tables **concert** et **rehearsal** qui va faire référence à la **clé primaire** de la table **event**.
+
+![Exemple de MLD avec relation One to Many](/images/merise/mld-2.webp)
+
+Et là : tu remarqueras que les **clés étrangères** sont en italique et sont préfixées par un `#` !  
+
+On constate également que des flèches sont apparues entre les tables.  
+Ces flèches nous permettent de visualiser le sens de la relation entre les tables, en partant de la table contenant la **clé étrangère** vers la table contenant la **clé primaire**.
+
+### 🔀 Many to Many
+
+Pour cette deuxième possibilité, il est impossible de stocker une clé étrangère dans l'une des deux tables.  
+Il faut alors créer une **table de jointure** qui va faire le lien entre les deux tables.
+
+Cette table se caractérise par :
+
+- **Son nom** :
+  - Généralement composé des deux tables qu'elle relie, séparées par un `_` _(ex: `table_1_table_2`)_
+  - Peut aussi être un nom plus explicite, comme `table_1_action_table_2`
+- **Ses colonnes** :
+  - Deux colonnes qui vont faire référence aux **clés primaires** des deux tables qu'elle relie
+  - Les potentielles autres colonnes qui sont spécifiques à la relation
+
+![Exemple de MLD avec relation Many to Many](/images/merise/mld-3.webp)
+
+Ici, nous avons une relation **Many to Many** entre les tables **musician** et **event**.  
+Une table de jointure a donc été créée, qui s'appelle `musician_participates_event`.
+
+Cette table contient deux colonnes qui font référence aux **clés primaires** des tables **musician** et **event**.
+
+<Callout type="question" title="Pourquoi il n'y a pas de clé primaire dans la table de jointure ?">
+  Il n'est pas nécessaire d'ajouter une clé primaire dans la table de jointure.
+
+  Pour rendre unique chaque enregistrement, on viendra _(plus tard !)_ créer une **clé unique** sur les deux colonnes qui fait référence aux **clés primaires** des tables qu'elle relie.
+
+  C'est ce qu'on appelle une **clé composite**.
+</Callout>
+
+### 🔄 Relations réflexives
+
+Dans notre situation, nous n'avons pas de relation réflexive.  
+Mais le premier exemple donné sur cet article possède une relation réflexive sur l'entité **Entité 3**.
+
+Pas besoin de revenir tout en haut de l'article, je te le remets juste ici :
+
+![Exemple de MCD](/images/merise/mcd-basic.webp)
+
+Dans cet exemple, on retrouve une relation réflexive entre l'entité **Entité 3** et elle-même.  
+Cette relation est définie avec une cardinalité **0,1** - **0,N**.
+
+On appliquera la même logique que pour une relation **One to Many** que l'on a vu plus haut.  
+On retrouvera donc une **clé étrangère** dans la table **table_3** qui va faire référence à la **clé primaire** de la même table.
+
+![Exemple de MLD avec relation réflexive](/images/merise/mld-4.webp)
+
+### 🎉 MLD final
+
+Et voilà, on a terminé notre MLD !  
+Oui, pour de vrai 😁
+
+Voici à quoi il ressemble :
+
+![Exemple de MLD final](/images/merise/mld-5.webp)
+
+## MLD et MRD
+
+Le MLD et le MRD sont deux choses différentes, mais qui se ressemblent beaucoup.
+
+Le MLD est un modèle **logique** de données, qui est un schéma **graphique**.  
+Le MRD, lui, est un modèle **relationnel** de données, qui est un schéma **textuel**.
+
+Les informations présentes seront les mêmes, seule la forme change.
+
+<Callout type="question" title="Si c'est quasiment pareil, pourquoi faire le MRD ?">
+  Le MRD n'est pas obligatoire, mais il permet une représentation plus linéaire.  
+  À toi de voir si tu souhaites le faire ou non, mais il est souvent plus simple à lire !
+</Callout>
+
+Pour notre MLD final, voici à quoi il ressemblerait en MRD :
+
+musician(**<u>id_musician</u>**, lastname, firstname, instruments, **email**, password)  
+musician_participates_event(_#id_musician_, _#id_event_)  
+event(**<u>id_event</u>**, datetime, location)  
+concert(**<u>id_concert</u>**, price, _#event_id_)  
+rehearsal(**<u>id_rehearsal</u>**, _#event_id_)
+
+## Conclusion
+
+Par rapport au MCD, le MLD est beaucoup plus rapide à réaliser. _(en même temps, tous les choix ont été faits avant !)_
+
+Ce schéma permet de visualiser les relations entre les différentes tables de manière simple et efficace, sans avoir à se soucier des détails techniques.
+
+Mais pour le moment, on n'a pas encore parlé des types de données des colonnes, ni des index à créer sur les tables...  
+Rendez-vous pour la prochaine et dernière étape : le **MPD** _(Modèle Physique de Données)_ ! 🚀

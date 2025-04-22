@@ -22,9 +22,7 @@ export async function data(pageContext: PageContext) {
 	});
 
 	let cachePathname = urlParsed.pathname.replace(/\/$/, "").replace(/^\//, "");
-	if (cachePathname === "") {
-		cachePathname = "index";
-	}
+	if (cachePathname === "") cachePathname = "index";
 
 	const doc = docCache.get(cachePathname);
 
@@ -41,7 +39,7 @@ export async function data(pageContext: PageContext) {
 		docs: docCache.orderByLastEdit({
 			limit: 2,
 			includedBasePaths: ["docs", "certifications"],
-			excludedFileNames: [cachePathname],
+			excludedFileNames: [cachePathname, "docs", "certifications"],
 		}),
 	};
 }
