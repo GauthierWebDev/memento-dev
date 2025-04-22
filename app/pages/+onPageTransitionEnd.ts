@@ -46,7 +46,12 @@ const findOrCreateTag = <T>(
 	attributes: Record<string, string>,
 ): T => {
 	const head = document.head;
-	let tag: HTMLElement | null = head.querySelector(tagName);
+	const attributesString = Object.entries(attributes)
+		.map(([key, value]) => `${key}="${value}"`)
+		.join(",");
+	let tag: HTMLElement | null = head.querySelector(
+		`${tagName}[${attributesString}]`,
+	);
 	if (tag) return tag as T;
 
 	tag = document.createElement(tagName);
