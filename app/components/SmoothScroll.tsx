@@ -72,6 +72,8 @@ export function SmoothScroll(props: SmoothScrollProps) {
 
 	const handleWheel = (event: WheelEvent) => {
 		if (isMobile()) return;
+		if (event.ctrlKey) return;
+		if (event.metaKey) return;
 
 		const hoveredElement = document.elementFromPoint(
 			event.clientX,

@@ -42,7 +42,7 @@ export default function Callout(props: {
 	return (
 		<div
 			class={clsx(
-				"my-8 flex flex-col rounded-3xl p-6",
+				"my-8 flex flex-col w-full rounded-3xl p-6",
 				styles[props.type || "note"].container,
 				{ "cursor-pointer": props.collapsible },
 			)}

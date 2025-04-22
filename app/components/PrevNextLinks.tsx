@@ -111,7 +111,7 @@ export function PrevNextLinks() {
 	if (getNeighboringLinks().length === 0) return null;
 
 	return (
-		<dl class="mt-12 flex gap-4 border-t border-slate-200 pt-6">
+		<dl class="mt-12 mx-4 lg:mr-0 flex gap-4 border-t border-slate-200 pt-6">
 			{getNeighboringLinks()[0] && (
 				<PageLink
 					dir="previous"

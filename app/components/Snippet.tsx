@@ -131,25 +131,25 @@ export function Snippet(props: SnippetProps) {
 					</div>
 				</nav>
 
-				{selectedTab() && (
-					<div class="mt-6">
-						{selectedTab().code && (
-							<Highlight
-								class={clsx(
-									"!pt-0 !px-1 max-h-96 overflow-auto mb-2",
-									props.dark && "dark text-white",
-								)}
-								language={(selectedTab() as SnippetTab).codeLanguage}
-								withLineNumbers={(selectedTab() as SnippetTab).withLineNumbers}
-							>
-								{(selectedTab() as SnippetTab).code}
-							</Highlight>
-						)}
-						{!selectedTab().code && (
-							<div class="pb-1">{(selectedTab() as CommonTab).children}</div>
-						)}
-					</div>
-				)}
+				<For each={props.snippets}>
+					{(tab) => (
+						<div class={clsx("mt-6", isActive(tab) ? "block" : "hidden")}>
+							{tab.code && (
+								<Highlight
+									class={clsx(
+										"!pt-0 !px-1 max-h-96 overflow-auto mb-2",
+										props.dark && "dark text-white",
+									)}
+									language={tab.codeLanguage}
+									withLineNumbers={tab.withLineNumbers}
+								>
+									{tab.code}
+								</Highlight>
+							)}
+							{!tab.code && <div class="pb-1">{tab.children}</div>}
+						</div>
+					)}
+				</For>
 			</div>
 		</div>
 	);

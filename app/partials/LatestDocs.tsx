@@ -8,7 +8,7 @@ export function LatestDocs() {
 	const data = useData<Data>();
 
 	return (
-		<section class="bg-violet-200 rounded-md p-4 m-4 lg:m-6">
+		<section class="bg-violet-200 rounded-md p-4 m-4 lg:mr-0">
 			<h2 class="font-display text-3xl tracking-tight text-slate-900 text-center">
 				Dernières documentations
 			</h2>
