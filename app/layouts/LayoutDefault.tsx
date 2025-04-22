@@ -3,8 +3,8 @@ import type { JSXElement } from "solid-js";
 import { usePageContext } from "vike-solid/usePageContext";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { HeroSection } from "@/partials/HeroSection";
-import { Navigation } from "@/partials/Navigation";
 import { clientOnly } from "vike-solid/clientOnly";
+import { Navigation } from "@/partials/Navigation";
 import { Header } from "@/partials/Header";
 import { Footer } from "@/partials/Footer";
 import { DocsLayout } from "./DocsLayout";
@@ -40,7 +40,10 @@ export default function DefaultLayout(props: DefaultLayoutProps) {
 							<Navigation />
 						</div>
 					</div>
-					<DocsLayout>{props.children}</DocsLayout>
+
+					<div class="flex flex-col">
+						<DocsLayout>{props.children}</DocsLayout>
+					</div>
 				</div>
 
 				<Footer />

@@ -38,5 +38,10 @@ export async function data(pageContext: PageContext) {
 	return {
 		sections: doc?.sections || [],
 		frontmatter,
+		docs: docCache.orderByLastEdit({
+			limit: 2,
+			includedBasePaths: ["docs", "certifications"],
+			excludedFileNames: [cachePathname],
+		}),
 	};
 }

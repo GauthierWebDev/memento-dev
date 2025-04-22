@@ -1,5 +1,3 @@
-import type { FlexSearchData } from "./FlexSearchService";
-import type { TableOfContents } from "@/remarkHeadingId";
 import type { Node } from "@markdoc/markdoc";
 
 import { slugifyWithCounter } from "@sindresorhus/slugify";
@@ -16,6 +14,8 @@ export type SectionCache = {
 	frontmatter?: SectionFrontmatter;
 	markdocNode: Node;
 	sections: DocSection[];
+	lastEdit: Date;
+	filePath: string;
 };
 
 export type DocSection = {
@@ -30,6 +30,14 @@ type SectionFrontmatter = {
 	title: string;
 	description: string;
 	tags: string[];
+};
+
+type OrderConfig = {
+	limit: number;
+	includedBasePaths: string[];
+	excludedBasePaths: string[];
+	includedFileNames: string[];
+	excludedFileNames: string[];
 };
 
 class DocCache {
@@ -162,12 +170,17 @@ class DocCache {
 			.replace(/\+Page\.md(x)?$/, "")
 			.replace(/\/+/, "/")
 			.replace(/\/$/, "");
+		const lastEdit = new Date(
+			(await fs.stat(path.join(DocCache.pagesDir, file))).mtime,
+		);
 
 		this.cache.set(filePath, {
 			content,
 			frontmatter,
 			markdocNode,
 			sections: this.getTableOfContents(markdocNode),
+			lastEdit,
+			filePath,
 		});
 	}
 
@@ -205,6 +218,84 @@ class DocCache {
 
 	public get(file: string): SectionCache | undefined {
 		return this.cache.get(file);
+	}
+
+	public orderByLastEdit(customConfig?: Partial<OrderConfig>): SectionCache[] {
+		const config: OrderConfig = {
+			excludedBasePaths: [],
+			includedBasePaths: [],
+			excludedFileNames: [],
+			includedFileNames: [],
+			limit: 0,
+			...customConfig,
+		};
+
+		const checkIfIncludedBasePath = (doc: SectionCache) => {
+			if (config.includedBasePaths.length > 0) {
+				return config.includedBasePaths.some((basePath) => {
+					return doc.filePath.startsWith(basePath);
+				});
+			}
+
+			return true;
+		};
+
+		const checkIfExcludedBasePaths = (doc: SectionCache) => {
+			if (config.excludedBasePaths.length > 0) {
+				return !config.excludedBasePaths.some((basePath) => {
+					return doc.filePath.startsWith(basePath);
+				});
+			}
+
+			return true;
+		};
+
+		const checkIfIncludedFileNames = (doc: SectionCache) => {
+			if (config.includedFileNames.length > 0) {
+				return config.includedFileNames.some((fileName) => {
+					return doc.filePath.includes(fileName);
+				});
+			}
+
+			return true;
+		};
+
+		const checkIfExcludedFileNames = (doc: SectionCache) => {
+			if (config.excludedFileNames.length > 0) {
+				return !config.excludedFileNames.some((fileName) => {
+					return doc.filePath === fileName;
+				});
+			}
+
+			return true;
+		};
+
+		const sortedDocs = Array.from(this.cache.values())
+			.sort((a, b) => b.lastEdit.getTime() - a.lastEdit.getTime())
+			.filter((doc) => {
+				const isIncluded = [
+					checkIfIncludedBasePath(doc),
+					checkIfExcludedBasePaths(doc),
+					checkIfIncludedFileNames(doc),
+					checkIfExcludedFileNames(doc),
+				].every((check) => check === true);
+
+				// DEBUG
+				// if (!isIncluded) {
+				// 	console.group(doc.filePath);
+				// 	console.log("includedBasePaths", checkIfIncludedBasePath(doc));
+				// 	console.log("excludedBasePaths", checkIfExcludedBasePaths(doc));
+				// 	console.log("includedFileNames", checkIfIncludedFileNames(doc));
+				// 	console.log("excludedFileNames", checkIfExcludedFileNames(doc));
+				// 	console.groupEnd();
+				// }
+
+				return isIncluded;
+			});
+
+		if (config.limit > 0) return sortedDocs.slice(0, config.limit);
+
+		return sortedDocs;
 	}
 
 	public waitingForCache(timeout: 20000): Promise<void> {

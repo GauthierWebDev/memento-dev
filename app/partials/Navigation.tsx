@@ -27,7 +27,9 @@ function NavigationItem(props: NavigationItemProps) {
 		return props.section.links.some((link) => checkIsLinkActive(link));
 	};
 
-	const [isOpened, setIsOpened] = createSignal(checkIsActive());
+	const [isOpened, setIsOpened] = createSignal(
+		checkIsActive() || pageContext.urlPathname === "/",
+	);
 
 	createEffect(() => {
 		// If the current URL path is the same as the link's href, set isOpened to true

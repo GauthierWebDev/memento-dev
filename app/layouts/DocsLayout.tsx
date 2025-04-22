@@ -2,6 +2,7 @@ import type { JSXElement } from "solid-js";
 
 import { PrevNextLinks } from "@/components/PrevNextLinks";
 import { usePageContext } from "vike-solid/usePageContext";
+import { LatestDocs } from "@/partials/LatestDocs";
 import { clientOnly } from "vike-solid/clientOnly";
 import { clock } from "solid-heroicons/outline";
 import { navigation } from "@/libs/navigation";
@@ -21,21 +22,25 @@ export function DocsLayout(props: DocsLayoutProps) {
 
 	return (
 		<>
-			<main
-				id="article-content"
-				class="max-w-2xl min-w-0 flex-auto px-4 py-16 lg:max-w-none lg:pr-0 lg:pl-8 xl:px-16 grow"
-			>
-				<article>
-					<DocsHeader
-						title={pageContext.exports.frontmatter?.title}
-						estimatedReadingTime={pageContext.exports.readingTime?.text}
-					/>
-					<Prose>{props.children}</Prose>
-				</article>
-				<PrevNextLinks />
-			</main>
+			<div class="flex">
+				<main
+					id="article-content"
+					class="max-w-2xl min-w-0 flex-auto px-4 py-16 lg:max-w-none lg:pr-0 lg:pl-8 xl:px-16 grow"
+				>
+					<article>
+						<DocsHeader
+							title={pageContext.exports.frontmatter?.title}
+							estimatedReadingTime={pageContext.exports.readingTime?.text}
+						/>
+						<Prose>{props.children}</Prose>
+					</article>
+					<PrevNextLinks />
+				</main>
 
-			<TableOfContents />
+				<TableOfContents />
+			</div>
+
+			<LatestDocs />
 		</>
 	);
 }
