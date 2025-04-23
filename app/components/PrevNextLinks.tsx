@@ -18,7 +18,7 @@ function ArrowIcon(props: JSX.IntrinsicElements["svg"]) {
 type PageLinkProps = Omit<JSX.IntrinsicElements["div"], "dir" | "title"> & {
   title: string;
   href: string;
-  dir?: "previous" | "next";
+  dir: "previous" | "next";
 };
 
 function PageLink(props: PageLinkProps) {
