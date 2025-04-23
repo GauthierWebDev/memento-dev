@@ -42,9 +42,8 @@ Pour t'aider à mieux te représenter un schéma MVC avec les ordres de flux de 
   La vue ne retourne pas directement au client car elle doit passer par le contrôleur.  
   On ne s'en rend pas forcément compte, mais la vue est généralement générée par le contrôleur via un moteur de template _(EJS, Twig, etc.)_.
 
-Une fois le HTML généré, le contrôleur s'occupe de l'envoyer dans la réponse HTTP au client.  
- C'est ce qui permet de garder une séparation entre la logique métier et l'interface utilisateur.
-
+  Une fois le HTML généré, le contrôleur s'occupe de l'envoyer dans la réponse HTTP au client.  
+  C'est ce qui permet de garder une séparation entre la logique métier et l'interface utilisateur.
 </Callout>
 
 Le concept est simple : chaque partie de l'application a un **rôle bien défini** et ne doit pas empiéter sur le rôle des autres.
@@ -60,13 +59,12 @@ Le concept est simple : chaque partie de l'application a un **rôle bien défini
   D'après toi, est-ce que React doit être considéré comme la vue dans le design pattern MVC ?  
   La réponse est **non** !
 
-React est une bibliothèque _(pas une "librarie" et encore moins un framework ⚠️)_ JavaScript qui permet de créer des interfaces utilisateur, mais elle n'est pas liée de manière directe à un serveur.  
- Certes, on va consommer une API pour récupérer des données, mais React n'est que le réceptacle de ces données côté client _(navigateur)_.
+  React est une bibliothèque _(pas une "librarie" et encore moins un framework ⚠️)_ JavaScript qui permet de créer des interfaces utilisateur, mais elle n'est pas liée de manière directe à un serveur.  
+  Certes, on va consommer une API pour récupérer des données, mais React n'est que le réceptacle de ces données côté client _(navigateur)_.
 
-On va donc faire simple : on parlera plutôt d'une architecture "client-serveur" avec React côté client et notre API côté serveur.  
- Mais ça n'empêche pas que ton API puisse être une API REST _(ou GraphQL)_ qui respecte le design pattern MVC !  
- Tout dépendra de si tu demandes dans ton serveur back-end de retourner une vue _(HTML)_ au navigateur.
-
+  On va donc faire simple : on parlera plutôt d'une architecture "client-serveur" avec React côté client et notre API côté serveur.  
+  Mais ça n'empêche pas que ton API puisse être une API REST _(ou GraphQL)_ qui respecte le design pattern MVC !  
+  Tout dépendra de si tu demandes dans ton serveur back-end de retourner une vue _(HTML)_ au navigateur.
 </Callout>
 
 ## 🧑‍⚖️ Règles et conventions de nommage
@@ -77,15 +75,14 @@ Si tu fais un projet personnel, tu peux définir les tiennes, du moment que tu e
 <Callout type="note" title="La cohérence, c'est la clé">
   Pense à être cohérent en ce qui concerne la langue utilisée.
 
-<Callout type="warning" title="Pas de franglais !">
-  Évite de mélanger plusieurs langues dans tes nommages. Si tu choisis de travailler en français, reste en français. Si
-  tu choisis de travailler en anglais, reste en anglais.
-</Callout>
+  <Callout type="warning" title="Pas de franglais !">
+    Évite de mélanger plusieurs langues dans tes nommages. Si tu choisis de travailler en français, reste en français. Si
+    tu choisis de travailler en anglais, reste en anglais.
+  </Callout>
 
-D'ailleurs, je te recommande chaudement de travailler en anglais ne serait-ce que pour te familiariser avec la langue de Shakespeare qui est, on le rappelle, la langue la plus répandue dans le monde de l'informatique.
+  D'ailleurs, je te recommande chaudement de travailler en anglais ne serait-ce que pour te familiariser avec la langue de Shakespeare qui est, on le rappelle, la langue la plus répandue dans le monde de l'informatique.
 
-Tu as évidemment le droit d'utiliser des traducteurs en ligne pour t'aider à trouver le bon mot _(ou la bonne expression)_, on ne te demande pas d'être bilingue !
-
+  Tu as évidemment le droit d'utiliser des traducteurs en ligne pour t'aider à trouver le bon mot _(ou la bonne expression)_, on ne te demande pas d'être bilingue !
 </Callout>
 
 Au delà de la langue utilisée, on va également parler de la syntaxe des noms de fichiers, dossiers, classes, méthodes, variables, etc.  
@@ -121,10 +118,9 @@ Si on prend l'exemple d'un formulaire d'inscription où nous vérifions que l'ut
   Si je te parle de client HTTP, tu me réponds... ?  
   [Bruno](https://www.usebruno.com/) ? [Postman](https://www.postman.com/) ? [Insomnia](https://insomnia.rest/) ?
 
-Bingo ! 🎉
+  Bingo ! 🎉
 
-Utiliser un client HTTP comme Bruno, Postman ou Insomnia te permettra de tester facilement les routes de ton API, et de vérifier que les données que tu envoies sont bien traitées par ton serveur.
-
+  Utiliser un client HTTP comme Bruno, Postman ou Insomnia te permettra de tester facilement les routes de ton API, et de vérifier que les données que tu envoies sont bien traitées par ton serveur.
 </Callout>
 
 ### 🧪 Les tests unitaires
