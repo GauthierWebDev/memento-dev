@@ -15,53 +15,38 @@ import path from "node:path";
 type RemoveCommentRules = (root: Root) => void;
 
 const removeCommentRules: RemoveCommentRules = (root) => {
-	root.walkComments((comment) => {
-		comment.remove();
-	});
+  root.walkComments((comment) => {
+    comment.remove();
+  });
 };
 
 const __dirname = path.resolve();
 
 export default defineConfig({
-	plugins: [
-		prismjsVitePlugin({
-			languages: [
-				"javascript",
-				"typescript",
-				"tsx",
-				"jsx",
-				"css",
-				"html",
-				"bash",
-				"nginx",
-			],
-		}),
-		vike(),
-		vikeSolid(),
-		mdx({
-			jsxImportSource: "solid-jsx",
-			remarkPlugins: [
-				remarkFrontmatter,
-				remarkHeadingId,
-				remarkExtractFrontmatter,
-			],
-		}),
-		tailwindcss(),
-		telefunc(),
-	],
-	css: {
-		postcss: {
-			plugins: [
-				...(process.env.NODE_ENV === "production" ? [removeCommentRules] : []),
-			],
-		},
-	},
-	build: {
-		target: "es2022",
-	},
-	resolve: {
-		alias: {
-			"@": __dirname,
-		},
-	},
+  plugins: [
+    prismjsVitePlugin({
+      languages: ["javascript", "typescript", "tsx", "jsx", "css", "html", "bash", "nginx", "sql"],
+    }),
+    vike(),
+    vikeSolid(),
+    mdx({
+      jsxImportSource: "solid-jsx",
+      remarkPlugins: [remarkFrontmatter, remarkHeadingId, remarkExtractFrontmatter],
+    }),
+    tailwindcss(),
+    telefunc(),
+  ],
+  css: {
+    postcss: {
+      plugins: [...(process.env.NODE_ENV === "production" ? [removeCommentRules] : [])],
+    },
+  },
+  build: {
+    target: "es2022",
+  },
+  resolve: {
+    alias: {
+      "@": __dirname,
+    },
+  },
 });
