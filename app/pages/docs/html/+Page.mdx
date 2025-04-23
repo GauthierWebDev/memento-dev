@@ -17,17 +17,17 @@ Mais avant de plonger dans le vif du sujet, faisons un petit tour d'horizon de c
 HTML, ou **HyperText Markup Language**, est le langage standard utilisé pour créer des pages web. Il s'agit d'un langage de balisage qui utilise des **balises** pour structurer le contenu.  
 Il s'agit du **squelette d'une page web**, qui définit la structure et le contenu de celle-ci.
 
-<Callout type="question" title="Pourquoi HTML n'est pas un langage de programmation ?">
-  Avant de répondre à cette question, il est important de connaître la définition d'un langage de programmation.
+## Pourquoi HTML n'est pas un langage de programmation ?
 
-  <Callout type="note" title="Langage de programmation" collapsible>
-    Un langage de programmation est un ensemble de règles et de conventions qui permettent d'écrire des instructions que l'ordinateur peut comprendre et exécuter.  
-    Ces instructions peuvent inclure des calculs, des conditions, des boucles, etc.
-  </Callout>
+Avant de répondre à cette question, il est important de connaître la définition d'un langage de programmation.
 
-  Si on regarde la définition d'un langage de programmation, on peut voir que le HTML ne correspond pas à cette définition.  
-  Tout simplement parce que le HTML ne permet pas d'écrire des instructions que l'ordinateur peut exécuter !
+<Callout type="note" title="Langage de programmation" collapsible>
+  Un langage de programmation est un ensemble de règles et de conventions qui permettent d'écrire des instructions que l'ordinateur peut comprendre et exécuter.  
+  Ces instructions peuvent inclure des calculs, des conditions, des boucles, etc.
 </Callout>
+
+Si on regarde la définition d'un langage de programmation, on peut voir que le HTML ne correspond pas à cette définition.  
+Tout simplement parce que le HTML ne permet pas d'écrire des instructions que l'ordinateur peut exécuter !
 
 Mais bon... savoir ça c'est bien : mais ça ne va pas nous aider à créer des pages web.
 
@@ -52,3 +52,57 @@ Voici un exemple de code HTML simple :
 
   On les utilise pour ajouter des notes ou des explications dans le code, ce qui peut être utile pour les développeurs qui lisent le code plus tard.
 </Callout>
+
+### La balise `<head>`
+
+Dans l'exemple ci-dessus, on peut voir que la balise `<head>` contient plusieurs éléments importants :
+
+- `<meta charset="UTF-8">` : Indique l'encodage des caractères utilisé dans le document. UTF-8 est l'encodage le plus courant et prend en charge la plupart des langues.
+- `<meta name="viewport" content="width=device-width, initial-scale=1.0">` : Indique au navigateur comment afficher la page sur les appareils mobiles. Cela permet de rendre la page responsive.
+- `<title>` : Définit le titre de la page, qui s'affiche dans l'onglet du navigateur.
+- `<meta name="description" content="...">` : Fournit une description de la page, qui peut être utilisée par les moteurs de recherche pour afficher un extrait de la page dans les résultats de recherche.
+
+Ces balises ne s'affichent pas sur la page elle-même, mais elles sont essentielles pour le bon fonctionnement de la page et son référencement dans les moteurs de recherche.
+
+On peut également ajouter des liens vers des fichiers CSS et JavaScript dans la balise `<head>`, ce qui permet de styliser la page et d'ajouter des fonctionnalités interactives.
+
+En résumé, la balise `<head>` permet de définir toutes les informations importantes sur la page et de préparer le terrain pour le contenu qui sera affiché dans la balise `<body>`.
+
+### La balise `<body>`
+
+La balise `<body>` contient tout le contenu visible de la page, comme le texte, les images, les liens, etc.  
+C'est ici que l'on va pouvoir définir la structure de notre page.
+
+Chaque balise HTML a un rôle spécifique et permet de structurer le contenu de la page. Certaines donnent du sens au contenu,
+tandis que d'autres permettent de tout simplement de regrouper des groupes de balises.
+
+Dans l'exemple donné plus tôt, on peut voir plusieurs balises courantes utilisées dans la balise `<body>` :
+
+- `<h1>` : Définit un titre de premier niveau. Il est généralement utilisé pour le titre principal de la page.
+- `<h2>` : Définit un titre de deuxième niveau. Il est généralement utilisé pour les sous-titres.
+- `<p>` : Définit un paragraphe de texte.
+- `<header>` : Définit l'en-tête de la page. Il est généralement utilisé pour le titre et la navigation.
+- `<main>` : Définit le contenu principal de la page. Il est généralement utilisé pour le contenu principal de la page.
+- `<footer>` : Définit le pied de page de la page. Il est généralement utilisé pour les informations de copyright et les liens vers les mentions légales.
+
+Il y en a bien évidemment beaucoup d'autres, mais on se garde ça pour un prochain article 😉
+
+## 📜 Les attributs HTML
+
+Les balises HTML peuvent également avoir des **attributs**, qui fournissent des informations supplémentaires sur l'élément.  
+Les attributs sont toujours définis dans la balise d'ouverture de l'élément et sont généralement constitués d'un nom et d'une valeur.
+
+Dans l'exemple donné plus tôt, on a eu l'occasion d'en voir dans les balises `<meta>`.  
+Mais on peut aussi en trouver dans d'autres balises présents dans le corps de la page.
+
+Voici quelques exemples d'attributs courants :
+
+<tabs.htmlAttributes />
+
+## On s'arrête là pour le moment !
+
+Pas la peine de se précipiter, on a encore plein de choses à voir sur le HTML.  
+Bien que ce langage soit extrêmement simple, il nécessite d'être bien compris pour pouvoir créer des pages web de qualité.
+
+Pour le moment, nous savons à quoi ressemble une page HTML et comment elle est structurée.. on verra comment
+créer des pages web plus représentatives dans les prochains articles !

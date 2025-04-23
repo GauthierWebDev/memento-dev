@@ -13,7 +13,13 @@ const htmlBaseSnippets = [
 
 <!-- On indique les paramètres de la page... -->
 <head>
-  <!-- ... commme le titre de la page... -->
+  <!-- ... comme le jeu de caractères utilisé (UTF-8)... -->
+  <meta charset="UTF-8">
+
+  <!-- ... la compatibilité avec les navigateurs... -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ... le titre de la page... -->
   <title>Mon super site</title>
 
   <!-- ... et la description de la page... -->
@@ -29,13 +35,14 @@ const htmlBaseSnippets = [
     <h1>Bienvenue sur ma page HTML</h1>
   </header>
 
-  <!-- On indique le début d'une section -->
-  <section>
+  <!-- On indique le début du contenu principal -->
+  <main>
     <!-- On indique un sous-titre -->
-    <h2>Voici un exemple de section</h2>
+    <h2>Voici un exemple de contenu principal</h2>
+
     <!-- On indique un paragraphe -->
-    <p>Ceci est un exemple de paragraphe dans une section.</p>
-  </section>
+    <p>Ceci est un exemple de paragraphe dans le contenu principal.</p>
+  </main>
 
   <!-- On indique le début d'un pied de page -->
   <footer>
@@ -47,6 +54,31 @@ const htmlBaseSnippets = [
   },
 ];
 
+const htmlAttributesSnippets = [
+  {
+    name: "Lien hypertexte",
+    codeLanguage: "html",
+    code: `<!-- On indique un lien hypertexte -->
+<!-- \`href\` est l'attribut qui indique la destination du lien -->
+<a href="https://www.example.com">Visitez notre site</a>`,
+  },
+  {
+    name: "Image",
+    codeLanguage: "html",
+    code: `<!-- On indique une image -->
+<!-- \`src\` est l'attribut qui indique l'URL de l'image -->
+<!-- \`alt\` est l'attribut qui fournit une description de l'image -->
+<img src="https://www.example.com/image.jpg" alt="Description de l'image">`,
+  },
+  {
+    name: "Classes CSS",
+    codeLanguage: "html",
+    code: `<!-- On applique plusieurs classes CSS à un élément -->
+<div class="ma-classe autre-classe">`
+  },
+];
+
 export default {
   htmlBase: () => <Snippet snippets={htmlBaseSnippets} />,
+  htmlAttributes: () => <Snippet snippets={htmlAttributesSnippets} />,
 };
