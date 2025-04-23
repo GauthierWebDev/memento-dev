@@ -5,6 +5,7 @@ tags: []
 ---
 
 import Callout from "@/components/Callout";
+import tabs from "./tabs";
 
 HTML est un langage de balisage utilisé pour structurer le contenu des pages web.  
 Bien qu'il ne s'agisse pas d'un langage de programmation à proprement parler, il reste fondamental pour créer des sites web.
@@ -14,7 +15,7 @@ Mais avant de plonger dans le vif du sujet, faisons un petit tour d'horizon de c
 ## 🤔 Qu'est-ce que le HTML ?
 
 HTML, ou **HyperText Markup Language**, est le langage standard utilisé pour créer des pages web. Il s'agit d'un langage de balisage qui utilise des **balises** pour structurer le contenu.  
-Il s'agit du squelette d'une page web, qui définit la structure et le contenu de celle-ci.
+Il s'agit du **squelette d'une page web**, qui définit la structure et le contenu de celle-ci.
 
 <Callout type="question" title="Pourquoi HTML n'est pas un langage de programmation ?">
   Avant de répondre à cette question, il est important de connaître la définition d'un langage de programmation.
@@ -22,15 +23,32 @@ Il s'agit du squelette d'une page web, qui définit la structure et le contenu d
   <Callout type="note" title="Langage de programmation" collapsible>
     Un langage de programmation est un ensemble de règles et de conventions qui permettent d'écrire des instructions que l'ordinateur peut comprendre et exécuter.  
     Ces instructions peuvent inclure des calculs, des conditions, des boucles, etc.
-
-    Parmis les langages de programmation les plus connus, on peut citer :
-
-    - JavaScript
-    - Python
-    - Java
-    - C++
-    - C#
-
-    et bien d'autres !
   </Callout>
+
+  Si on regarde la définition d'un langage de programmation, on peut voir que le HTML ne correspond pas à cette définition.  
+  Tout simplement parce que le HTML ne permet pas d'écrire des instructions que l'ordinateur peut exécuter !
+</Callout>
+
+Mais bon... savoir ça c'est bien : mais ça ne va pas nous aider à créer des pages web.
+
+## 🏗️ La structure d'une page HTML
+
+Une page HTML est composée de plusieurs éléments, chacun ayant un rôle spécifique.
+
+Par exemple, une page HTML typique contient les éléments suivants :
+- `<!DOCTYPE html>` : Indique au navigateur que le document est un fichier HTML.
+- `<html>` : L'élément racine qui englobe tout le contenu de la page.
+- `<head>` : Contient des informations sur la page, comme le titre, les liens vers les fichiers CSS et JavaScript, etc.
+- `<body>` : Contient le contenu visible de la page, comme le texte, les images, les liens, etc.
+
+Il s'agit des balises de base qui composent une page HTML.  
+Voici un exemple de code HTML simple :
+
+<tabs.htmlBase />
+
+<Callout type="question" title="C'est quoi la balise `<!-- -->` ?">
+  La balise `<!-- -->` est utilisée pour ajouter des commentaires dans le code HTML.  
+  Ces commentaires ne sont pas affichés dans le navigateur et sont uniquement visibles dans le code source de la page.
+
+  On les utilise pour ajouter des notes ou des explications dans le code, ce qui peut être utile pour les développeurs qui lisent le code plus tard.
 </Callout>
