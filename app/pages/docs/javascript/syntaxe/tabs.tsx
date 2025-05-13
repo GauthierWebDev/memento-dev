@@ -34,7 +34,7 @@ var ville = "Paris";`,
 
 const jsFunctionsSnippets = [
 	{
-		name: "Fonction classique",
+		name: "Fonction déclarée",
 		codeLanguage: "js",
 		code: `function addition(a, b) {
   return a + b;
