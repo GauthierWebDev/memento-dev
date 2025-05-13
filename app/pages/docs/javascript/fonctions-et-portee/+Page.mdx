@@ -115,3 +115,43 @@ Les trois mots-clés `var`, `let` et `const` peuvent être utilisés pour décla
 <tabs.jsFunctionScope />
 
 Le fonctionnement est le même que pour la portée de bloc, avec cette fois-ci une portée limitée à la fonction _(y compris pour les variables déclarées avec `var`)_.
+
+## Particularités de var
+
+On a vu que `var` n'a pas la possibilité de déclarer des variables avec une portée de bloc, contrairement à `let` et `const`.
+
+Mais il y a une autre particularité à prendre en compte :
+- Les variables déclarées avec `var` sont **hoistées**.  
+  Ça signifie que la déclaration de la variable est déplacée en haut de la portée dans laquelle elle a été déclarée.
+- Les variables déclarées avec `let` et `const` ne sont pas hoistées.
+
+<Callout type="warning" title="Hoisting">
+  Le hoisting peut entraîner des comportements inattendus si on essaie d'accéder à une variable avant sa déclaration.
+
+  Il est donc préférable de toujours déclarer les variables au début de leur portée.
+</Callout>
+
+Petit exemple pour illustrer ça :
+
+<tabs.jsHoisting />
+
+Dans cet exemple, on voit que la variable `x` est déclarée après son utilisation.  
+Cependant, grâce _(ou à cause, je te laisse choisir !)_ au hoisting, la déclaration de la variable `x` est déplacée en haut de la portée, ce qui permet d'accéder à sa valeur avant sa déclaration.
+
+On peut donc dire que la variable `x` est **undefined** avant sa déclaration, mais elle existe déjà.
+On peut donc l'utiliser avant sa déclaration _(enfin, on aura `undefined` comme valeur)_.
+
+C'est un peu déroutant, non ?
+
+<Callout type="warning" title="Utilisation de var">
+  Promis, c'est la dernière fois que je te dis de ne pas utiliser `var` !
+
+  Mais tu l'auras compris, `var` est vraiment très spécial et peut très vite devenir une source de bugs.
+</Callout>
+
+## Conclusion
+
+Voilà, c'est "tout" pour cet article sur les fonctions et la portée en JavaScript !  
+Comme les articles précédents, ça fait beaucoup d'informations.
+
+Encore une fois, prends le temps d'expérimenter et de jouer avec les notions abordées dans cet article avant de passer à la suite !

@@ -190,6 +190,7 @@ const jsFunctionScopeSnippets = [
 		
 function example() {
 	let x = 20;
+	let y = "Bonjour !";
 
 	if (true) {
 		let x = 30;
@@ -200,7 +201,8 @@ function example() {
 }
 
 example();
-console.log(x); // 10`,
+console.log(x); // 10
+console.log(y); // ReferenceError: y is not defined`,
 	},
 	{
 		name: "Exemple avec const",
@@ -210,6 +212,7 @@ console.log(x); // 10`,
 
 function example() {
 	const x = 20;
+	const y = "Bonjour !";
 
 	if (true) {
 		const x = 30;
@@ -217,10 +220,12 @@ function example() {
 	}
 
 	console.log(x); // 20
+	console.log(y); // Bonjour !
 }
 
 example();
-console.log(x); // 10`,
+console.log(x); // 10
+console.log(y); // ReferenceError: y is not defined`,
 	},
 	{
 		name: "Exemple avec var",
@@ -230,6 +235,7 @@ console.log(x); // 10`,
 
 function example() {
 	var x = 20;
+	var y = "Bonjour !";
 
 	if (true) {
 		var x = 30;
@@ -240,6 +246,37 @@ function example() {
 }
 
 example();
+console.log(x); // 10
+console.log(y); // ReferenceError: y is not defined`,
+	},
+];
+
+const jsHoistingSnippets = [
+	{
+		name: "Exemple avec let",
+		withLineNumbers: true,
+		codeLanguage: "js",
+		code: `console.log(x); // ReferenceError: Cannot access 'x' before initialization
+
+let x = 10;
+console.log(x); // 10`,
+	},
+	{
+		name: "Exemple avec const",
+		withLineNumbers: true,
+		codeLanguage: "js",
+		code: `console.log(x); // ReferenceError: Cannot access 'x' before initialization
+
+const x = 10;
+console.log(x); // 10`,
+	},
+	{
+		name: "Exemple avec var",
+		withLineNumbers: true,
+		codeLanguage: "js",
+		code: `console.log(x); // undefined
+
+var x = 10;
 console.log(x); // 10`,
 	},
 ];
@@ -253,4 +290,5 @@ export default {
 		<Snippet snippets={jsBlockScopeExplanations} />
 	),
 	jsFunctionScope: () => <Snippet snippets={jsFunctionScopeSnippets} />,
+	jsHoisting: () => <Snippet snippets={jsHoistingSnippets} />,
 };
