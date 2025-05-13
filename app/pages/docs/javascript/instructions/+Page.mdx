@@ -1,0 +1,180 @@
+---
+title: Les instructions avec JavaScript
+description: Voyons comment écrire et comprendre des instructions avec JavaScript.
+tags: []
+---
+
+import Callout from "@/components/Callout";
+import tabs from "./tabs";
+
+Maintenant que nous avons vu la syntaxe de base de JavaScript, il est temps de plonger dans les instructions.
+
+## Qu'est-ce qu'une instruction ?
+
+Une instruction est une ligne de code qui effectue une **action spécifique**.  
+Il s'agit de la **brique de base** de tout programme et JavaScript ne fait pas exception à la règle !
+
+Par exemple, voici quelques instructions simples en JavaScript :
+
+<tabs.jsBasicInstructions />
+
+Dans cet exemple, nous avons trois instructions :
+- La première instruction affiche un message dans la console avec `console.log()`.
+- La deuxième instruction déclare une variable `nom` et lui assigne la valeur `"John Doe"`.
+- La troisième instruction est une condition sur une variable `age` qui affiche un message différent selon la valeur de `age`.
+
+## Les différents types d'instructions
+
+Comme vu plus tôt, il existe plusieurs types d'instructions en JavaScript.
+
+### Instructions de déclaration
+
+Les instructions de déclaration sont utilisées pour déclarer des **variables**, des **fonctions** ou des **classes**.
+
+C'est ce qui était fait dans l'exemple précédent avec la déclaration de la variable `nom`.
+
+### Instructions de contrôle de flux
+
+Les instructions de contrôle de flux sont utilisées pour contrôler le flux d'exécution du programme.  
+Elles permettent de prendre des décisions selon certaines **conditions**.
+
+### Instructions de boucle
+
+Les instructions de boucle sont utilisées pour exécuter un bloc de code plusieurs fois.  
+Elles sont souvent utilisées pour parcourir des tableaux _(un regroupement de données)_.
+
+### Instructions de gestion des erreurs
+
+Pour gérer les erreurs, JavaScript nous met à disposition des instructions comme `try`, `catch` et `finally`.
+
+Ces instructions permettent de gérer les erreurs qui peuvent survenir lors de l'exécution du code.
+
+### Autres instructions
+
+Il existe d'autres instructions comme `return`, `break`, `continue`, `throw` ou encore `debugger` qui sont utilisées pour des cas spécifiques.
+
+On les utilisera au fur et à mesure de notre apprentissage.
+
+## Faisons notre premier programme !
+
+Maintenant que nous avons vu les instructions de base, il est temps de mettre tout cela en pratique.
+
+> Quoi ?! Mais je ne sais pas à quoi ça ressemble !
+
+Pas de panique ! On ne va pas faire du JavaScript pur tout de suite 😉.  
+On va commencer par du **pseudo-code**.
+
+### Qu'est-ce que le pseudo-code ?
+
+Le pseudo-code est une façon de décrire un algorithme ou un programme sans se soucier de la syntaxe d'un langage de programmation particulier.
+
+Il utilise un langage simple et compréhensible par tous, ce qui permet de se concentrer sur la logique du programme plutôt que sur les détails de la syntaxe.
+
+Voici quelques exemples de pseudo-code :
+
+<tabs.pseudoCode />
+
+Tu as évidemment le droit de changer les mots pour les adapter à ton propre style ou à ta propre compréhension. L'idée, c'est juste d'écrire un algorithme qui soit compréhensible par toi-même et par les autres.
+
+### Challenge
+
+Maintenant, c'est à ton tour de jouer !
+
+Tu vas devoir écrire un pseudo-code qui :
+
+- Demande à l'utilisateur son nom.
+- Demande à l'utilisateur son âge.
+- Si l'utilisateur est majeur _(18 ans ou plus)_, affiche un message de bienvenue.
+- Sinon, affiche un message lui disant qu'il n'est pas majeur.
+
+<Callout type="question" title="Comment dois-je m'y prendre ?">
+  Pour ce challenge, tu peux utiliser les instructions suivantes :
+  
+  - `DEBUT` : Indique le début du programme.
+  - `FIN` : Indique la fin du programme.
+  - `VARIABLE x` : Indique la déclaration d'une variable nomée `x`.
+  - `LIRE x` : Indique la lecture d'une valeur pour la variable `x`.
+  - `AFFICHER "..."` : Indique l'affichage du message entre guillemets.
+  - `SI ... ALORS` : Indique une condition.
+  - `SINON` : Indique le cas où la condition n'est pas remplie.
+  - `FIN SI` : Indique la fin de la condition.
+  - `x >= y` : Indique une comparaison entre la variable `x` et la valeur `y`.
+
+  Pour le moment, tu n'as pas besoin de te soucier de la syntaxe JavaScript.
+</Callout>
+
+### Traduire le pseudo-code en JavaScript
+
+Une fois que tu as écrit ton pseudo-code, il est temps de le traduire en JavaScript.
+
+Puisque je ne peux pas lire dans tes pensées, je vais te donner un exemple de pseudo-code final, pour que l'on voit ensuite comment le traduire en JavaScript !
+
+<tabs.pseudoCodeFinal />
+
+Dans cet exemple, on retrouve :
+
+- **Lignes 1 et 15 :** Le début et la fin du programme.
+- **Ligne 2 :** La déclaration de la variable `nom`.
+- **Ligne 3 :** Affichage du message demandant le nom de l'utilisateur.
+- **Ligne 4 :** Lecture et enregistrement de la valeur saisie par l'utilisateur dans la variable `nom`.
+- **Ligne 6 :** La déclaration de la variable `age`.
+- **Ligne 7 :** Affichage du message demandant l'âge de l'utilisateur.
+- **Ligne 8 :** Lecture et enregistrement de la valeur saisie par l'utilisateur dans la variable `age`.
+- **Ligne 10 :** La condition qui vérifie si l'utilisateur est majeur.
+- **Ligne 11 :** Affichage du message de bienvenue si l'utilisateur est majeur.
+- **Ligne 13 :** Affichage du message indiquant que l'utilisateur n'est pas majeur.
+- **Ligne 14 :** Fin de la condition.
+
+Et voilà !  
+Maintenant, il ne te reste plus qu'à traduire ce pseudo-code en JavaScript... 😏
+
+### Challenge 2
+
+Ce que je vais faire, c'est te donner l'équivalent de certaines instructions en JavaScript pour t'aider à traduire ton pseudo-code en JavaScript.
+
+- `DEBUT` : Pas d'équivalent en JavaScript _(ouf !)_
+- `FIN` : Pas d'équivalent en JavaScript _(ouf !)_
+- `VARIABLE x` : `let x;` ou `const x;`
+- `LIRE x` : `x = prompt("...");` _(`"..."` est le message affiché à l'utilisateur)_
+- `AFFICHER "..." + x` : `console.log("... " + x);`
+- `SI ... ALORS` : `if (...) {`
+- `SINON` : `} else {`
+- `FIN SI` : `}`
+- `x >= y` : `x >= y` _(pas de changement, ouf !)_
+
+Prêt à en découdre ? 💪
+
+### Tester ton programme
+
+Une fois que tu as traduit ton pseudo-code en JavaScript, il est temps de tester ton programme !
+
+Pour pouvoir le tester, tu peux tout simplement copier-coller ton code dans la console de ton navigateur ou dans un éditeur de code en ligne comme [CodePen](https://codepen.io/) ou [JSFiddle](https://jsfiddle.net/).
+
+### Correction
+
+Pour l'équivalent de l'exemple de pseudo-code, voici ce que ça donne en JavaScript :
+
+<tabs.jsFinal />
+
+Et voilà ! 🎉  
+Mais faisons un petit tour d'horizon sur ce code pour bien comprendre ce qu'il fait.
+
+- **Ligne 2 :** On déclare une variable `nom` avec le mot-clé `const`, puis on lui assigne la valeur saisie par l'utilisateur avec `prompt()`.
+- **Ligne 5 :** On déclare une variable `age` avec le mot-clé `const`, puis on lui assigne la valeur saisie par l'utilisateur avec `prompt()`.
+- **Ligne 8 :** On vérifie si l'utilisateur est majeur avec une condition `if (age >= 18)`.
+- **Ligne 9 :** Si l'utilisateur est majeur, on affiche un message de bienvenue avec `console.log()`.
+- **Ligne 10 :** Sinon...
+- **Ligne 11 :** On affiche un message indiquant que l'utilisateur n'est pas majeur avec `console.log()`.
+- **Ligne 12 :** Fin de la condition.
+
+## Conclusion
+
+Pfiou, ça fait déjà pas mal de choses à digérer ! 😅
+
+On a vu les instructions de base en JavaScript, comment écrire du pseudo-code et comment le traduire en JavaScript.  
+On a même fait un petit programme ensemble !
+
+Il est temps de faire une pause et de digérer tout ça avant de passer à la suite.  
+C'est important de ne pas vouloir aller trop vite en enchaînant les articles, surtout quand on débute.
+
+Prends le temps de bien comprendre chaque concept avant de passer au suivant, et n'hésite pas à revenir sur les bases si tu as des doutes !

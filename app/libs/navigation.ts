@@ -118,7 +118,11 @@ export const navigation: NavigationSection[] = [
 			{
 				title: "JavaScript",
 				href: "/docs/javascript",
-				subitems: [{ title: "Introduction", href: "/docs/javascript" }],
+				subitems: [
+					{ title: "Introduction", href: "/docs/javascript" },
+					{ title: "Syntaxe", href: "/docs/javascript/syntaxe" },
+					{ title: "Instructions", href: "/docs/javascript/instructions" },
+				],
 			},
 			{
 				title: "React",

@@ -34,10 +34,10 @@ export const Highlight: ParentComponent<Props> = (_props) => {
 
 	const highlightedCode = createMemo<string | undefined>(() => {
 		const childrenString = props.children?.toString();
-		if (!childrenString) return;
+		if (!childrenString) return "";
 
 		const grammar = Prismjs.languages[props.language];
-		if (!grammar) return;
+		if (!grammar) return "";
 
 		const result = Prismjs.highlight(childrenString, grammar, props.language);
 
@@ -102,7 +102,10 @@ export const Highlight: ParentComponent<Props> = (_props) => {
 			)}
 
 			<pre
-				class={clsx("not-prose h-full w-full prism-code flex", languageClass())}
+				class={clsx(
+					"relative not-prose h-full w-full prism-code flex",
+					languageClass(),
+				)}
 			>
 				<code
 					class={clsx("leading-6", props.withLineNumbers ? "px-4" : "pr-4")}

@@ -4,7 +4,7 @@ import { For, createSignal } from "solid-js";
 import { Highlight } from "./Highlight";
 import clsx from "clsx";
 
-function TrafficLightsIcon(props: JSX.IntrinsicElements["svg"]) {
+export function TrafficLightsIcon(props: JSX.IntrinsicElements["svg"]) {
 	return (
 		<svg aria-hidden="true" viewBox="0 0 42 10" fill="none" {...props}>
 			<circle cx="5" cy="5" r="4.5" class="fill-red-400" />
