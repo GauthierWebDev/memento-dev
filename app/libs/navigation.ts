@@ -122,6 +122,7 @@ export const navigation: NavigationSection[] = [
 					{ title: "Introduction", href: "/docs/javascript" },
 					{ title: "Syntaxe", href: "/docs/javascript/syntaxe" },
 					{ title: "Instructions", href: "/docs/javascript/instructions" },
+					{ title: "Types de données", href: "/docs/javascript/types" },
 				],
 			},
 			{

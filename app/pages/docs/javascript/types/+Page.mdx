@@ -1,0 +1,205 @@
+---
+title: Les types de données de JavaScript
+description: Découvrons ensemble les types de données de JavaScript
+tags: []
+---
+
+import Callout from "@/components/Callout";
+import tabs from "./tabs";
+
+Revenons un peu en arrière et parlons des types de données en JavaScript.
+
+On a déjà eu l'occasion de tester très rapidement un petit algorithme, mais on n'a pas parlé des types de données !
+
+## Qu'est-ce qu'un type de données ?
+
+Un type de données est une classification qui définit le type de valeur qu'une variable peut contenir.
+
+Dans notre code précédent, nous avions utilisé :
+
+- `const nom = prompt("Entrez votre nom :");` pour demander le nom de l'utilisateur.
+- `const age = prompt("Entrez votre âge :");` pour demander l'âge de l'utilisateur.
+
+Pour les variables `nom` et `age`, on a utilisé la fonction `prompt()` qui renvoie une chaîne de caractères.  
+On a donc deux variables de type `string` _(chaîne de caractères)_ !
+
+## Les types de données en JavaScript
+
+JavaScript prend en charge plusieurs types de données, notamment :
+
+- **String** : Représente une chaîne de caractères.
+- **Number** : Représente un nombre _(entier ou décimal)_.
+- **Boolean** : Représente une valeur booléenne _(vrai ou faux)_.
+- **Object** : Représente un objet, qui est une collection de paires clé-valeur.
+- **Array** : Représente un tableau, qui est une collection ordonnée de valeurs.
+- **Null** : Représente une valeur nulle ou absente.
+- **Undefined** : Représente une variable qui n'a pas été initialisée.
+
+On parle ici de **types primitifs** et de **types complexes**.
+
+- Les types primitifs sont les types de données de base, comme `string`, `number`, `boolean`, `null` et `undefined`.
+- Les types complexes sont des types de données plus avancés, comme `object` et `array`.
+
+<Callout type="question" title="OK, et à quoi ça va m'avancer ?">
+  En gros, les types de données sont importants car ils nous permettent de savoir quel type de valeur on manipule dans notre code.
+
+  Ça nous aide à éviter les erreurs et à écrire du code plus propre et plus lisible.
+</Callout>
+
+Avant de passer à des exemples plus concrets, voyons un peu chaque type de données en détail.
+
+### String
+
+Une chaîne de caractères _(alpha-numérique)_ est une séquence de caractères entourée de **guillemets** _("contenu")_, d'**apostrophes** _('contenu')_, ou de **backticks** _(\`contenu\`)_.
+
+### Number
+
+Un nombre peut être un entier ou un nombre à virgule flottante _(décimal)_.  
+Il n'y a pas de distinction entre les deux en JavaScript, tout est considéré comme un nombre.
+
+### Boolean
+
+Un booléen est une valeur qui peut être soit `true` _(vrai)_ soit `false` _(faux)_.  
+Il est souvent utilisé pour représenter des conditions ou des états.
+
+### Null
+
+Le type `null` représente une valeur nulle ou absente.  
+Il est souvent utilisé pour indiquer qu'une variable n'a pas de valeur ou qu'elle a été explicitement définie comme nulle.
+
+### Undefined
+
+Le type `undefined` représente une variable qui n'a pas été initialisée.  
+Il est souvent utilisé pour indiquer qu'une variable n'a pas encore de valeur ou qu'elle n'a pas été définie.
+
+Il est important de noter que `undefined` est différent de `null`.  
+`undefined` signifie qu'une variable n'a pas été initialisée, tandis que `null` signifie qu'une variable a été explicitement définie comme nulle.
+
+### Object
+
+Un objet est une collection de paires clé-valeur.  
+Il est souvent utilisé pour représenter des entités complexes avec plusieurs propriétés.
+
+Pour les personnes qui viennent de PHP, on peut dire que c'est un peu comme un tableau associatif.
+Un objet est défini entre accolades `{}` et chaque paire clé-valeur est séparée par une virgule.
+
+Par exemple :
+
+<tabs.jsObjectExample />
+
+### Array
+
+Un tableau est une collection ordonnée de valeurs.  
+Il est souvent utilisé pour représenter des listes ou des ensembles de données.
+
+Un tableau est défini entre crochets `[]` et chaque valeur est séparée par une virgule.  
+Son fonctionnement est identique à celui d'un tableau en PHP.
+
+Par exemple :
+
+<tabs.jsArrayExample />
+
+### Autres types
+
+Il existe d'autres types de données en JavaScript, comme `symbol` et `bigint`, mais ils sont moins couramment utilisés.
+
+Le type `symbol` est utilisé pour créer des identifiants uniques et immuables, tandis que le type `bigint` est utilisé pour représenter des entiers de grande taille.
+
+## Pourquoi se casser la tête avec les types de données ?
+
+C'est effectivement une très bonne question, surtout quand on se dit que JavaScript est un langage à typage faible.
+
+Mais ce n'est pas parce qu'il est à typage faible qu'il ne faut pas se soucier des types de données !
+
+Par exemple... D'après toi, que va afficher le code suivant ?
+
+<tabs.jsWrongTypesAddition />
+
+Si tu as répondu `15`, laisse-moi te dire que ce n'est pas la bonne réponse !  
+En fait, le code va afficher `510`.
+
+Maintenant, deuxième question :  
+Est-ce que la variable `estVrai` vaut `true` ou `false` ?
+
+<tabs.jsWrongTypesBoolean />
+
+Et là, tu as répondu `false` ? Raté !  
+La variable `estVrai` vaut `true`.
+
+Mais alors, pourquoi ça ne fonctionne pas comme on l'attend ?
+
+### La coercition de type
+
+Dans le premier exemple, on a additionné une chaîne de caractères et un nombre.  
+Plus précisément, on a additionné le nombre `5` et la chaîne de caractères `"10"`.
+
+Dans le cas d'une addition avec une chaîne de caractères, JavaScript va convertir le nombre en chaîne de caractères et faire une **concaténation** au lieu d'une addition.  
+C'est ce qu'on appelle la **coercition de type**.
+
+Mais alors, pourquoi `5 == "5"` vaut `true` et pas `false` ?
+
+La raison derrière ce résultat "étrange" est identique à celle de l'addition.  
+Le nombre `5` est converti en chaîne de caractères `"5"` et la comparaison est effectuée entre deux chaînes de caractères.
+
+### La comparaison stricte
+
+Maintenant, si on veut éviter ce genre de problème, on peut utiliser la comparaison stricte `===` au lieu de la comparaison faible `==`.  
+La comparaison stricte compare à la fois la valeur et le type de données.
+
+Si on utilise la comparaison stricte, le code va afficher `false` pour la variable `estVrai`.
+
+<Callout type="note" title="En résumé">
+  - Utilise `==` pour comparer des valeurs sans tenir compte du type de données.
+  - Utilise `===` pour comparer des valeurs en tenant compte du type de données.
+  - Utilise `!=` pour comparer des valeurs sans tenir compte du type de données.
+  - Utilise `!==` pour comparer des valeurs en tenant compte du type de données.
+</Callout>
+
+### La conversion de type
+
+La comparaison stricte est une excellente pratique pour éviter les erreurs de type, mais il est parfois nécessaire de convertir explicitement un type de données en un autre.
+
+JavaScript propose plusieurs méthodes pour effectuer cette conversion :
+
+- `String()` : Convertit une valeur en chaîne de caractères.
+- `Number()` : Convertit une valeur en nombre.
+- `Boolean()` : Convertit une valeur en booléen.
+- `parseInt()` : Convertit une chaîne de caractères en entier.
+- `parseFloat()` : Convertit une chaîne de caractères en nombre à virgule flottante.
+
+<Callout type="warning" title="Attention aux fausses bonnes idées !">
+  J'ai déjà eu l'occasion de voir des développeurs préfixer le symbole `+` devant une variable ou l'appel d'une fonction pour convertir en nombre.
+
+  Par exemple : `const age = +prompt("Entrez votre âge :");`
+
+  Bien que ça fonctionne, c'est une pratique à éviter car elle peut prêter à confusion.  
+  Il est préférable d'utiliser une méthode explicite, lisible et compréhensible par tous.
+
+  Par exemple : `const age = Number(prompt("Entrez votre âge :"));`  
+  On encore : `const age = parseInt(prompt("Entrez votre âge :"), 10);`
+
+  C'est plus long, mais c'est beaucoup plus clair et compréhensible !
+</Callout>
+
+### Le cas de TypeScript
+
+Puisqu'on parle de JavaScript et de typage, faisons une petite parenthèse sur **TypeScript** !  
+On ne va pas chercher à expliquer ce qu'est TypeScript ici, ce sera pour une autre suite d'articles.
+
+Mais pour faire simple, TypeScript est une version de JavaScript qui ajoute un système de typage.  
+Il permet de définir explicitement le type de chaque variable, ce qui aide à éviter les erreurs de type et à rendre le code plus lisible.
+
+Par exemple, voici comment on pourrait déclarer une variable de type `string` en TypeScript :
+
+<tabs.jsTypescriptExample />
+
+Il est impossible de faire la même chose avec JavaScript, c'est strictement réservé à TypeScript !
+
+## Conclusion
+
+Voilà, on a fait le tour des types de données en JavaScript !  
+On a vu les types primitifs et complexes, ainsi que la coercition de type et la conversion de type.
+
+C'est un énorme point qu'on vient d'aborder, c'est normal de ne pas tout comprendre du premier coup.
+
+Avec du temps et de la pratique, tu vas finir par maîtriser tout ça comme un pro ! 💪
