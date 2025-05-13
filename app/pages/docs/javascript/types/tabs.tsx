@@ -70,14 +70,24 @@ const estVrai = a == b;`,
 
 const jsTypescriptExample = [
 	{
-		name: "Exemple de variable JavaScript",
+		name: "Exemple de constante JavaScript",
 		codeLanguage: "js",
 		code: "const a = 5; // Type implicite : number",
 	},
 	{
-		name: "Exemple de variable TypeScript",
+		name: "Exemple de constante TypeScript",
 		codeLanguage: "ts",
 		code: "const a: number = 5; // Type explicite : number",
+	},
+	{
+		name: "Exemple de variable JavaScript",
+		codeLanguage: "js",
+		code: "let a; // Type implicite : any",
+	},
+	{
+		name: "Exemple de variable TypeScript",
+		codeLanguage: "ts",
+		code: "let a: number; // Type explicite : number",
 	},
 ];
 

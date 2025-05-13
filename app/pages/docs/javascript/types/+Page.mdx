@@ -189,11 +189,20 @@ On ne va pas chercher à expliquer ce qu'est TypeScript ici, ce sera pour une au
 Mais pour faire simple, TypeScript est une version de JavaScript qui ajoute un système de typage.  
 Il permet de définir explicitement le type de chaque variable, ce qui aide à éviter les erreurs de type et à rendre le code plus lisible.
 
-Par exemple, voici comment on pourrait déclarer une variable de type `string` en TypeScript :
+Par exemple, voici comment on pourrait déclarer une variable de type `number` en TypeScript :
 
 <tabs.jsTypescriptExample />
 
 Il est impossible de faire la même chose avec JavaScript, c'est strictement réservé à TypeScript !
+
+<Callout type="question" title="C'est quoi ce type `any` ?">
+  Le type `any` est un type spécial en TypeScript qui permet de désactiver le typage strict.  
+  Il peut être utilisé pour indiquer qu'une variable peut contenir n'importe quel type de valeur _(string, number, null, undefined, etc.)_.
+
+  Cependant, il est recommandé d'éviter d'utiliser le type `any` autant que possible, car il annule les avantages du typage statique.
+
+  Et puis surtout... pourquoi utiliser TypeScript si c'est pour faire du JavaScript ?
+</Callout>
 
 ## Conclusion
 
