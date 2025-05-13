@@ -1,0 +1,105 @@
+---
+title: "Créer des formulaires interactifs avec HTML : éléments, types d'entrées et validation de données"
+description: Parlons un peu de HTML, l'incontournable langage de balisage utilisé pour créer des pages web.
+tags: []
+---
+
+import Callout from "@/components/Callout";
+import tabs from "./tabs";
+
+Les formulaires sont une partie essentielle du développement web, permettant aux utilisateurs d'interagir avec les pages en soumettant des données.
+
+Dans cet article, nous allons explorer comment créer des formulaires interactifs à l'aide de HTML et aborder les éléments clés, les types d'entrées et la validation des données.
+
+## 📝 Introduction aux formulaires HTML
+
+La balise `<form>` en HTML est utilisée pour regrouper un ou plusieurs éléments de formulaire.  
+Ces éléments peuvent inclure des champs de texte, des cases à cocher et bien plus encore.
+
+Pour créer un formulaire simple en HTML, il suffit d'ajouter la balise `<form>` autour des éléments du formulaire.
+
+<tabs.htmlBasicEmptyForm />
+
+## 🖱️ Éléments de formulaire HTML
+
+Il existe plusieurs éléments clés qui facilitent la création de formulaires interactifs en HTML.  
+Voici quelques-uns des éléments les plus courants :
+
+### Champs de texte
+
+Les champs de texte permettent aux utilisateurs d'entrer du texte dans un formulaire. La longueur et le format du texte peuvent être précisés à l'aide des attributs HTML tels que `maxlength` et `pattern`.
+
+<tabs.htmlControlledTextInput />
+
+### Boutons radio
+
+Les boutons radio permettent aux utilisateurs de sélectionner une seule option parmi un gropue d'options.  
+Chaque bouton radio doit avoir le même attribut `name` pour qu'ils soient regroupés et que l'utilisateur ne puisse en sélectionne qu'un seul parmi eux.
+
+<tabs.htmlRadioButton />
+
+### Cases à cocher
+
+Les cases à cocher reprennent le même principe que les boutons radio, mais elles permettent aux utilisateurs de sélectionner plusieurs options.  
+Chaque case à cocher doit avoir un attribut `name` unique pour identifier la sélection de l'utilisateur.
+
+<tabs.htmlCheckbox />
+
+### Menu déroulant
+
+Les menus déroulants permettent aux utilisateurs de choisir une ou plusieurs options parmi une liste de valeurs prédéfinies.
+Chaque option est spécifiée à l'aide d'une balise `<option>` imbriquée dans la balise `<select>`.
+
+<tabs.htmlSelect />
+
+### Zone de texte
+
+Les zones de texte permettent aux utilisateurs d'entrer plusieurs lignes de texte.
+Elles sont créées à l'aide de la balise `<textarea>`, qui peut être configurée pour avoir une taille spécifique à l'aide des attributs `rows` et `cols`.
+
+<tabs.htmlTextArea />
+
+### Bouton d'envoi
+
+Le bouton d'envoi permet aux utilisateurs de valider et d'envoyer les données du formulaire au serveur. Une fois que le formulaire est soumis, les données sont envoyées à l'URL spécifiée dans l'attribut `action` de la balise `<form>`.
+
+Ce bouton est créé à l'aide de la balise `<button type="submit">` ou `<input type="submit">`.
+
+<tabs.htmlSubmitButton />
+
+## 🔄 Les types d'entrées pour les éléments du formulaire
+
+Les champs de texte (`<input type="text">`) sont les plus courants, mais il existe d'autres types qui offrent des fonctionnalités supplémentaires.
+
+Toujours dans la balise `<input>`, tu peux spécifier le type d'entrée à l'aide de l'attribut `type`.  
+Voici quelques types d'entrées courants :
+
+- `text` : Champ de texte standard.
+- `email` : Champ de texte pour les adresses e-mail.
+- `password` : Champ de texte masqué pour les mots de passe.
+- `number` : Champ de texte pour les nombres.
+- `date` : Champ de texte pour les dates.
+- `url` : Champ de texte pour les URL.
+- `tel` : Champ de texte pour les numéros de téléphone.
+- `color` : Sélecteur de couleur.
+- `file` : Champ de texte pour le téléchargement de fichiers.
+- `range` : Curseur pour sélectionner une valeur dans une plage.
+
+## 🔐 Validation des données dans un formulaire HTML
+
+La validation des données est essentielle pour garantir que les informations soumises par l'utilisateur sont correctes et complètes. HTML offre plusieurs méthodes de validation de données à l'aide d'attributs intégrés.
+
+### Attributs de validation courants
+
+- L'attribut `required` : Indique qu'un champ est obligatoire et doit être rempli avant la soumission du formulaire.
+- L'attribut `minlength` : Définit la longueur minimale requise pour un champ de texte.
+- L'attribut `maxlength` : Définit la longueur maximale autorisée pour un champ de texte.
+- L'attribut `pattern` : Définit une expression régulière _(RegEx)_ que le champ doit respecter.
+
+### Validation côté serveur
+
+Bien que la validation des données côté client soit pratique et rapide à mettre en place, elle n'est pas suffisante pour garantir la sécurité et l'intégrité des données. Il est toujours essentiel de valider les données côté serveur avant d'autoriser leur traitement ou leur stockage dans une base de données.
+
+## 📚 Conclusion
+
+Les formulaires HTML sont un élément essentiel du développement web, permettant aux utilisateurs d'interagir avec les pages et de soumettre des données.

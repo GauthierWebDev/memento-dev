@@ -1,0 +1,204 @@
+---
+title: Découverte des balises HTML courantes pour structurer une page web
+description: Parlons un peu de HTML, l'incontournable langage de balisage utilisé pour créer des pages web.
+tags: []
+---
+
+import Callout from "@/components/Callout";
+import tabs from "./tabs";
+
+Dans l'article précédent, nous avons exploré la balise `<head>` et son rôle important dans une page HTML.
+Maintenant, concentrons-nous sur les balises situées dans le corps de la page, c'est-à-dire dans la balise `<body>`.
+
+## 🏗️ La balise \<body\>
+
+La balise `<body>` est l'endroit où se trouve tout le contenu visible de la page... ou presque !  
+Elle contient tous les éléments que l'utilisateur peut voir et interagir avec, comme le texte, les images, les liens, etc.
+
+Voici un exemple de code HTML simple avec la balise `<body>` :
+
+<tabs.htmlBasicBody />
+
+On peut voir que la balise `<body>` contient plusieurs éléments :
+- `<h1>` : Un titre de premier niveau.
+- `<p>` : Un paragraphe de texte.
+- `<img>` : Une image.
+- `<a>` : Un lien hypertexte.
+
+Mais on y reviendra un peu après !
+
+## 📝 Balises de textes et mise en forme
+
+### 1. Titres et sous-titres
+
+Les titres et les sous-titres sont des éléments importants _(pour ne pas dire essentiels)_ pour structurer le contenu d'une page web.
+Le langage HTML fournit six niveaux de titres, du plus important au moins important :
+
+- `<h1>` : Titre de premier niveau _(le plus important)_.
+- `<h2>` : Titre de deuxième niveau.
+- `<h3>` : Titre de troisième niveau.
+- `<h4>` : Titre de quatrième niveau.
+- `<h5>` : Titre de cinquième niveau.
+- `<h6>` : Titre de sixième niveau _(le moins important)_.
+
+Il est important de prendre en compte plusieurs éléments lors de l'utilisation des titres :
+
+- **Accessibilité** : Les titres aident les lecteurs d'écran à comprendre la structure de la page.
+- **SEO** : Les moteurs de recherche utilisent les titres pour comprendre le contenu de la page.
+- **Lisibilité** : Les titres aident les utilisateurs à parcourir rapidement le contenu de la page.
+- **Sémantique** : Les titres donnent du sens au contenu et aident à organiser l'information.
+
+<Callout type="warning" title="Styles par défaut des titres et sous-titres">
+  La plupart du temps _(selon le navigateur)_, les titres sont affichés avec une taille de police plus grande que le texte normal.
+
+  Il est donc important de ne pas utiliser les balises de titres uniquement pour changer la taille du texte.  
+  Si ton titre est le titre principal de la page, utilise la balise `<h1>` et applique-lui un style CSS pour le personnaliser.
+</Callout>
+
+Il est recommandé d'utiliser une seule balise `<h1>` par page pour le titre principal.  
+Ni plus, ni moins !
+
+En revanche, tu peux utiliser plusieurs balises `<h2>`, `<h3>`, etc. pour les sous-titres.
+
+Les balises `<h2>` jusqu'à `<h6>` sont utilisées pour les sous-titres et les titres de sections.  
+Elles permettent de structurer le contenu de la page et de créer une hiérarchie d'information.
+
+<Callout type="warning" title="Hierarchie des titres">
+  Il est préférable d'utiliser une balise `<h2>` pour un sous-titre qui suit un `<h1>`, et de ne pas sauter directement à un `<h3>` ou `<h4>`.  
+  Cependant, tu peux totalement passer d'un `<h6>` à un `<h2>` si tu le souhaites et que ça a du sens pour toi !
+
+  Il est important de respecter cette hiérarchie pour que le contenu soit facilement compréhensible par les utilisateurs et les moteurs de recherche.
+</Callout>
+
+### 2. Paragraphes de texte
+
+En reprenant l'exemple précédent, on peut voir que la balise `<p>` est utilisée pour définir un paragraphe de texte.
+
+Il s'agit d'une des balises les plus courantes en HTML et elle est utilisée pour structurer le texte sur la page en sections distinctes et lisibiles.
+
+### 3. Mise en forme du texte
+
+Il existe plusieurs balises HTML qui permettent de mettre en forme le texte, comme :
+- `<strong>`
+  - Indique un texte comme étant important _(sémantique)_.
+  - Par défaut _(selon le navigateur)_, le texte est affiché en gras.
+- `<em>`
+  - Indique un texte comme étant mis en emphase _(sémantique)_.
+  - Par défaut _(selon le navigateur)_, le texte est affiché en italique.
+- `<u>`
+  - Indique un texte comme étant souligné _(non sémantique)_.
+  - Par défaut _(selon le navigateur)_, le texte est affiché avec un soulignement.
+- `<b>`
+  - Indique un texte comme étant en gras _(non sémantique)_.
+  - Par défaut _(selon le navigateur)_, le texte est affiché en gras.
+- `<i>`
+  - Indique un texte comme étant en italique _(non sémantique)_.
+  - Par défaut _(selon le navigateur)_, le texte est affiché en italique.
+
+<Callout type="question" title="Quelles sont les différences entre les balises `<strong>` et `<b>` ?">
+  La balise `<strong>` est utilisée pour indiquer que le texte est important, tandis que la balise `<b>` est utilisée pour appliquer un style de gras sans signification sémantique.
+
+  Il en est de même pour les balises `<em>` et `<i>` avec un style italique.
+
+  Bien entendu, niveau style on va chercher à privilégier le CSS pour appliquer des styles de mise en forme plutôt que d'utiliser les balises HTML.
+</Callout>
+
+## 🔗 Liens vers des ressources externes
+
+### 4. Liens hypertextes
+
+Un lien hypertexte est un élément cliquable qui permet de naviguer vers une autre page web ou une autre section de la même page.  
+Il est créé à l'aide de la balise `<a>` _(pour "anchor")_ et peut contenir du texte, des images ou d'autres éléments.
+
+Il est construit avec l'attribut `href` qui spécifie l'URL de la page vers laquelle le lien doit pointer.
+
+Dans l'exemple ci-dessous, on peut voir un lien vers la page d'accueil du Memento ainsi qu'un lien vers une section :
+
+<tabs.htmlBasicAnchor />
+
+## 🖼️ Images et médias
+
+### 5. Images
+
+L'ajout d'une image à une page web est un élément essentiel pour rendre le contenu plus attrayant et informatif.  
+Il est créé à l'aide de la balise `<img>`.
+
+Cette balise est construite avec l'attribut `src` qui spécifie l'URL de l'image à afficher.  
+Mais il est également important d'utiliser l'attribut `alt` pour fournir une description de l'image, ce qui est utile pour l'accessibilité et le référencement.
+
+## 📋 Listes et tableaux
+
+### 6. Listes
+
+Les balises `<ul>` et `<ol>` sont utilisées pour créer des listes non ordonnées et ordonnées, respectivement.
+
+- `<ul>` : Crée une liste non ordonnée _(avec des puces)_.
+- `<ol>` : Crée une liste ordonnée _(avec des numéros)_.
+
+On utilise la balise `<li>` pour définir chaque élément de la liste.
+
+<tabs.htmlBasicList />
+
+### 7. Tableaux
+
+Les tableaux sont utilisés pour organiser des données sous forme de lignes et de colonnes.  
+Il existe deux catégories de balises pour les tableaux :
+
+- **Structure essentielle**
+  - `<table>` : Définit le tableau.
+  - `<tr>` : Définit une ligne du tableau.
+  - `<td>` : Définit une cellule de données dans une ligne.
+  - `<th>` : Définit une cellule d'en-tête dans une ligne.
+- **Structure optionnelle**
+  - `<thead>` : Définit l'en-tête du tableau.
+  - `<tbody>` : Définit le corps du tableau.
+  - `<tfoot>` : Définit le pied de page du tableau.
+
+<tabs.htmlBasicTable />
+
+## 📦 Divisions sémantiques
+
+Les balises `<header>` _(à ne pas confondre avec la balise `<head>`)_, `<main>`, `<section>`, `<article>`, `<aside>` et `<footer>` fournissent un contexte sémantique pour différents types de contenu sur une page web.
+
+Elles sont utilisées pour améliorer l'accessibilité, le référencement et la compréhension du contenu par les
+navigateurs et les moteurs de recherche.
+
+### 8. En-tête de page et de section
+
+La balise `<header>` est utilisée pour définir l'en-tête d'une page ou d'une section.  
+
+### 9. Contenu principal
+
+La balise `<main>` est utilisée pour définir le contenu principal de la page.  
+Elle ne peut être utilisée qu'une seule fois par page et doit contenir le contenu principal de la page, en excluant l'en-tête, le pied de page et les barres latérales.
+
+### 10. Sections
+
+La balise `<section>` regroupe un contenu thématique ou une sous-section de la page.  
+Elle est généralement utilisée pour diviser le contenu en sections logiques.
+
+### 11. Articles
+
+La balise `<article>` représente un contenu autonome, comme un article de blog ou une publication.  
+
+### 12. Contenu complémentaire
+
+La balise `<aside>` est utilisée pour définir un contenu complémentaire ou secondaire, comme une barre latérale ou une citation.
+
+### 13. Pied de page et de section
+
+La balise `<footer>` est utilisée pour définir le pied de page d'une page ou d'une section.
+
+### 14. Conteneurs génériques
+
+La balise `<div>` est un conteneur générique utilisé pour regrouper des éléments sans signification sémantique.  
+Il s'agit d'une balise des plus courantes en HTML, mais qui est souvent utilisée à tort.
+
+On préférera l'utiliser pour regrouper des éléments qui n'ont pas de signification sémantique ou lorsque l'on souhaite appliquer un style CSS à un groupe d'éléments.  
+Autrement, on utilisera les balises sémantiques appropriées pour donner du sens au contenu !
+
+## 📚 Conclusion
+
+Cet article a présenté quelques-unes des balises HTML les plus courantes utilisées pour structurer le contenu d'une page web.
+
+Bien évidemment il en existe beaucoup d'autres, mais celles-ci sont les plus utilisées et les plus importantes pour créer une page web fonctionnelle et accessible.

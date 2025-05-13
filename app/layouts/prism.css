@@ -8,7 +8,7 @@
 .dark .token.rule,
 .dark .token.pseudo-class,
 .dark .token.important {
-  color: #CB5FDE;
+  color: #cb5fde;
 }
 
 .dark .token.comment,
@@ -25,16 +25,16 @@
 .dark .token.attr-value,
 .dark .token.class,
 .dark .token.string {
-  color: #89CA6C;
+  color: #89ca6c;
 }
 
 .dark .token.property,
 .dark .token.tag {
-  color: #E3596F;
+  color: #e3596f;
 }
 
 .dark .token.function-variable {
-  color: #61AFEF;
+  color: #61afef;
 }
 
 /** Light mode */
@@ -42,13 +42,13 @@
 .token.attr-value,
 .token.class,
 .token.string {
-  color: #50A14F;
+  color: #50a14f;
 }
 
 .token.function-variable,
 .token.generic-function,
 .token.function {
-  color: #4078F2;
+  color: #4078f2;
 }
 
 .token.module,
@@ -56,28 +56,29 @@
 .token.rule,
 .token.pseudo-class,
 .token.important {
-  color: #A626A4;
+  color: #a626a4;
 }
 
 .token.property,
 .token.tag,
 .token.constant {
-  color: #E55649;
+  color: #e55649;
 }
 
 .token.generic,
 .token.attr-name,
+.token.entity,
 .token.boolean,
 .token.number,
 .token.class-name {
-  color: #C18401;
+  color: #c18401;
 }
 
 .token.comment,
 .token.combinator {
-  color: #A0A1A7;
+  color: #a0a1a7;
 }
 .token.operator,
 .token.builtin {
-  color: #0184BC;
+  color: #0184bc;
 }

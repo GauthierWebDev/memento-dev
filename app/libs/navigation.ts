@@ -105,6 +105,22 @@ export const navigation: NavigationSection[] = [
 		position: "auto",
 		links: [
 			{
+				title: "Introduction",
+				href: "/docs/frontend",
+				subitems: [],
+			},
+			{
+				title: "HTML",
+				href: "/docs/html",
+				subitems: [
+					{ title: "Introduction", href: "/docs/html" },
+					{ title: "Balise <head>", href: "/docs/html/balise-head" },
+					{ title: "Balises de base", href: "/docs/html/balises-de-base" },
+					{ title: "Attributs", href: "/docs/html/attributs" },
+					{ title: "Formulaires", href: "/docs/html/formulaires" },
+				],
+			},
+			{
 				title: "React",
 				href: "/docs/react",
 				subitems: [

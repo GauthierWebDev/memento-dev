@@ -1,0 +1,83 @@
+---
+title: Comprendre la fonctionnalité et l'importance de la balise <head> dans une page HTML
+description: Comprendre comme la balise <head> contribue à la structure et au fonctionnement d'une page web.
+tags: []
+---
+
+import Callout from "@/components/Callout";
+import tabs from "./tabs";
+
+Dans l'introduction au HTML, nous avons exploré la structure générale d'une page HTML. Nous avons vu que le contenu visible d'une page est défini dans la balise `<body>`,
+mais savais-tu que ce n'est pas la seule balise qui joue un rôle essentiel dans la création d'une page web ?
+
+Il existe également une balise qui est tout aussi importante, mais qui est souvent négligée : la **balise `<head>`**.  
+
+## 🎓 Aperçu de la balise \<head\>
+
+La balise `<head>` est située entre les balises `<html>` et `<body>`. Elle ne contient pas de contenu directement visible sur la page, mais
+elle fournit des métadonnées importantes et inclut des liens vers des ressources externes, comme des fichiers CSS et JavaScript.
+
+<tabs.htmlBasicHead />
+
+## 🔎 Les métadonnées
+
+Certaines balises situées dans la balise `<head>` fournissent des informations essentielles au navigateur, aux moteurs de recherche et à d'autres applications.
+Ces informations sont appelées **métadonnées**.
+
+Voici un aperçu de certains éléments courants que tu peux y trouver :
+
+- **Titre** `<title>`
+  - Définit le titre de la page, affiché dans l'onglet du navigateur.
+  - Il est important pour le référencement et l'expérience utilisateur.
+- **Encodage des caractères** `<meta charset="UTF-8">`
+  - Définit l'encodage de caractères utilisé dans le document.
+  - UTF-8 est couramment utilisé en raison de sa prise en charge des langues et caractères spéciaux.
+- **Viewport** `<meta name="viewport" content="width=device-width, initial-scale=1.0">`
+  - Configure la vue du navigateur pour les appareils mobiles.
+  - Permet de garantir que le site web est adapté à un affichage adaptatif _(responsive)_.
+- **Description** `<meta name="description" content="...">`
+  - Fournit une brève description de la page.
+  - Utilisée par les moteurs de recherche pour afficher un extrait dans les résultats de recherche.
+- **Mots-clés** `<meta name="keywords" content="...">`
+  - Liste de mots-clés pertinents pour la page.
+
+<Callout type="note" title='Balise `<meta name="keywords">`'>
+  Cette balise est encore souvent utilisée, mais son importance est que très légère dans le référencement moderne.
+  
+  À titre d'information : [Google ne l'utilise pas](https://developers.google.com/search/blog/2009/09/google-does-not-use-keywords-meta-tag?hl=fr).
+</Callout>
+
+## 🎨 Styles et scripts
+
+La balise `<head>` permet également d'inclure des ressources externes telles que des feuilles de style _(CSS)_ et des scripts _(JavaScript)_.
+Ces ressources permettent de styliser la page et d'ajouter des fonctionnalités interactives.
+
+<tabs.htmlStylesAndScripts />
+
+Dans cet exemple, une feuille de style externe appelée `styles.css` est liée au document HTML à l'aide de la balise `<link>`.
+De même, un script JavaScript externe appelé `app.js` est inclus à l'aide de la balise `<script>`.
+
+Ces fichiers sont chargés lorsque la page est ouverte, ce qui permet d'appliquer des styles et d'ajouter des fonctionnalités à la page.
+
+<Callout type="warning" title="Inclusion des fichiers JavaScript dans la balise `<head>`">
+  Il est recommandé d'inclure les fichiers JavaScript à la fin de la balise `<body>` pour améliorer les performances de chargement de la page.
+  
+  En effet, cela permet au navigateur de charger le contenu visible avant d'exécuter les scripts, ce qui améliore l'expérience utilisateur.
+</Callout>
+
+## 🌐 Le référencement
+
+Tu l'auras remarqué, j'ai parlé de référencement à plusieurs reprises dans cet article. Mais alors, qu'est-ce que c'est ?
+
+Le **référencement** _(ou SEO pour Search Engine Optimization)_ est l'ensemble des techniques visant à
+améliorer la visibilité d'un site web dans les résultats des moteurs de recherche.
+
+Il est essentiel de bien structurer la balise `<head>` pour optimiser le référencement de ta page.  
+Les moteurs se basent sur les informations fournies dans cette balise pour indexer et classer les pages web.
+
+Mais bien entendu, le référencement ne se limite pas à la balise `<head>` ! 😉
+
+## 📚 Conclusion
+
+La balise `<head>` est un élément essentiel de toute page HTML. Elle fournit des informations essentielles pour la structure
+d'une page HTML, y compris le titre, les métadonnées et les liens vers des ressources externes.
