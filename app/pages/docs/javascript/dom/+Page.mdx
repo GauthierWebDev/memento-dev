@@ -1,0 +1,119 @@
+---
+title: La manipulation du DOM avec JavaScript
+description: Découvrez comment maîtriser le DOM en JavaScript et donnez vie à vos pages web !
+tags: []
+---
+
+import QuickLinks from "@/components/QuickLinks";
+import Callout from "@/components/Callout";
+import tabs from "./tabs";
+
+Maintenant que nous avons vu les grandes lignes du langage JavaScript, tu vas enfin pouvoir entrer dans le vif du sujet : la **manipulation du DOM** avec JavaScript.
+
+## 🤔 Qu'est-ce que le DOM ?
+
+Le **Document Object Model** _(ou **DOM** en anglais)_ est une interface de programmation pour les documents HTML et XML. Il permet de représenter la page web comme un arbre de **nœuds**.
+
+Chaque élément HTML est un nœud dans l'arbre, et les nœuds peuvent contenir d'autres nœuds.  
+Mais un nœud peut aussi être un **texte** ou une **propriété** d'un élément !
+
+Pour que ce soit plus facile à comprendre, voici quelques analogies pour t'aider à comprendre ce qu'est le DOM.
+
+<tabs.jsDomExplanations />
+
+## 🤖 Manipulation du DOM
+
+La manipulation du DOM avec JavaScript permet de modifier la structure et le contenu de la page web.  
+Le grand avantage du DOM est qu'il est **très rapide** à manipuler, et que c'est **très simple** à comprendre.
+
+Mais pour le manipuler, il faut d'abord **sélectionner** les éléments que l'on veut modifier.
+
+### 🔍 Sélectionner un élément
+
+Pour sélectionner un élément, on peut utiliser plusieurs méthodes :
+
+- `document.getElementById(id)` : Sélectionne un élément par son `id` _(propriété HTML `id`)_.
+- `document.getElementsByClassName(className)` : Sélectionne tous les éléments par leur `className` _(propriété HTML `class`)_.
+- `document.getElementsByTagName(tagName)` : Sélectionne tous les éléments par leur `tagName` _(balise HTML)_.
+- `document.querySelector(selector)` : Sélectionne le premier élément qui correspond au `selector` _(sélecteur CSS)_.
+- `document.querySelectorAll(selector)` : Sélectionne tous les éléments qui correspondent au `selector` _(sélecteur CSS)_.
+
+Voici quelques exemples commentés pour visualiser ces méthodes :
+
+<tabs.jsDomSelectionExplanations />
+
+Selon la méthode utilisée, on peut récupérer un élément ou une liste d'éléments.  
+Pour mémoriser ces méthodes, fais attention à la présence du pluriel dans le nom de la méthode :
+
+- `getElementById` _(singulier)_ : Retourne un élément.
+- `getElementsByClassName` _(pluriel)_ : Retourne une liste d'éléments.
+- `getElementsByTagName` _(pluriel)_ : Retourne une liste d'éléments.
+- `querySelector` _(singulier)_ : Retourne un élément.
+- `querySelectorAll` _(pluriel)_ : Retourne une liste d'éléments.
+
+<Callout type="note" title="Aucun élément trouvé">
+  Si aucun élément n'est trouvé, la méthode retourne `null`.  
+
+  Cependant, si on utilise une méthode qui retourne une liste d'éléments, la liste ne sera pas `null`, mais **vide**.
+</Callout>
+
+### ✏️ Modifier le contenu d'un élément
+
+Pour modifier le contenu d'un élément, on retrouve trois propriétés :
+
+- `element.innerHTML` : Modifie le contenu HTML de l'élément.
+- `element.innerText` : Modifie le contenu texte de l'élément.
+- `element.textContent` : Modifie le contenu texte de l'élément.
+
+Voici quelques exemples commentés pour visualiser ces propriétés :
+
+<tabs.jsDomContentModificationExplanations />
+
+<Callout type="question" title="Je ne comprends pas la différence entre innerText et textContent">
+  Si ça te rassure, c'est normal ! Ces deux propriétés sont très similaires, mais n'ont pas les mêmes comportements.
+
+  - `innerText` : Modifie le contenu texte de l'élément, et ignore les balises HTML.
+  - `textContent` : Modifie le contenu texte de l'élément, et prend en compte les balises HTML.
+</Callout>
+
+<Callout type="warning" title="Attention à innerHTML">
+  La propriété `innerHTML` est très puissante, mais elle peut également être dangereuse.
+
+  En l'utilisant, on expose la page à des attaques de type **XSS** _(Cross-Site Scripting)_ !  
+  Il est donc **fortement conseillé** d'utiliser `textContent` ou `innerText` plutôt que `innerHTML`.
+
+  Dans le cas où l'on doit utiliser `innerHTML`, il est **fortement conseillé** de **sanitiser** le contenu avant de l'afficher.
+</Callout>
+  
+Je ne vais pas rentrer dans les détails ici, mais tu peux en savoir plus sur ces deux propriétés dans la documentation de MDN :
+
+<QuickLinks>
+  <QuickLinks.QuickLink
+    title="MDN - innerText"
+    href="https://developer.mozilla.org/fr/docs/Web/API/HTMLElement/innerText"
+    description="Documentation de MDN sur la propriété innerText"
+    icon="presets"
+  />
+  <QuickLinks.QuickLink
+    title="MDN - textContent"
+    href="https://developer.mozilla.org/fr/docs/Web/API/Node/textContent"
+    description="Documentation de MDN sur la propriété textContent"
+    icon="presets"
+  />
+  <QuickLinks.QuickLink
+    title="MDN - innerHTML"
+    href="https://developer.mozilla.org/fr/docs/Web/API/Element/innerHTML"
+    description="Documentation de MDN sur la propriété innerHTML"
+    icon="presets"
+  />
+  <QuickLinks.QuickLink
+    title="MDN - Cross-Site Scripting"
+    href="https://developer.mozilla.org/fr/docs/Glossary/Cross-site_scripting"
+    description="Documentation de MDN sur le Cross-Site Scripting"
+    icon="presets"
+  />
+</QuickLinks>
+
+### 🔧 Modifier les attributs d'un élément
+
+Pour modifier les attributs d'un élément, on peut utiliser la propriété `element.setAttribute(attribute, value)`.
