@@ -54,12 +54,12 @@ export function HeroSection() {
 							</p>
 
 							<p class="mt-3 text-2xl tracking-tight text-slate-400">
-								Découvrez des ressources essentielles pour améliorer tes
+								Découvre des ressources essentielles pour améliorer tes
 								compétences en développement.
 							</p>
 
 							<div class="mt-8 flex gap-4 md:justify-center lg:justify-start">
-								<Button href="/docs">Accédez aux ressources</Button>
+								<Button href="/docs">Accéder aux ressources</Button>
 								<Button
 									href="https://github.com/GauthierWebDev/memento-dev"
 									variant="secondary"
