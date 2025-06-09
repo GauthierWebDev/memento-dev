@@ -105,11 +105,6 @@ export const navigation: NavigationSection[] = [
 		position: "auto",
 		links: [
 			{
-				title: "Introduction",
-				href: "/docs/frontend",
-				subitems: [],
-			},
-			{
 				title: "HTML",
 				href: "/docs/html",
 				subitems: [
@@ -118,6 +113,24 @@ export const navigation: NavigationSection[] = [
 					{ title: "Balises de base", href: "/docs/html/balises-de-base" },
 					{ title: "Attributs", href: "/docs/html/attributs" },
 					{ title: "Formulaires", href: "/docs/html/formulaires" },
+				],
+			},
+			{
+				title: "JavaScript",
+				href: "/docs/javascript",
+				subitems: [
+					{ title: "Introduction", href: "/docs/javascript" },
+					{ title: "Syntaxe", href: "/docs/javascript/syntaxe" },
+					{ title: "Instructions", href: "/docs/javascript/instructions" },
+					{ title: "Types de données", href: "/docs/javascript/types" },
+					{
+						title: "Fonctions et portée",
+						href: "/docs/javascript/fonctions-et-portee",
+					},
+					// {
+					// 	title: "Le DOM",
+					// 	href: "/docs/javascript/dom",
+					// },
 				],
 			},
 			{

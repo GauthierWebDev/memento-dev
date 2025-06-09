@@ -36,6 +36,7 @@ export default defineConfig({
 				"nginx",
 				"sql",
 				"json",
+				"php",
 			],
 		}),
 		vike(),

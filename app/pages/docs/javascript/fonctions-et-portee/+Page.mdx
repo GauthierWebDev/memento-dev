@@ -1,0 +1,157 @@
+---
+title: Les fonctions et la portée
+description: Découvrons ensemble les fonctions et la portée en JavaScript
+tags: []
+---
+
+import Callout from "@/components/Callout";
+import tabs from "./tabs";
+
+Il est maintenant temps de s'attaquer à du sérieux, j'ai nommé : les **fonctions** et la **portée** en JavaScript.
+
+## Les fonctions
+
+Les fonctions sont des blocs de code réutilisables qui effectuent une tâche spécifique. Elles permettent d'organiser le code, de le rendre plus lisible et de réduire la duplication.
+Elles peuvent prendre des **paramètres en entrée** et **retourner une valeur en sortie**.
+
+On l'avait déjà vu dans l'article sur la syntaxe, mais il est important de le rappeler :
+
+- **Fonction déclarée** : Utilise le mot-clé `function` suivi du nom de la fonction.
+- **Fonction anonyme** : N'a pas de nom et est généralement utilisée comme argument pour une autre fonction.
+- **Fonction fléchée** : Une syntaxe plus concise pour déclarer des fonctions.
+
+<tabs.jsFunctions />
+
+Si tu relis les premiers mots de cette section _(sur les fonctions)_, tu remarqueras que j'ai dit que les fonctions sont des blocs de code **réutilisables** qui effectuent une **tâche spécifique**.
+
+C'est un peu vague, non ?
+Disons qu'on comprend l'idée générale, mais qu'est-ce que ça veut dire au juste ?
+
+### Utilisation des fonctions
+
+Prenons un exemple simple, avec une fonction qui vérifie si un nombre est pair ou impair.
+
+<tabs.jsIsEven />
+
+Dans cet exemple, nous avons une fonction `isEven` qui prend un nombre en **paramètre** et retourne `true` si le nombre est pair, sinon elle retourne `false`.
+
+On peut ensuite appeler cette fonction avec différents nombres pour vérifier s'ils sont pairs ou impairs.
+
+<tabs.jsCallIsEven />
+
+Dans cet exemple, nous avons appelé la fonction `isEven` avec les nombres 4 et 5 en tant qu'**arguments**.
+
+<Callout type="note" title="Paramètres et arguments">
+  Les **paramètres** sont les variables déclarées dans la définition de la fonction.  
+  Les **arguments** sont les valeurs passées à la fonction lors de son appel.
+</Callout>
+
+## La portée
+
+La portée _(ou **scope** en anglais)_ fait référence à la visibilité des variables et des fonctions dans le code.
+
+Elle détermine où une variable ou une fonction peut être utilisée dans le code.  
+Il existe trois types de portée en JavaScript :
+
+- **Portée globale** _(global scope)_ : La variable est accessible partout dans le code.
+- **Portée de bloc** _(block scope)_ : La variable est accessible uniquement à l'intérieur du bloc où elle a été déclarée.
+- **Portée de fonction** _(function scope)_ : La variable est accessible uniquement à l'intérieur de la fonction où elle a été déclarée.
+
+<Callout type="note" title="Portée de bloc">
+  La portée de bloc est introduite avec les mots-clés `let` et `const`.  
+  Les variables déclarées avec `var` ont une portée fonctionnelle ou globale.
+</Callout>
+
+### Portée globale (global scope)
+
+La portée globale est la portée la plus large.  
+Les variables déclarées en dehors de toute fonction ou bloc de code ont une portée globale.
+
+Une portée globale signifie que la variable est accessible partout dans le code.
+
+<Callout type="warning" title="Déclaration de variable globale">
+  Attention à **ne pas déclarer** de variables globales, sauf si c'est intentionnel et nécessaire !
+
+  Les variables globales peuvent entraîner des conflits de variables/fonctions _(remplacement)_ des variables existantes, notamment des variables de l'objet `window` dans le navigateur.
+</Callout>
+
+### Portée de bloc (block scope)
+
+La portée de bloc est une portée qui est limitée au bloc de code dans lequel la variable a été déclarée.
+
+Seules les variables déclarées avec `let` et `const` peuvent avoir une portée de bloc.
+
+<Callout type="question" title="Limité au bloc de code ?">
+  Par "bloc de code", on parle de tout ce qui est entre accolades `{}` !  
+  Ça peut être une fonction, une boucle, une condition, etc.
+</Callout>
+
+<tabs.jsBlockScope />
+
+Dans cet exemple, nous avons :
+
+- Une déclaration d'une variable `x` en dehors d'un bloc de code
+- Une déclaration d'une variable `x` à l'intérieur d'un bloc de code _(condition)_
+
+Maintenant, regardons ce qui se passe selon le mot-clé utilisé pour déclarer la variable `x` :
+
+<tabs.jsBlockScopeExplanations />
+
+On remarque que si on utilise `let` ou `const`, la variable `x` déclarée à l'intérieur du bloc de code n'est pas "la même" que celle déclarée à l'extérieur.  
+Elle est **locale** au bloc de code, et donc inaccessible en dehors de celui-ci.
+
+En revanche, si on utilise `var`, la variable `x` déclarée à l'intérieur du bloc de code est **globale** et écrase la variable `x` déclarée à l'extérieur.
+
+<Callout type="warning" title="Utilisation de var">
+  Rien que pour ça, il est préférable d'éviter d'utiliser `var` et de lui préférer `let` ou `const`.
+</Callout>
+
+### Portée de fonction (function scope)
+
+Pour la portée de fonction, on parle de la portée des variables déclarées à l'intérieur d'une fonction.
+
+Les trois mots-clés `var`, `let` et `const` peuvent être utilisés pour déclarer des variables avec une portée de fonction.
+
+<tabs.jsFunctionScope />
+
+Le fonctionnement est le même que pour la portée de bloc, avec cette fois-ci une portée limitée à la fonction _(y compris pour les variables déclarées avec `var`)_.
+
+## Particularités de var
+
+On a vu que `var` n'a pas la possibilité de déclarer des variables avec une portée de bloc, contrairement à `let` et `const`.
+
+Mais il y a une autre particularité à prendre en compte :
+- Les variables déclarées avec `var` sont **hoistées**.  
+  Ça signifie que la déclaration de la variable est déplacée en haut de la portée dans laquelle elle a été déclarée.
+- Les variables déclarées avec `let` et `const` ne sont pas hoistées.
+
+<Callout type="warning" title="Hoisting">
+  Le hoisting peut entraîner des comportements inattendus si on essaie d'accéder à une variable avant sa déclaration.
+
+  Il est donc préférable de toujours déclarer les variables au début de leur portée.
+</Callout>
+
+Petit exemple pour illustrer ça :
+
+<tabs.jsHoisting />
+
+Dans cet exemple, on voit que la variable `x` est déclarée après son utilisation.  
+Cependant, grâce _(ou à cause, je te laisse choisir !)_ au hoisting, la déclaration de la variable `x` est déplacée en haut de la portée, ce qui permet d'accéder à sa valeur avant sa déclaration.
+
+On peut donc dire que la variable `x` est **undefined** avant sa déclaration, mais elle existe déjà.
+On peut donc l'utiliser avant sa déclaration _(enfin, on aura `undefined` comme valeur)_.
+
+C'est un peu déroutant, non ?
+
+<Callout type="warning" title="Utilisation de var">
+  Promis, c'est la dernière fois que je te dis de ne pas utiliser `var` !
+
+  Mais tu l'auras compris, `var` est vraiment très spécial et peut très vite devenir une source de bugs.
+</Callout>
+
+## Conclusion
+
+Voilà, c'est "tout" pour cet article sur les fonctions et la portée en JavaScript !  
+Comme les articles précédents, ça fait beaucoup d'informations.
+
+Encore une fois, prends le temps d'expérimenter et de jouer avec les notions abordées dans cet article avant de passer à la suite !

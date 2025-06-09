@@ -39,8 +39,6 @@ export default function Tabs(props: {
 	const [tabs, setTabs] = createSignal<TabType[]>([]);
 
 	const addTab = (tab: TabType) => {
-		console.log("Adding tab", tab);
-
 		setTabs((prevTabs) => {
 			// Append to the end of the array and make sure it's unique
 			if (prevTabs.some((t) => t.value === tab.value)) {
@@ -113,7 +111,6 @@ Tabs.Item = (props: {
 	}
 
 	onMount(() => {
-		console.log("Mounting tab", props.label);
 		tabsContext.addTab({ label: props.label, value: props.value });
 	});
 

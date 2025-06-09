@@ -1,0 +1,198 @@
+---
+title: La syntaxe de base de JavaScript
+description: Découvrons ensemble la syntaxe de base de JavaScript et comment il fonctionne dans le navigateur.
+tags: []
+---
+
+import Callout from "@/components/Callout";
+import tabs from "./tabs";
+
+Pour cet article, nous allons explorer les fondements de la syntaxe de base du langage JavaScript.
+
+Mais déjà, faisons un rappel sur ce qu'est la syntaxe !
+
+## Qu'est-ce que la syntaxe ?
+
+La syntaxe d'un langage de programmation vient définir les règles et les conventions à suivre lors de l'écriture du code. Elle permet de structurer le code de manière cohérente et facilement compréhensible pour les développeurs et les machines.
+
+La syntaxe de JavaScript est inspirée de plusieurs langages, notamment **Java**, **C** et **Python**.  
+Elle est conçue pour être simple et intuitive, ce qui en fait un excellent choix pour les débutants.
+
+## Structure du code JavaScript
+
+La structure de base d'un programme JavaScript est assez simple.  
+Un programme JavaScript est généralement constitué de plusieurs éléments, notamment :
+
+- **Instructions** : Les lignes de code qui effectuent des actions.
+- **Commentaires** : Utilisés pour ajouter des notes explicatives dans le code.
+- **Variables** : Utilisées pour stocker des données.
+- **Fonctions** : Utilisées pour encapsuler des blocs de code réutilisables.
+
+## Instructions
+
+Les instructions sont les lignes de code qui effectuent des actions.  
+Il peut s'agir d'opérations mathématiques, de manipulations de chaînes de caractères, d'appels de fonctions, etc.
+
+Bien que ça ne soit pas obligatoire en JavaScript, une instruction se termine généralement par un **point-virgule** _(`;`)_.
+
+<tabs.jsInstructions />
+
+Parmis les instructions, on trouve :
+
+- **Déclaration de variable** : Utilisée pour déclarer une variable.
+- **Affectation** : Utilisée pour assigner une valeur à une variable.
+- **Appel de fonction/méthode** : Utilisée pour appeler une fonction ou une méthode.
+- **Opérations mathématiques** : Utilisées pour effectuer des calculs.
+- **Manipulation de chaînes de caractères** : Utilisée pour manipuler des chaînes de caractères.
+- **Conditions** : Utilisées pour exécuter du code en fonction de certaines conditions.
+- **Boucles** : Utilisées pour exécuter du code plusieurs fois.
+- **Retour de valeur** : Utilisée pour retourner une valeur d'une fonction.
+
+Mais on se garde tout ça pour plus tard 😉.
+
+## Commentaires
+
+Les commentaires sont des sections de code qui ne sont pas exécutées. Elles sont utilisées pour ajouter des notes ou des explications sur le code.
+
+Il existe trois types de commentaires en JavaScript :
+
+- **Commentaire sur une seule ligne** : Utilise `//` pour commenter une seule ligne.
+- **Commentaire sur plusieurs lignes** : Utilise `/* ... */` pour commenter plusieurs lignes.
+- **Commentaire de documentation** : Utilise `/** ... */` pour documenter des fonctions ou des classes.
+
+<tabs.jsComments />
+
+<Callout type="note" title="Commentaire de documentation">
+  Le commentaire de documentation est souvent utilisé pour générer automatiquement la documentation du code.  
+  Il est généralement utilisé avec des outils comme JSDoc.
+
+  Il permet de décrire les paramètres, le type de retour et d'autres informations utiles sur la fonction ou la classe.
+</Callout>
+
+## Variables
+
+Les variables sont utilisées pour stocker des valeurs qui peuvent être modifiées au cours de l'exécution du programme.  
+En JavaScript, les variables doivent être déclarées avant d'être utilisées.
+
+Il existe trois façons de déclarer une variable :
+
+- `var` : Utilisé pour déclarer une variable globale ou locale.
+- `let` : Utilisé pour déclarer une variable locale avec une portée de bloc.
+- `const` : Utilisé pour déclarer une variable constante dont la valeur ne peut pas être modifiée.
+
+On reparlera de cette histoire de portée dans un prochain article, mais pour l'instant, voici un exemple de déclaration de variable :
+
+<tabs.jsVariables />
+
+Dans cet exemple, nous avons déclaré trois variables : `nom`, `age` et `ville`.
+
+### Variable avec var
+
+La déclaration de variable avec `var` est la plus ancienne, mais elle est moins recommandée aujourd'hui en raison de son comportement particulier.
+
+La valeur d'une variable déclarée avec `var` peut être modifiée à tout moment.
+
+<Callout type="warning" title="Utilisation de var">
+  `var` est une déclaration de variable qui a une portée fonctionnelle ou globale.  
+  On verra dans un prochain article de quoi il s'agit.
+</Callout>
+
+### Variable avec let
+
+La déclaration de variable avec `let` est plus moderne et est recommandée pour la plupart des cas.  
+Elle permet de déclarer une variable avec une portée de bloc _(block scope)_.
+
+La valeur d'une variable déclarée avec `let` peut être modifiée.
+
+### Variable avec const
+
+La déclaration de variable avec `const` est similaire à `let`, mais elle est utilisée pour déclarer une variable constante.  
+Elle profite du même concept de portée de bloc.
+
+La valeur d'une variable déclarée avec `const` ne peut pas être modifiée après sa déclaration.
+
+## Fonctions
+
+Les fonctions sont des blocs de code réutilisables qui effectuent une tâche spécifique.  
+Elles peuvent prendre des **paramètres en entrée** et **retourner une valeur en sortie**.
+
+En JavaScript, une fonction peut être déclarée de plusieurs manières :
+
+- **Fonction déclarée** : Utilise le mot-clé `function` suivi du nom de la fonction.
+- **Fonction anonyme** : N'a pas de nom et est généralement utilisée comme argument pour une autre fonction.
+- **Fonction fléchée** : Une syntaxe plus concise pour déclarer des fonctions.
+
+<tabs.jsFunctions />
+
+### Fonction déclarée
+
+La déclaration de fonction est la méthode la plus simple à utiliser.  
+Elle est déclarée avec le mot-clé `function` suivi du nom de la fonction et des parenthèses.
+
+### Fonction anonyme
+
+Dans certains cas, il peut être utile de déclarer une fonction sans lui donner de nom.  
+C'est ce qu'on appelle une fonction anonyme.
+
+Elle est souvent utilisée comme argument pour une autre fonction ou pour créer des fonctions de rappel _(callback functions)_.
+
+### Fonction fléchée
+
+La fonction fléchée est une syntaxe plus concise et moderne pour déclarer des fonctions.  
+Elle a un comportement particulier dans le contexte de retour de valeur, avec une syntaxe raccourcie pour les fonctions à une seule ligne.
+
+<Callout type="question" title="Comment fonctionne le retour de valeur des fonctions fléchées ?">
+  Dans une fonction déclarée, on utilise le mot-clé `return` pour retourner une valeur.  
+  Le fonctionnement est identique pour les fonctions fléchées, mais il est possible de profiter d'une syntaxe raccourcie !
+
+  Dans le cas d'une fonction fléchée à une seule ligne, il n'est pas nécessaire d'utiliser le mot-clé `return`.
+
+  C'est d'ailleurs ce qui est fait dans l'exemple donné plus tôt, avec un retour implicite de `a + b`.
+</Callout>
+
+## Bonnes pratiques
+
+### Conventions de nommage
+
+Il est important de suivre certaines conventions pour rendre le code plus lisible et maintenable.
+Voici quelques-unes des conventions les plus courantes :
+
+- Utiliser des noms de variables et de fonctions significatifs.
+- Indenter le code pour améliorer la lisibilité.
+- Utiliser des commentaires pour expliquer le code complexe.
+- Placer un `;` _(point virgule)_ à la fin de chaque instruction.
+
+<Callout type="warning" title="Attention aux commentaires !">
+  Écrire des commentaires : c'est bien ✅.  
+  Écrire trop de commentaires : **c'est pas bien** ❌.
+
+  L'intérêt des commentaires est d'expliquer le code, pas de le répéter.  
+  Si le code est suffisamment clair, il n'est pas nécessaire d'ajouter des commentaires.
+</Callout>
+
+### Outils de développement
+
+Pour faciliter le développement, il existe plusieurs outils et environnements de développement intégrés _(IDE)_ qui peuvent aider à écrire du code JavaScript.
+
+En gratuit, on peut citer :
+
+- **Visual Studio Code** : Un éditeur de code puissant et extensible.
+- **Atom** : Un éditeur de code open-source développé par GitHub.
+- **Sublime Text** : Un éditeur de code léger et rapide.
+
+<Callout type="warning" title="Attention aux éditeurs avec de l'IA !">
+  Ne te méprends pas, l'IA c'est génial ! Mais il faut faire attention à ne pas trop se reposer sur elle.
+
+  Lorsqu'on utilise un éditeur de code avec de l'IA, il est important de garder à l'esprit que l'IA peut parfois faire des erreurs. Et ces erreurs peuvent très bien être des erreurs de sécurité, ce qui n'est pas détectable avant d'avoir été exploité.
+
+  Si demain tu demandes à l'IA de te générer un code pour une API sans être en mesure de le remettre en question, j'espère que tu ne tiens pas aux données de tes utilisateurs ou à la sécurité de ton application !
+
+  Tant que tu es en phase d'apprentissage, je te conseille de ne pas utiliser d'IA de manière générale.
+</Callout>
+
+## Conclusion
+
+Tu l'auras remarqué, même si la syntaxe de JavaScript est relativement simple, il y a beaucoup de choses à apprendre !
+
+Ne va pas trop vite dans ton apprentissage et n'hésite pas à revenir sur les bases si tu as des doutes.  
+Il est important de bien comprendre la syntaxe de base avant de passer à des concepts plus avancés.
