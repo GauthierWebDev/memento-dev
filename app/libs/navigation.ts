@@ -127,10 +127,10 @@ export const navigation: NavigationSection[] = [
 						title: "Fonctions et portée",
 						href: "/docs/javascript/fonctions-et-portee",
 					},
-					// {
-					// 	title: "Le DOM",
-					// 	href: "/docs/javascript/dom",
-					// },
+					{
+						title: "Le DOM",
+						href: "/docs/javascript/dom",
+					},
 				],
 			},
 			{

@@ -168,6 +168,145 @@ element.textContent = "Nouveau contenu";`,
 	},
 ];
 
+const jsDomAttributesModificationExplanations = [
+	{
+		name: "Modification de l'attribut src",
+		codeLanguage: "js",
+		code: `const image = document.getElementById("image-id");
+
+image.setAttribute("src", "https://example.com/image.jpg");`,
+	},
+];
+
+const jsDomAttributesDeletionExplanations = [
+	{
+		name: "Suppression de l'attribut src",
+		codeLanguage: "js",
+		code: `const image = document.getElementById("image-id");
+
+image.removeAttribute("src");`,
+	},
+];
+
+const jsDomAttributesVerificationExplanations = [
+	{
+		name: "Vérification de l'attribut src",
+		codeLanguage: "js",
+		code: `const image = document.getElementById("image-id");
+
+if (image.hasAttribute("src")) {
+	const attributeValue = image.getAttribute("src");
+	console.log("L'attribut src a la valeur :", attributeValue);
+}`,
+	},
+	{
+		name: "Alterner un attribut avec toggleAttribute",
+		codeLanguage: "js",
+		code: `const button = document.getElementById("button-id");
+
+// Alterne l'attribut disabled entre true et false (vrai ou faux)
+button.toggleAttribute("disabled");`,
+	},
+	{
+		name: "Alterner un attribut avec toggleAttribute avec un argument",
+		codeLanguage: "js",
+		code: `const button = document.getElementById("button-id");
+
+const shouldDisable = true;
+
+// Passe l'attribut disabled à un état forcé,
+// en fonction de la valeur de shouldDisable
+button.toggleAttribute("disabled", shouldDisable);`,
+	},
+];
+
+const jsDomClassesModificationExplanations = [
+	{
+		name: "Ajouter une classe avec add",
+		codeLanguage: "js",
+		code: `const element = document.getElementById("element-id");
+
+// Ajoute la classe css-class
+element.classList.add("css-class");`,
+	},
+	{
+		name: "Ajouter plusieurs classes avec add",
+		codeLanguage: "js",
+		code: `const element = document.getElementById("element-id");
+
+// Ajoute les classes css-class, css-class-2 et css-class-3
+element.classList.add("css-class", "css-class-2", "css-class-3");`,
+	},
+	{
+		name: "Supprimer une classe avec remove",
+		codeLanguage: "js",
+		code: `const element = document.getElementById("element-id");
+
+// Supprime la classe css-class
+element.classList.remove("css-class");`,
+	},
+	{
+		name: "Supprimer plusieurs classes avec remove",
+		codeLanguage: "js",
+		code: `const element = document.getElementById("element-id");
+
+// Supprime les classes css-class, css-class-2 et css-class-3
+element.classList.remove("css-class", "css-class-2", "css-class-3");`,
+	},
+	{
+		name: "Vérifier si un élément a une classe avec contains",
+		codeLanguage: "js",
+		code: `const element = document.getElementById("element-id");
+
+// Retourne true si l'élément a la classe css-class, false sinon
+element.classList.contains("css-class");`,
+	},
+	{
+		name: "Alterner une classe avec toggle",
+		codeLanguage: "js",
+		code: `const element = document.getElementById("element-id");
+
+// Ajoute ou supprime la classe css-class,
+// en fonction de sa présence ou non
+element.classList.toggle("css-class");`,
+	},
+	{
+		name: "Alterner une classe avec toggle avec un argument",
+		codeLanguage: "js",
+		code: `const element = document.getElementById("element-id");
+
+const shouldToggle = true;
+
+// Alterne la classe css-class entre true et false (vrai ou faux),
+// en fonction de la valeur de shouldToggle
+element.classList.toggle("css-class", shouldToggle);`,
+	},
+];
+
+const jsDomStylesModificationExplanations = [
+	{
+		name: "Modification de la couleur de texte",
+		codeLanguage: "js",
+		code: `const element = document.getElementById("element-id");
+
+element.style.setProperty("color", "red");`,
+	},
+	{
+		name: "Récupération de la valeur d'un style",
+		codeLanguage: "js",
+		code: `const element = document.getElementById("element-id");
+
+const styleValue = element.style.getPropertyValue("color");`,
+	},
+	{
+		name: "Suppression d'un style",
+		codeLanguage: "js",
+		code: `const element = document.getElementById("element-id");
+
+element.style.removeProperty("color");`,
+	},
+];
+
 export default {
 	jsDomExplanations: () => <Snippet snippets={jsDomExplanations} />,
 	jsDomSelectionExplanations: () => (
@@ -175,5 +314,20 @@ export default {
 	),
 	jsDomContentModificationExplanations: () => (
 		<Snippet snippets={jsDomContentModificationExplanations} />
+	),
+	jsDomAttributesModificationExplanations: () => (
+		<Snippet snippets={jsDomAttributesModificationExplanations} />
+	),
+	jsDomAttributesDeletionExplanations: () => (
+		<Snippet snippets={jsDomAttributesDeletionExplanations} />
+	),
+	jsDomAttributesVerificationExplanations: () => (
+		<Snippet snippets={jsDomAttributesVerificationExplanations} />
+	),
+	jsDomClassesModificationExplanations: () => (
+		<Snippet snippets={jsDomClassesModificationExplanations} />
+	),
+	jsDomStylesModificationExplanations: () => (
+		<Snippet snippets={jsDomStylesModificationExplanations} />
 	),
 };
