@@ -307,6 +307,24 @@ element.style.removeProperty("color");`,
 	},
 ];
 
+const jsDomCreationExplanations = [
+	{
+		name: "Création d'un élément",
+		codeLanguage: "js",
+		code: `const element = document.createElement("div");`,
+	},
+];
+
+const jsDomAppendChildExplanations = [
+	{
+		name: "Ajout d'un élément à la page",
+		codeLanguage: "js",
+		code: `const element = document.createElement("div");
+
+document.body.appendChild(element);`,
+	},
+];
+
 export default {
 	jsDomExplanations: () => <Snippet snippets={jsDomExplanations} />,
 	jsDomSelectionExplanations: () => (
@@ -329,5 +347,11 @@ export default {
 	),
 	jsDomStylesModificationExplanations: () => (
 		<Snippet snippets={jsDomStylesModificationExplanations} />
+	),
+	jsDomCreationExplanations: () => (
+		<Snippet snippets={jsDomCreationExplanations} />
+	),
+	jsDomAppendChildExplanations: () => (
+		<Snippet snippets={jsDomAppendChildExplanations} />
 	),
 };

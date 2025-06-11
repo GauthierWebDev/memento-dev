@@ -12,7 +12,7 @@ Maintenant que nous avons vu les grandes lignes du langage JavaScript, tu vas en
 
 ## 🤔 Qu'est-ce que le DOM ?
 
-Le **Document Object Model** _(ou **DOM** en anglais)_ est une interface de programmation pour les documents HTML et XML. Il permet de représenter la page web comme un arbre de **nœuds**.
+Le **Document Object Model** _(ou **DOM** pour faire plus court)_ est une interface de programmation pour les documents HTML et XML. Il permet de représenter la page web comme un arbre de **nœuds**.
 
 Chaque élément HTML est un nœud dans l'arbre, et les nœuds peuvent contenir d'autres nœuds.  
 Mais un nœud peut aussi être un **texte** ou une **propriété** d'un élément !
@@ -163,7 +163,7 @@ Les fameuses méthodes sont :
 
 Plutôt simple à utiliser, non ? 😏
 
-### 🔄 Modifier les styles d'un élément
+### 🎨 Modifier les styles d'un élément
 
 Maintenant que l'on sait comment modifier le contenu d'un élément, ses attributs et ses classes, on peut se pencher sur les styles.
 
@@ -212,10 +212,38 @@ Personnaliser des éléments c'est top, mais les créer c'est encore mieux !
 
 Mais alors, sous le capot, que font ces outils ?
 
-Pour créer un élément, on peut utiliser la méthode `document.createElement(tagName)`.
+Pour créer un élément, on peut utiliser la méthode `document.createElement(tagName)`.  
+Cette méthode fonctionne de la même manière que les méthodes de sélection d'éléments que l'on a vu précédemment.
+
+Elle prend en paramètre le nom de la balise HTML de l'élément à créer et retourne un objet représentant l'élément créé.
+
+<tabs.jsDomCreationExplanations />
+
+Une fois l'élément créé, on peut l'ajouter à la page en utilisant la méthode `appendChild(element)`.
+
+<tabs.jsDomAppendChildExplanations />
+
+Il existe plusieurs méthodes pour ajouter un élément à la page :
+
+- `appendChild(element)` : Ajoute un élément à la fin de l'élément parent.
+- `append(element1, element2, ...)` : Ajoute un ou plusieurs éléments à la fin de l'élément parent.
+- `prepend(element)` : Ajoute un élément au début de l'élément parent.
+- `insertBefore(newElement, existingElement)` : Ajoute un élément avant un élément existant.
+- `insertAdjacentHTML(position, html)` : Insère du HTML à une position donnée.
+- `insertAdjacentText(position, text)` : Insère du texte à une position donnée.
+- `insertAdjacentElement(position, element)` : Insère un élément à une position donnée.
+- `replaceChild(newElement, oldElement)` : Remplace un élément par un autre.
+
+Comme tu peux le voir, tu as plusieurs choix qui s'ouvrent à toi !  
+À toi de choisir la méthode qui te convient le mieux, en fonction de ce que tu veux faire 😉
 
 ## 🤝 Conclusion
 
 Allez, on s'arrête là pour aujourd'hui !
 
-Mais avec toutes ces propriétés et méthodes, tu as de quoi manipuler le DOM comme un pro ! 😎
+Mais avec toutes ces propriétés et méthodes, tu as de quoi manipuler le DOM comme un pro ! 😎  
+Tu peux aller encore plus loin en utilisant des **événements** pour réagir à des actions de l'utilisateur, ou encore des **observateurs** pour surveiller les modifications d'un élément.
+
+Mais c'est un autre sujet, que l'on verra dans la prochaine partie !
+
+En attendant, n'hésite pas à t'exercer en créant des pages web avec JavaScript ! 😊
