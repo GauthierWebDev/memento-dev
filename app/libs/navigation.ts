@@ -70,6 +70,46 @@ export const navigation: NavigationSection[] = [
 		],
 	},
 	{
+		title: "Concepteur Développeur d'Applications",
+		type: navigationsTypes.CERTIFICATIONS,
+		position: "auto",
+		links: [
+			{ title: "Résumé du titre", href: "/certifications/cda", subitems: [] },
+			{
+				title: "Activité Type 1",
+				href: "/certifications/cda/at1",
+				subitems: [
+					{ title: "Résumé de l'AT", href: "/certifications/cda/at1" },
+					{ title: "CP 1", href: "/certifications/cda/at1/cp1" },
+					{ title: "CP 2", href: "/certifications/cda/at1/cp2" },
+					{ title: "CP 3", href: "/certifications/cda/at1/cp3" },
+					{ title: "CP 4", href: "/certifications/cda/at1/cp4" },
+				],
+			},
+			{
+				title: "Activité Type 2",
+				href: "/certifications/cda/at2",
+				subitems: [
+					{ title: "Résumé de l'AT", href: "/certifications/cda/at2" },
+					{ title: "CP 5", href: "/certifications/cda/at2/cp5" },
+					{ title: "CP 6", href: "/certifications/cda/at2/cp6" },
+					{ title: "CP 7", href: "/certifications/cda/at2/cp7" },
+					{ title: "CP 8", href: "/certifications/cda/at2/cp8" },
+				],
+			},
+			{
+				title: "Activité Type 3",
+				href: "/certifications/cda/at3",
+				subitems: [
+					{ title: "Résumé de l'AT", href: "/certifications/cda/at3" },
+					{ title: "CP 9", href: "/certifications/cda/at3/cp9" },
+					{ title: "CP 10", href: "/certifications/cda/at3/cp10" },
+					{ title: "CP 11", href: "/certifications/cda/at3/cp11" },
+				],
+			},
+		],
+	},
+	{
 		title: "Développeur Web et Web Mobile",
 		type: navigationsTypes.CERTIFICATIONS,
 		position: "auto",
