@@ -12,7 +12,7 @@ Maintenant que nous avons vu les grandes lignes du langage JavaScript, tu vas en
 
 ## 🤔 Qu'est-ce que le DOM ?
 
-Le **Document Object Model** _(ou **DOM** en anglais)_ est une interface de programmation pour les documents HTML et XML. Il permet de représenter la page web comme un arbre de **nœuds**.
+Le **Document Object Model** _(ou **DOM** pour faire plus court)_ est une interface de programmation pour les documents HTML et XML. Il permet de représenter la page web comme un arbre de **nœuds**.
 
 Chaque élément HTML est un nœud dans l'arbre, et les nœuds peuvent contenir d'autres nœuds.  
 Mais un nœud peut aussi être un **texte** ou une **propriété** d'un élément !
@@ -116,4 +116,138 @@ Je ne vais pas rentrer dans les détails ici, mais tu peux en savoir plus sur ce
 
 ### 🔧 Modifier les attributs d'un élément
 
+<<<<<<< HEAD
 Pour modifier les attributs d'un élément, on peut utiliser la propriété `element.setAttribute(attribute, value)`.
+=======
+On a eu l'occasion de voir comment modifier le contenu d'un élément, mais on peut également modifier ses attributs.  
+Pour modifier les attributs d'un élément, on peut utiliser la méthode `element.setAttribute(attribute, value)`.
+
+Mais avant d'aller plus loin...
+
+<Callout type="question" title="C'est quoi un attribut ?">
+  Un attribut est une propriété d'un élément HTML.
+
+  Par exemple, l'attribut `src` d'une balise `<img>` est la source de l'image.  
+</Callout>
+
+En conservant l'exemple de l'image, on peut modifier son attribut `src` pour changer l'image affichée.
+
+<tabs.jsDomAttributesModificationExplanations />
+
+Si maintenant on souhaite supprimer un attribut, on aura une méthode similaire : `element.removeAttribute(attribute)`.
+
+<tabs.jsDomAttributesDeletionExplanations />
+
+D'autres variantes existent pour manipuler les attributs d'un élément :
+
+- `element.hasAttribute(attribute)` : Vérifie si l'élément a un attribut.
+- `element.getAttribute(attribute)` : Récupère la valeur d'un attribut.
+- `element.toggleAttribute(attribute, value)` : Ajoute ou supprime un attribut.
+
+<tabs.jsDomAttributesVerificationExplanations />
+
+Et en réalité, c'est à peu près tout pour la modification des attributs d'un élément !  
+Avec une exception pour...
+
+### 🔄 Modifier les classes d'un élément
+
+Pour modifier les classes d'un élément, on n'utilise pas la méthode `element.setAttribute()`, mais plutôt les méthodes présentes dans la propriété `element.classList`.
+
+`element.classList` est une propriété qui contient une liste de classes de l'élément _(en lecteur seule, impossible de modifier directement la liste)_, mais qui a également des méthodes pour les manipuler.
+
+Les fameuses méthodes sont :
+
+- `element.classList.add(className)` : Ajoute une classe à l'élément.
+- `element.classList.remove(className)` : Supprime une classe de l'élément.
+- `element.classList.toggle(className)` : Ajoute ou supprime une classe de l'élément.
+- `element.classList.contains(className)` : Vérifie si l'élément a une classe.
+
+<tabs.jsDomClassesModificationExplanations />
+
+Plutôt simple à utiliser, non ? 😏
+
+### 🎨 Modifier les styles d'un élément
+
+Maintenant que l'on sait comment modifier le contenu d'un élément, ses attributs et ses classes, on peut se pencher sur les styles.
+
+Comme pour les classes, on n'utilise pas la méthode `element.setAttribute()`.  
+On va plutôt utiliser la propriété `element.style` pour modifier les styles d'un élément.
+
+`element.style` est une propriété qui contient un objet de styles de l'élément _(en lecteur seule, impossible de modifier directement l'objet)_, mais qui a également des méthodes pour les manipuler.
+
+On retrouve les méthodes suivantes :
+
+- `element.style.setProperty(property, value)` : Modifie la valeur d'un style.
+- `element.style.getPropertyValue(property)` : Récupère la valeur d'un style.
+- `element.style.removeProperty(property)` : Supprime un style.
+
+<tabs.jsDomStylesModificationExplanations />
+
+Ici encore, on reste sur de l'utilisation relativement simple !
+
+<Callout type="warning" title="Attention à la modification des styles inline">
+  Les styles inline sont des styles qui sont appliqués directement à l'élément dans le code HTML.
+
+  Ils sont très pratiques pour des cas très spécifiques, mais il faut **bien comprendre** qu'ils sont **prioritaires** par rapport aux autres styles.  
+  Il est préférable d'utiliser autant que possible les classes CSS pour modifier les styles d'un élément.
+
+  Cependant, il est parfois nécessaire d'utiliser les styles inline pour des raisons de personnalisation.  
+  C'est notamment le cas pour la mise en place de variables CSS dynamiques, ou pour des cas très spécifiques !
+</Callout>
+
+### 🔨 Créer un élément
+
+Personnaliser des éléments c'est top, mais les créer c'est encore mieux !
+
+<Callout type="note" title="Les frameworks JavaScript front-end">
+  Avant même de te montrer comment ça marche, laisse moi te dire que c'est le principe utilisé par de nombreux frameworks et bibliothèques JavaScript front-end pour créer des interfaces utilisateurs.
+
+  Pour citer les plus connus, on retrouve :
+
+  - [React](https://react.dev/)
+  - [Vue.js](https://vuejs.org/)
+  - [Angular](https://angular.io/)
+  - [Svelte](https://svelte.dev/)
+  - [Solid](https://www.solidjs.com/)
+
+  On garde ce sujet pour une prochaine fois, d'autant plus que ces outils nécessitent une compréhension plus approfondie des concepts JavaScript.
+</Callout>
+
+Mais alors, sous le capot, que font ces outils ?
+
+Pour créer un élément, on peut utiliser la méthode `document.createElement(tagName)`.  
+Cette méthode fonctionne de la même manière que les méthodes de sélection d'éléments que l'on a vu précédemment.
+
+Elle prend en paramètre le nom de la balise HTML de l'élément à créer et retourne un objet représentant l'élément créé.
+
+<tabs.jsDomCreationExplanations />
+
+Une fois l'élément créé, on peut l'ajouter à la page en utilisant la méthode `appendChild(element)`.
+
+<tabs.jsDomAppendChildExplanations />
+
+Il existe plusieurs méthodes pour ajouter un élément à la page :
+
+- `appendChild(element)` : Ajoute un élément à la fin de l'élément parent.
+- `append(element1, element2, ...)` : Ajoute un ou plusieurs éléments à la fin de l'élément parent.
+- `prepend(element)` : Ajoute un élément au début de l'élément parent.
+- `insertBefore(newElement, existingElement)` : Ajoute un élément avant un élément existant.
+- `insertAdjacentHTML(position, html)` : Insère du HTML à une position donnée.
+- `insertAdjacentText(position, text)` : Insère du texte à une position donnée.
+- `insertAdjacentElement(position, element)` : Insère un élément à une position donnée.
+- `replaceChild(newElement, oldElement)` : Remplace un élément par un autre.
+
+Comme tu peux le voir, tu as plusieurs choix qui s'ouvrent à toi !  
+À toi de choisir la méthode qui te convient le mieux, en fonction de ce que tu veux faire 😉
+
+## 🤝 Conclusion
+
+Allez, on s'arrête là pour aujourd'hui !
+
+Mais avec toutes ces propriétés et méthodes, tu as de quoi manipuler le DOM comme un pro ! 😎  
+Tu peux aller encore plus loin en utilisant des **événements** pour réagir à des actions de l'utilisateur, ou encore des **observateurs** pour surveiller les modifications d'un élément.
+
+Mais c'est un autre sujet, que l'on verra dans la prochaine partie !
+
+En attendant, n'hésite pas à t'exercer en créant des pages web avec JavaScript ! 😊
+>>>>>>> docs/js
